@@ -84,6 +84,25 @@ Go implementation of Adobe Spectrum Web Components.
 - [x] [Tray](spectrum-docs/md/tray.md)
 - [x] [Underlay](spectrum-docs/md/underlay.md)
 
+## Tools and Utilities
+
+- [x] [Base](spectrum-docs/md/base.md) - Base class functionality
+- [ ] [Bundle](spectrum-docs/md/bundle.md) - Bundle management
+- [x] [Color Controller](spectrum-docs/md/color-controller.md) - Color management utilities
+- [ ] [Core Tokens](spectrum-docs/md/core-tokens.md) - Design token system
+- [ ] [Dependency Manager](spectrum-docs/md/dependency-manager.md) - Manages component dependencies
+- [x] [Element Resolution](spectrum-docs/md/element-resolution.md) - Element resolution utilities
+- [ ] [Grid](spectrum-docs/md/grid.md) - Grid layout system
+- [x] [Match Media](spectrum-docs/md/match-media.md) - Media query utilities
+- [ ] [Opacity Checkerboard](spectrum-docs/md/opacity-checkerboard.md) - Visual aid for transparency
+- [x] [Pending State](spectrum-docs/md/pending-state.md) - State management for async operations
+- [ ] [Reactive Controllers](spectrum-docs/md/reactive-controllers.md) - Controllers for reactive patterns
+- [ ] [Roving Tab Index](spectrum-docs/md/roving-tab-index.md) - Accessibility navigation utility
+- [ ] [Shared](spectrum-docs/md/shared.md) - Shared utilities and functionality
+- [ ] [Styles](spectrum-docs/md/styles.md) - Style management system
+- [ ] [Theme](spectrum-docs/md/theme.md) - Theming functionality
+- [ ] [Truncated](spectrum-docs/md/truncated.md) - Text truncation utility
+
 ## Design Principles
 
 Our implementation follows these key principles:
