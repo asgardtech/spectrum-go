@@ -2,32 +2,32 @@ package sp
 
 import "github.com/maxence-charriere/go-app/v10/pkg/app"
 
-// SpectrumMenuDivider represents an sp-menu-divider component
-type SpectrumMenuDivider struct {
+// spectrumMenuDivider represents an sp-menu-divider component
+type spectrumMenuDivider struct {
 	app.Compo
 
 	// Properties
-	size string
+	PropSize string
 }
 
 // MenuDivider creates a new menu divider component
-func MenuDivider() *SpectrumMenuDivider {
-	return &SpectrumMenuDivider{}
+func MenuDivider() *spectrumMenuDivider {
+	return &spectrumMenuDivider{}
 }
 
-// Size sets the size of the divider
-func (m *SpectrumMenuDivider) Size(size string) *SpectrumMenuDivider {
-	m.size = size
+// Size sets the size of the menu divider
+func (m *spectrumMenuDivider) Size(size string) *spectrumMenuDivider {
+	m.PropSize = size
 	return m
 }
 
 // Render renders the menu divider component
-func (m *SpectrumMenuDivider) Render() app.UI {
+func (m *spectrumMenuDivider) Render() app.UI {
 	menuDivider := app.Elem("sp-menu-divider")
 
-	// Set size if provided
-	if m.size != "" {
-		menuDivider = menuDivider.Attr("size", m.size)
+	// Set attributes
+	if m.PropSize != "" {
+		menuDivider = menuDivider.Attr("size", m.PropSize)
 	}
 
 	return menuDivider

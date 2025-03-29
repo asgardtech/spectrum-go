@@ -15,99 +15,99 @@ const (
 	AlertDialogVariantSecondary    AlertDialogVariant = "secondary"
 )
 
-// SpectrumAlertDialog represents an sp-alert-dialog component
-type SpectrumAlertDialog struct {
+// spectrumAlertDialog represents an sp-alert-dialog component
+type spectrumAlertDialog struct {
 	app.Compo
 
 	// Properties
-	variant AlertDialogVariant
+	PropVariant AlertDialogVariant
 
 	// Content slots
-	heading         app.UI
-	content         app.UI
-	buttonSlots     []app.UI
-	confirmButton   app.UI
-	cancelButton    app.UI
-	secondaryButton app.UI
+	PropHeading         app.UI
+	PropContent         app.UI
+	PropButtonSlots     []app.UI
+	PropConfirmButton   app.UI
+	PropCancelButton    app.UI
+	PropSecondaryButton app.UI
 
 	// Event handlers
-	onClose app.EventHandler
+	PropOnClose app.EventHandler
 }
 
 // AlertDialog creates a new alert dialog component
-func AlertDialog() *SpectrumAlertDialog {
-	return &SpectrumAlertDialog{
-		variant: AlertDialogVariantConfirmation, // Default variant
+func AlertDialog() *spectrumAlertDialog {
+	return &spectrumAlertDialog{
+		PropVariant: AlertDialogVariantConfirmation, // Default variant
 	}
 }
 
 // Variant sets the visual style of the alert dialog
-func (ad *SpectrumAlertDialog) Variant(variant AlertDialogVariant) *SpectrumAlertDialog {
-	ad.variant = variant
+func (ad *spectrumAlertDialog) Variant(variant AlertDialogVariant) *spectrumAlertDialog {
+	ad.PropVariant = variant
 	return ad
 }
 
 // Confirmation sets the variant to "confirmation"
-func (ad *SpectrumAlertDialog) Confirmation() *SpectrumAlertDialog {
+func (ad *spectrumAlertDialog) Confirmation() *spectrumAlertDialog {
 	return ad.Variant(AlertDialogVariantConfirmation)
 }
 
 // Information sets the variant to "information"
-func (ad *SpectrumAlertDialog) Information() *SpectrumAlertDialog {
+func (ad *spectrumAlertDialog) Information() *spectrumAlertDialog {
 	return ad.Variant(AlertDialogVariantInformation)
 }
 
 // Warning sets the variant to "warning"
-func (ad *SpectrumAlertDialog) Warning() *SpectrumAlertDialog {
+func (ad *spectrumAlertDialog) Warning() *spectrumAlertDialog {
 	return ad.Variant(AlertDialogVariantWarning)
 }
 
 // Error sets the variant to "error"
-func (ad *SpectrumAlertDialog) Error() *SpectrumAlertDialog {
+func (ad *spectrumAlertDialog) Error() *spectrumAlertDialog {
 	return ad.Variant(AlertDialogVariantError)
 }
 
 // Destructive sets the variant to "destructive"
-func (ad *SpectrumAlertDialog) Destructive() *SpectrumAlertDialog {
+func (ad *spectrumAlertDialog) Destructive() *spectrumAlertDialog {
 	return ad.Variant(AlertDialogVariantDestructive)
 }
 
 // Secondary sets the variant to "secondary"
-func (ad *SpectrumAlertDialog) Secondary() *SpectrumAlertDialog {
+func (ad *spectrumAlertDialog) Secondary() *spectrumAlertDialog {
 	return ad.Variant(AlertDialogVariantSecondary)
 }
 
 // Heading sets the heading content in the heading slot
-func (ad *SpectrumAlertDialog) Heading(heading app.UI) *SpectrumAlertDialog {
-	ad.heading = heading
+func (ad *spectrumAlertDialog) Heading(heading app.UI) *spectrumAlertDialog {
+	ad.PropHeading = heading
 	return ad
 }
 
 // HeadingText sets a text heading in the heading slot
-func (ad *SpectrumAlertDialog) HeadingText(text string) *SpectrumAlertDialog {
-	ad.heading = app.H2().Text(text)
+func (ad *spectrumAlertDialog) HeadingText(text string) *spectrumAlertDialog {
+	ad.PropHeading = app.H2().Text(text)
 	return ad
 }
 
 // Content sets the main content of the alert dialog
-func (ad *SpectrumAlertDialog) Content(content app.UI) *SpectrumAlertDialog {
-	ad.content = content
+func (ad *spectrumAlertDialog) Content(content app.UI) *spectrumAlertDialog {
+	ad.PropContent = content
 	return ad
 }
 
 // ContentText sets text content in the alert dialog
-func (ad *SpectrumAlertDialog) ContentText(text string) *SpectrumAlertDialog {
-	ad.content = app.Text(text)
+func (ad *spectrumAlertDialog) ContentText(text string) *spectrumAlertDialog {
+	ad.PropContent = app.Text(text)
 	return ad
 }
 
 // AddButton adds a button to the alert dialog's button slot
-func (ad *SpectrumAlertDialog) AddButton(button app.UI) *SpectrumAlertDialog {
+func (ad *spectrumAlertDialog) AddButton(button app.UI) *spectrumAlertDialog {
 	// If the button implements a Slot method, use it, otherwise wrap the button
 	if buttonWithSlot, ok := button.(interface{ Slot(string) app.UI }); ok {
-		ad.buttonSlots = append(ad.buttonSlots, buttonWithSlot.Slot("button"))
+		ad.PropButtonSlots = append(ad.PropButtonSlots, buttonWithSlot.Slot("button"))
 	} else {
-		ad.buttonSlots = append(ad.buttonSlots, app.Elem("div").
+		ad.PropButtonSlots = append(ad.PropButtonSlots, app.Elem("div").
 			Attr("slot", "button").
 			Body(button))
 	}
@@ -115,100 +115,100 @@ func (ad *SpectrumAlertDialog) AddButton(button app.UI) *SpectrumAlertDialog {
 }
 
 // ConfirmButton sets the confirm button
-func (ad *SpectrumAlertDialog) ConfirmButton(button app.UI) *SpectrumAlertDialog {
-	ad.confirmButton = button
+func (ad *spectrumAlertDialog) ConfirmButton(button app.UI) *spectrumAlertDialog {
+	ad.PropConfirmButton = button
 	return ad
 }
 
 // CancelButton sets the cancel button
-func (ad *SpectrumAlertDialog) CancelButton(button app.UI) *SpectrumAlertDialog {
-	ad.cancelButton = button
+func (ad *spectrumAlertDialog) CancelButton(button app.UI) *spectrumAlertDialog {
+	ad.PropCancelButton = button
 	return ad
 }
 
 // SecondaryButton sets the secondary button (for secondary variant)
-func (ad *SpectrumAlertDialog) SecondaryButton(button app.UI) *SpectrumAlertDialog {
-	ad.secondaryButton = button
+func (ad *spectrumAlertDialog) SecondaryButton(button app.UI) *spectrumAlertDialog {
+	ad.PropSecondaryButton = button
 	return ad
 }
 
 // OnClose sets the close event handler
-func (ad *SpectrumAlertDialog) OnClose(handler app.EventHandler) *SpectrumAlertDialog {
-	ad.onClose = handler
+func (ad *spectrumAlertDialog) OnClose(handler app.EventHandler) *spectrumAlertDialog {
+	ad.PropOnClose = handler
 	return ad
 }
 
 // Render renders the alert dialog component
-func (ad *SpectrumAlertDialog) Render() app.UI {
+func (ad *spectrumAlertDialog) Render() app.UI {
 	alertDialog := app.Elem("sp-alert-dialog")
 
 	// Set attributes
-	if ad.variant != "" {
-		alertDialog = alertDialog.Attr("variant", string(ad.variant))
+	if ad.PropVariant != "" {
+		alertDialog = alertDialog.Attr("variant", string(ad.PropVariant))
 	}
 
 	// Add event handlers
-	if ad.onClose != nil {
-		alertDialog = alertDialog.On("close", ad.onClose)
+	if ad.PropOnClose != nil {
+		alertDialog = alertDialog.On("close", ad.PropOnClose)
 	}
 
 	// Add content elements
 	elements := []app.UI{}
 
 	// Add heading if provided
-	if ad.heading != nil {
-		if headingWithSlot, ok := ad.heading.(interface{ Slot(string) app.UI }); ok {
+	if ad.PropHeading != nil {
+		if headingWithSlot, ok := ad.PropHeading.(interface{ Slot(string) app.UI }); ok {
 			elements = append(elements, headingWithSlot.Slot("heading"))
 		} else {
 			elements = append(elements, app.Elem("div").
 				Attr("slot", "heading").
-				Body(ad.heading))
+				Body(ad.PropHeading))
 		}
 	}
 
 	// Add main content if provided
-	if ad.content != nil {
-		elements = append(elements, ad.content)
+	if ad.PropContent != nil {
+		elements = append(elements, ad.PropContent)
 	}
 
 	// Add buttons from buttonSlots array
-	if len(ad.buttonSlots) > 0 {
-		elements = append(elements, ad.buttonSlots...)
+	if len(ad.PropButtonSlots) > 0 {
+		elements = append(elements, ad.PropButtonSlots...)
 	}
 
 	// Add specific buttons if provided and not already added via buttonSlots
-	if ad.confirmButton != nil {
-		if buttonWithSlot, ok := ad.confirmButton.(interface{ Slot(string) app.UI }); ok {
+	if ad.PropConfirmButton != nil {
+		if buttonWithSlot, ok := ad.PropConfirmButton.(interface{ Slot(string) app.UI }); ok {
 			elements = append(elements, buttonWithSlot.Slot("button"))
 		} else {
 			button := app.Elem("div").
 				Attr("slot", "button").
 				Attr("id", "confirmButton").
-				Body(ad.confirmButton)
+				Body(ad.PropConfirmButton)
 			elements = append(elements, button)
 		}
 	}
 
-	if ad.cancelButton != nil {
-		if buttonWithSlot, ok := ad.cancelButton.(interface{ Slot(string) app.UI }); ok {
+	if ad.PropCancelButton != nil {
+		if buttonWithSlot, ok := ad.PropCancelButton.(interface{ Slot(string) app.UI }); ok {
 			elements = append(elements, buttonWithSlot.Slot("button"))
 		} else {
 			button := app.Elem("div").
 				Attr("slot", "button").
 				Attr("id", "cancelButton").
-				Body(ad.cancelButton)
+				Body(ad.PropCancelButton)
 			elements = append(elements, button)
 		}
 	}
 
-	if ad.secondaryButton != nil {
-		if buttonWithSlot, ok := ad.secondaryButton.(interface{ Slot(string) app.UI }); ok {
+	if ad.PropSecondaryButton != nil {
+		if buttonWithSlot, ok := ad.PropSecondaryButton.(interface{ Slot(string) app.UI }); ok {
 			elements = append(elements, buttonWithSlot.Slot("button"))
 		} else {
 			button := app.Elem("div").
 				Attr("slot", "button").
 				Attr("id", "secondaryButton").
-				Body(ad.secondaryButton)
+				Body(ad.PropSecondaryButton)
 			elements = append(elements, button)
 		}
 	}

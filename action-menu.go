@@ -10,348 +10,366 @@ const (
 	IconsTypeOnly IconsType = "only"
 )
 
-// SpectrumActionMenu represents an sp-action-menu component
-type SpectrumActionMenu struct {
+// spectrumActionMenu represents an sp-action-menu component
+type spectrumActionMenu struct {
 	app.Compo
 
 	// Properties
-	disabled     bool
-	focused      bool
-	forcePopover bool
-	icons        IconsType
-	invalid      bool
-	label        string
-	open         bool
-	pending      bool
-	pendingLabel string
-	placement    string
-	quiet        bool
-	readonly     bool
-	selects      string
-	staticColor  string
-	value        string
+	PropDisabled     bool
+	PropFocused      bool
+	PropForcePopover bool
+	PropIcons        IconsType
+	PropInvalid      bool
+	PropLabel        string
+	PropOpen         bool
+	PropPending      bool
+	PropPendingLabel string
+	PropPlacement    string
+	PropQuiet        bool
+	PropReadonly     bool
+	PropSelects      string
+	PropStaticColor  string
+	PropValue        string
 
 	// Content slots
-	description   app.UI
-	iconSlot      app.UI
-	labelSlot     app.UI
-	labelOnlySlot app.UI
-	tooltipSlot   app.UI
+	PropDescription   app.UI
+	PropIconSlot      app.UI
+	PropLabelSlot     app.UI
+	PropLabelOnlySlot app.UI
+	PropTooltipSlot   app.UI
 
 	// Child components (menu items)
-	children []app.UI
+	PropChildren []app.UI
 
 	// Event handlers
-	onChange app.EventHandler
-	onScroll app.EventHandler
-	onOpened app.EventHandler
+	PropOnChange app.EventHandler
+	PropOnScroll app.EventHandler
+	PropOnOpened app.EventHandler
 }
 
 // ActionMenu creates a new action menu component
-func ActionMenu() *SpectrumActionMenu {
-	return &SpectrumActionMenu{
-		placement:    "bottom-start", // Default placement
-		pendingLabel: "Pending",      // Default pending label
+func ActionMenu() *spectrumActionMenu {
+	return &spectrumActionMenu{
+		PropPlacement:    "bottom-start", // Default placement
+		PropPendingLabel: "Pending",      // Default pending label
 	}
 }
 
 // Disabled sets whether the action menu is disabled
-func (am *SpectrumActionMenu) Disabled(disabled bool) *SpectrumActionMenu {
-	am.disabled = disabled
+func (am *spectrumActionMenu) Disabled(disabled bool) *spectrumActionMenu {
+	am.PropDisabled = disabled
 	return am
 }
 
 // Focused sets whether the action menu is focused
-func (am *SpectrumActionMenu) Focused(focused bool) *SpectrumActionMenu {
-	am.focused = focused
+func (am *spectrumActionMenu) Focused(focused bool) *spectrumActionMenu {
+	am.PropFocused = focused
 	return am
 }
 
 // ForcePopover forces the action menu to render as a popover on mobile instead of a tray
-func (am *SpectrumActionMenu) ForcePopover(force bool) *SpectrumActionMenu {
-	am.forcePopover = force
+func (am *spectrumActionMenu) ForcePopover(force bool) *spectrumActionMenu {
+	am.PropForcePopover = force
 	return am
 }
 
 // Icons sets the icon display mode (none, only)
-func (am *SpectrumActionMenu) Icons(icons IconsType) *SpectrumActionMenu {
-	am.icons = icons
+func (am *spectrumActionMenu) Icons(icons IconsType) *spectrumActionMenu {
+	am.PropIcons = icons
 	return am
 }
 
 // IconsNone sets the icon display mode to none
-func (am *SpectrumActionMenu) IconsNone() *SpectrumActionMenu {
+func (am *spectrumActionMenu) IconsNone() *spectrumActionMenu {
 	return am.Icons(IconsTypeNone)
 }
 
 // IconsOnly sets the icon display mode to only
-func (am *SpectrumActionMenu) IconsOnly() *SpectrumActionMenu {
+func (am *spectrumActionMenu) IconsOnly() *spectrumActionMenu {
 	return am.Icons(IconsTypeOnly)
 }
 
 // Invalid sets whether the action menu is invalid
-func (am *SpectrumActionMenu) Invalid(invalid bool) *SpectrumActionMenu {
-	am.invalid = invalid
+func (am *spectrumActionMenu) Invalid(invalid bool) *spectrumActionMenu {
+	am.PropInvalid = invalid
 	return am
 }
 
 // Label sets the accessible label for the action menu
-func (am *SpectrumActionMenu) Label(label string) *SpectrumActionMenu {
-	am.label = label
+func (am *spectrumActionMenu) Label(label string) *spectrumActionMenu {
+	am.PropLabel = label
 	return am
 }
 
 // Open sets whether the action menu is open
-func (am *SpectrumActionMenu) Open(open bool) *SpectrumActionMenu {
-	am.open = open
+func (am *spectrumActionMenu) Open(open bool) *spectrumActionMenu {
+	am.PropOpen = open
 	return am
 }
 
 // Pending sets whether the items are currently loading
-func (am *SpectrumActionMenu) Pending(pending bool) *SpectrumActionMenu {
-	am.pending = pending
+func (am *spectrumActionMenu) Pending(pending bool) *spectrumActionMenu {
+	am.PropPending = pending
 	return am
 }
 
 // PendingLabel sets the label shown while in pending state
-func (am *SpectrumActionMenu) PendingLabel(label string) *SpectrumActionMenu {
-	am.pendingLabel = label
+func (am *spectrumActionMenu) PendingLabel(label string) *spectrumActionMenu {
+	am.PropPendingLabel = label
 	return am
 }
 
 // Placement sets the placement of the overlay
-func (am *SpectrumActionMenu) Placement(placement string) *SpectrumActionMenu {
-	am.placement = placement
+func (am *spectrumActionMenu) Placement(placement string) *spectrumActionMenu {
+	am.PropPlacement = placement
 	return am
 }
 
 // Quiet sets whether the action menu has a quiet appearance
-func (am *SpectrumActionMenu) Quiet(quiet bool) *SpectrumActionMenu {
-	am.quiet = quiet
+func (am *spectrumActionMenu) Quiet(quiet bool) *spectrumActionMenu {
+	am.PropQuiet = quiet
 	return am
 }
 
 // Readonly sets whether the action menu is readonly
-func (am *SpectrumActionMenu) Readonly(readonly bool) *SpectrumActionMenu {
-	am.readonly = readonly
+func (am *spectrumActionMenu) Readonly(readonly bool) *spectrumActionMenu {
+	am.PropReadonly = readonly
 	return am
 }
 
 // Selects sets the selection mode (single or undefined)
-func (am *SpectrumActionMenu) Selects(selects string) *SpectrumActionMenu {
-	am.selects = selects
+func (am *spectrumActionMenu) Selects(selects string) *spectrumActionMenu {
+	am.PropSelects = selects
 	return am
 }
 
 // SelectsSingle sets the selection mode to single
-func (am *SpectrumActionMenu) SelectsSingle() *SpectrumActionMenu {
+func (am *spectrumActionMenu) SelectsSingle() *spectrumActionMenu {
 	return am.Selects("single")
 }
 
 // StaticColor sets the static color of the action menu
-func (am *SpectrumActionMenu) StaticColor(color string) *SpectrumActionMenu {
-	am.staticColor = color
+func (am *spectrumActionMenu) StaticColor(color string) *spectrumActionMenu {
+	am.PropStaticColor = color
 	return am
 }
 
 // StaticColorWhite sets the static color to white
-func (am *SpectrumActionMenu) StaticColorWhite() *SpectrumActionMenu {
+func (am *spectrumActionMenu) StaticColorWhite() *spectrumActionMenu {
 	return am.StaticColor("white")
 }
 
 // StaticColorBlack sets the static color to black
-func (am *SpectrumActionMenu) StaticColorBlack() *SpectrumActionMenu {
+func (am *spectrumActionMenu) StaticColorBlack() *spectrumActionMenu {
 	return am.StaticColor("black")
 }
 
 // Value sets the value of the action menu
-func (am *SpectrumActionMenu) Value(value string) *SpectrumActionMenu {
-	am.value = value
+func (am *spectrumActionMenu) Value(value string) *spectrumActionMenu {
+	am.PropValue = value
 	return am
 }
 
 // Description sets the description content in the description slot
-func (am *SpectrumActionMenu) Description(description app.UI) *SpectrumActionMenu {
-	am.description = description
+func (am *spectrumActionMenu) Description(description app.UI) *spectrumActionMenu {
+	am.PropDescription = description
 	return am
 }
 
 // Icon sets the icon in the icon slot
-func (am *SpectrumActionMenu) Icon(icon app.UI) *SpectrumActionMenu {
-	am.iconSlot = icon
+func (am *spectrumActionMenu) Icon(icon app.UI) *spectrumActionMenu {
+	am.PropIconSlot = icon
 	return am
 }
 
 // LabelSlot sets the content in the label slot
-func (am *SpectrumActionMenu) LabelSlot(label app.UI) *SpectrumActionMenu {
-	am.labelSlot = label
+func (am *spectrumActionMenu) LabelSlot(label app.UI) *spectrumActionMenu {
+	am.PropLabelSlot = label
 	return am
 }
 
 // LabelOnly sets the content in the label-only slot (no icon space reserved)
-func (am *SpectrumActionMenu) LabelOnly(label app.UI) *SpectrumActionMenu {
-	am.labelOnlySlot = label
+func (am *spectrumActionMenu) LabelOnly(label app.UI) *spectrumActionMenu {
+	am.PropLabelOnlySlot = label
 	return am
 }
 
 // Tooltip sets the tooltip to be applied to the action button
-func (am *SpectrumActionMenu) Tooltip(tooltip app.UI) *SpectrumActionMenu {
-	am.tooltipSlot = tooltip
+func (am *spectrumActionMenu) Tooltip(tooltip app.UI) *spectrumActionMenu {
+	am.PropTooltipSlot = tooltip
 	return am
 }
 
 // Children sets the child components (menu items)
-func (am *SpectrumActionMenu) Children(children ...app.UI) *SpectrumActionMenu {
-	am.children = children
+func (am *spectrumActionMenu) Children(children ...app.UI) *spectrumActionMenu {
+	am.PropChildren = children
 	return am
 }
 
 // AddItem adds a menu item to the action menu
-func (am *SpectrumActionMenu) AddItem(item app.UI) *SpectrumActionMenu {
-	am.children = append(am.children, item)
+func (am *spectrumActionMenu) AddItem(item app.UI) *spectrumActionMenu {
+	am.PropChildren = append(am.PropChildren, item)
 	return am
 }
 
 // OnChange sets the change event handler
-func (am *SpectrumActionMenu) OnChange(handler app.EventHandler) *SpectrumActionMenu {
-	am.onChange = handler
+func (am *spectrumActionMenu) OnChange(handler app.EventHandler) *spectrumActionMenu {
+	am.PropOnChange = handler
 	return am
 }
 
 // OnScroll sets the scroll event handler
-func (am *SpectrumActionMenu) OnScroll(handler app.EventHandler) *SpectrumActionMenu {
-	am.onScroll = handler
+func (am *spectrumActionMenu) OnScroll(handler app.EventHandler) *spectrumActionMenu {
+	am.PropOnScroll = handler
 	return am
 }
 
 // OnOpened sets the opened event handler
-func (am *SpectrumActionMenu) OnOpened(handler app.EventHandler) *SpectrumActionMenu {
-	am.onOpened = handler
+func (am *spectrumActionMenu) OnOpened(handler app.EventHandler) *spectrumActionMenu {
+	am.PropOnOpened = handler
 	return am
 }
 
 // Render renders the action menu component
-func (am *SpectrumActionMenu) Render() app.UI {
+func (am *spectrumActionMenu) Render() app.UI {
 	actionMenu := app.Elem("sp-action-menu")
 
 	// Set attributes
-	if am.disabled {
+	if am.PropDisabled {
 		actionMenu = actionMenu.Attr("disabled", true)
 	}
-	if am.focused {
+	if am.PropFocused {
 		actionMenu = actionMenu.Attr("focused", true)
 	}
-	if am.forcePopover {
+	if am.PropForcePopover {
 		actionMenu = actionMenu.Attr("force-popover", true)
 	}
-	if am.icons != "" {
-		actionMenu = actionMenu.Attr("icons", string(am.icons))
+	if am.PropIcons != "" {
+		actionMenu = actionMenu.Attr("icons", string(am.PropIcons))
 	}
-	if am.invalid {
+	if am.PropInvalid {
 		actionMenu = actionMenu.Attr("invalid", true)
 	}
-	if am.label != "" {
-		actionMenu = actionMenu.Attr("label", am.label)
+	if am.PropLabel != "" {
+		actionMenu = actionMenu.Attr("label", am.PropLabel)
 	}
-	if am.open {
+	if am.PropOpen {
 		actionMenu = actionMenu.Attr("open", true)
 	}
-	if am.pending {
+	if am.PropPending {
 		actionMenu = actionMenu.Attr("pending", true)
 	}
-	if am.pendingLabel != "Pending" {
-		actionMenu = actionMenu.Attr("pending-label", am.pendingLabel)
+	if am.PropPendingLabel != "" {
+		actionMenu = actionMenu.Attr("pending-label", am.PropPendingLabel)
 	}
-	if am.placement != "bottom-start" {
-		actionMenu = actionMenu.Attr("placement", am.placement)
+	if am.PropPlacement != "" {
+		actionMenu = actionMenu.Attr("placement", am.PropPlacement)
 	}
-	if am.quiet {
+	if am.PropQuiet {
 		actionMenu = actionMenu.Attr("quiet", true)
 	}
-	if am.readonly {
+	if am.PropReadonly {
 		actionMenu = actionMenu.Attr("readonly", true)
 	}
-	if am.selects != "" {
-		actionMenu = actionMenu.Attr("selects", am.selects)
+	if am.PropSelects != "" {
+		actionMenu = actionMenu.Attr("selects", am.PropSelects)
 	}
-	if am.staticColor != "" {
-		actionMenu = actionMenu.Attr("static-color", am.staticColor)
+	if am.PropStaticColor != "" {
+		actionMenu = actionMenu.Attr("static-color", am.PropStaticColor)
 	}
-	if am.value != "" {
-		actionMenu = actionMenu.Attr("value", am.value)
+	if am.PropValue != "" {
+		actionMenu = actionMenu.Attr("value", am.PropValue)
 	}
 
 	// Add event handlers
-	if am.onChange != nil {
-		actionMenu = actionMenu.On("change", am.onChange)
+	if am.PropOnChange != nil {
+		actionMenu = actionMenu.On("change", am.PropOnChange)
 	}
-	if am.onScroll != nil {
-		actionMenu = actionMenu.On("scroll", am.onScroll)
+	if am.PropOnScroll != nil {
+		actionMenu = actionMenu.On("scroll", am.PropOnScroll)
 	}
-	if am.onOpened != nil {
-		actionMenu = actionMenu.On("sp-opened", am.onOpened)
+	if am.PropOnOpened != nil {
+		actionMenu = actionMenu.On("opened", am.PropOnOpened)
 	}
 
-	// Add content slots
-	elements := []app.UI{}
+	// Add slots
+	slotElements := []app.UI{}
 
-	if am.description != nil {
-		if descWithSlot, ok := am.description.(interface{ Slot(string) app.UI }); ok {
-			elements = append(elements, descWithSlot.Slot("description"))
+	// Add description slot
+	if am.PropDescription != nil {
+		descriptionElem := am.PropDescription
+		if descWithSlot, ok := descriptionElem.(interface{ Slot(string) app.UI }); ok {
+			descriptionElem = descWithSlot.Slot("description")
 		} else {
-			elements = append(elements, app.Elem("div").
+			descriptionElem = app.Elem("div").
 				Attr("slot", "description").
-				Body(am.description))
+				Body(descriptionElem)
 		}
+		slotElements = append(slotElements, descriptionElem)
 	}
 
-	if am.iconSlot != nil {
-		if iconWithSlot, ok := am.iconSlot.(interface{ Slot(string) app.UI }); ok {
-			elements = append(elements, iconWithSlot.Slot("icon"))
+	// Add icon slot
+	if am.PropIconSlot != nil {
+		iconElem := am.PropIconSlot
+		if iconWithSlot, ok := iconElem.(interface{ Slot(string) app.UI }); ok {
+			iconElem = iconWithSlot.Slot("icon")
 		} else {
-			elements = append(elements, app.Elem("div").
+			iconElem = app.Elem("div").
 				Attr("slot", "icon").
-				Body(am.iconSlot))
+				Body(iconElem)
 		}
+		slotElements = append(slotElements, iconElem)
 	}
 
-	if am.labelSlot != nil {
-		if labelWithSlot, ok := am.labelSlot.(interface{ Slot(string) app.UI }); ok {
-			elements = append(elements, labelWithSlot.Slot("label"))
+	// Add label slot
+	if am.PropLabelSlot != nil {
+		labelElem := am.PropLabelSlot
+		if labelWithSlot, ok := labelElem.(interface{ Slot(string) app.UI }); ok {
+			labelElem = labelWithSlot.Slot("label")
 		} else {
-			elements = append(elements, app.Elem("div").
+			labelElem = app.Elem("div").
 				Attr("slot", "label").
-				Body(am.labelSlot))
+				Body(labelElem)
 		}
+		slotElements = append(slotElements, labelElem)
 	}
 
-	if am.labelOnlySlot != nil {
-		if labelOnlyWithSlot, ok := am.labelOnlySlot.(interface{ Slot(string) app.UI }); ok {
-			elements = append(elements, labelOnlyWithSlot.Slot("label-only"))
+	// Add label-only slot
+	if am.PropLabelOnlySlot != nil {
+		labelOnlyElem := am.PropLabelOnlySlot
+		if labelOnlyWithSlot, ok := labelOnlyElem.(interface{ Slot(string) app.UI }); ok {
+			labelOnlyElem = labelOnlyWithSlot.Slot("label-only")
 		} else {
-			elements = append(elements, app.Elem("div").
+			labelOnlyElem = app.Elem("div").
 				Attr("slot", "label-only").
-				Body(am.labelOnlySlot))
+				Body(labelOnlyElem)
 		}
+		slotElements = append(slotElements, labelOnlyElem)
 	}
 
-	if am.tooltipSlot != nil {
-		if tooltipWithSlot, ok := am.tooltipSlot.(interface{ Slot(string) app.UI }); ok {
-			elements = append(elements, tooltipWithSlot.Slot("tooltip"))
+	// Add tooltip slot
+	if am.PropTooltipSlot != nil {
+		tooltipElem := am.PropTooltipSlot
+		if tooltipWithSlot, ok := tooltipElem.(interface{ Slot(string) app.UI }); ok {
+			tooltipElem = tooltipWithSlot.Slot("tooltip")
 		} else {
-			elements = append(elements, app.Elem("div").
+			tooltipElem = app.Elem("div").
 				Attr("slot", "tooltip").
-				Body(am.tooltipSlot))
+				Body(tooltipElem)
+		}
+		slotElements = append(slotElements, tooltipElem)
+	}
+
+	// Add child elements (menu items)
+	if len(am.PropChildren) > 0 {
+		for _, child := range am.PropChildren {
+			slotElements = append(slotElements, child)
 		}
 	}
 
-	// Add children
-	if len(am.children) > 0 {
-		elements = append(elements, am.children...)
-	}
-
-	if len(elements) > 0 {
-		actionMenu = actionMenu.Body(elements...)
+	// Add all elements to the action menu
+	if len(slotElements) > 0 {
+		actionMenu = actionMenu.Body(slotElements...)
 	}
 
 	return actionMenu

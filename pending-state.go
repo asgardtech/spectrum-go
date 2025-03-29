@@ -13,24 +13,24 @@ type HostWithPendingState interface {
 	GetPendingLabel() string
 }
 
-// SpectrumPendingStateController helps manage the pending state of a component.
+// spectrumPendingStateController helps manage the pending state of a component.
 // It provides a standardized way to indicate when an element is in a pending state,
 // such as during an asynchronous operation.
-type SpectrumPendingStateController struct {
-	host HostWithPendingState
+type spectrumPendingStateController struct {
+	PropHost HostWithPendingState
 }
 
-// PendingStateController creates a new SpectrumPendingStateController
-func PendingStateController(host HostWithPendingState) *SpectrumPendingStateController {
-	return &SpectrumPendingStateController{
-		host: host,
+// PendingStateController creates a new spectrumPendingStateController
+func PendingStateController(host HostWithPendingState) *spectrumPendingStateController {
+	return &spectrumPendingStateController{
+		PropHost: host,
 	}
 }
 
 // RenderPendingState returns a UI element that represents the pending state
 // This would typically be a progress circle or similar loading indicator
-func (c *SpectrumPendingStateController) RenderPendingState() app.UI {
-	if !c.host.IsPending() {
+func (c *spectrumPendingStateController) RenderPendingState() app.UI {
+	if !c.PropHost.IsPending() {
 		return nil
 	}
 
@@ -51,21 +51,21 @@ func (c *SpectrumPendingStateController) RenderPendingState() app.UI {
 	progressCircle := app.Elem("sp-progress-circle").
 		Attr("indeterminate", true).
 		Attr("size", "m").
-		Attr("label", c.host.GetPendingLabel())
+		Attr("label", c.PropHost.GetPendingLabel())
 
 	return container.Body(progressCircle)
 }
 
 // UpdateAriaLabel updates the aria-label of the host element based on its pending state
-func (c *SpectrumPendingStateController) UpdateAriaLabel(currentLabel string) string {
-	if c.host.IsPending() {
-		return c.host.GetPendingLabel()
+func (c *spectrumPendingStateController) UpdateAriaLabel(currentLabel string) string {
+	if c.PropHost.IsPending() {
+		return c.PropHost.GetPendingLabel()
 	}
 	return currentLabel
 }
 
 // ShouldDisableControls returns whether the controls should be disabled
 // based on the pending or disabled state
-func (c *SpectrumPendingStateController) ShouldDisableControls() bool {
-	return c.host.IsPending() || c.host.IsDisabled()
+func (c *spectrumPendingStateController) ShouldDisableControls() bool {
+	return c.PropHost.IsPending() || c.PropHost.IsDisabled()
 }

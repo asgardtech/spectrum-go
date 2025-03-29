@@ -2,68 +2,68 @@ package sp
 
 import "github.com/maxence-charriere/go-app/v10/pkg/app"
 
-// SpectrumSidenavOverflow represents an sp-sidenav-overflow component
-type SpectrumSidenavOverflow struct {
+// spectrumSidenavOverflow represents an sp-sidenav-overflow component
+type spectrumSidenavOverflow struct {
 	app.Compo
 
 	// Properties
-	label string
+	PropLabel string
 
 	// Child components
-	children []*SpectrumSidenavItem
+	PropChildren []*spectrumSidenavItem
 
 	// Event handlers
-	onClick app.EventHandler
+	PropOnClick app.EventHandler
 }
 
 // SidenavOverflow creates a new sidenav overflow component
-func SidenavOverflow() *SpectrumSidenavOverflow {
-	return &SpectrumSidenavOverflow{}
+func SidenavOverflow() *spectrumSidenavOverflow {
+	return &spectrumSidenavOverflow{}
 }
 
 // Label sets the accessible label for the overflow component
-func (so *SpectrumSidenavOverflow) Label(label string) *SpectrumSidenavOverflow {
-	so.label = label
+func (so *spectrumSidenavOverflow) Label(label string) *spectrumSidenavOverflow {
+	so.PropLabel = label
 	return so
 }
 
 // Children sets the child sidenav items
-func (so *SpectrumSidenavOverflow) Children(children ...*SpectrumSidenavItem) *SpectrumSidenavOverflow {
-	so.children = children
+func (so *spectrumSidenavOverflow) Children(children ...*spectrumSidenavItem) *spectrumSidenavOverflow {
+	so.PropChildren = children
 	return so
 }
 
 // OnClick sets the click event handler
-func (so *SpectrumSidenavOverflow) OnClick(handler app.EventHandler) *SpectrumSidenavOverflow {
-	so.onClick = handler
+func (so *spectrumSidenavOverflow) OnClick(handler app.EventHandler) *spectrumSidenavOverflow {
+	so.PropOnClick = handler
 	return so
 }
 
 // AddItem adds a sidenav item to the overflow
-func (so *SpectrumSidenavOverflow) AddItem(item *SpectrumSidenavItem) *SpectrumSidenavOverflow {
-	so.children = append(so.children, item)
+func (so *spectrumSidenavOverflow) AddItem(item *spectrumSidenavItem) *spectrumSidenavOverflow {
+	so.PropChildren = append(so.PropChildren, item)
 	return so
 }
 
 // Render renders the sidenav overflow component
-func (so *SpectrumSidenavOverflow) Render() app.UI {
+func (so *spectrumSidenavOverflow) Render() app.UI {
 	overflow := app.Elem("sp-sidenav-overflow")
 
 	// Set attributes
-	if so.label != "" {
-		overflow = overflow.Attr("label", so.label)
+	if so.PropLabel != "" {
+		overflow = overflow.Attr("label", so.PropLabel)
 	}
 
 	// Add event handlers
-	if so.onClick != nil {
-		overflow = overflow.On("click", so.onClick)
+	if so.PropOnClick != nil {
+		overflow = overflow.On("click", so.PropOnClick)
 	}
 
 	// Add children if provided
-	if len(so.children) > 0 {
-		// Convert SpectrumSidenavItem children to app.UI
+	if len(so.PropChildren) > 0 {
+		// Convert spectrumSidenavItem children to app.UI
 		var items []app.UI
-		for _, child := range so.children {
+		for _, child := range so.PropChildren {
 			items = append(items, child)
 		}
 

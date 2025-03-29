@@ -17,310 +17,310 @@ const (
 	NumberFieldSizeXL NumberFieldSize = "xl"
 )
 
-// SpectrumNumberField represents an sp-number-field component
-type SpectrumNumberField struct {
+// spectrumNumberField represents an sp-number-field component
+type spectrumNumberField struct {
 	app.Compo
 
 	// Properties
-	size          NumberFieldSize
-	label         string
-	value         string
-	placeholder   string
-	name          string
-	autocomplete  string
-	disabled      bool
-	grows         bool
-	invalid       bool
-	maxlength     int
-	minlength     int
-	multiline     bool
-	pattern       string
-	quiet         bool
-	readonly      bool
-	required      bool
-	rows          int
-	tabIndex      int
-	min           *float64
-	max           *float64
-	step          *float64
-	stepModifier  int
-	hideStepper   bool
-	indeterminate bool
-	formatOptions map[string]interface{}
+	PropSize          NumberFieldSize
+	PropLabel         string
+	PropValue         string
+	PropPlaceholder   string
+	PropName          string
+	PropAutocomplete  string
+	PropDisabled      bool
+	PropGrows         bool
+	PropInvalid       bool
+	PropMaxlength     int
+	PropMinlength     int
+	PropMultiline     bool
+	PropPattern       string
+	PropQuiet         bool
+	PropReadonly      bool
+	PropRequired      bool
+	PropRows          int
+	PropTabIndex      int
+	PropMin           *float64
+	PropMax           *float64
+	PropStep          *float64
+	PropStepModifier  int
+	PropHideStepper   bool
+	PropIndeterminate bool
+	PropFormatOptions map[string]interface{}
 
 	// Help text slots
-	helpText         app.UI
-	negativeHelpText app.UI
+	PropHelpText         app.UI
+	PropNegativeHelpText app.UI
 
 	// Event handlers
-	onInput  app.EventHandler
-	onChange app.EventHandler
+	PropOnInput  app.EventHandler
+	PropOnChange app.EventHandler
 }
 
 // NumberField creates a new number field component
-func NumberField() *SpectrumNumberField {
-	return &SpectrumNumberField{
-		size:          NumberFieldSizeM, // Default size is medium
-		stepModifier:  10,               // Default step modifier is 10
-		formatOptions: make(map[string]interface{}),
+func NumberField() *spectrumNumberField {
+	return &spectrumNumberField{
+		PropSize:          NumberFieldSizeM, // Default size is medium
+		PropStepModifier:  10,               // Default step modifier is 10
+		PropFormatOptions: make(map[string]interface{}),
 	}
 }
 
 // Size sets the visual size of the number field
-func (n *SpectrumNumberField) Size(size NumberFieldSize) *SpectrumNumberField {
-	n.size = size
+func (n *spectrumNumberField) Size(size NumberFieldSize) *spectrumNumberField {
+	n.PropSize = size
 	return n
 }
 
 // Label sets the accessibility label
-func (n *SpectrumNumberField) Label(label string) *SpectrumNumberField {
-	n.label = label
+func (n *spectrumNumberField) Label(label string) *spectrumNumberField {
+	n.PropLabel = label
 	return n
 }
 
 // Value sets the input value
-func (n *SpectrumNumberField) Value(value string) *SpectrumNumberField {
-	n.value = value
+func (n *spectrumNumberField) Value(value string) *spectrumNumberField {
+	n.PropValue = value
 	return n
 }
 
 // Placeholder sets the placeholder text
-func (n *SpectrumNumberField) Placeholder(placeholder string) *SpectrumNumberField {
-	n.placeholder = placeholder
+func (n *spectrumNumberField) Placeholder(placeholder string) *spectrumNumberField {
+	n.PropPlaceholder = placeholder
 	return n
 }
 
 // Name sets the form control name
-func (n *SpectrumNumberField) Name(name string) *SpectrumNumberField {
-	n.name = name
+func (n *spectrumNumberField) Name(name string) *spectrumNumberField {
+	n.PropName = name
 	return n
 }
 
 // Autocomplete sets the autocomplete attribute
-func (n *SpectrumNumberField) Autocomplete(autocomplete string) *SpectrumNumberField {
-	n.autocomplete = autocomplete
+func (n *spectrumNumberField) Autocomplete(autocomplete string) *spectrumNumberField {
+	n.PropAutocomplete = autocomplete
 	return n
 }
 
 // Disabled sets the disabled state
-func (n *SpectrumNumberField) Disabled(disabled bool) *SpectrumNumberField {
-	n.disabled = disabled
+func (n *spectrumNumberField) Disabled(disabled bool) *spectrumNumberField {
+	n.PropDisabled = disabled
 	return n
 }
 
 // Grows sets whether the number field grows with content
-func (n *SpectrumNumberField) Grows(grows bool) *SpectrumNumberField {
-	n.grows = grows
+func (n *spectrumNumberField) Grows(grows bool) *spectrumNumberField {
+	n.PropGrows = grows
 	return n
 }
 
 // Invalid sets the invalid state
-func (n *SpectrumNumberField) Invalid(invalid bool) *SpectrumNumberField {
-	n.invalid = invalid
+func (n *spectrumNumberField) Invalid(invalid bool) *spectrumNumberField {
+	n.PropInvalid = invalid
 	return n
 }
 
 // Maxlength sets the maximum allowed length
-func (n *SpectrumNumberField) Maxlength(maxlength int) *SpectrumNumberField {
-	n.maxlength = maxlength
+func (n *spectrumNumberField) Maxlength(maxlength int) *spectrumNumberField {
+	n.PropMaxlength = maxlength
 	return n
 }
 
 // Minlength sets the minimum allowed length
-func (n *SpectrumNumberField) Minlength(minlength int) *SpectrumNumberField {
-	n.minlength = minlength
+func (n *spectrumNumberField) Minlength(minlength int) *spectrumNumberField {
+	n.PropMinlength = minlength
 	return n
 }
 
 // Multiline sets whether the number field accepts multiple lines
-func (n *SpectrumNumberField) Multiline(multiline bool) *SpectrumNumberField {
-	n.multiline = multiline
+func (n *spectrumNumberField) Multiline(multiline bool) *spectrumNumberField {
+	n.PropMultiline = multiline
 	return n
 }
 
 // Pattern sets the validation pattern
-func (n *SpectrumNumberField) Pattern(pattern string) *SpectrumNumberField {
-	n.pattern = pattern
+func (n *spectrumNumberField) Pattern(pattern string) *spectrumNumberField {
+	n.PropPattern = pattern
 	return n
 }
 
 // Quiet sets whether the number field uses quiet styling
-func (n *SpectrumNumberField) Quiet(quiet bool) *SpectrumNumberField {
-	n.quiet = quiet
+func (n *spectrumNumberField) Quiet(quiet bool) *spectrumNumberField {
+	n.PropQuiet = quiet
 	return n
 }
 
 // Readonly sets the readonly state
-func (n *SpectrumNumberField) Readonly(readonly bool) *SpectrumNumberField {
-	n.readonly = readonly
+func (n *spectrumNumberField) Readonly(readonly bool) *spectrumNumberField {
+	n.PropReadonly = readonly
 	return n
 }
 
 // Required sets the required state
-func (n *SpectrumNumberField) Required(required bool) *SpectrumNumberField {
-	n.required = required
+func (n *spectrumNumberField) Required(required bool) *spectrumNumberField {
+	n.PropRequired = required
 	return n
 }
 
 // Rows sets the number of visible rows
-func (n *SpectrumNumberField) Rows(rows int) *SpectrumNumberField {
-	n.rows = rows
+func (n *spectrumNumberField) Rows(rows int) *spectrumNumberField {
+	n.PropRows = rows
 	return n
 }
 
 // TabIndex sets the tab index
-func (n *SpectrumNumberField) TabIndex(tabIndex int) *SpectrumNumberField {
-	n.tabIndex = tabIndex
+func (n *spectrumNumberField) TabIndex(tabIndex int) *spectrumNumberField {
+	n.PropTabIndex = tabIndex
 	return n
 }
 
 // Min sets the minimum allowed value
-func (n *SpectrumNumberField) Min(min float64) *SpectrumNumberField {
-	n.min = &min
+func (n *spectrumNumberField) Min(min float64) *spectrumNumberField {
+	n.PropMin = &min
 	return n
 }
 
 // Max sets the maximum allowed value
-func (n *SpectrumNumberField) Max(max float64) *SpectrumNumberField {
-	n.max = &max
+func (n *spectrumNumberField) Max(max float64) *spectrumNumberField {
+	n.PropMax = &max
 	return n
 }
 
 // Step sets the step value for incrementing/decrementing
-func (n *SpectrumNumberField) Step(step float64) *SpectrumNumberField {
-	n.step = &step
+func (n *spectrumNumberField) Step(step float64) *spectrumNumberField {
+	n.PropStep = &step
 	return n
 }
 
 // StepModifier sets the multiplier for step when using modifier keys
-func (n *SpectrumNumberField) StepModifier(modifier int) *SpectrumNumberField {
-	n.stepModifier = modifier
+func (n *spectrumNumberField) StepModifier(modifier int) *spectrumNumberField {
+	n.PropStepModifier = modifier
 	return n
 }
 
 // HideStepper sets whether to hide the stepper UI
-func (n *SpectrumNumberField) HideStepper(hide bool) *SpectrumNumberField {
-	n.hideStepper = hide
+func (n *spectrumNumberField) HideStepper(hide bool) *spectrumNumberField {
+	n.PropHideStepper = hide
 	return n
 }
 
 // Indeterminate sets the indeterminate state
-func (n *SpectrumNumberField) Indeterminate(indeterminate bool) *SpectrumNumberField {
-	n.indeterminate = indeterminate
+func (n *spectrumNumberField) Indeterminate(indeterminate bool) *spectrumNumberField {
+	n.PropIndeterminate = indeterminate
 	return n
 }
 
 // FormatOptions sets the Intl.NumberFormatOptions for formatting the displayed value
-func (n *SpectrumNumberField) FormatOptions(options map[string]interface{}) *SpectrumNumberField {
-	n.formatOptions = options
+func (n *spectrumNumberField) FormatOptions(options map[string]interface{}) *spectrumNumberField {
+	n.PropFormatOptions = options
 	return n
 }
 
 // FormatAsPercent is a convenience method to format the value as a percentage
-func (n *SpectrumNumberField) FormatAsPercent() *SpectrumNumberField {
-	n.formatOptions["style"] = "percent"
+func (n *spectrumNumberField) FormatAsPercent() *spectrumNumberField {
+	n.PropFormatOptions["style"] = "percent"
 	return n
 }
 
 // FormatAsCurrency is a convenience method to format the value as currency
-func (n *SpectrumNumberField) FormatAsCurrency(currency string, display string) *SpectrumNumberField {
-	n.formatOptions["style"] = "currency"
-	n.formatOptions["currency"] = currency
+func (n *spectrumNumberField) FormatAsCurrency(currency string, display string) *spectrumNumberField {
+	n.PropFormatOptions["style"] = "currency"
+	n.PropFormatOptions["currency"] = currency
 	if display != "" {
-		n.formatOptions["currencyDisplay"] = display
+		n.PropFormatOptions["currencyDisplay"] = display
 	}
 	return n
 }
 
 // FormatAsUnit is a convenience method to format the value with a unit
-func (n *SpectrumNumberField) FormatAsUnit(unit string, display string) *SpectrumNumberField {
-	n.formatOptions["style"] = "unit"
-	n.formatOptions["unit"] = unit
+func (n *spectrumNumberField) FormatAsUnit(unit string, display string) *spectrumNumberField {
+	n.PropFormatOptions["style"] = "unit"
+	n.PropFormatOptions["unit"] = unit
 	if display != "" {
-		n.formatOptions["unitDisplay"] = display
+		n.PropFormatOptions["unitDisplay"] = display
 	}
 	return n
 }
 
 // HelpText sets the help text UI element for the help-text slot
-func (n *SpectrumNumberField) HelpText(helpText app.UI) *SpectrumNumberField {
-	n.helpText = helpText
+func (n *spectrumNumberField) HelpText(helpText app.UI) *spectrumNumberField {
+	n.PropHelpText = helpText
 	return n
 }
 
 // NegativeHelpText sets the negative help text UI element for the negative-help-text slot
-func (n *SpectrumNumberField) NegativeHelpText(helpText app.UI) *SpectrumNumberField {
-	n.negativeHelpText = helpText
+func (n *spectrumNumberField) NegativeHelpText(helpText app.UI) *spectrumNumberField {
+	n.PropNegativeHelpText = helpText
 	return n
 }
 
 // OnInput sets the input event handler
-func (n *SpectrumNumberField) OnInput(handler app.EventHandler) *SpectrumNumberField {
-	n.onInput = handler
+func (n *spectrumNumberField) OnInput(handler app.EventHandler) *spectrumNumberField {
+	n.PropOnInput = handler
 	return n
 }
 
 // OnChange sets the change event handler
-func (n *SpectrumNumberField) OnChange(handler app.EventHandler) *SpectrumNumberField {
-	n.onChange = handler
+func (n *spectrumNumberField) OnChange(handler app.EventHandler) *spectrumNumberField {
+	n.PropOnChange = handler
 	return n
 }
 
 // Render renders the number field component
-func (n *SpectrumNumberField) Render() app.UI {
+func (n *spectrumNumberField) Render() app.UI {
 	numberField := app.Elem("sp-number-field").
-		Attr("size", string(n.size)).
-		Attr("label", n.label).
-		Attr("value", n.value).
-		Attr("placeholder", n.placeholder).
-		Attr("name", n.name).
-		Attr("autocomplete", n.autocomplete).
-		Attr("disabled", n.disabled).
-		Attr("grows", n.grows).
-		Attr("invalid", n.invalid).
-		Attr("maxlength", n.maxlength).
-		Attr("minlength", n.minlength).
-		Attr("multiline", n.multiline).
-		Attr("pattern", n.pattern).
-		Attr("quiet", n.quiet).
-		Attr("readonly", n.readonly).
-		Attr("required", n.required).
-		Attr("rows", n.rows).
-		Attr("tabindex", n.tabIndex).
-		Attr("hide-stepper", n.hideStepper).
-		Attr("indeterminate", n.indeterminate).
-		Attr("step-modifier", n.stepModifier)
+		Attr("size", string(n.PropSize)).
+		Attr("label", n.PropLabel).
+		Attr("value", n.PropValue).
+		Attr("placeholder", n.PropPlaceholder).
+		Attr("name", n.PropName).
+		Attr("autocomplete", n.PropAutocomplete).
+		Attr("disabled", n.PropDisabled).
+		Attr("grows", n.PropGrows).
+		Attr("invalid", n.PropInvalid).
+		Attr("maxlength", n.PropMaxlength).
+		Attr("minlength", n.PropMinlength).
+		Attr("multiline", n.PropMultiline).
+		Attr("pattern", n.PropPattern).
+		Attr("quiet", n.PropQuiet).
+		Attr("readonly", n.PropReadonly).
+		Attr("required", n.PropRequired).
+		Attr("rows", n.PropRows).
+		Attr("tabindex", n.PropTabIndex).
+		Attr("hide-stepper", n.PropHideStepper).
+		Attr("indeterminate", n.PropIndeterminate).
+		Attr("step-modifier", n.PropStepModifier)
 
 	// Add min, max, step if set
-	if n.min != nil {
-		numberField = numberField.Attr("min", *n.min)
+	if n.PropMin != nil {
+		numberField = numberField.Attr("min", *n.PropMin)
 	}
-	if n.max != nil {
-		numberField = numberField.Attr("max", *n.max)
+	if n.PropMax != nil {
+		numberField = numberField.Attr("max", *n.PropMax)
 	}
-	if n.step != nil {
-		numberField = numberField.Attr("step", *n.step)
+	if n.PropStep != nil {
+		numberField = numberField.Attr("step", *n.PropStep)
 	}
 
 	// Add format options if provided
-	if len(n.formatOptions) > 0 {
-		formatOptionsJSON, _ := json.Marshal(n.formatOptions)
+	if len(n.PropFormatOptions) > 0 {
+		formatOptionsJSON, _ := json.Marshal(n.PropFormatOptions)
 		numberField = numberField.Attr("format-options", string(formatOptionsJSON))
 	}
 
 	// Add event handlers
-	if n.onInput != nil {
-		numberField = numberField.On("input", n.onInput)
+	if n.PropOnInput != nil {
+		numberField = numberField.On("input", n.PropOnInput)
 	}
-	if n.onChange != nil {
-		numberField = numberField.On("change", n.onChange)
+	if n.PropOnChange != nil {
+		numberField = numberField.On("change", n.PropOnChange)
 	}
 
 	// Add help text slots if provided
 	elements := []app.UI{}
 
-	if n.helpText != nil {
-		helpTextElem := n.helpText
+	if n.PropHelpText != nil {
+		helpTextElem := n.PropHelpText
 		if helpTextWithSlot, ok := helpTextElem.(interface{ Slot(string) app.UI }); ok {
 			helpTextElem = helpTextWithSlot.Slot("help-text")
 		} else {
@@ -331,8 +331,8 @@ func (n *SpectrumNumberField) Render() app.UI {
 		elements = append(elements, helpTextElem)
 	}
 
-	if n.negativeHelpText != nil {
-		negativeHelpTextElem := n.negativeHelpText
+	if n.PropNegativeHelpText != nil {
+		negativeHelpTextElem := n.PropNegativeHelpText
 		if negativeHelpTextWithSlot, ok := negativeHelpTextElem.(interface{ Slot(string) app.UI }); ok {
 			negativeHelpTextElem = negativeHelpTextWithSlot.Slot("negative-help-text")
 		} else {

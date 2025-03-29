@@ -22,208 +22,208 @@ const (
 	TriggeredByLongpress = "longpress"
 )
 
-// SpectrumOverlayTrigger represents an overlay-trigger component
-type SpectrumOverlayTrigger struct {
+// spectrumOverlayTrigger represents an overlay-trigger component
+type spectrumOverlayTrigger struct {
 	app.Compo
 
 	// Properties
-	disabled      bool
-	offset        int
-	open          string // Can be one of the OverlayContentTypes
-	placement     OverlayPlacement
-	receivesFocus string // 'true', 'false', or 'auto'
-	triggeredBy   string // Space-separated list of trigger types
-	triggerType   OverlayTriggerType
+	PropDisabled      bool
+	PropOffset        int
+	PropOpen          string // Can be one of the OverlayContentTypes
+	PropPlacement     OverlayPlacement
+	PropReceivesFocus string // 'true', 'false', or 'auto'
+	PropTriggeredBy   string // Space-separated list of trigger types
+	PropTriggerType   OverlayTriggerType
 
 	// Slots
-	trigger              app.UI
-	clickContent         app.UI
-	hoverContent         app.UI
-	longpressContent     app.UI
-	longpressDescription app.UI
+	PropTrigger              app.UI
+	PropClickContent         app.UI
+	PropHoverContent         app.UI
+	PropLongpressContent     app.UI
+	PropLongpressDescription app.UI
 
 	// Event handlers
-	onOpened app.EventHandler
-	onClosed app.EventHandler
+	PropOnOpened app.EventHandler
+	PropOnClosed app.EventHandler
 }
 
 // OverlayTrigger creates a new overlay trigger component
-func OverlayTrigger() *SpectrumOverlayTrigger {
-	return &SpectrumOverlayTrigger{
-		offset:        6,      // Default offset is 6
-		receivesFocus: "auto", // Default receives-focus is "auto"
+func OverlayTrigger() *spectrumOverlayTrigger {
+	return &spectrumOverlayTrigger{
+		PropOffset:        6,      // Default offset is 6
+		PropReceivesFocus: "auto", // Default receives-focus is "auto"
 	}
 }
 
 // Disabled sets whether the overlay trigger is disabled
-func (ot *SpectrumOverlayTrigger) Disabled(disabled bool) *SpectrumOverlayTrigger {
-	ot.disabled = disabled
+func (ot *spectrumOverlayTrigger) Disabled(disabled bool) *spectrumOverlayTrigger {
+	ot.PropDisabled = disabled
 	return ot
 }
 
 // Offset sets the distance between the overlay and the trigger
-func (ot *SpectrumOverlayTrigger) Offset(offset int) *SpectrumOverlayTrigger {
-	ot.offset = offset
+func (ot *spectrumOverlayTrigger) Offset(offset int) *spectrumOverlayTrigger {
+	ot.PropOffset = offset
 	return ot
 }
 
 // Open sets which overlay content type should be open
-func (ot *SpectrumOverlayTrigger) Open(open string) *SpectrumOverlayTrigger {
-	ot.open = open
+func (ot *spectrumOverlayTrigger) Open(open string) *spectrumOverlayTrigger {
+	ot.PropOpen = open
 	return ot
 }
 
 // Placement sets the placement of the overlay relative to the trigger
-func (ot *SpectrumOverlayTrigger) Placement(placement OverlayPlacement) *SpectrumOverlayTrigger {
-	ot.placement = placement
+func (ot *spectrumOverlayTrigger) Placement(placement OverlayPlacement) *spectrumOverlayTrigger {
+	ot.PropPlacement = placement
 	return ot
 }
 
 // ReceivesFocus sets how focus should be handled
-func (ot *SpectrumOverlayTrigger) ReceivesFocus(receivesFocus string) *SpectrumOverlayTrigger {
-	ot.receivesFocus = receivesFocus
+func (ot *spectrumOverlayTrigger) ReceivesFocus(receivesFocus string) *spectrumOverlayTrigger {
+	ot.PropReceivesFocus = receivesFocus
 	return ot
 }
 
 // TriggeredBy sets which overlay content types should be used
-func (ot *SpectrumOverlayTrigger) TriggeredBy(triggeredBy string) *SpectrumOverlayTrigger {
-	ot.triggeredBy = triggeredBy
+func (ot *spectrumOverlayTrigger) TriggeredBy(triggeredBy string) *spectrumOverlayTrigger {
+	ot.PropTriggeredBy = triggeredBy
 	return ot
 }
 
 // Type sets the overlay trigger interaction model
-func (ot *SpectrumOverlayTrigger) Type(triggerType OverlayTriggerType) *SpectrumOverlayTrigger {
-	ot.triggerType = triggerType
+func (ot *spectrumOverlayTrigger) Type(triggerType OverlayTriggerType) *spectrumOverlayTrigger {
+	ot.PropTriggerType = triggerType
 	return ot
 }
 
 // Trigger sets the trigger element
-func (ot *SpectrumOverlayTrigger) Trigger(trigger app.UI) *SpectrumOverlayTrigger {
-	ot.trigger = trigger
+func (ot *spectrumOverlayTrigger) Trigger(trigger app.UI) *spectrumOverlayTrigger {
+	ot.PropTrigger = trigger
 	return ot
 }
 
 // ClickContent sets the content displayed on click
-func (ot *SpectrumOverlayTrigger) ClickContent(content app.UI) *SpectrumOverlayTrigger {
-	ot.clickContent = content
+func (ot *spectrumOverlayTrigger) ClickContent(content app.UI) *spectrumOverlayTrigger {
+	ot.PropClickContent = content
 	return ot
 }
 
 // HoverContent sets the content displayed on hover
-func (ot *SpectrumOverlayTrigger) HoverContent(content app.UI) *SpectrumOverlayTrigger {
-	ot.hoverContent = content
+func (ot *spectrumOverlayTrigger) HoverContent(content app.UI) *spectrumOverlayTrigger {
+	ot.PropHoverContent = content
 	return ot
 }
 
 // LongpressContent sets the content displayed on longpress
-func (ot *SpectrumOverlayTrigger) LongpressContent(content app.UI) *SpectrumOverlayTrigger {
-	ot.longpressContent = content
+func (ot *spectrumOverlayTrigger) LongpressContent(content app.UI) *spectrumOverlayTrigger {
+	ot.PropLongpressContent = content
 	return ot
 }
 
 // LongpressDescription sets the description for longpress content
-func (ot *SpectrumOverlayTrigger) LongpressDescription(description app.UI) *SpectrumOverlayTrigger {
-	ot.longpressDescription = description
+func (ot *spectrumOverlayTrigger) LongpressDescription(description app.UI) *spectrumOverlayTrigger {
+	ot.PropLongpressDescription = description
 	return ot
 }
 
 // OnOpened sets the opened event handler
-func (ot *SpectrumOverlayTrigger) OnOpened(handler app.EventHandler) *SpectrumOverlayTrigger {
-	ot.onOpened = handler
+func (ot *spectrumOverlayTrigger) OnOpened(handler app.EventHandler) *spectrumOverlayTrigger {
+	ot.PropOnOpened = handler
 	return ot
 }
 
 // OnClosed sets the closed event handler
-func (ot *SpectrumOverlayTrigger) OnClosed(handler app.EventHandler) *SpectrumOverlayTrigger {
-	ot.onClosed = handler
+func (ot *spectrumOverlayTrigger) OnClosed(handler app.EventHandler) *spectrumOverlayTrigger {
+	ot.PropOnClosed = handler
 	return ot
 }
 
 // Convenience methods for setting overlay trigger types
 
 // Inline sets type to inline
-func (ot *SpectrumOverlayTrigger) Inline() *SpectrumOverlayTrigger {
+func (ot *spectrumOverlayTrigger) Inline() *spectrumOverlayTrigger {
 	return ot.Type(OverlayTriggerTypeInline)
 }
 
 // Replace sets type to replace
-func (ot *SpectrumOverlayTrigger) Replace() *SpectrumOverlayTrigger {
+func (ot *spectrumOverlayTrigger) Replace() *spectrumOverlayTrigger {
 	return ot.Type(OverlayTriggerTypeReplace)
 }
 
 // Modal sets type to modal
-func (ot *SpectrumOverlayTrigger) Modal() *SpectrumOverlayTrigger {
+func (ot *spectrumOverlayTrigger) Modal() *spectrumOverlayTrigger {
 	return ot.Type(OverlayTriggerTypeModal)
 }
 
 // Convenience methods for setting triggered-by attribute
 
 // TriggeredByClickOnly sets triggered-by to "click"
-func (ot *SpectrumOverlayTrigger) TriggeredByClickOnly() *SpectrumOverlayTrigger {
+func (ot *spectrumOverlayTrigger) TriggeredByClickOnly() *spectrumOverlayTrigger {
 	return ot.TriggeredBy(TriggeredByClick)
 }
 
 // TriggeredByHoverOnly sets triggered-by to "hover"
-func (ot *SpectrumOverlayTrigger) TriggeredByHoverOnly() *SpectrumOverlayTrigger {
+func (ot *spectrumOverlayTrigger) TriggeredByHoverOnly() *spectrumOverlayTrigger {
 	return ot.TriggeredBy(TriggeredByHover)
 }
 
 // TriggeredByLongpressOnly sets triggered-by to "longpress"
-func (ot *SpectrumOverlayTrigger) TriggeredByLongpressOnly() *SpectrumOverlayTrigger {
+func (ot *spectrumOverlayTrigger) TriggeredByLongpressOnly() *spectrumOverlayTrigger {
 	return ot.TriggeredBy(TriggeredByLongpress)
 }
 
 // TriggeredByClickAndHover sets triggered-by to "click hover"
-func (ot *SpectrumOverlayTrigger) TriggeredByClickAndHover() *SpectrumOverlayTrigger {
+func (ot *spectrumOverlayTrigger) TriggeredByClickAndHover() *spectrumOverlayTrigger {
 	return ot.TriggeredBy(TriggeredByClick + " " + TriggeredByHover)
 }
 
 // TriggeredByAll sets triggered-by to include all interaction types
-func (ot *SpectrumOverlayTrigger) TriggeredByAll() *SpectrumOverlayTrigger {
+func (ot *spectrumOverlayTrigger) TriggeredByAll() *spectrumOverlayTrigger {
 	return ot.TriggeredBy(TriggeredByClick + " " + TriggeredByHover + " " + TriggeredByLongpress)
 }
 
 // Render renders the overlay trigger component
-func (ot *SpectrumOverlayTrigger) Render() app.UI {
+func (ot *spectrumOverlayTrigger) Render() app.UI {
 	overlayTrigger := app.Elem("overlay-trigger")
 
 	// Add properties
-	if ot.disabled {
+	if ot.PropDisabled {
 		overlayTrigger = overlayTrigger.Attr("disabled", true)
 	}
-	if ot.offset != 0 {
-		overlayTrigger = overlayTrigger.Attr("offset", ot.offset)
+	if ot.PropOffset != 0 {
+		overlayTrigger = overlayTrigger.Attr("offset", ot.PropOffset)
 	}
-	if ot.open != "" {
-		overlayTrigger = overlayTrigger.Attr("open", ot.open)
+	if ot.PropOpen != "" {
+		overlayTrigger = overlayTrigger.Attr("open", ot.PropOpen)
 	}
-	if ot.placement != "" {
-		overlayTrigger = overlayTrigger.Attr("placement", string(ot.placement))
+	if ot.PropPlacement != "" {
+		overlayTrigger = overlayTrigger.Attr("placement", string(ot.PropPlacement))
 	}
-	if ot.receivesFocus != "" {
-		overlayTrigger = overlayTrigger.Attr("receives-focus", ot.receivesFocus)
+	if ot.PropReceivesFocus != "" {
+		overlayTrigger = overlayTrigger.Attr("receives-focus", ot.PropReceivesFocus)
 	}
-	if ot.triggeredBy != "" {
-		overlayTrigger = overlayTrigger.Attr("triggered-by", ot.triggeredBy)
+	if ot.PropTriggeredBy != "" {
+		overlayTrigger = overlayTrigger.Attr("triggered-by", ot.PropTriggeredBy)
 	}
-	if ot.triggerType != "" {
-		overlayTrigger = overlayTrigger.Attr("type", string(ot.triggerType))
+	if ot.PropTriggerType != "" {
+		overlayTrigger = overlayTrigger.Attr("type", string(ot.PropTriggerType))
 	}
 
 	// Add event handlers
-	if ot.onOpened != nil {
-		overlayTrigger = overlayTrigger.On("sp-opened", ot.onOpened)
+	if ot.PropOnOpened != nil {
+		overlayTrigger = overlayTrigger.On("sp-opened", ot.PropOnOpened)
 	}
-	if ot.onClosed != nil {
-		overlayTrigger = overlayTrigger.On("sp-closed", ot.onClosed)
+	if ot.PropOnClosed != nil {
+		overlayTrigger = overlayTrigger.On("sp-closed", ot.PropOnClosed)
 	}
 
 	// Collect slot elements
 	elements := []app.UI{}
 
 	// Add trigger slot if provided
-	if ot.trigger != nil {
-		triggerElem := ot.trigger
+	if ot.PropTrigger != nil {
+		triggerElem := ot.PropTrigger
 		if triggerWithSlot, ok := triggerElem.(interface{ Slot(string) app.UI }); ok {
 			triggerElem = triggerWithSlot.Slot("trigger")
 		} else {
@@ -235,8 +235,8 @@ func (ot *SpectrumOverlayTrigger) Render() app.UI {
 	}
 
 	// Add click-content slot if provided
-	if ot.clickContent != nil {
-		clickContentElem := ot.clickContent
+	if ot.PropClickContent != nil {
+		clickContentElem := ot.PropClickContent
 		if clickContentWithSlot, ok := clickContentElem.(interface{ Slot(string) app.UI }); ok {
 			clickContentElem = clickContentWithSlot.Slot("click-content")
 		} else {
@@ -248,8 +248,8 @@ func (ot *SpectrumOverlayTrigger) Render() app.UI {
 	}
 
 	// Add hover-content slot if provided
-	if ot.hoverContent != nil {
-		hoverContentElem := ot.hoverContent
+	if ot.PropHoverContent != nil {
+		hoverContentElem := ot.PropHoverContent
 		if hoverContentWithSlot, ok := hoverContentElem.(interface{ Slot(string) app.UI }); ok {
 			hoverContentElem = hoverContentWithSlot.Slot("hover-content")
 		} else {
@@ -261,8 +261,8 @@ func (ot *SpectrumOverlayTrigger) Render() app.UI {
 	}
 
 	// Add longpress-content slot if provided
-	if ot.longpressContent != nil {
-		longpressContentElem := ot.longpressContent
+	if ot.PropLongpressContent != nil {
+		longpressContentElem := ot.PropLongpressContent
 		if longpressContentWithSlot, ok := longpressContentElem.(interface{ Slot(string) app.UI }); ok {
 			longpressContentElem = longpressContentWithSlot.Slot("longpress-content")
 		} else {
@@ -274,8 +274,8 @@ func (ot *SpectrumOverlayTrigger) Render() app.UI {
 	}
 
 	// Add longpress-describedby-descriptor slot if provided
-	if ot.longpressDescription != nil {
-		longpressDescElem := ot.longpressDescription
+	if ot.PropLongpressDescription != nil {
+		longpressDescElem := ot.PropLongpressDescription
 		if longpressDescWithSlot, ok := longpressDescElem.(interface{ Slot(string) app.UI }); ok {
 			longpressDescElem = longpressDescWithSlot.Slot("longpress-describedby-descriptor")
 		} else {

@@ -2,150 +2,150 @@ package sp
 
 import "github.com/maxence-charriere/go-app/v10/pkg/app"
 
-// SpectrumTopNavItem represents an sp-top-nav-item component
-type SpectrumTopNavItem struct {
+// spectrumTopNavItem represents an sp-top-nav-item component
+type spectrumTopNavItem struct {
 	app.Compo
 
 	// Properties
-	disabled       bool
-	download       string
-	href           string
-	label          string
-	referrerpolicy string
-	rel            string
-	selected       bool
-	tabIndex       int
-	target         string
-	value          string
+	PropDisabled       bool
+	PropDownload       string
+	PropHref           string
+	PropLabel          string
+	PropReferrerpolicy string
+	PropRel            string
+	PropSelected       bool
+	PropTabIndex       int
+	PropTarget         string
+	PropValue          string
 
 	// Content
-	text string
+	PropText string
 
 	// Event handlers
-	onClick app.EventHandler
+	PropOnClick app.EventHandler
 }
 
 // TopNavItem creates a new top nav item component
-func TopNavItem() *SpectrumTopNavItem {
-	return &SpectrumTopNavItem{}
+func TopNavItem() *spectrumTopNavItem {
+	return &spectrumTopNavItem{}
 }
 
 // Disabled sets whether the nav item is disabled
-func (ni *SpectrumTopNavItem) Disabled(disabled bool) *SpectrumTopNavItem {
-	ni.disabled = disabled
+func (ni *spectrumTopNavItem) Disabled(disabled bool) *spectrumTopNavItem {
+	ni.PropDisabled = disabled
 	return ni
 }
 
 // Download sets the download attribute for the nav item
-func (ni *SpectrumTopNavItem) Download(download string) *SpectrumTopNavItem {
-	ni.download = download
+func (ni *spectrumTopNavItem) Download(download string) *spectrumTopNavItem {
+	ni.PropDownload = download
 	return ni
 }
 
 // Href sets the URL for the nav item
-func (ni *SpectrumTopNavItem) Href(href string) *SpectrumTopNavItem {
-	ni.href = href
+func (ni *spectrumTopNavItem) Href(href string) *spectrumTopNavItem {
+	ni.PropHref = href
 	return ni
 }
 
 // Label sets the accessible label for the nav item
-func (ni *SpectrumTopNavItem) Label(label string) *SpectrumTopNavItem {
-	ni.label = label
+func (ni *spectrumTopNavItem) Label(label string) *spectrumTopNavItem {
+	ni.PropLabel = label
 	return ni
 }
 
 // Referrerpolicy sets the referrer policy for the nav item
-func (ni *SpectrumTopNavItem) Referrerpolicy(policy string) *SpectrumTopNavItem {
-	ni.referrerpolicy = policy
+func (ni *spectrumTopNavItem) Referrerpolicy(policy string) *spectrumTopNavItem {
+	ni.PropReferrerpolicy = policy
 	return ni
 }
 
 // Rel sets the relationship of the linked URL
-func (ni *SpectrumTopNavItem) Rel(rel string) *SpectrumTopNavItem {
-	ni.rel = rel
+func (ni *spectrumTopNavItem) Rel(rel string) *spectrumTopNavItem {
+	ni.PropRel = rel
 	return ni
 }
 
 // Selected sets whether the nav item is selected
-func (ni *SpectrumTopNavItem) Selected(selected bool) *SpectrumTopNavItem {
-	ni.selected = selected
+func (ni *spectrumTopNavItem) Selected(selected bool) *spectrumTopNavItem {
+	ni.PropSelected = selected
 	return ni
 }
 
 // TabIndex sets the tab index of the nav item
-func (ni *SpectrumTopNavItem) TabIndex(tabIndex int) *SpectrumTopNavItem {
-	ni.tabIndex = tabIndex
+func (ni *spectrumTopNavItem) TabIndex(tabIndex int) *spectrumTopNavItem {
+	ni.PropTabIndex = tabIndex
 	return ni
 }
 
 // Target sets where to display the linked URL
-func (ni *SpectrumTopNavItem) Target(target string) *SpectrumTopNavItem {
-	ni.target = target
+func (ni *spectrumTopNavItem) Target(target string) *spectrumTopNavItem {
+	ni.PropTarget = target
 	return ni
 }
 
 // Value sets the value of the nav item
-func (ni *SpectrumTopNavItem) Value(value string) *SpectrumTopNavItem {
-	ni.value = value
+func (ni *spectrumTopNavItem) Value(value string) *spectrumTopNavItem {
+	ni.PropValue = value
 	return ni
 }
 
 // Text sets the text content of the nav item
-func (ni *SpectrumTopNavItem) Text(text string) *SpectrumTopNavItem {
-	ni.text = text
+func (ni *spectrumTopNavItem) Text(text string) *spectrumTopNavItem {
+	ni.PropText = text
 	return ni
 }
 
 // OnClick sets the click event handler
-func (ni *SpectrumTopNavItem) OnClick(handler app.EventHandler) *SpectrumTopNavItem {
-	ni.onClick = handler
+func (ni *spectrumTopNavItem) OnClick(handler app.EventHandler) *spectrumTopNavItem {
+	ni.PropOnClick = handler
 	return ni
 }
 
 // Render renders the top nav item component
-func (ni *SpectrumTopNavItem) Render() app.UI {
+func (ni *spectrumTopNavItem) Render() app.UI {
 	navItem := app.Elem("sp-top-nav-item")
 
 	// Set attributes
-	if ni.disabled {
+	if ni.PropDisabled {
 		navItem = navItem.Attr("disabled", true)
 	}
-	if ni.download != "" {
-		navItem = navItem.Attr("download", ni.download)
+	if ni.PropDownload != "" {
+		navItem = navItem.Attr("download", ni.PropDownload)
 	}
-	if ni.href != "" {
-		navItem = navItem.Attr("href", ni.href)
+	if ni.PropHref != "" {
+		navItem = navItem.Attr("href", ni.PropHref)
 	}
-	if ni.label != "" {
-		navItem = navItem.Attr("label", ni.label)
+	if ni.PropLabel != "" {
+		navItem = navItem.Attr("label", ni.PropLabel)
 	}
-	if ni.referrerpolicy != "" {
-		navItem = navItem.Attr("referrerpolicy", ni.referrerpolicy)
+	if ni.PropReferrerpolicy != "" {
+		navItem = navItem.Attr("referrerpolicy", ni.PropReferrerpolicy)
 	}
-	if ni.rel != "" {
-		navItem = navItem.Attr("rel", ni.rel)
+	if ni.PropRel != "" {
+		navItem = navItem.Attr("rel", ni.PropRel)
 	}
-	if ni.selected {
+	if ni.PropSelected {
 		navItem = navItem.Attr("selected", true)
 	}
-	if ni.tabIndex != 0 {
-		navItem = navItem.Attr("tabindex", ni.tabIndex)
+	if ni.PropTabIndex != 0 {
+		navItem = navItem.Attr("tabindex", ni.PropTabIndex)
 	}
-	if ni.target != "" {
-		navItem = navItem.Attr("target", ni.target)
+	if ni.PropTarget != "" {
+		navItem = navItem.Attr("target", ni.PropTarget)
 	}
-	if ni.value != "" {
-		navItem = navItem.Attr("value", ni.value)
+	if ni.PropValue != "" {
+		navItem = navItem.Attr("value", ni.PropValue)
 	}
 
 	// Add event handlers
-	if ni.onClick != nil {
-		navItem = navItem.On("click", ni.onClick)
+	if ni.PropOnClick != nil {
+		navItem = navItem.On("click", ni.PropOnClick)
 	}
 
 	// Add text content if provided
-	if ni.text != "" {
-		navItem = navItem.Text(ni.text)
+	if ni.PropText != "" {
+		navItem = navItem.Text(ni.PropText)
 	}
 
 	return navItem

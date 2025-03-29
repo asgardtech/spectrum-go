@@ -2,173 +2,157 @@ package sp
 
 import "github.com/maxence-charriere/go-app/v10/pkg/app"
 
-// Selects represents selection mode for menu groups
-type MenuSelects string
-
-const (
-	MenuSelectsInherit  MenuSelects = "inherit"
-	MenuSelectsSingle   MenuSelects = "single"
-	MenuSelectsMultiple MenuSelects = "multiple"
-)
-
-// SpectrumMenuGroup represents an sp-menu-group component
-type SpectrumMenuGroup struct {
+// spectrumMenuGroup represents an sp-menu-group component
+type spectrumMenuGroup struct {
 	app.Compo
 
 	// Properties
-	label          string
-	ignore         bool
-	selects        MenuSelects
-	value          string
-	valueSeparator string
+	PropLabel          string
+	PropIgnore         bool
+	PropSelects        string
+	PropValue          string
+	PropValueSeparator string
 
 	// Slots
-	header   app.UI
-	children []*SpectrumMenuItem
+	PropHeader   app.UI
+	PropChildren []app.UI
 
 	// Event handlers
-	onChange app.EventHandler
-	onClose  app.EventHandler
+	PropOnChange app.EventHandler
+	PropOnClose  app.EventHandler
 }
 
 // MenuGroup creates a new menu group component
-func MenuGroup() *SpectrumMenuGroup {
-	return &SpectrumMenuGroup{
-		valueSeparator: ",", // Default value separator
-	}
+func MenuGroup() *spectrumMenuGroup {
+	return &spectrumMenuGroup{}
 }
 
-// Label sets the label of the menu group
-func (m *SpectrumMenuGroup) Label(label string) *SpectrumMenuGroup {
-	m.label = label
+// Label sets the menu group label
+func (m *spectrumMenuGroup) Label(label string) *spectrumMenuGroup {
+	m.PropLabel = label
 	return m
 }
 
-// Ignore sets whether menu should be ignored by roving tabindex controller
-func (m *SpectrumMenuGroup) Ignore(ignore bool) *SpectrumMenuGroup {
-	m.ignore = ignore
+// Ignore sets whether the menu group should ignore keyboard focus navigation
+func (m *spectrumMenuGroup) Ignore(ignore bool) *spectrumMenuGroup {
+	m.PropIgnore = ignore
 	return m
 }
 
-// Selects sets how the menu allows selection of its items
-func (m *SpectrumMenuGroup) Selects(selects MenuSelects) *SpectrumMenuGroup {
-	m.selects = selects
+// Selects sets the selection mode
+func (m *spectrumMenuGroup) Selects(selects string) *spectrumMenuGroup {
+	m.PropSelects = selects
 	return m
 }
 
-// Value sets the value of the selected item(s)
-func (m *SpectrumMenuGroup) Value(value string) *SpectrumMenuGroup {
-	m.value = value
+// Value sets the selected value(s)
+func (m *spectrumMenuGroup) Value(value string) *spectrumMenuGroup {
+	m.PropValue = value
 	return m
 }
 
-// ValueSeparator sets the separator for multiple values
-func (m *SpectrumMenuGroup) ValueSeparator(separator string) *SpectrumMenuGroup {
-	m.valueSeparator = separator
+// ValueSeparator sets the separator character for multiple selection values
+func (m *spectrumMenuGroup) ValueSeparator(separator string) *spectrumMenuGroup {
+	m.PropValueSeparator = separator
 	return m
 }
 
-// Header sets the content for the header slot
-func (m *SpectrumMenuGroup) Header(header app.UI) *SpectrumMenuGroup {
-	m.header = header
+// Header sets the header slot content
+func (m *spectrumMenuGroup) Header(header app.UI) *spectrumMenuGroup {
+	m.PropHeader = header
 	return m
 }
 
-// HeaderText sets text content for the header slot
-func (m *SpectrumMenuGroup) HeaderText(text string) *SpectrumMenuGroup {
-	m.header = app.Text(text)
-	return m
+// HeaderText sets a simple text header
+func (m *spectrumMenuGroup) HeaderText(text string) *spectrumMenuGroup {
+	return m.Header(app.Text(text))
 }
 
-// Children sets the menu items
-func (m *SpectrumMenuGroup) Children(children ...*SpectrumMenuItem) *SpectrumMenuGroup {
-	m.children = children
+// Children adds menu items to the menu group
+func (m *spectrumMenuGroup) Children(children ...app.UI) *spectrumMenuGroup {
+	m.PropChildren = append(m.PropChildren, children...)
 	return m
 }
 
 // OnChange sets the change event handler
-func (m *SpectrumMenuGroup) OnChange(handler app.EventHandler) *SpectrumMenuGroup {
-	m.onChange = handler
+func (m *spectrumMenuGroup) OnChange(handler app.EventHandler) *spectrumMenuGroup {
+	m.PropOnChange = handler
 	return m
 }
 
 // OnClose sets the close event handler
-func (m *SpectrumMenuGroup) OnClose(handler app.EventHandler) *SpectrumMenuGroup {
-	m.onClose = handler
+func (m *spectrumMenuGroup) OnClose(handler app.EventHandler) *spectrumMenuGroup {
+	m.PropOnClose = handler
 	return m
 }
 
-// SelectsInherit sets selects to "inherit"
-func (m *SpectrumMenuGroup) SelectsInherit() *SpectrumMenuGroup {
-	return m.Selects(MenuSelectsInherit)
+// SelectsInherit sets the selection mode to inherit
+func (m *spectrumMenuGroup) SelectsInherit() *spectrumMenuGroup {
+	return m.Selects("inherit")
 }
 
-// SelectsSingle sets selects to "single"
-func (m *SpectrumMenuGroup) SelectsSingle() *SpectrumMenuGroup {
-	return m.Selects(MenuSelectsSingle)
+// SelectsSingle sets the selection mode to single
+func (m *spectrumMenuGroup) SelectsSingle() *spectrumMenuGroup {
+	return m.Selects("single")
 }
 
-// SelectsMultiple sets selects to "multiple"
-func (m *SpectrumMenuGroup) SelectsMultiple() *SpectrumMenuGroup {
-	return m.Selects(MenuSelectsMultiple)
+// SelectsMultiple sets the selection mode to multiple
+func (m *spectrumMenuGroup) SelectsMultiple() *spectrumMenuGroup {
+	return m.Selects("multiple")
 }
 
 // Render renders the menu group component
-func (m *SpectrumMenuGroup) Render() app.UI {
+func (m *spectrumMenuGroup) Render() app.UI {
 	menuGroup := app.Elem("sp-menu-group")
 
 	// Set attributes
-	if m.label != "" {
-		menuGroup = menuGroup.Attr("label", m.label)
+	if m.PropLabel != "" {
+		menuGroup = menuGroup.Attr("label", m.PropLabel)
 	}
-	if m.ignore {
+	if m.PropIgnore {
 		menuGroup = menuGroup.Attr("ignore", true)
 	}
-	if m.selects != "" {
-		menuGroup = menuGroup.Attr("selects", string(m.selects))
+	if m.PropSelects != "" {
+		menuGroup = menuGroup.Attr("selects", m.PropSelects)
 	}
-	if m.value != "" {
-		menuGroup = menuGroup.Attr("value", m.value)
+	if m.PropValue != "" {
+		menuGroup = menuGroup.Attr("value", m.PropValue)
 	}
-	if m.valueSeparator != "," { // Only set if not the default
-		menuGroup = menuGroup.Attr("value-separator", m.valueSeparator)
+	if m.PropValueSeparator != "" {
+		menuGroup = menuGroup.Attr("value-separator", m.PropValueSeparator)
 	}
 
 	// Add event handlers
-	if m.onChange != nil {
-		menuGroup = menuGroup.On("change", m.onChange)
+	if m.PropOnChange != nil {
+		menuGroup = menuGroup.On("change", m.PropOnChange)
 	}
-	if m.onClose != nil {
-		menuGroup = menuGroup.On("close", m.onClose)
+	if m.PropOnClose != nil {
+		menuGroup = menuGroup.On("close", m.PropOnClose)
 	}
+
+	// Create elements array for slots and children
+	elements := []app.UI{}
 
 	// Add header if provided
-	if m.header != nil {
-		header := m.header
+	if m.PropHeader != nil {
+		header := m.PropHeader
 		if headerWithSlot, ok := header.(interface{ Slot(string) app.UI }); ok {
-			header = headerWithSlot.Slot("header")
+			elements = append(elements, headerWithSlot.Slot("header"))
 		} else {
-			header = app.Elem("div").
+			elements = append(elements, app.Elem("div").
 				Attr("slot", "header").
-				Body(header)
+				Body(header))
 		}
-		menuGroup = menuGroup.Body(header)
 	}
 
-	// Add menu items
-	if len(m.children) > 0 {
-		// Convert SpectrumMenuItem children to app.UI
-		var items []app.UI
-		for _, child := range m.children {
-			items = append(items, child)
-		}
+	// Add children
+	for _, child := range m.PropChildren {
+		elements = append(elements, child)
+	}
 
-		// Add items to the body if there are already elements in the body (header)
-		if m.header != nil {
-			menuGroup = menuGroup.Body(items...)
-		} else {
-			menuGroup = menuGroup.Body(items...)
-		}
+	// Add all elements to the menu group
+	if len(elements) > 0 {
+		menuGroup = menuGroup.Body(elements...)
 	}
 
 	return menuGroup

@@ -2,107 +2,103 @@ package sp
 
 import "github.com/maxence-charriere/go-app/v10/pkg/app"
 
-// ReactiveController represents a controller for managing reactive state and behavior
-type ReactiveController struct {
+// spectrumReactiveController represents a controller for managing reactive state and behavior
+type spectrumReactiveController struct {
 	app.Compo
 
 	// Properties
-	state         map[string]interface{}
-	observers     map[string][]app.EventHandler
-	onStateChange app.EventHandler
+	PropState         map[string]interface{}
+	PropObservers     map[string][]app.EventHandler
+	PropOnStateChange app.EventHandler
 
 	// Children
-	children []app.UI
+	PropChildren []app.UI
 }
 
 // NewReactiveController creates a new reactive controller component
-func NewReactiveController() *ReactiveController {
-	return &ReactiveController{
-		state:     make(map[string]interface{}),
-		observers: make(map[string][]app.EventHandler),
+func NewReactiveController() *spectrumReactiveController {
+	return &spectrumReactiveController{
+		PropState:     make(map[string]interface{}),
+		PropObservers: make(map[string][]app.EventHandler),
 	}
 }
 
 // SetState sets a state value
-func (c *ReactiveController) SetState(key string, value interface{}) *ReactiveController {
-	c.state[key] = value
+func (c *spectrumReactiveController) SetState(key string, value interface{}) *spectrumReactiveController {
+	c.PropState[key] = value
 	return c
 }
 
 // GetState gets a state value
-func (c *ReactiveController) GetState(key string) interface{} {
-	return c.state[key]
+func (c *spectrumReactiveController) GetState(key string) interface{} {
+	return c.PropState[key]
 }
 
 // DeleteState deletes a state value
-func (c *ReactiveController) DeleteState(key string) *ReactiveController {
-	delete(c.state, key)
+func (c *spectrumReactiveController) DeleteState(key string) *spectrumReactiveController {
+	delete(c.PropState, key)
 	return c
 }
 
 // ClearState clears all state values
-func (c *ReactiveController) ClearState() *ReactiveController {
-	c.state = make(map[string]interface{})
+func (c *spectrumReactiveController) ClearState() *spectrumReactiveController {
+	c.PropState = make(map[string]interface{})
 	return c
 }
 
 // Observe adds an observer for a state key
-func (c *ReactiveController) Observe(key string, handler app.EventHandler) *ReactiveController {
-	c.observers[key] = append(c.observers[key], handler)
+func (c *spectrumReactiveController) Observe(key string, handler app.EventHandler) *spectrumReactiveController {
+	c.PropObservers[key] = append(c.PropObservers[key], handler)
 	return c
 }
 
 // Unobserve removes an observer for a state key
-func (c *ReactiveController) Unobserve(key string, handler app.EventHandler) *ReactiveController {
+func (c *spectrumReactiveController) Unobserve(key string, handler app.EventHandler) *spectrumReactiveController {
 	// Instead of comparing function pointers, we'll remove the last added handler
 	// This is a limitation of Go's function comparison
-	if handlers, exists := c.observers[key]; exists && len(handlers) > 0 {
-		c.observers[key] = handlers[:len(handlers)-1]
+	if handlers, exists := c.PropObservers[key]; exists && len(handlers) > 0 {
+		c.PropObservers[key] = handlers[:len(handlers)-1]
 	}
 	return c
 }
 
 // ClearObservers clears all observers
-func (c *ReactiveController) ClearObservers() *ReactiveController {
-	c.observers = make(map[string][]app.EventHandler)
+func (c *spectrumReactiveController) ClearObservers() *spectrumReactiveController {
+	c.PropObservers = make(map[string][]app.EventHandler)
 	return c
 }
 
 // OnStateChange sets the state change event handler
-func (c *ReactiveController) OnStateChange(handler app.EventHandler) *ReactiveController {
-	c.onStateChange = handler
+func (c *spectrumReactiveController) OnStateChange(handler app.EventHandler) *spectrumReactiveController {
+	c.PropOnStateChange = handler
 	return c
 }
 
 // Child adds a child element
-func (c *ReactiveController) Child(child app.UI) *ReactiveController {
-	c.children = append(c.children, child)
+func (c *spectrumReactiveController) Child(child app.UI) *spectrumReactiveController {
+	c.PropChildren = append(c.PropChildren, child)
 	return c
 }
 
 // Children adds multiple child elements
-func (c *ReactiveController) Children(children ...app.UI) *ReactiveController {
-	c.children = append(c.children, children...)
+func (c *spectrumReactiveController) Children(children ...app.UI) *spectrumReactiveController {
+	c.PropChildren = append(c.PropChildren, children...)
 	return c
 }
 
 // Render renders the reactive controller component
-func (c *ReactiveController) Render() app.UI {
-	controller := app.Elem("div")
+func (c *spectrumReactiveController) Render() app.UI {
+	controller := app.Elem("div").
+		Class("spectrum-ReactiveController")
 
-	// Set state
-	for key, value := range c.state {
-		controller = controller.Attr("data-state-"+key, value)
-	}
-
-	// Add event handler
-	if c.onStateChange != nil {
-		controller = controller.On("state-change", c.onStateChange)
+	// Add event handlers
+	if c.PropOnStateChange != nil {
+		controller = controller.On("state-change", c.PropOnStateChange)
 	}
 
 	// Add children if provided
-	if len(c.children) > 0 {
-		controller = controller.Body(c.children...)
+	if len(c.PropChildren) > 0 {
+		controller = controller.Body(c.PropChildren...)
 	}
 
 	return controller

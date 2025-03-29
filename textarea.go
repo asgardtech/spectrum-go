@@ -13,218 +13,218 @@ const (
 	TextareaSizeXL TextareaSize = "xl"
 )
 
-// SpectrumTextarea represents an sp-textfield with multiline attribute
-type SpectrumTextarea struct {
+// spectrumTextarea represents an sp-textfield with multiline attribute
+type spectrumTextarea struct {
 	app.Compo
 
 	// Properties
-	size         TextareaSize
-	label        string
-	value        string
-	placeholder  string
-	name         string
-	autocomplete string
-	disabled     bool
-	grows        bool
-	invalid      bool
-	maxlength    int
-	minlength    int
-	pattern      string
-	quiet        bool
-	readonly     bool
-	required     bool
-	rows         int
+	PropSize         TextareaSize
+	PropLabel        string
+	PropValue        string
+	PropPlaceholder  string
+	PropName         string
+	PropAutocomplete string
+	PropDisabled     bool
+	PropGrows        bool
+	PropInvalid      bool
+	PropMaxlength    int
+	PropMinlength    int
+	PropPattern      string
+	PropQuiet        bool
+	PropReadonly     bool
+	PropRequired     bool
+	PropRows         int
 
 	// Help text slots
-	helpText         app.UI
-	negativeHelpText app.UI
+	PropHelpText         app.UI
+	PropNegativeHelpText app.UI
 
 	// Event handlers
-	onInput  app.EventHandler
-	onChange app.EventHandler
-	onFocus  app.EventHandler
-	onBlur   app.EventHandler
+	PropOnInput  app.EventHandler
+	PropOnChange app.EventHandler
+	PropOnFocus  app.EventHandler
+	PropOnBlur   app.EventHandler
 }
 
 // Textarea creates a new textarea component
-func Textarea() *SpectrumTextarea {
-	return &SpectrumTextarea{
-		size: TextareaSizeM, // Default size is medium
+func Textarea() *spectrumTextarea {
+	return &spectrumTextarea{
+		PropSize: TextareaSizeM, // Default size is medium
 	}
 }
 
 // Size sets the visual size of the textarea
-func (t *SpectrumTextarea) Size(size TextareaSize) *SpectrumTextarea {
-	t.size = size
+func (t *spectrumTextarea) Size(size TextareaSize) *spectrumTextarea {
+	t.PropSize = size
 	return t
 }
 
 // Label sets the accessibility label
-func (t *SpectrumTextarea) Label(label string) *SpectrumTextarea {
-	t.label = label
+func (t *spectrumTextarea) Label(label string) *spectrumTextarea {
+	t.PropLabel = label
 	return t
 }
 
 // Value sets the input value
-func (t *SpectrumTextarea) Value(value string) *SpectrumTextarea {
-	t.value = value
+func (t *spectrumTextarea) Value(value string) *spectrumTextarea {
+	t.PropValue = value
 	return t
 }
 
 // Placeholder sets the placeholder text
-func (t *SpectrumTextarea) Placeholder(placeholder string) *SpectrumTextarea {
-	t.placeholder = placeholder
+func (t *spectrumTextarea) Placeholder(placeholder string) *spectrumTextarea {
+	t.PropPlaceholder = placeholder
 	return t
 }
 
 // Name sets the form control name
-func (t *SpectrumTextarea) Name(name string) *SpectrumTextarea {
-	t.name = name
+func (t *spectrumTextarea) Name(name string) *spectrumTextarea {
+	t.PropName = name
 	return t
 }
 
 // Autocomplete sets the autocomplete attribute
-func (t *SpectrumTextarea) Autocomplete(autocomplete string) *SpectrumTextarea {
-	t.autocomplete = autocomplete
+func (t *spectrumTextarea) Autocomplete(autocomplete string) *spectrumTextarea {
+	t.PropAutocomplete = autocomplete
 	return t
 }
 
 // Disabled sets the disabled state
-func (t *SpectrumTextarea) Disabled(disabled bool) *SpectrumTextarea {
-	t.disabled = disabled
+func (t *spectrumTextarea) Disabled(disabled bool) *spectrumTextarea {
+	t.PropDisabled = disabled
 	return t
 }
 
 // Grows sets whether textarea grows with content
-func (t *SpectrumTextarea) Grows(grows bool) *SpectrumTextarea {
-	t.grows = grows
+func (t *spectrumTextarea) Grows(grows bool) *spectrumTextarea {
+	t.PropGrows = grows
 	return t
 }
 
 // Invalid sets the invalid state
-func (t *SpectrumTextarea) Invalid(invalid bool) *SpectrumTextarea {
-	t.invalid = invalid
+func (t *spectrumTextarea) Invalid(invalid bool) *spectrumTextarea {
+	t.PropInvalid = invalid
 	return t
 }
 
 // Maxlength sets the maximum allowed length
-func (t *SpectrumTextarea) Maxlength(maxlength int) *SpectrumTextarea {
-	t.maxlength = maxlength
+func (t *spectrumTextarea) Maxlength(maxlength int) *spectrumTextarea {
+	t.PropMaxlength = maxlength
 	return t
 }
 
 // Minlength sets the minimum allowed length
-func (t *SpectrumTextarea) Minlength(minlength int) *SpectrumTextarea {
-	t.minlength = minlength
+func (t *spectrumTextarea) Minlength(minlength int) *spectrumTextarea {
+	t.PropMinlength = minlength
 	return t
 }
 
 // Pattern sets the validation pattern
-func (t *SpectrumTextarea) Pattern(pattern string) *SpectrumTextarea {
-	t.pattern = pattern
+func (t *spectrumTextarea) Pattern(pattern string) *spectrumTextarea {
+	t.PropPattern = pattern
 	return t
 }
 
 // Quiet sets whether the textarea uses quiet styling
-func (t *SpectrumTextarea) Quiet(quiet bool) *SpectrumTextarea {
-	t.quiet = quiet
+func (t *spectrumTextarea) Quiet(quiet bool) *spectrumTextarea {
+	t.PropQuiet = quiet
 	return t
 }
 
 // Readonly sets the readonly state
-func (t *SpectrumTextarea) Readonly(readonly bool) *SpectrumTextarea {
-	t.readonly = readonly
+func (t *spectrumTextarea) Readonly(readonly bool) *spectrumTextarea {
+	t.PropReadonly = readonly
 	return t
 }
 
 // Required sets the required state
-func (t *SpectrumTextarea) Required(required bool) *SpectrumTextarea {
-	t.required = required
+func (t *spectrumTextarea) Required(required bool) *spectrumTextarea {
+	t.PropRequired = required
 	return t
 }
 
 // Rows sets the number of visible rows
-func (t *SpectrumTextarea) Rows(rows int) *SpectrumTextarea {
-	t.rows = rows
+func (t *spectrumTextarea) Rows(rows int) *spectrumTextarea {
+	t.PropRows = rows
 	return t
 }
 
 // HelpText sets the help text UI element for the help-text slot
-func (t *SpectrumTextarea) HelpText(helpText app.UI) *SpectrumTextarea {
-	t.helpText = helpText
+func (t *spectrumTextarea) HelpText(helpText app.UI) *spectrumTextarea {
+	t.PropHelpText = helpText
 	return t
 }
 
 // NegativeHelpText sets the negative help text UI element for the negative-help-text slot
-func (t *SpectrumTextarea) NegativeHelpText(helpText app.UI) *SpectrumTextarea {
-	t.negativeHelpText = helpText
+func (t *spectrumTextarea) NegativeHelpText(helpText app.UI) *spectrumTextarea {
+	t.PropNegativeHelpText = helpText
 	return t
 }
 
 // OnInput sets the input event handler
-func (t *SpectrumTextarea) OnInput(handler app.EventHandler) *SpectrumTextarea {
-	t.onInput = handler
+func (t *spectrumTextarea) OnInput(handler app.EventHandler) *spectrumTextarea {
+	t.PropOnInput = handler
 	return t
 }
 
 // OnChange sets the change event handler
-func (t *SpectrumTextarea) OnChange(handler app.EventHandler) *SpectrumTextarea {
-	t.onChange = handler
+func (t *spectrumTextarea) OnChange(handler app.EventHandler) *spectrumTextarea {
+	t.PropOnChange = handler
 	return t
 }
 
 // OnFocus sets the focus event handler
-func (t *SpectrumTextarea) OnFocus(handler app.EventHandler) *SpectrumTextarea {
-	t.onFocus = handler
+func (t *spectrumTextarea) OnFocus(handler app.EventHandler) *spectrumTextarea {
+	t.PropOnFocus = handler
 	return t
 }
 
 // OnBlur sets the blur event handler
-func (t *SpectrumTextarea) OnBlur(handler app.EventHandler) *SpectrumTextarea {
-	t.onBlur = handler
+func (t *spectrumTextarea) OnBlur(handler app.EventHandler) *spectrumTextarea {
+	t.PropOnBlur = handler
 	return t
 }
 
 // Render renders the textarea component
-func (t *SpectrumTextarea) Render() app.UI {
+func (t *spectrumTextarea) Render() app.UI {
 	textarea := app.Elem("sp-textfield").
-		Attr("size", string(t.size)).
+		Attr("size", string(t.PropSize)).
 		Attr("multiline", true). // Always multiline for textarea
-		Attr("label", t.label).
-		Attr("value", t.value).
-		Attr("placeholder", t.placeholder).
-		Attr("name", t.name).
-		Attr("autocomplete", t.autocomplete).
-		Attr("disabled", t.disabled).
-		Attr("grows", t.grows).
-		Attr("invalid", t.invalid).
-		Attr("maxlength", t.maxlength).
-		Attr("minlength", t.minlength).
-		Attr("pattern", t.pattern).
-		Attr("quiet", t.quiet).
-		Attr("readonly", t.readonly).
-		Attr("required", t.required).
-		Attr("rows", t.rows)
+		Attr("label", t.PropLabel).
+		Attr("value", t.PropValue).
+		Attr("placeholder", t.PropPlaceholder).
+		Attr("name", t.PropName).
+		Attr("autocomplete", t.PropAutocomplete).
+		Attr("disabled", t.PropDisabled).
+		Attr("grows", t.PropGrows).
+		Attr("invalid", t.PropInvalid).
+		Attr("maxlength", t.PropMaxlength).
+		Attr("minlength", t.PropMinlength).
+		Attr("pattern", t.PropPattern).
+		Attr("quiet", t.PropQuiet).
+		Attr("readonly", t.PropReadonly).
+		Attr("required", t.PropRequired).
+		Attr("rows", t.PropRows)
 
 	// Add event handlers
-	if t.onInput != nil {
-		textarea = textarea.On("input", t.onInput)
+	if t.PropOnInput != nil {
+		textarea = textarea.On("input", t.PropOnInput)
 	}
-	if t.onChange != nil {
-		textarea = textarea.On("change", t.onChange)
+	if t.PropOnChange != nil {
+		textarea = textarea.On("change", t.PropOnChange)
 	}
-	if t.onFocus != nil {
-		textarea = textarea.On("focus", t.onFocus)
+	if t.PropOnFocus != nil {
+		textarea = textarea.On("focus", t.PropOnFocus)
 	}
-	if t.onBlur != nil {
-		textarea = textarea.On("blur", t.onBlur)
+	if t.PropOnBlur != nil {
+		textarea = textarea.On("blur", t.PropOnBlur)
 	}
 
 	// Add help text slots if provided
 	elements := []app.UI{}
 
-	if t.helpText != nil {
-		helpTextElem := t.helpText
+	if t.PropHelpText != nil {
+		helpTextElem := t.PropHelpText
 		if helpTextWithSlot, ok := helpTextElem.(interface{ Slot(string) app.UI }); ok {
 			helpTextElem = helpTextWithSlot.Slot("help-text")
 		} else {
@@ -235,8 +235,8 @@ func (t *SpectrumTextarea) Render() app.UI {
 		elements = append(elements, helpTextElem)
 	}
 
-	if t.negativeHelpText != nil {
-		negativeHelpTextElem := t.negativeHelpText
+	if t.PropNegativeHelpText != nil {
+		negativeHelpTextElem := t.PropNegativeHelpText
 		if negativeHelpTextWithSlot, ok := negativeHelpTextElem.(interface{ Slot(string) app.UI }); ok {
 			negativeHelpTextElem = negativeHelpTextWithSlot.Slot("negative-help-text")
 		} else {

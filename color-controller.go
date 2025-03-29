@@ -51,28 +51,28 @@ type ManageAsOptions struct {
 	ManageAs ColorSpace
 }
 
-// SpectrumColorController is a comprehensive utility for managing and validating color values
+// spectrumColorController is a comprehensive utility for managing and validating color values
 // in various color spaces, including RGB, HSL, HSV, and Hex
-type SpectrumColorController struct {
-	host             app.Composer
-	color            *ColorObject
-	previousColor    *ColorObject
-	options          *ManageAsOptions
-	colorChangeEvent func(ctx app.Context, e app.Event)
+type spectrumColorController struct {
+	PropHost             app.Composer
+	PropColor            *ColorObject
+	PropPreviousColor    *ColorObject
+	PropOptions          *ManageAsOptions
+	PropColorChangeEvent func(ctx app.Context, e app.Event)
 }
 
-// ColorController creates a new SpectrumColorController with default options
-func ColorController(host app.Composer, options *ManageAsOptions) *SpectrumColorController {
+// ColorController creates a new spectrumColorController with default options
+func ColorController(host app.Composer, options *ManageAsOptions) *spectrumColorController {
 	if options == nil {
 		options = &ManageAsOptions{
 			ManageAs: ColorSpaceHSV,
 		}
 	}
 
-	controller := &SpectrumColorController{
-		host:    host,
-		options: options,
-		color: &ColorObject{
+	controller := &spectrumColorController{
+		PropHost:    host,
+		PropOptions: options,
+		PropColor: &ColorObject{
 			R:     255,
 			G:     0,
 			B:     0,
@@ -87,25 +87,25 @@ func ColorController(host app.Composer, options *ManageAsOptions) *SpectrumColor
 	}
 
 	// Clone the color for previous state
-	controller.previousColor = controller.cloneColor(controller.color)
+	controller.PropPreviousColor = controller.cloneColor(controller.PropColor)
 
 	return controller
 }
 
 // SetColorChangeEvent sets the event handler to be called when the color changes
-func (c *SpectrumColorController) SetColorChangeEvent(handler func(ctx app.Context, e app.Event)) *SpectrumColorController {
-	c.colorChangeEvent = handler
+func (c *spectrumColorController) SetColorChangeEvent(handler func(ctx app.Context, e app.Event)) *spectrumColorController {
+	c.PropColorChangeEvent = handler
 	return c
 }
 
 // Color gets the current color value
-func (c *SpectrumColorController) Color() *ColorObject {
-	return c.color
+func (c *spectrumColorController) Color() *ColorObject {
+	return c.PropColor
 }
 
 // SetColor sets the current color value and triggers a color change event
-func (c *SpectrumColorController) SetColor(color interface{}) *SpectrumColorController {
-	prevColor := c.cloneColor(c.color)
+func (c *spectrumColorController) SetColor(color interface{}) *spectrumColorController {
+	prevColor := c.cloneColor(c.PropColor)
 
 	switch v := color.(type) {
 	case string:
@@ -114,13 +114,13 @@ func (c *SpectrumColorController) SetColor(color interface{}) *SpectrumColorCont
 			c.updateColorFromValidation(result)
 		}
 	case *ColorObject:
-		c.color = c.cloneColor(v)
+		c.PropColor = c.cloneColor(v)
 	case ColorObject:
-		c.color = &v
+		c.PropColor = &v
 	}
 
 	// Only trigger event if the color has changed
-	if !c.colorsEqual(prevColor, c.color) && c.colorChangeEvent != nil {
+	if !c.colorsEqual(prevColor, c.PropColor) && c.PropColorChangeEvent != nil {
 		// We don't have access to context here, so we'll need to handle it differently
 		// The host component should handle context properly when it uses this controller
 		// This is a limitation of this implementation
@@ -130,42 +130,42 @@ func (c *SpectrumColorController) SetColor(color interface{}) *SpectrumColorCont
 }
 
 // SavePreviousColor saves the current color as the previous color
-func (c *SpectrumColorController) SavePreviousColor() *SpectrumColorController {
-	c.previousColor = c.cloneColor(c.color)
+func (c *spectrumColorController) SavePreviousColor() *spectrumColorController {
+	c.PropPreviousColor = c.cloneColor(c.PropColor)
 	return c
 }
 
 // RestorePreviousColor restores the previous color
-func (c *SpectrumColorController) RestorePreviousColor() *SpectrumColorController {
-	if c.previousColor != nil {
-		return c.SetColor(c.previousColor)
+func (c *spectrumColorController) RestorePreviousColor() *spectrumColorController {
+	if c.PropPreviousColor != nil {
+		return c.SetColor(c.PropPreviousColor)
 	}
 	return c
 }
 
 // GetHslString returns the current color in HSL string format
-func (c *SpectrumColorController) GetHslString() string {
-	if c.color.A < 1 {
-		return fmt.Sprintf("hsla(%f, %f%%, %f%%, %f)", c.color.H, c.color.S*100, c.color.L*100, c.color.A)
+func (c *spectrumColorController) GetHslString() string {
+	if c.PropColor.A < 1 {
+		return fmt.Sprintf("hsla(%f, %f%%, %f%%, %f)", c.PropColor.H, c.PropColor.S*100, c.PropColor.L*100, c.PropColor.A)
 	}
-	return fmt.Sprintf("hsl(%f, %f%%, %f%%)", c.color.H, c.color.S*100, c.color.L*100)
+	return fmt.Sprintf("hsl(%f, %f%%, %f%%)", c.PropColor.H, c.PropColor.S*100, c.PropColor.L*100)
 }
 
 // GetRgbString returns the current color in RGB string format
-func (c *SpectrumColorController) GetRgbString() string {
-	if c.color.A < 1 {
-		return fmt.Sprintf("rgba(%f, %f, %f, %f)", c.color.R, c.color.G, c.color.B, c.color.A)
+func (c *spectrumColorController) GetRgbString() string {
+	if c.PropColor.A < 1 {
+		return fmt.Sprintf("rgba(%f, %f, %f, %f)", c.PropColor.R, c.PropColor.G, c.PropColor.B, c.PropColor.A)
 	}
-	return fmt.Sprintf("rgb(%f, %f, %f)", c.color.R, c.color.G, c.color.B)
+	return fmt.Sprintf("rgb(%f, %f, %f)", c.PropColor.R, c.PropColor.G, c.PropColor.B)
 }
 
 // GetHexString returns the current color in Hex string format
-func (c *SpectrumColorController) GetHexString() string {
-	return c.color.Hex
+func (c *spectrumColorController) GetHexString() string {
+	return c.PropColor.Hex
 }
 
 // GetColor returns the color in the specified format
-func (c *SpectrumColorController) GetColor(format interface{}) *ColorObject {
+func (c *spectrumColorController) GetColor(format interface{}) *ColorObject {
 	var colorSpace ColorSpace
 
 	switch v := format.(type) {
@@ -175,29 +175,29 @@ func (c *SpectrumColorController) GetColor(format interface{}) *ColorObject {
 		colorSpace = v
 	default:
 		// Default to the color's current space
-		colorSpace = c.color.Space
+		colorSpace = c.PropColor.Space
 	}
 
 	// Return a copy of the color in the requested space
-	result := c.cloneColor(c.color)
+	result := c.cloneColor(c.PropColor)
 	result.Space = colorSpace
 
 	// Convert if necessary
 	switch colorSpace {
 	case ColorSpaceRGB:
-		if c.color.Space != ColorSpaceRGB {
+		if c.PropColor.Space != ColorSpaceRGB {
 			c.ensureRGB(result)
 		}
 	case ColorSpaceHSL:
-		if c.color.Space != ColorSpaceHSL {
+		if c.PropColor.Space != ColorSpaceHSL {
 			c.ensureHSL(result)
 		}
 	case ColorSpaceHSV:
-		if c.color.Space != ColorSpaceHSV {
+		if c.PropColor.Space != ColorSpaceHSV {
 			c.ensureHSV(result)
 		}
 	case ColorSpaceHEX:
-		if c.color.Space != ColorSpaceHEX {
+		if c.PropColor.Space != ColorSpaceHEX {
 			c.ensureHex(result)
 		}
 	}
@@ -206,14 +206,14 @@ func (c *SpectrumColorController) GetColor(format interface{}) *ColorObject {
 }
 
 // SetHue sets the hue value of the current color
-func (c *SpectrumColorController) SetHue(hue float64) *SpectrumColorController {
+func (c *spectrumColorController) SetHue(hue float64) *spectrumColorController {
 	// Ensure hue is between 0 and 360
 	hue = math.Mod(hue, 360)
 	if hue < 0 {
 		hue += 360
 	}
 
-	c.color.H = hue
+	c.PropColor.H = hue
 
 	// Update other color spaces
 	c.updateColorSpaces()
@@ -222,12 +222,12 @@ func (c *SpectrumColorController) SetHue(hue float64) *SpectrumColorController {
 }
 
 // Hue gets the hue value of the current color
-func (c *SpectrumColorController) Hue() float64 {
-	return c.color.H
+func (c *spectrumColorController) Hue() float64 {
+	return c.PropColor.H
 }
 
 // validateColorString validates a color string and returns the validation result
-func (c *SpectrumColorController) validateColorString(color string) ColorValidationResult {
+func (c *spectrumColorController) validateColorString(color string) ColorValidationResult {
 	color = strings.TrimSpace(color)
 	result := ColorValidationResult{
 		IsValid: false,
@@ -312,36 +312,36 @@ func (c *SpectrumColorController) validateColorString(color string) ColorValidat
 	return result
 }
 
-// updateColorFromValidation updates the color object from a validation result
-func (c *SpectrumColorController) updateColorFromValidation(result ColorValidationResult) {
+// updateColorFromValidation updates the color based on validation results
+func (c *spectrumColorController) updateColorFromValidation(result ColorValidationResult) {
 	switch result.ColorSpace {
 	case ColorSpaceRGB:
-		c.color.R = result.Coords[0]
-		c.color.G = result.Coords[1]
-		c.color.B = result.Coords[2]
-		c.color.A = result.Alpha
-		c.color.Space = ColorSpaceRGB
+		c.PropColor.R = result.Coords[0]
+		c.PropColor.G = result.Coords[1]
+		c.PropColor.B = result.Coords[2]
+		c.PropColor.A = result.Alpha
+		c.PropColor.Space = ColorSpaceRGB
 		// Update other color spaces
 		c.rgbToHsl()
 		c.hslToHsv()
 		c.rgbToHex()
 	case ColorSpaceHSL:
-		c.color.H = result.Coords[0]
-		c.color.S = result.Coords[1]
-		c.color.L = result.Coords[2]
-		c.color.A = result.Alpha
-		c.color.Space = ColorSpaceHSL
+		c.PropColor.H = result.Coords[0]
+		c.PropColor.S = result.Coords[1]
+		c.PropColor.L = result.Coords[2]
+		c.PropColor.A = result.Alpha
+		c.PropColor.Space = ColorSpaceHSL
 		// Update other color spaces
 		c.hslToRgb()
 		c.hslToHsv()
 		c.rgbToHex()
 	case ColorSpaceHEX:
-		c.color.R = result.Coords[0]
-		c.color.G = result.Coords[1]
-		c.color.B = result.Coords[2]
-		c.color.A = result.Alpha
-		c.color.Space = ColorSpaceHEX
-		c.color.Hex = c.rgbToHexString(int(c.color.R), int(c.color.G), int(c.color.B), c.color.A)
+		c.PropColor.R = result.Coords[0]
+		c.PropColor.G = result.Coords[1]
+		c.PropColor.B = result.Coords[2]
+		c.PropColor.A = result.Alpha
+		c.PropColor.Space = ColorSpaceHEX
+		c.PropColor.Hex = c.rgbToHexString(int(c.PropColor.R), int(c.PropColor.G), int(c.PropColor.B), c.PropColor.A)
 		// Update other color spaces
 		c.rgbToHsl()
 		c.hslToHsv()
@@ -349,8 +349,8 @@ func (c *SpectrumColorController) updateColorFromValidation(result ColorValidati
 }
 
 // updateColorSpaces updates all color spaces based on the current color
-func (c *SpectrumColorController) updateColorSpaces() {
-	switch c.color.Space {
+func (c *spectrumColorController) updateColorSpaces() {
+	switch c.PropColor.Space {
 	case ColorSpaceRGB:
 		c.rgbToHsl()
 		c.hslToHsv()
@@ -370,10 +370,10 @@ func (c *SpectrumColorController) updateColorSpaces() {
 }
 
 // rgbToHsl converts RGB to HSL
-func (c *SpectrumColorController) rgbToHsl() {
-	r := c.color.R / 255
-	g := c.color.G / 255
-	b := c.color.B / 255
+func (c *spectrumColorController) rgbToHsl() {
+	r := c.PropColor.R / 255
+	g := c.PropColor.G / 255
+	b := c.PropColor.B / 255
 
 	max := math.Max(r, math.Max(g, b))
 	min := math.Min(r, math.Min(g, b))
@@ -409,16 +409,16 @@ func (c *SpectrumColorController) rgbToHsl() {
 		h *= 60
 	}
 
-	c.color.H = h
-	c.color.S = s
-	c.color.L = l
+	c.PropColor.H = h
+	c.PropColor.S = s
+	c.PropColor.L = l
 }
 
 // hslToRgb converts HSL to RGB
-func (c *SpectrumColorController) hslToRgb() {
-	h := c.color.H
-	s := c.color.S
-	l := c.color.L
+func (c *spectrumColorController) hslToRgb() {
+	h := c.PropColor.H
+	s := c.PropColor.S
+	l := c.PropColor.L
 
 	var r, g, b float64
 
@@ -441,13 +441,13 @@ func (c *SpectrumColorController) hslToRgb() {
 		b = c.hueToRgb(p, q, h-120)
 	}
 
-	c.color.R = r * 255
-	c.color.G = g * 255
-	c.color.B = b * 255
+	c.PropColor.R = r * 255
+	c.PropColor.G = g * 255
+	c.PropColor.B = b * 255
 }
 
 // hueToRgb is a helper function for hslToRgb
-func (c *SpectrumColorController) hueToRgb(p, q, t float64) float64 {
+func (c *spectrumColorController) hueToRgb(p, q, t float64) float64 {
 	if t < 0 {
 		t += 360
 	}
@@ -468,9 +468,9 @@ func (c *SpectrumColorController) hueToRgb(p, q, t float64) float64 {
 }
 
 // hslToHsv converts HSL to HSV
-func (c *SpectrumColorController) hslToHsv() {
-	l := c.color.L
-	s := c.color.S
+func (c *spectrumColorController) hslToHsv() {
+	l := c.PropColor.L
+	s := c.PropColor.S
 
 	var v float64
 	if l <= 0.5 {
@@ -486,16 +486,16 @@ func (c *SpectrumColorController) hslToHsv() {
 		sv = 2 * (1 - l/v)
 	}
 
-	c.color.V = v
+	c.PropColor.V = v
 	// Keep the hue the same
 	// Update saturation for HSV
-	c.color.S = sv
+	c.PropColor.S = sv
 }
 
 // hsvToHsl converts HSV to HSL
-func (c *SpectrumColorController) hsvToHsl() {
-	v := c.color.V
-	s := c.color.S
+func (c *spectrumColorController) hsvToHsl() {
+	v := c.PropColor.V
+	s := c.PropColor.S
 
 	var l float64 = v * (1 - s/2)
 
@@ -506,19 +506,19 @@ func (c *SpectrumColorController) hsvToHsl() {
 		sl = (v - l) / math.Min(l, 1-l)
 	}
 
-	c.color.L = l
+	c.PropColor.L = l
 	// Keep the hue the same
 	// Update saturation for HSL
-	c.color.S = sl
+	c.PropColor.S = sl
 }
 
 // rgbToHex converts RGB to Hex
-func (c *SpectrumColorController) rgbToHex() {
-	c.color.Hex = c.rgbToHexString(int(c.color.R), int(c.color.G), int(c.color.B), c.color.A)
+func (c *spectrumColorController) rgbToHex() {
+	c.PropColor.Hex = c.rgbToHexString(int(c.PropColor.R), int(c.PropColor.G), int(c.PropColor.B), c.PropColor.A)
 }
 
 // rgbToHexString converts RGB values to a hex string
-func (c *SpectrumColorController) rgbToHexString(r, g, b int, a float64) string {
+func (c *spectrumColorController) rgbToHexString(r, g, b int, a float64) string {
 	if a < 1 {
 		return fmt.Sprintf("#%02X%02X%02X%02X", r, g, b, int(a*255))
 	}
@@ -526,7 +526,7 @@ func (c *SpectrumColorController) rgbToHexString(r, g, b int, a float64) string 
 }
 
 // ensureRGB ensures the color object has valid RGB values
-func (c *SpectrumColorController) ensureRGB(color *ColorObject) {
+func (c *spectrumColorController) ensureRGB(color *ColorObject) {
 	if color.Space == ColorSpaceRGB {
 		return
 	}
@@ -588,7 +588,7 @@ func (c *SpectrumColorController) ensureRGB(color *ColorObject) {
 }
 
 // ensureHSL ensures the color object has valid HSL values
-func (c *SpectrumColorController) ensureHSL(color *ColorObject) {
+func (c *spectrumColorController) ensureHSL(color *ColorObject) {
 	if color.Space == ColorSpaceHSL {
 		return
 	}
@@ -661,7 +661,7 @@ func (c *SpectrumColorController) ensureHSL(color *ColorObject) {
 }
 
 // ensureHSV ensures the color object has valid HSV values
-func (c *SpectrumColorController) ensureHSV(color *ColorObject) {
+func (c *spectrumColorController) ensureHSV(color *ColorObject) {
 	if color.Space == ColorSpaceHSV {
 		return
 	}
@@ -702,7 +702,7 @@ func (c *SpectrumColorController) ensureHSV(color *ColorObject) {
 }
 
 // ensureHex ensures the color object has a valid Hex value
-func (c *SpectrumColorController) ensureHex(color *ColorObject) {
+func (c *spectrumColorController) ensureHex(color *ColorObject) {
 	if color.Space == ColorSpaceHEX {
 		return
 	}
@@ -716,7 +716,7 @@ func (c *SpectrumColorController) ensureHex(color *ColorObject) {
 }
 
 // cloneColor creates a copy of a ColorObject
-func (c *SpectrumColorController) cloneColor(color *ColorObject) *ColorObject {
+func (c *spectrumColorController) cloneColor(color *ColorObject) *ColorObject {
 	if color == nil {
 		return nil
 	}
@@ -736,7 +736,7 @@ func (c *SpectrumColorController) cloneColor(color *ColorObject) *ColorObject {
 }
 
 // colorsEqual checks if two ColorObjects are equal
-func (c *SpectrumColorController) colorsEqual(a, b *ColorObject) bool {
+func (c *spectrumColorController) colorsEqual(a, b *ColorObject) bool {
 	if a == nil || b == nil {
 		return a == b
 	}

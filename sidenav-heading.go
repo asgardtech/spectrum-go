@@ -2,48 +2,48 @@ package sp
 
 import "github.com/maxence-charriere/go-app/v10/pkg/app"
 
-// SpectrumSidenavHeading represents an sp-sidenav-heading component
-type SpectrumSidenavHeading struct {
+// spectrumSidenavHeading represents an sp-sidenav-heading component
+type spectrumSidenavHeading struct {
 	app.Compo
 
 	// Properties
-	label string
+	PropLabel string
 
 	// Slots
-	children []*SpectrumSidenavItem
+	PropChildren []*spectrumSidenavItem
 }
 
 // SidenavHeading creates a new sidenav heading component
-func SidenavHeading() *SpectrumSidenavHeading {
-	return &SpectrumSidenavHeading{}
+func SidenavHeading() *spectrumSidenavHeading {
+	return &spectrumSidenavHeading{}
 }
 
 // Label sets the heading label text
-func (sh *SpectrumSidenavHeading) Label(label string) *SpectrumSidenavHeading {
-	sh.label = label
+func (sh *spectrumSidenavHeading) Label(label string) *spectrumSidenavHeading {
+	sh.PropLabel = label
 	return sh
 }
 
 // Children sets the child sidenav items
-func (sh *SpectrumSidenavHeading) Children(children ...*SpectrumSidenavItem) *SpectrumSidenavHeading {
-	sh.children = children
+func (sh *spectrumSidenavHeading) Children(children ...*spectrumSidenavItem) *spectrumSidenavHeading {
+	sh.PropChildren = children
 	return sh
 }
 
 // Render renders the sidenav heading component
-func (sh *SpectrumSidenavHeading) Render() app.UI {
+func (sh *spectrumSidenavHeading) Render() app.UI {
 	sidenavHeading := app.Elem("sp-sidenav-heading")
 
 	// Set attributes
-	if sh.label != "" {
-		sidenavHeading = sidenavHeading.Attr("label", sh.label)
+	if sh.PropLabel != "" {
+		sidenavHeading = sidenavHeading.Attr("label", sh.PropLabel)
 	}
 
 	// Add child items if provided
-	if len(sh.children) > 0 {
-		// Convert SpectrumSidenavItem children to app.UI
+	if len(sh.PropChildren) > 0 {
+		// Convert spectrumSidenavItem children to app.UI
 		var items []app.UI
-		for _, child := range sh.children {
+		for _, child := range sh.PropChildren {
 			items = append(items, child)
 		}
 

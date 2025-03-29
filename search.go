@@ -23,249 +23,249 @@ const (
 	SearchMethodDialog SearchMethod = "dialog"
 )
 
-// SpectrumSearch represents an sp-search component
-type SpectrumSearch struct {
+// spectrumSearch represents an sp-search component
+type spectrumSearch struct {
 	app.Compo
 
 	// Properties
-	size              SearchSize
-	action            string
-	method            SearchMethod
-	label             string
-	value             string
-	placeholder       string
-	name              string
-	autocomplete      string
-	disabled          bool
-	grows             bool
-	invalid           bool
-	maxlength         int
-	minlength         int
-	multiline         bool
-	pattern           string
-	quiet             bool
-	readonly          bool
-	required          bool
-	rows              int
-	tabIndex          int
-	holdValueOnEscape bool
+	PropSize              SearchSize
+	PropAction            string
+	PropMethod            SearchMethod
+	PropLabel             string
+	PropValue             string
+	PropPlaceholder       string
+	PropName              string
+	PropAutocomplete      string
+	PropDisabled          bool
+	PropGrows             bool
+	PropInvalid           bool
+	PropMaxlength         int
+	PropMinlength         int
+	PropMultiline         bool
+	PropPattern           string
+	PropQuiet             bool
+	PropReadonly          bool
+	PropRequired          bool
+	PropRows              int
+	PropTabIndex          int
+	PropHoldValueOnEscape bool
 
 	// Help text slots
-	helpText         app.UI
-	negativeHelpText app.UI
+	PropHelpText         app.UI
+	PropNegativeHelpText app.UI
 
 	// Event handlers
-	onInput  app.EventHandler
-	onChange app.EventHandler
-	onSubmit app.EventHandler
+	PropOnInput  app.EventHandler
+	PropOnChange app.EventHandler
+	PropOnSubmit app.EventHandler
 }
 
 // Search creates a new search component
-func Search() *SpectrumSearch {
-	return &SpectrumSearch{
-		size:        SearchSizeM, // Default size is medium
-		placeholder: "Search",    // Default placeholder
-		label:       "Search",    // Default accessibility label
+func Search() *spectrumSearch {
+	return &spectrumSearch{
+		PropSize:        SearchSizeM, // Default size is medium
+		PropPlaceholder: "Search",    // Default placeholder
+		PropLabel:       "Search",    // Default accessibility label
 	}
 }
 
 // Size sets the visual size of the search field
-func (s *SpectrumSearch) Size(size SearchSize) *SpectrumSearch {
-	s.size = size
+func (s *spectrumSearch) Size(size SearchSize) *spectrumSearch {
+	s.PropSize = size
 	return s
 }
 
 // Action sets the form action URL
-func (s *SpectrumSearch) Action(action string) *SpectrumSearch {
-	s.action = action
+func (s *spectrumSearch) Action(action string) *spectrumSearch {
+	s.PropAction = action
 	return s
 }
 
 // Method sets the form submission method
-func (s *SpectrumSearch) Method(method SearchMethod) *SpectrumSearch {
-	s.method = method
+func (s *spectrumSearch) Method(method SearchMethod) *spectrumSearch {
+	s.PropMethod = method
 	return s
 }
 
 // Label sets the accessibility label
-func (s *SpectrumSearch) Label(label string) *SpectrumSearch {
-	s.label = label
+func (s *spectrumSearch) Label(label string) *spectrumSearch {
+	s.PropLabel = label
 	return s
 }
 
 // Value sets the input value
-func (s *SpectrumSearch) Value(value string) *SpectrumSearch {
-	s.value = value
+func (s *spectrumSearch) Value(value string) *spectrumSearch {
+	s.PropValue = value
 	return s
 }
 
 // Placeholder sets the placeholder text
-func (s *SpectrumSearch) Placeholder(placeholder string) *SpectrumSearch {
-	s.placeholder = placeholder
+func (s *spectrumSearch) Placeholder(placeholder string) *spectrumSearch {
+	s.PropPlaceholder = placeholder
 	return s
 }
 
 // Name sets the form control name
-func (s *SpectrumSearch) Name(name string) *SpectrumSearch {
-	s.name = name
+func (s *spectrumSearch) Name(name string) *spectrumSearch {
+	s.PropName = name
 	return s
 }
 
 // Autocomplete sets the autocomplete attribute
-func (s *SpectrumSearch) Autocomplete(autocomplete string) *SpectrumSearch {
-	s.autocomplete = autocomplete
+func (s *spectrumSearch) Autocomplete(autocomplete string) *spectrumSearch {
+	s.PropAutocomplete = autocomplete
 	return s
 }
 
 // Disabled sets the disabled state
-func (s *SpectrumSearch) Disabled(disabled bool) *SpectrumSearch {
-	s.disabled = disabled
+func (s *spectrumSearch) Disabled(disabled bool) *spectrumSearch {
+	s.PropDisabled = disabled
 	return s
 }
 
 // Grows sets whether multiline search grows with content
-func (s *SpectrumSearch) Grows(grows bool) *SpectrumSearch {
-	s.grows = grows
+func (s *spectrumSearch) Grows(grows bool) *spectrumSearch {
+	s.PropGrows = grows
 	return s
 }
 
 // Invalid sets the invalid state
-func (s *SpectrumSearch) Invalid(invalid bool) *SpectrumSearch {
-	s.invalid = invalid
+func (s *spectrumSearch) Invalid(invalid bool) *spectrumSearch {
+	s.PropInvalid = invalid
 	return s
 }
 
 // Maxlength sets the maximum allowed length
-func (s *SpectrumSearch) Maxlength(maxlength int) *SpectrumSearch {
-	s.maxlength = maxlength
+func (s *spectrumSearch) Maxlength(maxlength int) *spectrumSearch {
+	s.PropMaxlength = maxlength
 	return s
 }
 
 // Minlength sets the minimum allowed length
-func (s *SpectrumSearch) Minlength(minlength int) *SpectrumSearch {
-	s.minlength = minlength
+func (s *spectrumSearch) Minlength(minlength int) *spectrumSearch {
+	s.PropMinlength = minlength
 	return s
 }
 
 // Multiline sets whether the search accepts multiple lines
-func (s *SpectrumSearch) Multiline(multiline bool) *SpectrumSearch {
-	s.multiline = multiline
+func (s *spectrumSearch) Multiline(multiline bool) *spectrumSearch {
+	s.PropMultiline = multiline
 	return s
 }
 
 // Pattern sets the validation pattern
-func (s *SpectrumSearch) Pattern(pattern string) *SpectrumSearch {
-	s.pattern = pattern
+func (s *spectrumSearch) Pattern(pattern string) *spectrumSearch {
+	s.PropPattern = pattern
 	return s
 }
 
 // Quiet sets whether the search uses quiet styling
-func (s *SpectrumSearch) Quiet(quiet bool) *SpectrumSearch {
-	s.quiet = quiet
+func (s *spectrumSearch) Quiet(quiet bool) *spectrumSearch {
+	s.PropQuiet = quiet
 	return s
 }
 
 // Readonly sets the readonly state
-func (s *SpectrumSearch) Readonly(readonly bool) *SpectrumSearch {
-	s.readonly = readonly
+func (s *spectrumSearch) Readonly(readonly bool) *spectrumSearch {
+	s.PropReadonly = readonly
 	return s
 }
 
 // Required sets the required state
-func (s *SpectrumSearch) Required(required bool) *SpectrumSearch {
-	s.required = required
+func (s *spectrumSearch) Required(required bool) *spectrumSearch {
+	s.PropRequired = required
 	return s
 }
 
 // Rows sets the number of visible rows for multiline search
-func (s *SpectrumSearch) Rows(rows int) *SpectrumSearch {
-	s.rows = rows
+func (s *spectrumSearch) Rows(rows int) *spectrumSearch {
+	s.PropRows = rows
 	return s
 }
 
 // TabIndex sets the tab index
-func (s *SpectrumSearch) TabIndex(tabIndex int) *SpectrumSearch {
-	s.tabIndex = tabIndex
+func (s *spectrumSearch) TabIndex(tabIndex int) *spectrumSearch {
+	s.PropTabIndex = tabIndex
 	return s
 }
 
 // HoldValueOnEscape sets whether the value is held when escape key is pressed
-func (s *SpectrumSearch) HoldValueOnEscape(hold bool) *SpectrumSearch {
-	s.holdValueOnEscape = hold
+func (s *spectrumSearch) HoldValueOnEscape(hold bool) *spectrumSearch {
+	s.PropHoldValueOnEscape = hold
 	return s
 }
 
 // HelpText sets the help text UI element for the help-text slot
-func (s *SpectrumSearch) HelpText(helpText app.UI) *SpectrumSearch {
-	s.helpText = helpText
+func (s *spectrumSearch) HelpText(helpText app.UI) *spectrumSearch {
+	s.PropHelpText = helpText
 	return s
 }
 
 // NegativeHelpText sets the negative help text UI element for the negative-help-text slot
-func (s *SpectrumSearch) NegativeHelpText(helpText app.UI) *SpectrumSearch {
-	s.negativeHelpText = helpText
+func (s *spectrumSearch) NegativeHelpText(helpText app.UI) *spectrumSearch {
+	s.PropNegativeHelpText = helpText
 	return s
 }
 
 // OnInput sets the input event handler
-func (s *SpectrumSearch) OnInput(handler app.EventHandler) *SpectrumSearch {
-	s.onInput = handler
+func (s *spectrumSearch) OnInput(handler app.EventHandler) *spectrumSearch {
+	s.PropOnInput = handler
 	return s
 }
 
 // OnChange sets the change event handler
-func (s *SpectrumSearch) OnChange(handler app.EventHandler) *SpectrumSearch {
-	s.onChange = handler
+func (s *spectrumSearch) OnChange(handler app.EventHandler) *spectrumSearch {
+	s.PropOnChange = handler
 	return s
 }
 
 // OnSubmit sets the submit event handler
-func (s *SpectrumSearch) OnSubmit(handler app.EventHandler) *SpectrumSearch {
-	s.onSubmit = handler
+func (s *spectrumSearch) OnSubmit(handler app.EventHandler) *spectrumSearch {
+	s.PropOnSubmit = handler
 	return s
 }
 
 // Render renders the search component
-func (s *SpectrumSearch) Render() app.UI {
+func (s *spectrumSearch) Render() app.UI {
 	search := app.Elem("sp-search").
-		Attr("size", string(s.size)).
-		Attr("action", s.action).
-		Attr("method", string(s.method)).
-		Attr("label", s.label).
-		Attr("value", s.value).
-		Attr("placeholder", s.placeholder).
-		Attr("name", s.name).
-		Attr("autocomplete", s.autocomplete).
-		Attr("disabled", s.disabled).
-		Attr("grows", s.grows).
-		Attr("invalid", s.invalid).
-		Attr("maxlength", s.maxlength).
-		Attr("minlength", s.minlength).
-		Attr("multiline", s.multiline).
-		Attr("pattern", s.pattern).
-		Attr("quiet", s.quiet).
-		Attr("readonly", s.readonly).
-		Attr("required", s.required).
-		Attr("rows", s.rows).
-		Attr("tabindex", s.tabIndex).
-		Attr("holdValueOnEscape", s.holdValueOnEscape)
+		Attr("size", string(s.PropSize)).
+		Attr("action", s.PropAction).
+		Attr("method", string(s.PropMethod)).
+		Attr("label", s.PropLabel).
+		Attr("value", s.PropValue).
+		Attr("placeholder", s.PropPlaceholder).
+		Attr("name", s.PropName).
+		Attr("autocomplete", s.PropAutocomplete).
+		Attr("disabled", s.PropDisabled).
+		Attr("grows", s.PropGrows).
+		Attr("invalid", s.PropInvalid).
+		Attr("maxlength", s.PropMaxlength).
+		Attr("minlength", s.PropMinlength).
+		Attr("multiline", s.PropMultiline).
+		Attr("pattern", s.PropPattern).
+		Attr("quiet", s.PropQuiet).
+		Attr("readonly", s.PropReadonly).
+		Attr("required", s.PropRequired).
+		Attr("rows", s.PropRows).
+		Attr("tabindex", s.PropTabIndex).
+		Attr("holdValueOnEscape", s.PropHoldValueOnEscape)
 
 	// Add event handlers
-	if s.onInput != nil {
-		search = search.On("input", s.onInput)
+	if s.PropOnInput != nil {
+		search = search.On("input", s.PropOnInput)
 	}
-	if s.onChange != nil {
-		search = search.On("change", s.onChange)
+	if s.PropOnChange != nil {
+		search = search.On("change", s.PropOnChange)
 	}
-	if s.onSubmit != nil {
-		search = search.On("submit", s.onSubmit)
+	if s.PropOnSubmit != nil {
+		search = search.On("submit", s.PropOnSubmit)
 	}
 
 	// Add help text slots if provided
 	elements := []app.UI{}
 
-	if s.helpText != nil {
-		helpTextElem := s.helpText
+	if s.PropHelpText != nil {
+		helpTextElem := s.PropHelpText
 		if helpTextWithSlot, ok := helpTextElem.(interface{ Slot(string) app.UI }); ok {
 			helpTextElem = helpTextWithSlot.Slot("help-text")
 		} else {
@@ -276,8 +276,8 @@ func (s *SpectrumSearch) Render() app.UI {
 		elements = append(elements, helpTextElem)
 	}
 
-	if s.negativeHelpText != nil {
-		negativeHelpTextElem := s.negativeHelpText
+	if s.PropNegativeHelpText != nil {
+		negativeHelpTextElem := s.PropNegativeHelpText
 		if negativeHelpTextWithSlot, ok := negativeHelpTextElem.(interface{ Slot(string) app.UI }); ok {
 			negativeHelpTextElem = negativeHelpTextWithSlot.Slot("negative-help-text")
 		} else {

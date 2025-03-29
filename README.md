@@ -4,27 +4,27 @@ Go implementation of Adobe Spectrum Web Components.
 
 ## Components TODO
 
-- [ ] [Button](spectrum-docs/md/button.md) ✅
-- [x] [Accordion](spectrum-docs/md/accordion.md)
-- [x] [Accordion Item](spectrum-docs/md/accordion-item.md)
-- [x] [Action Bar](spectrum-docs/md/action-bar.md)
-- [ ] [Action Button](spectrum-docs/md/action-button.md) ✅
-- [x] [Action Group](spectrum-docs/md/action-group.md)
-- [x] [Action Menu](spectrum-docs/md/action-menu.md)
-- [x] [Alert Banner](spectrum-docs/md/alert-banner.md)
-- [x] [Alert Dialog](spectrum-docs/md/alert-dialog.md)
-- [x] [Asset](spectrum-docs/md/asset.md)
-- [ ] [Avatar](spectrum-docs/md/avatar.md) ✅
-- [ ] [Badge](spectrum-docs/md/badge.md) ✅
-- [x] [Breadcrumb Item](spectrum-docs/md/breadcrumb-item.md)
-- [x] [Breadcrumbs](spectrum-docs/md/breadcrumbs.md)
-- [x] [Button Group](spectrum-docs/md/button-group.md)
-- [ ] [Card](spectrum-docs/md/card.md) ✅
-- [ ] [Checkbox](spectrum-docs/md/checkbox.md) ✅
-- [ ] [Coach Indicator](spectrum-docs/md/coach-indicator.md) ✅
+- [X] [Button](spectrum-docs/md/button.md) ✅
+- [x] [Accordion](spectrum-docs/md/accordion.md) ✅
+- [x] [Accordion Item](spectrum-docs/md/accordion-item.md) ✅
+- [x] [Action Bar](spectrum-docs/md/action-bar.md) ✅
+- [x] [Action Button](spectrum-docs/md/action-button.md) ✅
+- [x] [Action Group](spectrum-docs/md/action-group.md) ✅
+- [x] [Action Menu](spectrum-docs/md/action-menu.md) ✅
+- [x] [Alert Banner](spectrum-docs/md/alert-banner.md) ✅
+- [x] [Alert Dialog](spectrum-docs/md/alert-dialog.md) ✅
+- [x] [Asset](spectrum-docs/md/asset.md) ✅
+- [x] [Avatar](spectrum-docs/md/avatar.md) ✅
+- [x] [Badge](spectrum-docs/md/badge.md) ✅
+- [x] [Breadcrumb Item](spectrum-docs/md/breadcrumb-item.md) ✅
+- [x] [Breadcrumbs](spectrum-docs/md/breadcrumbs.md) ✅
+- [x] [Button Group](spectrum-docs/md/button-group.md) ✅
+- [x] [Card](spectrum-docs/md/card.md) ✅
+- [x] [Checkbox](spectrum-docs/md/checkbox.md) ✅
+- [x] [Coach Indicator](spectrum-docs/md/coach-indicator.md) ✅
 - [x] [Coachmark](spectrum-docs/md/coachmark.md) ✅
-- [x] Color Area ✅
-- [x] [Color Field](spectrum-docs/md/color-field.md)
+- [x] [Color Area](spectrum-docs/md/color-area.md) ✅
+- [x] [Color Field](spectrum-docs/md/color-field.md) ✅
 - [x] [Color Handle](spectrum-docs/md/color-handle.md) ✅
 - [x] [Color Loupe](spectrum-docs/md/color-loupe.md) ✅
 - [x] [Color Slider](spectrum-docs/md/color-slider.md) ✅
@@ -43,65 +43,65 @@ Go implementation of Adobe Spectrum Web Components.
 - [x] [Illustrated Message](spectrum-docs/md/illustrated-message.md) ✅
 - [x] [Infield Button](spectrum-docs/md/infield-button.md) ✅
 - [x] [Link](spectrum-docs/md/link.md) ✅
-- [x] [Menu](spectrum-docs/md/menu.md)
-- [x] [Menu Group](spectrum-docs/md/menu-group.md)
-- [x] [Menu Item](spectrum-docs/md/menu-item.md)
-- [x] [Meter](spectrum-docs/md/meter.md)
-- [x] [Number Field](spectrum-docs/md/number-field.md)
-- [x] [Overlay](spectrum-docs/md/overlay.md)
-- [x] [Overlay Trigger](spectrum-docs/md/overlay-trigger.md)
-- [x] [Picker](spectrum-docs/md/picker.md)
-- [x] [Picker Button](spectrum-docs/md/picker-button.md)
-- [x] [Popover](spectrum-docs/md/popover.md)
-- [x] [Progress Bar](spectrum-docs/md/progress-bar.md)
-- [x] [Progress Circle](spectrum-docs/md/progress-circle.md)
-- [x] [Radio](spectrum-docs/md/radio.md)
-- [x] [Radio Group](spectrum-docs/md/radio-group.md)
-- [x] [Search](spectrum-docs/md/search.md)
-- [x] [Sidenav](spectrum-docs/md/sidenav.md)
-- [x] [Sidenav Heading](spectrum-docs/md/sidenav.md)
-- [x] [Sidenav Item](spectrum-docs/md/sidenav.md)
-- [x] [Sidenav Overflow](spectrum-docs/md/sidenav-overflow.md)
-- [x] [Slider](spectrum-docs/md/slider.md)
-- [x] [Slider Handle](spectrum-docs/md/slider-handle.md)
-- [x] [Split View](spectrum-docs/md/split-view.md)
-- [x] [Status Light](spectrum-docs/md/status-light.md)
-- [x] [Swatch](spectrum-docs/md/swatch.md)
-- [x] [Swatch Group](spectrum-docs/md/swatch-group.md)
-- [x] [Switch](spectrum-docs/md/switch.md)
-- [x] [Tab](spectrum-docs/md/tab.md)
-- [x] [Tab Panel](spectrum-docs/md/tab-panel.md)
-- [x] [Tabs](spectrum-docs/md/tabs.md)
-- [x] [Tabs Overflow](spectrum-docs/md/tabs-overflow.md)
-- [x] [Tag](spectrum-docs/md/tag.md)
-- [x] [Tags](spectrum-docs/md/tags.md)
-- [x] [Textarea](spectrum-docs/md/textarea.md)
-- [x] [Textfield](spectrum-docs/md/textfield.md)
-- [x] [Thumbnail](spectrum-docs/md/thumbnail.md)
-- [x] [Toast](spectrum-docs/md/toast.md)
-- [x] [Tooltip](spectrum-docs/md/tooltip.md)
-- [x] [Top Nav](spectrum-docs/md/top-nav.md)
-- [x] [Tray](spectrum-docs/md/tray.md)
-- [x] [Underlay](spectrum-docs/md/underlay.md)
+- [x] [Menu](spectrum-docs/md/menu.md) ✅
+- [x] [Menu Group](spectrum-docs/md/menu-group.md) ✅
+- [x] [Menu Item](spectrum-docs/md/menu-item.md) ✅
+- [x] [Meter](spectrum-docs/md/meter.md) ✅
+- [x] [Number Field](spectrum-docs/md/number-field.md) ✅
+- [x] [Overlay](spectrum-docs/md/overlay.md) ✅
+- [x] [Overlay Trigger](spectrum-docs/md/overlay-trigger.md) ✅
+- [x] [Picker](spectrum-docs/md/picker.md) ✅
+- [x] [Picker Button](spectrum-docs/md/picker-button.md) ✅
+- [x] [Popover](spectrum-docs/md/popover.md) ✅
+- [x] [Progress Bar](spectrum-docs/md/progress-bar.md) ✅
+- [x] [Progress Circle](spectrum-docs/md/progress-circle.md) ✅
+- [x] [Radio](spectrum-docs/md/radio.md) ✅
+- [x] [Radio Group](spectrum-docs/md/radio-group.md) ✅
+- [x] [Search](spectrum-docs/md/search.md) ✅
+- [x] [Sidenav](spectrum-docs/md/sidenav.md) ✅
+- [x] [Sidenav Heading](spectrum-docs/md/sidenav.md) ✅
+- [x] [Sidenav Item](spectrum-docs/md/sidenav.md) ✅
+- [x] [Sidenav Overflow](spectrum-docs/md/sidenav-overflow.md) ✅
+- [x] [Slider](spectrum-docs/md/slider.md) ✅
+- [x] [Slider Handle](spectrum-docs/md/slider-handle.md) ✅
+- [x] [Split View](spectrum-docs/md/split-view.md) ✅
+- [x] [Status Light](spectrum-docs/md/status-light.md) ✅
+- [x] [Swatch](spectrum-docs/md/swatch.md) ✅
+- [x] [Swatch Group](spectrum-docs/md/swatch-group.md) ✅
+- [x] [Switch](spectrum-docs/md/switch.md) ✅
+- [x] [Tab](spectrum-docs/md/tab.md) ✅
+- [x] [TabPanel](spectrum-docs/md/tabpanel.md) ✅
+- [x] [Tabs](spectrum-docs/md/tabs.md) ✅
+- [x] [Tabs Overflow](spectrum-docs/md/tabs-overflow.md) ✅
+- [x] [Tag](spectrum-docs/md/tag.md) ✅
+- [x] [Tags](spectrum-docs/md/tags.md) ✅
+- [x] [Textarea](spectrum-docs/md/textarea.md) ✅
+- [x] [Textfield](spectrum-docs/md/textfield.md) ✅
+- [x] [Thumbnail](spectrum-docs/md/thumbnail.md) ✅
+- [x] [Toast](spectrum-docs/md/toast.md) ✅
+- [x] [Tooltip](spectrum-docs/md/tooltip.md) ✅
+- [x] [Top Nav](spectrum-docs/md/top-nav.md) ✅
+- [x] [Tray](spectrum-docs/md/tray.md) ✅
+- [x] [Underlay](spectrum-docs/md/underlay.md) ✅
 
 ## Tools and Utilities
 
-- [x] [Base](spectrum-docs/md/base.md) - Base class functionality
-- [x] [Bundle](spectrum-docs/md/bundle.md) - Bundle management
-- [x] [Color Controller](spectrum-docs/md/color-controller.md) - Color management utilities
-- [x] [Core Tokens](spectrum-docs/md/core-tokens.md) - Design token system
-- [x] [Dependency Manager](spectrum-docs/md/dependency-manager.md) - Manages component dependencies
-- [x] [Element Resolution](spectrum-docs/md/element-resolution.md) - Element resolution utilities
-- [x] [Grid](spectrum-docs/md/grid.md) - Grid layout system
-- [x] [Match Media](spectrum-docs/md/match-media.md) - Media query utilities
-- [x] [Opacity Checkerboard](spectrum-docs/md/opacity-checkerboard.md) - Visual aid for transparency
-- [x] [Pending State](spectrum-docs/md/pending-state.md) - State management for async operations
-- [x] [Reactive Controllers](spectrum-docs/md/reactive-controllers.md) - Controllers for reactive patterns
-- [x] [Roving Tab Index](spectrum-docs/md/roving-tab-index.md) - Accessibility navigation utility
-- [x] [Shared](spectrum-docs/md/shared.md) - Shared utilities and functionality
-- [x] [Styles](spectrum-docs/md/styles.md) - Style management system
-- [ ] [Theme](spectrum-docs/md/theme.md) ✅ - Theming functionality
-- [x] [Truncated](spectrum-docs/md/truncated.md) - Text truncation utility
+- [x] [Base](spectrum-docs/md/base.md) ✅ - Base class functionality
+- [x] [Bundle](spectrum-docs/md/bundle.md) ✅ - Bundle management
+- [x] [Color Controller](spectrum-docs/md/color-controller.md) ✅ - Color management utilities
+- [x] [Core Tokens](spectrum-docs/md/core-tokens.md) ✅ - Design token system
+- [x] [Dependency Manager](spectrum-docs/md/dependency-manager.md) ✅ - Manages component dependencies
+- [x] [Element Resolution](spectrum-docs/md/element-resolution.md) ✅ - Element resolution utilities
+- [x] [Grid](spectrum-docs/md/grid.md) ✅ - Grid layout system
+- [x] [Match Media](spectrum-docs/md/match-media.md) ✅ - Media query utilities
+- [x] [Opacity Checkerboard](spectrum-docs/md/opacity-checkerboard.md) ✅ - Visual aid for transparency
+- [x] [Pending State](spectrum-docs/md/pending-state.md) ✅ - State management for async operations
+- [x] [Reactive Controllers](spectrum-docs/md/reactive-controllers.md) ✅ - Controllers for reactive patterns
+- [x] [Roving Tab Index](spectrum-docs/md/roving-tab-index.md) ✅ - Accessibility navigation utility
+- [x] [Shared](spectrum-docs/md/shared.md) ✅ - Shared utilities and functionality
+- [x] [Styles](spectrum-docs/md/styles.md) ✅ - Style management system
+- [X] [Theme](spectrum-docs/md/theme.md) ✅ - Theming functionality
+- [x] [Truncated](spectrum-docs/md/truncated.md) ✅ - Text truncation with tooltips
 
 ## Design Principles
 
@@ -188,20 +188,19 @@ Currently implemented components:
 56. **Asset**: Implemented to visually represent files, folders, or images in an application. File and folder representations center themselves in the provided space, while images are properly contained and centered within the element.
 57. **Coach Indicator**: Implemented to show the connection between an object and its explanation in a touring mode. Supports standard and quiet variants with customizable static colors (dark, light, white, black).
 58. **Coachmark**: Implemented as a temporary message that educates users through new or unfamiliar product experiences, which can be chained into a sequence to form a tour. Supports media content, shortcut keys, CTA buttons, and comprehensive event handling.
-59. **Color Field**: Implemented as a textfield for inputting custom color values with support for various formats (HEX, RGB, HSL, HSV, shorthand HEX). Features include view-color mode, multiple size variants, quiet mode, and comprehensive form control functionality.
-60. **Color Handle**: Implemented as a draggable handle for selecting colors on color selection components. Features include customizable color representation, disabled and focused states, and open state for displaying a color loupe.
-61. **Color Loupe**: Implemented as a visual aid that shows the output color during color selection, which would otherwise be covered by a cursor, stylus, or finger. Features customizable color and visibility state.
-62. **Color Slider**: Implemented as a slider that allows users to visually change an individual channel of a color. Supports color properties like hues, color channel values, and opacity with vertical orientation option, step configuration, and comprehensive event handling.
-63. **Color Wheel**: Implemented as a circular control that lets users visually change an individual channel of a color on a circular track. Supports various color formats, customizable step size, disabled and focused states, and comprehensive event handling.
-64. **Combobox**: Implemented as a control that allows users to filter lists to only options matching a query. Features include different autocomplete modes (none, list), multiple size variants, support for dynamic options, quiet variant, and slots for help text and tooltips.
-65. **Contextual Help**: Implemented as a component that shows extra information about an adjacent component or entire view, with info and help variants. Features customizable placement options, maximum width, offset configuration, and slots for heading, content, and link.
-66. **Dropzone**: Implemented as an area into which objects can be dragged and dropped to accomplish tasks like file uploads. Features support for different drop effects (copy, move, link), visual states for dragged and filled conditions, and comprehensive drag and drop event handling.
-67. **Help Text Mixin**: Implemented as a utility for managing help text in form control components. Features include a manager class that handles text rendering based on validity state, API for setting help text and negative help text, and helper functions for creating form components with properly associated help text.
-68. **Illustrated Message**: Implemented as a component that displays an illustration icon and a message, typically used in empty states or error pages, and inside dropzone components. Features include customizable heading, description, and support for SVG illustrations with proper slot management.
-69. **Infield Button**: Implemented as a button component designed for form fields that visually associates button functionality with other form controls. Features include inline (start/end) and block (stacked) positioning, size variants (S-XL), quiet visual style, and comprehensive event handling.
-70. **Thumbnail**: Implemented as a component for displaying previews of images, layers, or effects. Features include multiple size options (50px to 1000px), customizable background for letterboxing non-square content, cover mode for filling available space, layer mode with selection state for layer management, and support for focused and disabled states.
-71. **Icon**: Implemented to render icons through multiple methods: from registered icon sets via name attribute, from images via src attribute, or from custom SVG elements via slotted content. Features include multiple size variants (xxs to xxl), accessible labeling that properly toggles aria-hidden, and flexible positioning through slot assignment.
-72. **Icons UI**: Implemented as a wrapper for Adobe Spectrum UI icons, providing convenient access to common interface icons. Features include utility functions for specific icons like arrows, checkmarks, and alert indicators, size customization, and accessible labeling.
-73. **Icons Workflow**: Implemented as a wrapper for Adobe Spectrum Workflow icons, providing access to application-specific icons for various workflows and operations. Features include convenience functions for commonly used icons like document, folder, user, edit, as well as customizable size and accessible labeling.
+59. **Color Handle**: Implemented as a draggable handle for selecting colors on color selection components. Features include customizable color representation, disabled and focused states, and open state for displaying a color loupe.
+60. **Color Loupe**: Implemented as a visual aid that shows the output color during color selection, which would otherwise be covered by a cursor, stylus, or finger. Features customizable color and visibility state.
+61. **Color Slider**: Implemented as a slider that allows users to visually change an individual channel of a color. Supports color properties like hues, color channel values, and opacity with vertical orientation option, step configuration, and comprehensive event handling.
+62. **Color Wheel**: Implemented as a circular control that lets users visually change an individual channel of a color on a circular track. Supports various color formats, customizable step size, disabled and focused states, and comprehensive event handling.
+63. **Combobox**: Implemented as a control that allows users to filter lists to only options matching a query. Features include different autocomplete modes (none, list), multiple size variants, support for dynamic options, quiet variant, and slots for help text and tooltips.
+64. **Contextual Help**: Implemented as a component that shows extra information about an adjacent component or entire view, with info and help variants. Features customizable placement options, maximum width, offset configuration, and slots for heading, content, and link.
+65. **Dropzone**: Implemented as an area into which objects can be dragged and dropped to accomplish tasks like file uploads. Features support for different drop effects (copy, move, link), visual states for dragged and filled conditions, and comprehensive drag and drop event handling.
+66. **Help Text Mixin**: Implemented as a utility for managing help text in form control components. Features include a manager class that handles text rendering based on validity state, API for setting help text and negative help text, and helper functions for creating form components with properly associated help text.
+67. **Illustrated Message**: Implemented as a component that displays an illustration icon and a message, typically used in empty states or error pages, and inside dropzone components. Features include customizable heading, description, and support for SVG illustrations with proper slot management.
+68. **Infield Button**: Implemented as a button component designed for form fields that visually associates button functionality with other form controls. Features include inline (start/end) and block (stacked) positioning, size variants (S-XL), quiet visual style, and comprehensive event handling.
+69. **Thumbnail**: Implemented as a component for displaying previews of images, layers, or effects. Features include multiple size options (50px to 1000px), customizable background for letterboxing non-square content, cover mode for filling available space, layer mode with selection state for layer management, and support for focused and disabled states.
+70. **Icon**: Implemented to render icons through multiple methods: from registered icon sets via name attribute, from images via src attribute, or from custom SVG elements via slotted content. Features include multiple size variants (xxs to xxl), accessible labeling that properly toggles aria-hidden, and flexible positioning through slot assignment.
+71. **Icons UI**: Implemented as a wrapper for Adobe Spectrum UI icons, providing convenient access to common interface icons. Features include utility functions for specific icons like arrows, checkmarks, and alert indicators, size customization, and accessible labeling.
+72. **Icons Workflow**: Implemented as a wrapper for Adobe Spectrum Workflow icons, providing access to application-specific icons for various workflows and operations. Features include convenience functions for commonly used icons like document, folder, user, edit, as well as customizable size and accessible labeling.
 
 All components follow the same design patterns and use a fluent interface for configuration.

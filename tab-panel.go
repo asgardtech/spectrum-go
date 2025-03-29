@@ -2,62 +2,62 @@ package sp
 
 import "github.com/maxence-charriere/go-app/v10/pkg/app"
 
-// SpectrumTabPanel represents a tab panel with content that is shown when its associated tab is selected
-type SpectrumTabPanel struct {
+// spectrumTabPanel represents a tab panel with content that is shown when its associated tab is selected
+type spectrumTabPanel struct {
 	app.Compo
 
 	// Properties
-	value     string
-	selected  bool
-	content   string
-	innerHTML string
-	child     app.UI
+	PropValue     string
+	PropSelected  bool
+	PropContent   string
+	PropInnerHTML string
+	PropChild     app.UI
 }
 
 // TabPanel creates a new tab panel
-func TabPanel() *SpectrumTabPanel {
-	return &SpectrumTabPanel{}
+func TabPanel() *spectrumTabPanel {
+	return &spectrumTabPanel{}
 }
 
 // Value sets the value of the tab panel, used to associate it with a tab
-func (t *SpectrumTabPanel) Value(value string) *SpectrumTabPanel {
-	t.value = value
+func (t *spectrumTabPanel) Value(value string) *spectrumTabPanel {
+	t.PropValue = value
 	return t
 }
 
 // Selected sets whether the tab panel is currently selected/visible
-func (t *SpectrumTabPanel) Selected(selected bool) *SpectrumTabPanel {
-	t.selected = selected
+func (t *spectrumTabPanel) Selected(selected bool) *spectrumTabPanel {
+	t.PropSelected = selected
 	return t
 }
 
 // Content sets the text content of the tab panel
-func (t *SpectrumTabPanel) Content(content string) *SpectrumTabPanel {
-	t.content = content
+func (t *spectrumTabPanel) Content(content string) *spectrumTabPanel {
+	t.PropContent = content
 	return t
 }
 
 // InnerHTML sets the inner HTML of the tab panel
-func (t *SpectrumTabPanel) InnerHTML(html string) *SpectrumTabPanel {
-	t.innerHTML = html
+func (t *spectrumTabPanel) InnerHTML(html string) *spectrumTabPanel {
+	t.PropInnerHTML = html
 	return t
 }
 
 // Child sets a UI element as the child of the tab panel
-func (t *SpectrumTabPanel) Child(child app.UI) *SpectrumTabPanel {
-	t.child = child
+func (t *spectrumTabPanel) Child(child app.UI) *spectrumTabPanel {
+	t.PropChild = child
 	return t
 }
 
 // Render renders the tab panel component
-func (t *SpectrumTabPanel) Render() app.UI {
+func (t *spectrumTabPanel) Render() app.UI {
 	tabPanel := app.Elem("sp-tab-panel")
 
-	if t.value != "" {
-		tabPanel = tabPanel.Attr("value", t.value)
+	if t.PropValue != "" {
+		tabPanel = tabPanel.Attr("value", t.PropValue)
 	}
 
-	if t.selected {
+	if t.PropSelected {
 		tabPanel = tabPanel.Attr("selected", "")
 	}
 
@@ -65,14 +65,14 @@ func (t *SpectrumTabPanel) Render() app.UI {
 	elements := []app.UI{}
 
 	// Add content or child
-	if t.content != "" {
-		elements = append(elements, app.Text(t.content))
+	if t.PropContent != "" {
+		elements = append(elements, app.Text(t.PropContent))
 	}
-	if t.innerHTML != "" {
-		elements = append(elements, app.Raw(t.innerHTML))
+	if t.PropInnerHTML != "" {
+		elements = append(elements, app.Raw(t.PropInnerHTML))
 	}
-	if t.child != nil {
-		elements = append(elements, t.child)
+	if t.PropChild != nil {
+		elements = append(elements, t.PropChild)
 	}
 
 	// Add all elements to the tab panel

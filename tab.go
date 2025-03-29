@@ -2,97 +2,97 @@ package sp
 
 import "github.com/maxence-charriere/go-app/v10/pkg/app"
 
-// SpectrumTab represents a tab in a tab list
-type SpectrumTab struct {
+// spectrumTab represents a tab in a tab list
+type spectrumTab struct {
 	app.Compo
 
-	value     string
-	label     string
-	disabled  bool
-	selected  bool
-	vertical  bool
-	icon      app.UI
-	content   string
-	innerHTML string
-	child     app.UI
+	PropValue     string
+	PropLabel     string
+	PropDisabled  bool
+	PropSelected  bool
+	PropVertical  bool
+	PropIcon      app.UI
+	PropContent   string
+	PropInnerHTML string
+	PropChild     app.UI
 }
 
 // Tab creates a new tab
-func Tab() *SpectrumTab {
-	return &SpectrumTab{}
+func Tab() *spectrumTab {
+	return &spectrumTab{}
 }
 
 // Value sets the value of the tab
-func (t *SpectrumTab) Value(value string) *SpectrumTab {
-	t.value = value
+func (t *spectrumTab) Value(value string) *spectrumTab {
+	t.PropValue = value
 	return t
 }
 
 // Label sets the label of the tab
-func (t *SpectrumTab) Label(label string) *SpectrumTab {
-	t.label = label
+func (t *spectrumTab) Label(label string) *spectrumTab {
+	t.PropLabel = label
 	return t
 }
 
 // Disabled sets the disabled state of the tab
-func (t *SpectrumTab) Disabled(disabled bool) *SpectrumTab {
-	t.disabled = disabled
+func (t *spectrumTab) Disabled(disabled bool) *spectrumTab {
+	t.PropDisabled = disabled
 	return t
 }
 
 // Selected sets the selected state of the tab
-func (t *SpectrumTab) Selected(selected bool) *SpectrumTab {
-	t.selected = selected
+func (t *spectrumTab) Selected(selected bool) *spectrumTab {
+	t.PropSelected = selected
 	return t
 }
 
 // Vertical sets the vertical orientation of the tab
-func (t *SpectrumTab) Vertical(vertical bool) *SpectrumTab {
-	t.vertical = vertical
+func (t *spectrumTab) Vertical(vertical bool) *spectrumTab {
+	t.PropVertical = vertical
 	return t
 }
 
 // Icon sets the icon of the tab
-func (t *SpectrumTab) Icon(icon app.UI) *SpectrumTab {
-	t.icon = icon
+func (t *spectrumTab) Icon(icon app.UI) *spectrumTab {
+	t.PropIcon = icon
 	return t
 }
 
 // Content sets the content of the tab
-func (t *SpectrumTab) Content(content string) *SpectrumTab {
-	t.content = content
+func (t *spectrumTab) Content(content string) *spectrumTab {
+	t.PropContent = content
 	return t
 }
 
 // InnerHTML sets the inner HTML of the tab
-func (t *SpectrumTab) InnerHTML(innerHTML string) *SpectrumTab {
-	t.innerHTML = innerHTML
+func (t *spectrumTab) InnerHTML(innerHTML string) *spectrumTab {
+	t.PropInnerHTML = innerHTML
 	return t
 }
 
 // Child sets the child component of the tab
-func (t *SpectrumTab) Child(child app.UI) *SpectrumTab {
-	t.child = child
+func (t *spectrumTab) Child(child app.UI) *spectrumTab {
+	t.PropChild = child
 	return t
 }
 
 // Render renders the tab component
-func (t *SpectrumTab) Render() app.UI {
+func (t *spectrumTab) Render() app.UI {
 	tab := app.Elem("sp-tab")
 
-	if t.value != "" {
-		tab = tab.Attr("value", t.value)
+	if t.PropValue != "" {
+		tab = tab.Attr("value", t.PropValue)
 	}
-	if t.label != "" {
-		tab = tab.Attr("label", t.label)
+	if t.PropLabel != "" {
+		tab = tab.Attr("label", t.PropLabel)
 	}
-	if t.disabled {
+	if t.PropDisabled {
 		tab = tab.Attr("disabled", "")
 	}
-	if t.selected {
+	if t.PropSelected {
 		tab = tab.Attr("selected", "")
 	}
-	if t.vertical {
+	if t.PropVertical {
 		tab = tab.Attr("vertical", "")
 	}
 
@@ -100,22 +100,22 @@ func (t *SpectrumTab) Render() app.UI {
 	elements := []app.UI{}
 
 	// Add icon if provided
-	if t.icon != nil {
+	if t.PropIcon != nil {
 		iconElem := app.Elem("div").
 			Attr("slot", "icon").
-			Body(t.icon)
+			Body(t.PropIcon)
 		elements = append(elements, iconElem)
 	}
 
 	// Add content or child
-	if t.content != "" {
-		elements = append(elements, app.Text(t.content))
+	if t.PropContent != "" {
+		elements = append(elements, app.Text(t.PropContent))
 	}
-	if t.innerHTML != "" {
-		elements = append(elements, app.Raw(t.innerHTML))
+	if t.PropInnerHTML != "" {
+		elements = append(elements, app.Raw(t.PropInnerHTML))
 	}
-	if t.child != nil {
-		elements = append(elements, t.child)
+	if t.PropChild != nil {
+		elements = append(elements, t.PropChild)
 	}
 
 	// Add all elements to the tab

@@ -13,104 +13,104 @@ const (
 	SwitchSizeXL SwitchSize = "xl"
 )
 
-// SpectrumSwitch represents an sp-switch component
-type SpectrumSwitch struct {
+// spectrumSwitch represents an sp-switch component
+type spectrumSwitch struct {
 	app.Compo
 
 	// Properties
-	label      string
-	size       SwitchSize
-	checked    bool
-	disabled   bool
-	emphasized bool
-	name       string
-	readonly   bool
-	tabIndex   int
+	PropLabel      string
+	PropSize       SwitchSize
+	PropChecked    bool
+	PropDisabled   bool
+	PropEmphasized bool
+	PropName       string
+	PropReadonly   bool
+	PropTabIndex   int
 
 	// Event handlers
-	onChange app.EventHandler
+	PropOnChange app.EventHandler
 }
 
 // Switch creates a new switch component
-func Switch() *SpectrumSwitch {
-	return &SpectrumSwitch{
-		size: SwitchSizeM, // Default size is medium
+func Switch() *spectrumSwitch {
+	return &spectrumSwitch{
+		PropSize: SwitchSizeM, // Default size is medium
 	}
 }
 
 // Label sets the switch label text content
-func (s *SpectrumSwitch) Label(label string) *SpectrumSwitch {
-	s.label = label
+func (s *spectrumSwitch) Label(label string) *spectrumSwitch {
+	s.PropLabel = label
 	return s
 }
 
 // Size sets the visual size of the switch
-func (s *SpectrumSwitch) Size(size SwitchSize) *SpectrumSwitch {
-	s.size = size
+func (s *spectrumSwitch) Size(size SwitchSize) *spectrumSwitch {
+	s.PropSize = size
 	return s
 }
 
 // Checked sets the checked state of the switch
-func (s *SpectrumSwitch) Checked(checked bool) *SpectrumSwitch {
-	s.checked = checked
+func (s *spectrumSwitch) Checked(checked bool) *spectrumSwitch {
+	s.PropChecked = checked
 	return s
 }
 
 // Disabled sets the disabled state of the switch
-func (s *SpectrumSwitch) Disabled(disabled bool) *SpectrumSwitch {
-	s.disabled = disabled
+func (s *spectrumSwitch) Disabled(disabled bool) *spectrumSwitch {
+	s.PropDisabled = disabled
 	return s
 }
 
 // Emphasized sets the emphasized style of the switch
-func (s *SpectrumSwitch) Emphasized(emphasized bool) *SpectrumSwitch {
-	s.emphasized = emphasized
+func (s *spectrumSwitch) Emphasized(emphasized bool) *spectrumSwitch {
+	s.PropEmphasized = emphasized
 	return s
 }
 
 // Name sets the name attribute of the switch
-func (s *SpectrumSwitch) Name(name string) *SpectrumSwitch {
-	s.name = name
+func (s *spectrumSwitch) Name(name string) *spectrumSwitch {
+	s.PropName = name
 	return s
 }
 
 // Readonly sets the readonly state of the switch
-func (s *SpectrumSwitch) Readonly(readonly bool) *SpectrumSwitch {
-	s.readonly = readonly
+func (s *spectrumSwitch) Readonly(readonly bool) *spectrumSwitch {
+	s.PropReadonly = readonly
 	return s
 }
 
 // TabIndex sets the tab index for the switch
-func (s *SpectrumSwitch) TabIndex(index int) *SpectrumSwitch {
-	s.tabIndex = index
+func (s *spectrumSwitch) TabIndex(index int) *spectrumSwitch {
+	s.PropTabIndex = index
 	return s
 }
 
 // OnChange sets the change event handler
-func (s *SpectrumSwitch) OnChange(handler app.EventHandler) *SpectrumSwitch {
-	s.onChange = handler
+func (s *spectrumSwitch) OnChange(handler app.EventHandler) *spectrumSwitch {
+	s.PropOnChange = handler
 	return s
 }
 
 // Render renders the switch component
-func (s *SpectrumSwitch) Render() app.UI {
+func (s *spectrumSwitch) Render() app.UI {
 	switchElem := app.Elem("sp-switch").
-		Attr("size", string(s.size)).
-		Attr("checked", s.checked).
-		Attr("disabled", s.disabled).
-		Attr("emphasized", s.emphasized).
-		Attr("name", s.name).
-		Attr("readonly", s.readonly).
-		Attr("tabindex", s.tabIndex)
+		Attr("size", string(s.PropSize)).
+		Attr("checked", s.PropChecked).
+		Attr("disabled", s.PropDisabled).
+		Attr("emphasized", s.PropEmphasized).
+		Attr("name", s.PropName).
+		Attr("readonly", s.PropReadonly).
+		Attr("tabindex", s.PropTabIndex)
 
 	// Add event handlers
-	if s.onChange != nil {
-		switchElem = switchElem.On("change", s.onChange)
+	if s.PropOnChange != nil {
+		switchElem = switchElem.On("change", s.PropOnChange)
 	}
 
 	// Add the label as text content
-	if s.label != "" {
-		switchElem = switchElem.Text(s.label)
+	if s.PropLabel != "" {
+		switchElem = switchElem.Text(s.PropLabel)
 	}
 
 	return switchElem

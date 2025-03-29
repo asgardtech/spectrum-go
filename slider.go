@@ -39,256 +39,256 @@ const (
 	SliderLabelVisibilityNone  SliderLabelVisibility = "none"
 )
 
-// SpectrumSlider represents an sp-slider component
-type SpectrumSlider struct {
+// spectrumSlider represents an sp-slider component
+type spectrumSlider struct {
 	app.Compo
 
 	// Properties
-	size            SliderSize
-	variant         SliderVariant
-	label           string
-	labelVisibility SliderLabelVisibility
-	value           float64
-	min             float64
-	max             float64
-	step            *float64
-	defaultValue    *float64
-	disabled        bool
-	dragging        bool
-	highlight       bool
-	editable        bool
-	hideStepper     bool
-	fillStart       interface{} // Can be float64 or bool
-	tickStep        int
-	tickLabels      bool
-	indeterminate   bool
-	quiet           bool
-	formatOptions   map[string]interface{}
+	PropSize            SliderSize
+	PropVariant         SliderVariant
+	PropLabel           string
+	PropLabelVisibility SliderLabelVisibility
+	PropValue           float64
+	PropMin             float64
+	PropMax             float64
+	PropStep            *float64
+	PropDefaultValue    *float64
+	PropDisabled        bool
+	PropDragging        bool
+	PropHighlight       bool
+	PropEditable        bool
+	PropHideStepper     bool
+	PropFillStart       interface{} // Can be float64 or bool
+	PropTickStep        int
+	PropTickLabels      bool
+	PropIndeterminate   bool
+	PropQuiet           bool
+	PropFormatOptions   map[string]interface{}
 
 	// Child handles
-	handles []app.UI
+	PropHandles []app.UI
 
 	// Event handlers
-	onInput  app.EventHandler
-	onChange app.EventHandler
+	PropOnInput  app.EventHandler
+	PropOnChange app.EventHandler
 }
 
 // Slider creates a new slider component
-func Slider() *SpectrumSlider {
-	return &SpectrumSlider{
-		size:          SliderSizeM, // Default size is medium
-		min:           0,           // Default min is 0
-		max:           100,         // Default max is 100
-		formatOptions: make(map[string]interface{}),
+func Slider() *spectrumSlider {
+	return &spectrumSlider{
+		PropSize:          SliderSizeM, // Default size is medium
+		PropMin:           0,           // Default min is 0
+		PropMax:           100,         // Default max is 100
+		PropFormatOptions: make(map[string]interface{}),
 	}
 }
 
 // Size sets the visual size of the slider
-func (s *SpectrumSlider) Size(size SliderSize) *SpectrumSlider {
-	s.size = size
+func (s *spectrumSlider) Size(size SliderSize) *spectrumSlider {
+	s.PropSize = size
 	return s
 }
 
 // Variant sets the visual variant of the slider
-func (s *SpectrumSlider) Variant(variant SliderVariant) *SpectrumSlider {
-	s.variant = variant
+func (s *spectrumSlider) Variant(variant SliderVariant) *spectrumSlider {
+	s.PropVariant = variant
 	return s
 }
 
 // Label sets the accessibility label
-func (s *SpectrumSlider) Label(label string) *SpectrumSlider {
-	s.label = label
+func (s *spectrumSlider) Label(label string) *spectrumSlider {
+	s.PropLabel = label
 	return s
 }
 
 // LabelVisibility sets which labels should be visible
-func (s *SpectrumSlider) LabelVisibility(visibility SliderLabelVisibility) *SpectrumSlider {
-	s.labelVisibility = visibility
+func (s *spectrumSlider) LabelVisibility(visibility SliderLabelVisibility) *spectrumSlider {
+	s.PropLabelVisibility = visibility
 	return s
 }
 
 // Value sets the slider value (for single handle sliders)
-func (s *SpectrumSlider) Value(value float64) *SpectrumSlider {
-	s.value = value
+func (s *spectrumSlider) Value(value float64) *spectrumSlider {
+	s.PropValue = value
 	return s
 }
 
 // Min sets the minimum allowed value
-func (s *SpectrumSlider) Min(min float64) *SpectrumSlider {
-	s.min = min
+func (s *spectrumSlider) Min(min float64) *spectrumSlider {
+	s.PropMin = min
 	return s
 }
 
 // Max sets the maximum allowed value
-func (s *SpectrumSlider) Max(max float64) *SpectrumSlider {
-	s.max = max
+func (s *spectrumSlider) Max(max float64) *spectrumSlider {
+	s.PropMax = max
 	return s
 }
 
 // Step sets the step value for incrementing/decrementing
-func (s *SpectrumSlider) Step(step float64) *SpectrumSlider {
-	s.step = &step
+func (s *spectrumSlider) Step(step float64) *spectrumSlider {
+	s.PropStep = &step
 	return s
 }
 
 // DefaultValue sets the default value to reset to on double-click or escape key
-func (s *SpectrumSlider) DefaultValue(value float64) *SpectrumSlider {
-	s.defaultValue = &value
+func (s *spectrumSlider) DefaultValue(value float64) *spectrumSlider {
+	s.PropDefaultValue = &value
 	return s
 }
 
 // Disabled sets the disabled state
-func (s *SpectrumSlider) Disabled(disabled bool) *SpectrumSlider {
-	s.disabled = disabled
+func (s *spectrumSlider) Disabled(disabled bool) *spectrumSlider {
+	s.PropDisabled = disabled
 	return s
 }
 
 // Dragging sets the dragging state
-func (s *SpectrumSlider) Dragging(dragging bool) *SpectrumSlider {
-	s.dragging = dragging
+func (s *spectrumSlider) Dragging(dragging bool) *spectrumSlider {
+	s.PropDragging = dragging
 	return s
 }
 
 // Highlight sets the highlight state
-func (s *SpectrumSlider) Highlight(highlight bool) *SpectrumSlider {
-	s.highlight = highlight
+func (s *spectrumSlider) Highlight(highlight bool) *spectrumSlider {
+	s.PropHighlight = highlight
 	return s
 }
 
 // Editable sets whether the slider should display a number field
-func (s *SpectrumSlider) Editable(editable bool) *SpectrumSlider {
-	s.editable = editable
+func (s *spectrumSlider) Editable(editable bool) *spectrumSlider {
+	s.PropEditable = editable
 	return s
 }
 
 // HideStepper sets whether to hide the stepper UI in the number field
-func (s *SpectrumSlider) HideStepper(hide bool) *SpectrumSlider {
-	s.hideStepper = hide
+func (s *spectrumSlider) HideStepper(hide bool) *spectrumSlider {
+	s.PropHideStepper = hide
 	return s
 }
 
 // FillStart sets a custom fill start value when variant is "filled"
-func (s *SpectrumSlider) FillStart(start float64) *SpectrumSlider {
-	s.fillStart = start
+func (s *spectrumSlider) FillStart(start float64) *spectrumSlider {
+	s.PropFillStart = start
 	return s
 }
 
 // EnableFillStart enables fill start with the default value
-func (s *SpectrumSlider) EnableFillStart() *SpectrumSlider {
-	s.fillStart = true
+func (s *spectrumSlider) EnableFillStart() *spectrumSlider {
+	s.PropFillStart = true
 	return s
 }
 
 // TickStep sets the step size for tick marks when variant is "tick"
-func (s *SpectrumSlider) TickStep(step int) *SpectrumSlider {
-	s.tickStep = step
+func (s *spectrumSlider) TickStep(step int) *spectrumSlider {
+	s.PropTickStep = step
 	return s
 }
 
 // TickLabels sets whether to show labels with tick marks
-func (s *SpectrumSlider) TickLabels(show bool) *SpectrumSlider {
-	s.tickLabels = show
+func (s *spectrumSlider) TickLabels(show bool) *spectrumSlider {
+	s.PropTickLabels = show
 	return s
 }
 
 // Indeterminate sets the indeterminate state
-func (s *SpectrumSlider) Indeterminate(indeterminate bool) *SpectrumSlider {
-	s.indeterminate = indeterminate
+func (s *spectrumSlider) Indeterminate(indeterminate bool) *spectrumSlider {
+	s.PropIndeterminate = indeterminate
 	return s
 }
 
 // Quiet sets whether the slider uses quiet styling
-func (s *SpectrumSlider) Quiet(quiet bool) *SpectrumSlider {
-	s.quiet = quiet
+func (s *spectrumSlider) Quiet(quiet bool) *spectrumSlider {
+	s.PropQuiet = quiet
 	return s
 }
 
 // FormatOptions sets the Intl.NumberFormatOptions for formatting the displayed value
-func (s *SpectrumSlider) FormatOptions(options map[string]interface{}) *SpectrumSlider {
-	s.formatOptions = options
+func (s *spectrumSlider) FormatOptions(options map[string]interface{}) *spectrumSlider {
+	s.PropFormatOptions = options
 	return s
 }
 
 // Handles sets the slider handles when using multiple handles
-func (s *SpectrumSlider) Handles(handles ...*SpectrumSliderHandle) *SpectrumSlider {
-	s.handles = make([]app.UI, len(handles))
+func (s *spectrumSlider) Handles(handles ...app.UI) *spectrumSlider {
+	s.PropHandles = make([]app.UI, len(handles))
 	for i, handle := range handles {
-		s.handles[i] = handle
+		s.PropHandles[i] = handle
 	}
 	return s
 }
 
 // OnInput sets the input event handler
-func (s *SpectrumSlider) OnInput(handler app.EventHandler) *SpectrumSlider {
-	s.onInput = handler
+func (s *spectrumSlider) OnInput(handler app.EventHandler) *spectrumSlider {
+	s.PropOnInput = handler
 	return s
 }
 
 // OnChange sets the change event handler
-func (s *SpectrumSlider) OnChange(handler app.EventHandler) *SpectrumSlider {
-	s.onChange = handler
+func (s *spectrumSlider) OnChange(handler app.EventHandler) *spectrumSlider {
+	s.PropOnChange = handler
 	return s
 }
 
 // Convenience methods for setting variants
 
 // Filled sets the variant to "filled"
-func (s *SpectrumSlider) Filled() *SpectrumSlider {
+func (s *spectrumSlider) Filled() *spectrumSlider {
 	return s.Variant(SliderVariantFilled)
 }
 
 // Tick sets the variant to "tick"
-func (s *SpectrumSlider) Tick() *SpectrumSlider {
+func (s *spectrumSlider) Tick() *spectrumSlider {
 	return s.Variant(SliderVariantTick)
 }
 
 // Ramp sets the variant to "ramp"
-func (s *SpectrumSlider) Ramp() *SpectrumSlider {
+func (s *spectrumSlider) Ramp() *spectrumSlider {
 	return s.Variant(SliderVariantRamp)
 }
 
 // Range sets the variant to "range"
-func (s *SpectrumSlider) Range() *SpectrumSlider {
+func (s *spectrumSlider) Range() *spectrumSlider {
 	return s.Variant(SliderVariantRange)
 }
 
 // Render renders the slider component
-func (s *SpectrumSlider) Render() app.UI {
+func (s *spectrumSlider) Render() app.UI {
 	slider := app.Elem("sp-slider").
-		Attr("size", string(s.size)).
-		Attr("variant", string(s.variant)).
-		Attr("label", s.label).
-		Attr("value", s.value).
-		Attr("min", s.min).
-		Attr("max", s.max).
-		Attr("disabled", s.disabled).
-		Attr("dragging", s.dragging).
-		Attr("highlight", s.highlight).
-		Attr("editable", s.editable).
-		Attr("hide-stepper", s.hideStepper).
-		Attr("tick-step", s.tickStep).
-		Attr("tick-labels", s.tickLabels).
-		Attr("indeterminate", s.indeterminate).
-		Attr("quiet", s.quiet)
+		Attr("size", string(s.PropSize)).
+		Attr("variant", string(s.PropVariant)).
+		Attr("label", s.PropLabel).
+		Attr("value", s.PropValue).
+		Attr("min", s.PropMin).
+		Attr("max", s.PropMax).
+		Attr("disabled", s.PropDisabled).
+		Attr("dragging", s.PropDragging).
+		Attr("highlight", s.PropHighlight).
+		Attr("editable", s.PropEditable).
+		Attr("hide-stepper", s.PropHideStepper).
+		Attr("tick-step", s.PropTickStep).
+		Attr("tick-labels", s.PropTickLabels).
+		Attr("indeterminate", s.PropIndeterminate).
+		Attr("quiet", s.PropQuiet)
 
 	// Add the label visibility if specified
-	if s.labelVisibility != "" {
-		slider = slider.Attr("label-visibility", string(s.labelVisibility))
+	if s.PropLabelVisibility != "" {
+		slider = slider.Attr("label-visibility", string(s.PropLabelVisibility))
 	}
 
 	// Add step if set
-	if s.step != nil {
-		slider = slider.Attr("step", *s.step)
+	if s.PropStep != nil {
+		slider = slider.Attr("step", *s.PropStep)
 	}
 
 	// Add default value if set
-	if s.defaultValue != nil {
-		slider = slider.Attr("default-value", *s.defaultValue)
+	if s.PropDefaultValue != nil {
+		slider = slider.Attr("default-value", *s.PropDefaultValue)
 	}
 
 	// Handle fillStart which can be a number or boolean
-	if s.fillStart != nil {
-		switch fillStart := s.fillStart.(type) {
+	if s.PropFillStart != nil {
+		switch fillStart := s.PropFillStart.(type) {
 		case float64:
 			slider = slider.Attr("fill-start", fillStart)
 		case bool:
@@ -299,22 +299,22 @@ func (s *SpectrumSlider) Render() app.UI {
 	}
 
 	// Add format options if provided
-	if len(s.formatOptions) > 0 {
-		formatOptionsJSON, _ := json.Marshal(s.formatOptions)
+	if len(s.PropFormatOptions) > 0 {
+		formatOptionsJSON, _ := json.Marshal(s.PropFormatOptions)
 		slider = slider.Attr("format-options", string(formatOptionsJSON))
 	}
 
 	// Add event handlers
-	if s.onInput != nil {
-		slider = slider.On("input", s.onInput)
+	if s.PropOnInput != nil {
+		slider = slider.On("input", s.PropOnInput)
 	}
-	if s.onChange != nil {
-		slider = slider.On("change", s.onChange)
+	if s.PropOnChange != nil {
+		slider = slider.On("change", s.PropOnChange)
 	}
 
 	// Add slider handles if provided
-	if len(s.handles) > 0 {
-		slider = slider.Body(s.handles...)
+	if len(s.PropHandles) > 0 {
+		slider = slider.Body(s.PropHandles...)
 	}
 
 	return slider

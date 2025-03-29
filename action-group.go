@@ -36,151 +36,151 @@ const (
 	ActionGroupSelectsMultiple ActionGroupSelects = "multiple"
 )
 
-// SpectrumActionGroup represents an sp-action-group component
-type SpectrumActionGroup struct {
+// spectrumActionGroup represents an sp-action-group component
+type spectrumActionGroup struct {
 	app.Compo
 
 	// Properties
-	compact     bool
-	emphasized  bool
-	justified   bool
-	label       string
-	quiet       bool
-	selects     ActionGroupSelects
-	staticColor ActionGroupStaticColor
-	vertical    bool
-	size        ActionGroupSize
-	selected    []string
+	PropCompact     bool
+	PropEmphasized  bool
+	PropJustified   bool
+	PropLabel       string
+	PropQuiet       bool
+	PropSelects     ActionGroupSelects
+	PropStaticColor ActionGroupStaticColor
+	PropVertical    bool
+	PropSize        ActionGroupSize
+	PropSelected    []string
 
 	// Event handlers
-	onChange app.EventHandler
+	PropOnChange app.EventHandler
 
 	// Child elements
-	actions []app.UI
+	PropActions []app.UI
 }
 
 // ActionGroup creates a new action group component
-func ActionGroup() *SpectrumActionGroup {
-	return &SpectrumActionGroup{
-		size:     ActionGroupSizeM, // Default size is medium
-		selected: []string{},
+func ActionGroup() *spectrumActionGroup {
+	return &spectrumActionGroup{
+		PropSize:     ActionGroupSizeM, // Default size is medium
+		PropSelected: []string{},
 	}
 }
 
 // Compact sets whether the buttons are displayed more compactly
-func (a *SpectrumActionGroup) Compact(compact bool) *SpectrumActionGroup {
-	a.compact = compact
+func (a *spectrumActionGroup) Compact(compact bool) *spectrumActionGroup {
+	a.PropCompact = compact
 	return a
 }
 
 // Emphasized sets whether the buttons have an emphasized appearance
-func (a *SpectrumActionGroup) Emphasized(emphasized bool) *SpectrumActionGroup {
-	a.emphasized = emphasized
+func (a *spectrumActionGroup) Emphasized(emphasized bool) *spectrumActionGroup {
+	a.PropEmphasized = emphasized
 	return a
 }
 
 // Justified sets whether the buttons fill the available horizontal space
-func (a *SpectrumActionGroup) Justified(justified bool) *SpectrumActionGroup {
-	a.justified = justified
+func (a *spectrumActionGroup) Justified(justified bool) *spectrumActionGroup {
+	a.PropJustified = justified
 	return a
 }
 
 // Label sets the accessible label for the action group
-func (a *SpectrumActionGroup) Label(label string) *SpectrumActionGroup {
-	a.label = label
+func (a *spectrumActionGroup) Label(label string) *spectrumActionGroup {
+	a.PropLabel = label
 	return a
 }
 
 // Quiet sets whether the buttons have a quiet appearance
-func (a *SpectrumActionGroup) Quiet(quiet bool) *SpectrumActionGroup {
-	a.quiet = quiet
+func (a *spectrumActionGroup) Quiet(quiet bool) *spectrumActionGroup {
+	a.PropQuiet = quiet
 	return a
 }
 
 // Selects sets the selection mode (single or multiple)
-func (a *SpectrumActionGroup) Selects(selects ActionGroupSelects) *SpectrumActionGroup {
-	a.selects = selects
+func (a *spectrumActionGroup) Selects(selects ActionGroupSelects) *spectrumActionGroup {
+	a.PropSelects = selects
 	return a
 }
 
 // StaticColor sets the static color variant
-func (a *SpectrumActionGroup) StaticColor(staticColor ActionGroupStaticColor) *SpectrumActionGroup {
-	a.staticColor = staticColor
+func (a *spectrumActionGroup) StaticColor(staticColor ActionGroupStaticColor) *spectrumActionGroup {
+	a.PropStaticColor = staticColor
 	return a
 }
 
 // Vertical sets whether the buttons are arranged vertically
-func (a *SpectrumActionGroup) Vertical(vertical bool) *SpectrumActionGroup {
-	a.vertical = vertical
+func (a *spectrumActionGroup) Vertical(vertical bool) *spectrumActionGroup {
+	a.PropVertical = vertical
 	return a
 }
 
 // Size sets the visual size of the action group
-func (a *SpectrumActionGroup) Size(size ActionGroupSize) *SpectrumActionGroup {
-	a.size = size
+func (a *spectrumActionGroup) Size(size ActionGroupSize) *spectrumActionGroup {
+	a.PropSize = size
 	return a
 }
 
 // Selected sets the selected values
-func (a *SpectrumActionGroup) Selected(selected []string) *SpectrumActionGroup {
-	a.selected = selected
+func (a *spectrumActionGroup) Selected(selected []string) *spectrumActionGroup {
+	a.PropSelected = selected
 	return a
 }
 
 // OnChange sets the change event handler
-func (a *SpectrumActionGroup) OnChange(handler app.EventHandler) *SpectrumActionGroup {
-	a.onChange = handler
+func (a *spectrumActionGroup) OnChange(handler app.EventHandler) *spectrumActionGroup {
+	a.PropOnChange = handler
 	return a
 }
 
 // AddAction adds an action button to the group
-func (a *SpectrumActionGroup) AddAction(action app.UI) *SpectrumActionGroup {
-	a.actions = append(a.actions, action)
+func (a *spectrumActionGroup) AddAction(action app.UI) *spectrumActionGroup {
+	a.PropActions = append(a.PropActions, action)
 	return a
 }
 
 // Actions sets multiple action buttons at once
-func (a *SpectrumActionGroup) Actions(actions ...app.UI) *SpectrumActionGroup {
-	a.actions = actions
+func (a *spectrumActionGroup) Actions(actions ...app.UI) *spectrumActionGroup {
+	a.PropActions = actions
 	return a
 }
 
 // Render renders the action group component
-func (a *SpectrumActionGroup) Render() app.UI {
+func (a *spectrumActionGroup) Render() app.UI {
 	// Convert the selected array to JSON
-	selectedJSON, _ := json.Marshal(a.selected)
+	selectedJSON, _ := json.Marshal(a.PropSelected)
 
 	actionGroup := app.Elem("sp-action-group").
-		Attr("compact", a.compact).
-		Attr("emphasized", a.emphasized).
-		Attr("justified", a.justified).
-		Attr("quiet", a.quiet).
-		Attr("vertical", a.vertical)
+		Attr("compact", a.PropCompact).
+		Attr("emphasized", a.PropEmphasized).
+		Attr("justified", a.PropJustified).
+		Attr("quiet", a.PropQuiet).
+		Attr("vertical", a.PropVertical)
 
-	if a.label != "" {
-		actionGroup = actionGroup.Attr("label", a.label)
+	if a.PropLabel != "" {
+		actionGroup = actionGroup.Attr("label", a.PropLabel)
 	}
-	if a.selects != "" {
-		actionGroup = actionGroup.Attr("selects", string(a.selects))
+	if a.PropSelects != "" {
+		actionGroup = actionGroup.Attr("selects", string(a.PropSelects))
 	}
-	if a.staticColor != "" {
-		actionGroup = actionGroup.Attr("static-color", string(a.staticColor))
+	if a.PropStaticColor != "" {
+		actionGroup = actionGroup.Attr("static-color", string(a.PropStaticColor))
 	}
-	if a.size != "" {
-		actionGroup = actionGroup.Attr("size", string(a.size))
+	if a.PropSize != "" {
+		actionGroup = actionGroup.Attr("size", string(a.PropSize))
 	}
-	if len(a.selected) > 0 {
+	if len(a.PropSelected) > 0 {
 		actionGroup = actionGroup.Attr("selected", string(selectedJSON))
 	}
 
 	// Add event handlers
-	if a.onChange != nil {
-		actionGroup = actionGroup.On("change", a.onChange)
+	if a.PropOnChange != nil {
+		actionGroup = actionGroup.On("change", a.PropOnChange)
 	}
 
 	// Add action buttons
-	if len(a.actions) > 0 {
-		actionGroup = actionGroup.Body(a.actions...)
+	if len(a.PropActions) > 0 {
+		actionGroup = actionGroup.Body(a.PropActions...)
 	}
 
 	return actionGroup

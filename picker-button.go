@@ -22,254 +22,254 @@ const (
 	PickerButtonPositionRight PickerButtonPosition = "right"
 )
 
-// SpectrumPickerButton represents an sp-picker-button component
-type SpectrumPickerButton struct {
+// spectrumPickerButton represents an sp-picker-button component
+type spectrumPickerButton struct {
 	app.Compo
 
 	// Properties
-	active         bool
-	disabled       bool
-	download       string
-	href           string
-	label          string
-	position       PickerButtonPosition
-	referrerpolicy string
-	rel            string
-	rounded        bool
-	size           PickerButtonSize
-	tabIndex       int
-	target         string
-	type_          string
-	open           bool
-	invalid        bool
-	quiet          bool
+	PropActive         bool
+	PropDisabled       bool
+	PropDownload       string
+	PropHref           string
+	PropLabel          string
+	PropPosition       PickerButtonPosition
+	PropReferrerpolicy string
+	PropRel            string
+	PropRounded        bool
+	PropSize           PickerButtonSize
+	PropTabIndex       int
+	PropTarget         string
+	PropType           string
+	PropOpen           bool
+	PropInvalid        bool
+	PropQuiet          bool
 
 	// Slots
-	labelSlot app.UI
-	icon      app.UI
+	PropLabelSlot app.UI
+	PropIcon      app.UI
 
 	// Event handlers
-	onClick app.EventHandler
+	PropOnClick app.EventHandler
 }
 
 // PickerButton creates a new picker button component
-func PickerButton() *SpectrumPickerButton {
-	return &SpectrumPickerButton{
-		position: PickerButtonPositionRight, // Default position
-		size:     PickerButtonSizeM,         // Default size
-		type_:    "button",                  // Default type
+func PickerButton() *spectrumPickerButton {
+	return &spectrumPickerButton{
+		PropPosition: PickerButtonPositionRight, // Default position
+		PropSize:     PickerButtonSizeM,         // Default size
+		PropType:     "button",                  // Default type
 	}
 }
 
 // Active sets whether the button is active
-func (pb *SpectrumPickerButton) Active(active bool) *SpectrumPickerButton {
-	pb.active = active
+func (pb *spectrumPickerButton) Active(active bool) *spectrumPickerButton {
+	pb.PropActive = active
 	return pb
 }
 
 // Disabled sets whether the button is disabled
-func (pb *SpectrumPickerButton) Disabled(disabled bool) *SpectrumPickerButton {
-	pb.disabled = disabled
+func (pb *spectrumPickerButton) Disabled(disabled bool) *spectrumPickerButton {
+	pb.PropDisabled = disabled
 	return pb
 }
 
 // Download sets the download attribute
-func (pb *SpectrumPickerButton) Download(download string) *SpectrumPickerButton {
-	pb.download = download
+func (pb *spectrumPickerButton) Download(download string) *spectrumPickerButton {
+	pb.PropDownload = download
 	return pb
 }
 
 // Href sets the URL the button points to
-func (pb *SpectrumPickerButton) Href(href string) *SpectrumPickerButton {
-	pb.href = href
+func (pb *spectrumPickerButton) Href(href string) *spectrumPickerButton {
+	pb.PropHref = href
 	return pb
 }
 
 // Label sets the accessible label for the button
-func (pb *SpectrumPickerButton) Label(label string) *SpectrumPickerButton {
-	pb.label = label
+func (pb *spectrumPickerButton) Label(label string) *spectrumPickerButton {
+	pb.PropLabel = label
 	return pb
 }
 
 // Position sets the position of the button
-func (pb *SpectrumPickerButton) Position(position PickerButtonPosition) *SpectrumPickerButton {
-	pb.position = position
+func (pb *spectrumPickerButton) Position(position PickerButtonPosition) *spectrumPickerButton {
+	pb.PropPosition = position
 	return pb
 }
 
 // Referrerpolicy sets the referrer policy for the button
-func (pb *SpectrumPickerButton) Referrerpolicy(policy string) *SpectrumPickerButton {
-	pb.referrerpolicy = policy
+func (pb *spectrumPickerButton) Referrerpolicy(policy string) *spectrumPickerButton {
+	pb.PropReferrerpolicy = policy
 	return pb
 }
 
 // Rel sets the relationship of the linked URL
-func (pb *SpectrumPickerButton) Rel(rel string) *SpectrumPickerButton {
-	pb.rel = rel
+func (pb *spectrumPickerButton) Rel(rel string) *spectrumPickerButton {
+	pb.PropRel = rel
 	return pb
 }
 
 // Rounded sets whether the button has rounded corners
-func (pb *SpectrumPickerButton) Rounded(rounded bool) *SpectrumPickerButton {
-	pb.rounded = rounded
+func (pb *spectrumPickerButton) Rounded(rounded bool) *spectrumPickerButton {
+	pb.PropRounded = rounded
 	return pb
 }
 
 // Size sets the visual size of the button
-func (pb *SpectrumPickerButton) Size(size PickerButtonSize) *SpectrumPickerButton {
-	pb.size = size
+func (pb *spectrumPickerButton) Size(size PickerButtonSize) *spectrumPickerButton {
+	pb.PropSize = size
 	return pb
 }
 
 // TabIndex sets the tab index of the button
-func (pb *SpectrumPickerButton) TabIndex(tabIndex int) *SpectrumPickerButton {
-	pb.tabIndex = tabIndex
+func (pb *spectrumPickerButton) TabIndex(tabIndex int) *spectrumPickerButton {
+	pb.PropTabIndex = tabIndex
 	return pb
 }
 
 // Target sets where to display the linked URL
-func (pb *SpectrumPickerButton) Target(target string) *SpectrumPickerButton {
-	pb.target = target
+func (pb *spectrumPickerButton) Target(target string) *spectrumPickerButton {
+	pb.PropTarget = target
 	return pb
 }
 
 // Type sets the button type
-func (pb *SpectrumPickerButton) Type(type_ string) *SpectrumPickerButton {
-	pb.type_ = type_
+func (pb *spectrumPickerButton) Type(type_ string) *spectrumPickerButton {
+	pb.PropType = type_
 	return pb
 }
 
 // Open sets whether the button is in open state
-func (pb *SpectrumPickerButton) Open(open bool) *SpectrumPickerButton {
-	pb.open = open
+func (pb *spectrumPickerButton) Open(open bool) *spectrumPickerButton {
+	pb.PropOpen = open
 	return pb
 }
 
 // Invalid sets whether the button is in invalid state
-func (pb *SpectrumPickerButton) Invalid(invalid bool) *SpectrumPickerButton {
-	pb.invalid = invalid
+func (pb *spectrumPickerButton) Invalid(invalid bool) *spectrumPickerButton {
+	pb.PropInvalid = invalid
 	return pb
 }
 
 // Quiet sets whether the button has a quiet appearance
-func (pb *SpectrumPickerButton) Quiet(quiet bool) *SpectrumPickerButton {
-	pb.quiet = quiet
+func (pb *spectrumPickerButton) Quiet(quiet bool) *spectrumPickerButton {
+	pb.PropQuiet = quiet
 	return pb
 }
 
 // LabelSlot sets content for the label slot
-func (pb *SpectrumPickerButton) LabelSlot(label app.UI) *SpectrumPickerButton {
-	pb.labelSlot = label
+func (pb *spectrumPickerButton) LabelSlot(label app.UI) *spectrumPickerButton {
+	pb.PropLabelSlot = label
 	return pb
 }
 
 // Icon sets content for the icon slot
-func (pb *SpectrumPickerButton) Icon(icon app.UI) *SpectrumPickerButton {
-	pb.icon = icon
+func (pb *spectrumPickerButton) Icon(icon app.UI) *spectrumPickerButton {
+	pb.PropIcon = icon
 	return pb
 }
 
 // OnClick sets the click event handler
-func (pb *SpectrumPickerButton) OnClick(handler app.EventHandler) *SpectrumPickerButton {
-	pb.onClick = handler
+func (pb *spectrumPickerButton) OnClick(handler app.EventHandler) *spectrumPickerButton {
+	pb.PropOnClick = handler
 	return pb
 }
 
 // Small sets size to small (s)
-func (pb *SpectrumPickerButton) Small() *SpectrumPickerButton {
+func (pb *spectrumPickerButton) Small() *spectrumPickerButton {
 	return pb.Size(PickerButtonSizeS)
 }
 
 // Medium sets size to medium (m)
-func (pb *SpectrumPickerButton) Medium() *SpectrumPickerButton {
+func (pb *spectrumPickerButton) Medium() *spectrumPickerButton {
 	return pb.Size(PickerButtonSizeM)
 }
 
 // Large sets size to large (l)
-func (pb *SpectrumPickerButton) Large() *SpectrumPickerButton {
+func (pb *spectrumPickerButton) Large() *spectrumPickerButton {
 	return pb.Size(PickerButtonSizeL)
 }
 
 // ExtraLarge sets size to extra large (xl)
-func (pb *SpectrumPickerButton) ExtraLarge() *SpectrumPickerButton {
+func (pb *spectrumPickerButton) ExtraLarge() *spectrumPickerButton {
 	return pb.Size(PickerButtonSizeXL)
 }
 
 // PositionLeft sets position to left
-func (pb *SpectrumPickerButton) PositionLeft() *SpectrumPickerButton {
+func (pb *spectrumPickerButton) PositionLeft() *spectrumPickerButton {
 	return pb.Position(PickerButtonPositionLeft)
 }
 
 // PositionRight sets position to right
-func (pb *SpectrumPickerButton) PositionRight() *SpectrumPickerButton {
+func (pb *spectrumPickerButton) PositionRight() *spectrumPickerButton {
 	return pb.Position(PickerButtonPositionRight)
 }
 
 // Render renders the picker button component
-func (pb *SpectrumPickerButton) Render() app.UI {
+func (pb *spectrumPickerButton) Render() app.UI {
 	pickerButton := app.Elem("sp-picker-button")
 
 	// Set attributes
-	if pb.active {
+	if pb.PropActive {
 		pickerButton = pickerButton.Attr("active", true)
 	}
-	if pb.disabled {
+	if pb.PropDisabled {
 		pickerButton = pickerButton.Attr("disabled", true)
 	}
-	if pb.download != "" {
-		pickerButton = pickerButton.Attr("download", pb.download)
+	if pb.PropDownload != "" {
+		pickerButton = pickerButton.Attr("download", pb.PropDownload)
 	}
-	if pb.href != "" {
-		pickerButton = pickerButton.Attr("href", pb.href)
+	if pb.PropHref != "" {
+		pickerButton = pickerButton.Attr("href", pb.PropHref)
 	}
-	if pb.label != "" {
-		pickerButton = pickerButton.Attr("label", pb.label)
+	if pb.PropLabel != "" {
+		pickerButton = pickerButton.Attr("label", pb.PropLabel)
 	}
-	if pb.position != "" {
-		pickerButton = pickerButton.Attr("position", string(pb.position))
+	if pb.PropPosition != "" {
+		pickerButton = pickerButton.Attr("position", string(pb.PropPosition))
 	}
-	if pb.referrerpolicy != "" {
-		pickerButton = pickerButton.Attr("referrerpolicy", pb.referrerpolicy)
+	if pb.PropReferrerpolicy != "" {
+		pickerButton = pickerButton.Attr("referrerpolicy", pb.PropReferrerpolicy)
 	}
-	if pb.rel != "" {
-		pickerButton = pickerButton.Attr("rel", pb.rel)
+	if pb.PropRel != "" {
+		pickerButton = pickerButton.Attr("rel", pb.PropRel)
 	}
-	if pb.rounded {
+	if pb.PropRounded {
 		pickerButton = pickerButton.Attr("rounded", true)
 	}
-	if pb.size != "" {
-		pickerButton = pickerButton.Attr("size", string(pb.size))
+	if pb.PropSize != "" {
+		pickerButton = pickerButton.Attr("size", string(pb.PropSize))
 	}
-	if pb.tabIndex != 0 {
-		pickerButton = pickerButton.Attr("tabIndex", pb.tabIndex)
+	if pb.PropTabIndex != 0 {
+		pickerButton = pickerButton.Attr("tabIndex", pb.PropTabIndex)
 	}
-	if pb.target != "" {
-		pickerButton = pickerButton.Attr("target", pb.target)
+	if pb.PropTarget != "" {
+		pickerButton = pickerButton.Attr("target", pb.PropTarget)
 	}
-	if pb.type_ != "button" { // Only set if not the default
-		pickerButton = pickerButton.Attr("type", pb.type_)
+	if pb.PropType != "button" { // Only set if not the default
+		pickerButton = pickerButton.Attr("type", pb.PropType)
 	}
-	if pb.open {
+	if pb.PropOpen {
 		pickerButton = pickerButton.Attr("open", true)
 	}
-	if pb.invalid {
+	if pb.PropInvalid {
 		pickerButton = pickerButton.Attr("invalid", true)
 	}
-	if pb.quiet {
+	if pb.PropQuiet {
 		pickerButton = pickerButton.Attr("quiet", true)
 	}
 
 	// Add event handlers
-	if pb.onClick != nil {
-		pickerButton = pickerButton.OnClick(pb.onClick)
+	if pb.PropOnClick != nil {
+		pickerButton = pickerButton.On("click", pb.PropOnClick)
 	}
 
 	// Collect all slotted elements
 	var elements []app.UI
 
 	// Add label slot if provided
-	if pb.labelSlot != nil {
-		label := pb.labelSlot
+	if pb.PropLabelSlot != nil {
+		label := pb.PropLabelSlot
 		if labelWithSlot, ok := label.(interface{ Slot(string) app.UI }); ok {
 			label = labelWithSlot.Slot("label")
 		} else {
@@ -281,8 +281,8 @@ func (pb *SpectrumPickerButton) Render() app.UI {
 	}
 
 	// Add icon if provided
-	if pb.icon != nil {
-		icon := pb.icon
+	if pb.PropIcon != nil {
+		icon := pb.PropIcon
 		if iconWithSlot, ok := icon.(interface{ Slot(string) app.UI }); ok {
 			icon = iconWithSlot.Slot("icon")
 		} else {

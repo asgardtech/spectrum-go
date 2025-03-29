@@ -2,161 +2,161 @@ package sp
 
 import "github.com/maxence-charriere/go-app/v10/pkg/app"
 
-// SpectrumSplitView represents an sp-split-view component
-type SpectrumSplitView struct {
+// spectrumSplitView represents an sp-split-view component
+type spectrumSplitView struct {
 	app.Compo
 
 	// Properties
-	collapsible  bool
-	label        string
-	primaryMax   string
-	primaryMin   string
-	primarySize  string
-	resizable    bool
-	secondaryMax string
-	secondaryMin string
-	splitterPos  int
-	vertical     bool
+	PropCollapsible  bool
+	PropLabel        string
+	PropPrimaryMax   string
+	PropPrimaryMin   string
+	PropPrimarySize  string
+	PropResizable    bool
+	PropSecondaryMax string
+	PropSecondaryMin string
+	PropSplitterPos  int
+	PropVertical     bool
 
 	// Child components
-	primaryPanel   app.UI
-	secondaryPanel app.UI
+	PropPrimaryPanel   app.UI
+	PropSecondaryPanel app.UI
 
 	// Event handlers
-	onChange app.EventHandler
+	PropOnChange app.EventHandler
 }
 
 // SplitView creates a new split view component
-func SplitView() *SpectrumSplitView {
-	return &SpectrumSplitView{
-		label: "Resize the panels", // Default label
+func SplitView() *spectrumSplitView {
+	return &spectrumSplitView{
+		PropLabel: "Resize the panels", // Default label
 	}
 }
 
 // Collapsible sets whether the split view is collapsible
-func (sv *SpectrumSplitView) Collapsible(collapsible bool) *SpectrumSplitView {
-	sv.collapsible = collapsible
+func (sv *spectrumSplitView) Collapsible(collapsible bool) *spectrumSplitView {
+	sv.PropCollapsible = collapsible
 	return sv
 }
 
 // Label sets the accessible label for the split view
-func (sv *SpectrumSplitView) Label(label string) *SpectrumSplitView {
-	sv.label = label
+func (sv *spectrumSplitView) Label(label string) *spectrumSplitView {
+	sv.PropLabel = label
 	return sv
 }
 
 // PrimaryMax sets the maximum size of the primary pane
-func (sv *SpectrumSplitView) PrimaryMax(max string) *SpectrumSplitView {
-	sv.primaryMax = max
+func (sv *spectrumSplitView) PrimaryMax(max string) *spectrumSplitView {
+	sv.PropPrimaryMax = max
 	return sv
 }
 
 // PrimaryMin sets the minimum size of the primary pane
-func (sv *SpectrumSplitView) PrimaryMin(min string) *SpectrumSplitView {
-	sv.primaryMin = min
+func (sv *spectrumSplitView) PrimaryMin(min string) *spectrumSplitView {
+	sv.PropPrimaryMin = min
 	return sv
 }
 
 // PrimarySize sets the size of the primary pane
-func (sv *SpectrumSplitView) PrimarySize(size string) *SpectrumSplitView {
-	sv.primarySize = size
+func (sv *spectrumSplitView) PrimarySize(size string) *spectrumSplitView {
+	sv.PropPrimarySize = size
 	return sv
 }
 
 // Resizable sets whether the split view is resizable
-func (sv *SpectrumSplitView) Resizable(resizable bool) *SpectrumSplitView {
-	sv.resizable = resizable
+func (sv *spectrumSplitView) Resizable(resizable bool) *spectrumSplitView {
+	sv.PropResizable = resizable
 	return sv
 }
 
 // SecondaryMax sets the maximum size of the secondary pane
-func (sv *SpectrumSplitView) SecondaryMax(max string) *SpectrumSplitView {
-	sv.secondaryMax = max
+func (sv *spectrumSplitView) SecondaryMax(max string) *spectrumSplitView {
+	sv.PropSecondaryMax = max
 	return sv
 }
 
 // SecondaryMin sets the minimum size of the secondary pane
-func (sv *SpectrumSplitView) SecondaryMin(min string) *SpectrumSplitView {
-	sv.secondaryMin = min
+func (sv *spectrumSplitView) SecondaryMin(min string) *spectrumSplitView {
+	sv.PropSecondaryMin = min
 	return sv
 }
 
 // SplitterPos sets the position of the splitter
-func (sv *SpectrumSplitView) SplitterPos(pos int) *SpectrumSplitView {
-	sv.splitterPos = pos
+func (sv *spectrumSplitView) SplitterPos(pos int) *spectrumSplitView {
+	sv.PropSplitterPos = pos
 	return sv
 }
 
 // Vertical sets whether the split view is vertical
-func (sv *SpectrumSplitView) Vertical(vertical bool) *SpectrumSplitView {
-	sv.vertical = vertical
+func (sv *spectrumSplitView) Vertical(vertical bool) *spectrumSplitView {
+	sv.PropVertical = vertical
 	return sv
 }
 
 // PrimaryPanel sets the primary panel (first child)
-func (sv *SpectrumSplitView) PrimaryPanel(panel app.UI) *SpectrumSplitView {
-	sv.primaryPanel = panel
+func (sv *spectrumSplitView) PrimaryPanel(panel app.UI) *spectrumSplitView {
+	sv.PropPrimaryPanel = panel
 	return sv
 }
 
 // SecondaryPanel sets the secondary panel (second child)
-func (sv *SpectrumSplitView) SecondaryPanel(panel app.UI) *SpectrumSplitView {
-	sv.secondaryPanel = panel
+func (sv *spectrumSplitView) SecondaryPanel(panel app.UI) *spectrumSplitView {
+	sv.PropSecondaryPanel = panel
 	return sv
 }
 
 // OnChange sets the change event handler
-func (sv *SpectrumSplitView) OnChange(handler app.EventHandler) *SpectrumSplitView {
-	sv.onChange = handler
+func (sv *spectrumSplitView) OnChange(handler app.EventHandler) *spectrumSplitView {
+	sv.PropOnChange = handler
 	return sv
 }
 
 // Render renders the split view component
-func (sv *SpectrumSplitView) Render() app.UI {
+func (sv *spectrumSplitView) Render() app.UI {
 	splitView := app.Elem("sp-split-view")
 
 	// Set attributes
-	if sv.collapsible {
+	if sv.PropCollapsible {
 		splitView = splitView.Attr("collapsible", true)
 	}
-	if sv.label != "" {
-		splitView = splitView.Attr("label", sv.label)
+	if sv.PropLabel != "" {
+		splitView = splitView.Attr("label", sv.PropLabel)
 	}
-	if sv.primaryMax != "" {
-		splitView = splitView.Attr("primary-max", sv.primaryMax)
+	if sv.PropPrimaryMax != "" {
+		splitView = splitView.Attr("primary-max", sv.PropPrimaryMax)
 	}
-	if sv.primaryMin != "" {
-		splitView = splitView.Attr("primary-min", sv.primaryMin)
+	if sv.PropPrimaryMin != "" {
+		splitView = splitView.Attr("primary-min", sv.PropPrimaryMin)
 	}
-	if sv.primarySize != "" {
-		splitView = splitView.Attr("primary-size", sv.primarySize)
+	if sv.PropPrimarySize != "" {
+		splitView = splitView.Attr("primary-size", sv.PropPrimarySize)
 	}
-	if sv.resizable {
+	if sv.PropResizable {
 		splitView = splitView.Attr("resizable", true)
 	}
-	if sv.secondaryMax != "" {
-		splitView = splitView.Attr("secondary-max", sv.secondaryMax)
+	if sv.PropSecondaryMax != "" {
+		splitView = splitView.Attr("secondary-max", sv.PropSecondaryMax)
 	}
-	if sv.secondaryMin != "" {
-		splitView = splitView.Attr("secondary-min", sv.secondaryMin)
+	if sv.PropSecondaryMin != "" {
+		splitView = splitView.Attr("secondary-min", sv.PropSecondaryMin)
 	}
-	if sv.splitterPos != 0 {
-		splitView = splitView.Attr("splitter-pos", sv.splitterPos)
+	if sv.PropSplitterPos != 0 {
+		splitView = splitView.Attr("splitter-pos", sv.PropSplitterPos)
 	}
-	if sv.vertical {
+	if sv.PropVertical {
 		splitView = splitView.Attr("vertical", true)
 	}
 
 	// Add event handlers
-	if sv.onChange != nil {
-		splitView = splitView.On("change", sv.onChange)
+	if sv.PropOnChange != nil {
+		splitView = splitView.On("change", sv.PropOnChange)
 	}
 
 	// Add panels
-	if sv.primaryPanel != nil && sv.secondaryPanel != nil {
+	if sv.PropPrimaryPanel != nil && sv.PropSecondaryPanel != nil {
 		splitView = splitView.Body(
-			sv.primaryPanel,
-			sv.secondaryPanel,
+			sv.PropPrimaryPanel,
+			sv.PropSecondaryPanel,
 		)
 	}
 

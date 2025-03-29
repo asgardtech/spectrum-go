@@ -24,204 +24,200 @@ const (
 	SwatchSelectsMultiple SwatchSelects = "multiple"
 )
 
-// SpectrumSwatchGroup represents an sp-swatch-group component
-type SpectrumSwatchGroup struct {
+// spectrumSwatchGroup represents an sp-swatch-group component
+type spectrumSwatchGroup struct {
 	app.Compo
 
 	// Properties
-	size     SwatchSize
-	shape    SwatchShape
-	rounding SwatchRounding
-	border   SwatchBorder
-	density  SwatchDensity
-	selects  SwatchSelects
-	selected []string
+	PropSize     SwatchSize
+	PropShape    SwatchShape
+	PropRounding SwatchRounding
+	PropBorder   SwatchBorder
+	PropDensity  SwatchDensity
+	PropSelects  SwatchSelects
+	PropSelected []string
 
 	// Child swatches
-	swatches []*SpectrumSwatch
+	PropSwatches []app.UI
 
 	// Event handlers
-	onChange app.EventHandler
+	PropOnChange app.EventHandler
 }
 
 // SwatchGroup creates a new swatch group component
-func SwatchGroup() *SpectrumSwatchGroup {
-	return &SpectrumSwatchGroup{
-		size:     SwatchSizeM, // Default size is medium
-		selected: []string{},
+func SwatchGroup() *spectrumSwatchGroup {
+	return &spectrumSwatchGroup{
+		PropSize:     SwatchSizeM, // Default size is medium
+		PropSelected: []string{},
 	}
 }
 
 // Size sets the visual size of all swatches in the group
-func (s *SpectrumSwatchGroup) Size(size SwatchSize) *SpectrumSwatchGroup {
-	s.size = size
+func (s *spectrumSwatchGroup) Size(size SwatchSize) *spectrumSwatchGroup {
+	s.PropSize = size
 	return s
 }
 
 // Shape sets the shape of all swatches in the group
-func (s *SpectrumSwatchGroup) Shape(shape SwatchShape) *SpectrumSwatchGroup {
-	s.shape = shape
+func (s *spectrumSwatchGroup) Shape(shape SwatchShape) *spectrumSwatchGroup {
+	s.PropShape = shape
 	return s
 }
 
 // Rounding sets the corner rounding of all swatches in the group
-func (s *SpectrumSwatchGroup) Rounding(rounding SwatchRounding) *SpectrumSwatchGroup {
-	s.rounding = rounding
+func (s *spectrumSwatchGroup) Rounding(rounding SwatchRounding) *spectrumSwatchGroup {
+	s.PropRounding = rounding
 	return s
 }
 
 // Border sets the border style of all swatches in the group
-func (s *SpectrumSwatchGroup) Border(border SwatchBorder) *SpectrumSwatchGroup {
-	s.border = border
+func (s *spectrumSwatchGroup) Border(border SwatchBorder) *spectrumSwatchGroup {
+	s.PropBorder = border
 	return s
 }
 
 // Density sets the spacing density of the group
-func (s *SpectrumSwatchGroup) Density(density SwatchDensity) *SpectrumSwatchGroup {
-	s.density = density
+func (s *spectrumSwatchGroup) Density(density SwatchDensity) *spectrumSwatchGroup {
+	s.PropDensity = density
 	return s
 }
 
 // Selects sets the selection mode (single or multiple)
-func (s *SpectrumSwatchGroup) Selects(selects SwatchSelects) *SpectrumSwatchGroup {
-	s.selects = selects
+func (s *spectrumSwatchGroup) Selects(selects SwatchSelects) *spectrumSwatchGroup {
+	s.PropSelects = selects
 	return s
 }
 
 // Selected sets the selected values in the group
-func (s *SpectrumSwatchGroup) Selected(selected []string) *SpectrumSwatchGroup {
-	s.selected = selected
+func (s *spectrumSwatchGroup) Selected(selected []string) *spectrumSwatchGroup {
+	s.PropSelected = selected
 	return s
 }
 
 // SelectedJSON sets the selected values in the group from a JSON string
-func (s *SpectrumSwatchGroup) SelectedJSON(selectedJSON string) *SpectrumSwatchGroup {
+func (s *spectrumSwatchGroup) SelectedJSON(selectedJSON string) *spectrumSwatchGroup {
 	var selected []string
 	if err := json.Unmarshal([]byte(selectedJSON), &selected); err == nil {
-		s.selected = selected
+		s.PropSelected = selected
 	}
 	return s
 }
 
 // OnChange sets the change event handler
-func (s *SpectrumSwatchGroup) OnChange(handler app.EventHandler) *SpectrumSwatchGroup {
-	s.onChange = handler
+func (s *spectrumSwatchGroup) OnChange(handler app.EventHandler) *spectrumSwatchGroup {
+	s.PropOnChange = handler
 	return s
 }
 
 // Swatches sets the child swatch components
-func (s *SpectrumSwatchGroup) Swatches(swatches ...*SpectrumSwatch) *SpectrumSwatchGroup {
-	s.swatches = swatches
+func (s *spectrumSwatchGroup) Swatches(swatches ...app.UI) *spectrumSwatchGroup {
+	s.PropSwatches = swatches
 	return s
 }
 
 // Convenience methods for setting specific density variations
 
 // Compact sets density to compact
-func (s *SpectrumSwatchGroup) Compact() *SpectrumSwatchGroup {
+func (s *spectrumSwatchGroup) Compact() *spectrumSwatchGroup {
 	return s.Density(SwatchDensityCompact)
 }
 
 // Spacious sets density to spacious
-func (s *SpectrumSwatchGroup) Spacious() *SpectrumSwatchGroup {
+func (s *spectrumSwatchGroup) Spacious() *spectrumSwatchGroup {
 	return s.Density(SwatchDensitySpacious)
 }
 
 // Convenience methods for setting specific selection modes
 
 // SingleSelect sets selects to single
-func (s *SpectrumSwatchGroup) SingleSelect() *SpectrumSwatchGroup {
+func (s *spectrumSwatchGroup) SingleSelect() *spectrumSwatchGroup {
 	return s.Selects(SwatchSelectsSingle)
 }
 
 // MultipleSelect sets selects to multiple
-func (s *SpectrumSwatchGroup) MultipleSelect() *SpectrumSwatchGroup {
+func (s *spectrumSwatchGroup) MultipleSelect() *spectrumSwatchGroup {
 	return s.Selects(SwatchSelectsMultiple)
 }
 
 // Convenience methods for setting specific shape variations
 
 // Rectangle sets the shape to rectangle for all swatches
-func (s *SpectrumSwatchGroup) Rectangle() *SpectrumSwatchGroup {
+func (s *spectrumSwatchGroup) Rectangle() *spectrumSwatchGroup {
 	return s.Shape(SwatchShapeRectangle)
 }
 
 // Convenience methods for setting specific rounding variations
 
 // RoundingNone sets rounding to none for all swatches
-func (s *SpectrumSwatchGroup) RoundingNone() *SpectrumSwatchGroup {
+func (s *spectrumSwatchGroup) RoundingNone() *spectrumSwatchGroup {
 	return s.Rounding(SwatchRoundingNone)
 }
 
 // RoundingFull sets rounding to full for all swatches
-func (s *SpectrumSwatchGroup) RoundingFull() *SpectrumSwatchGroup {
+func (s *spectrumSwatchGroup) RoundingFull() *spectrumSwatchGroup {
 	return s.Rounding(SwatchRoundingFull)
 }
 
 // Convenience methods for setting specific border variations
 
 // BorderNone sets border to none for all swatches
-func (s *SpectrumSwatchGroup) BorderNone() *SpectrumSwatchGroup {
+func (s *spectrumSwatchGroup) BorderNone() *spectrumSwatchGroup {
 	return s.Border(SwatchBorderNone)
 }
 
 // BorderLight sets border to light for all swatches
-func (s *SpectrumSwatchGroup) BorderLight() *SpectrumSwatchGroup {
+func (s *spectrumSwatchGroup) BorderLight() *spectrumSwatchGroup {
 	return s.Border(SwatchBorderLight)
 }
 
 // Render renders the swatch group component
-func (s *SpectrumSwatchGroup) Render() app.UI {
+func (s *spectrumSwatchGroup) Render() app.UI {
 	swatchGroup := app.Elem("sp-swatch-group")
 
 	// Add size if specified
-	if s.size != "" {
-		swatchGroup = swatchGroup.Attr("size", string(s.size))
+	if s.PropSize != "" {
+		swatchGroup = swatchGroup.Attr("size", string(s.PropSize))
 	}
 
 	// Add shape if specified
-	if s.shape != "" {
-		swatchGroup = swatchGroup.Attr("shape", string(s.shape))
+	if s.PropShape != "" {
+		swatchGroup = swatchGroup.Attr("shape", string(s.PropShape))
 	}
 
 	// Add rounding if specified
-	if s.rounding != "" {
-		swatchGroup = swatchGroup.Attr("rounding", string(s.rounding))
+	if s.PropRounding != "" {
+		swatchGroup = swatchGroup.Attr("rounding", string(s.PropRounding))
 	}
 
 	// Add border if specified
-	if s.border != "" {
-		swatchGroup = swatchGroup.Attr("border", string(s.border))
+	if s.PropBorder != "" {
+		swatchGroup = swatchGroup.Attr("border", string(s.PropBorder))
 	}
 
 	// Add density if specified
-	if s.density != "" {
-		swatchGroup = swatchGroup.Attr("density", string(s.density))
+	if s.PropDensity != "" {
+		swatchGroup = swatchGroup.Attr("density", string(s.PropDensity))
 	}
 
 	// Add selects if specified
-	if s.selects != "" {
-		swatchGroup = swatchGroup.Attr("selects", string(s.selects))
+	if s.PropSelects != "" {
+		swatchGroup = swatchGroup.Attr("selects", string(s.PropSelects))
 	}
 
 	// Add selected values if specified
-	if len(s.selected) > 0 {
-		selectedJSON, _ := json.Marshal(s.selected)
+	if len(s.PropSelected) > 0 {
+		selectedJSON, _ := json.Marshal(s.PropSelected)
 		swatchGroup = swatchGroup.Attr("selected", string(selectedJSON))
 	}
 
 	// Add event handlers
-	if s.onChange != nil {
-		swatchGroup = swatchGroup.On("change", s.onChange)
+	if s.PropOnChange != nil {
+		swatchGroup = swatchGroup.On("change", s.PropOnChange)
 	}
 
 	// Add swatch elements if provided
-	if len(s.swatches) > 0 {
-		swatchUIs := make([]app.UI, len(s.swatches))
-		for i, swatch := range s.swatches {
-			swatchUIs[i] = swatch
-		}
-		swatchGroup = swatchGroup.Body(swatchUIs...)
+	if len(s.PropSwatches) > 0 {
+		swatchGroup = swatchGroup.Body(s.PropSwatches...)
 	}
 
 	return swatchGroup

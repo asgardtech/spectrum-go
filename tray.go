@@ -2,70 +2,70 @@ package sp
 
 import "github.com/maxence-charriere/go-app/v10/pkg/app"
 
-// SpectrumTray represents an sp-tray component
-type SpectrumTray struct {
+// spectrumTray represents an sp-tray component
+type spectrumTray struct {
 	app.Compo
 
 	// Properties
-	open bool
+	PropOpen bool
 
 	// Content
-	content app.UI
-	slot    string
+	PropContent app.UI
+	PropSlot    string
 
 	// Event handlers
-	onClose app.EventHandler
+	PropOnClose app.EventHandler
 }
 
 // Tray creates a new tray component
-func Tray() *SpectrumTray {
-	return &SpectrumTray{}
+func Tray() *spectrumTray {
+	return &spectrumTray{}
 }
 
 // Open sets whether the tray is visible
-func (t *SpectrumTray) Open(open bool) *SpectrumTray {
-	t.open = open
+func (t *spectrumTray) Open(open bool) *spectrumTray {
+	t.PropOpen = open
 	return t
 }
 
 // Content sets the content of the tray
-func (t *SpectrumTray) Content(content app.UI) *SpectrumTray {
-	t.content = content
+func (t *spectrumTray) Content(content app.UI) *spectrumTray {
+	t.PropContent = content
 	return t
 }
 
 // Slot sets the slot attribute of the tray
-func (t *SpectrumTray) Slot(slot string) *SpectrumTray {
-	t.slot = slot
+func (t *spectrumTray) Slot(slot string) *spectrumTray {
+	t.PropSlot = slot
 	return t
 }
 
 // OnClose sets the close event handler
-func (t *SpectrumTray) OnClose(handler app.EventHandler) *SpectrumTray {
-	t.onClose = handler
+func (t *spectrumTray) OnClose(handler app.EventHandler) *spectrumTray {
+	t.PropOnClose = handler
 	return t
 }
 
 // Render renders the tray component
-func (t *SpectrumTray) Render() app.UI {
+func (t *spectrumTray) Render() app.UI {
 	tray := app.Elem("sp-tray")
 
 	// Set attributes
-	if t.open {
+	if t.PropOpen {
 		tray = tray.Attr("open", true)
 	}
-	if t.slot != "" {
-		tray = tray.Attr("slot", t.slot)
+	if t.PropSlot != "" {
+		tray = tray.Attr("slot", t.PropSlot)
 	}
 
 	// Add event handlers
-	if t.onClose != nil {
-		tray = tray.On("close", t.onClose)
+	if t.PropOnClose != nil {
+		tray = tray.On("close", t.PropOnClose)
 	}
 
 	// Add content if provided
-	if t.content != nil {
-		tray = tray.Body(t.content)
+	if t.PropContent != nil {
+		tray = tray.Body(t.PropContent)
 	}
 
 	return tray

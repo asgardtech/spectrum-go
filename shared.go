@@ -2,250 +2,250 @@ package sp
 
 import "github.com/maxence-charriere/go-app/v10/pkg/app"
 
-// Focusable represents a focusable component
-type Focusable struct {
+// spectrumFocusable represents a focusable component
+type spectrumFocusable struct {
 	app.Compo
 
 	// Properties
-	tabIndex int
-	disabled bool
-	onFocus  app.EventHandler
-	onBlur   app.EventHandler
+	PropTabIndex int
+	PropDisabled bool
+	PropOnFocus  app.EventHandler
+	PropOnBlur   app.EventHandler
 
 	// Children
-	children []app.UI
+	PropChildren []app.UI
 }
 
 // NewFocusable creates a new focusable component
-func NewFocusable() *Focusable {
-	return &Focusable{}
+func NewFocusable() *spectrumFocusable {
+	return &spectrumFocusable{}
 }
 
 // TabIndex sets the tab index
-func (f *Focusable) TabIndex(index int) *Focusable {
-	f.tabIndex = index
+func (f *spectrumFocusable) TabIndex(index int) *spectrumFocusable {
+	f.PropTabIndex = index
 	return f
 }
 
 // Disabled sets the disabled state
-func (f *Focusable) Disabled(disabled bool) *Focusable {
-	f.disabled = disabled
+func (f *spectrumFocusable) Disabled(disabled bool) *spectrumFocusable {
+	f.PropDisabled = disabled
 	return f
 }
 
 // OnFocus sets the focus event handler
-func (f *Focusable) OnFocus(handler app.EventHandler) *Focusable {
-	f.onFocus = handler
+func (f *spectrumFocusable) OnFocus(handler app.EventHandler) *spectrumFocusable {
+	f.PropOnFocus = handler
 	return f
 }
 
 // OnBlur sets the blur event handler
-func (f *Focusable) OnBlur(handler app.EventHandler) *Focusable {
-	f.onBlur = handler
+func (f *spectrumFocusable) OnBlur(handler app.EventHandler) *spectrumFocusable {
+	f.PropOnBlur = handler
 	return f
 }
 
 // Child adds a child element
-func (f *Focusable) Child(child app.UI) *Focusable {
-	f.children = append(f.children, child)
+func (f *spectrumFocusable) Child(child app.UI) *spectrumFocusable {
+	f.PropChildren = append(f.PropChildren, child)
 	return f
 }
 
 // Children adds multiple child elements
-func (f *Focusable) Children(children ...app.UI) *Focusable {
-	f.children = append(f.children, children...)
+func (f *spectrumFocusable) Children(children ...app.UI) *spectrumFocusable {
+	f.PropChildren = append(f.PropChildren, children...)
 	return f
 }
 
 // Render renders the focusable component
-func (f *Focusable) Render() app.UI {
+func (f *spectrumFocusable) Render() app.UI {
 	focusable := app.Elem("div")
 
 	// Set attributes
-	if f.tabIndex != 0 {
-		focusable = focusable.Attr("tabindex", f.tabIndex)
+	if f.PropTabIndex != 0 {
+		focusable = focusable.Attr("tabindex", f.PropTabIndex)
 	}
-	if f.disabled {
+	if f.PropDisabled {
 		focusable = focusable.Attr("disabled", true)
 	}
 
 	// Add event handlers
-	if f.onFocus != nil {
-		focusable = focusable.On("focus", f.onFocus)
+	if f.PropOnFocus != nil {
+		focusable = focusable.On("focus", f.PropOnFocus)
 	}
-	if f.onBlur != nil {
-		focusable = focusable.On("blur", f.onBlur)
+	if f.PropOnBlur != nil {
+		focusable = focusable.On("blur", f.PropOnBlur)
 	}
 
 	// Add children if provided
-	if len(f.children) > 0 {
-		focusable = focusable.Body(f.children...)
+	if len(f.PropChildren) > 0 {
+		focusable = focusable.Body(f.PropChildren...)
 	}
 
 	return focusable
 }
 
-// LikeAnchor represents a component that behaves like an anchor element
-type LikeAnchor struct {
+// spectrumLikeAnchor represents a component that behaves like an anchor element
+type spectrumLikeAnchor struct {
 	app.Compo
 
 	// Properties
-	href     string
-	target   string
-	rel      string
-	download string
-	label    string
-	onClick  app.EventHandler
+	PropHref     string
+	PropTarget   string
+	PropRel      string
+	PropDownload string
+	PropLabel    string
+	PropOnClick  app.EventHandler
 
 	// Children
-	children []app.UI
+	PropChildren []app.UI
 }
 
 // NewLikeAnchor creates a new anchor-like component
-func NewLikeAnchor() *LikeAnchor {
-	return &LikeAnchor{}
+func NewLikeAnchor() *spectrumLikeAnchor {
+	return &spectrumLikeAnchor{}
 }
 
 // Href sets the href attribute
-func (l *LikeAnchor) Href(href string) *LikeAnchor {
-	l.href = href
+func (l *spectrumLikeAnchor) Href(href string) *spectrumLikeAnchor {
+	l.PropHref = href
 	return l
 }
 
 // Target sets the target attribute
-func (l *LikeAnchor) Target(target string) *LikeAnchor {
-	l.target = target
+func (l *spectrumLikeAnchor) Target(target string) *spectrumLikeAnchor {
+	l.PropTarget = target
 	return l
 }
 
 // Rel sets the rel attribute
-func (l *LikeAnchor) Rel(rel string) *LikeAnchor {
-	l.rel = rel
+func (l *spectrumLikeAnchor) Rel(rel string) *spectrumLikeAnchor {
+	l.PropRel = rel
 	return l
 }
 
 // Download sets the download attribute
-func (l *LikeAnchor) Download(download string) *LikeAnchor {
-	l.download = download
+func (l *spectrumLikeAnchor) Download(download string) *spectrumLikeAnchor {
+	l.PropDownload = download
 	return l
 }
 
 // Label sets the label attribute
-func (l *LikeAnchor) Label(label string) *LikeAnchor {
-	l.label = label
+func (l *spectrumLikeAnchor) Label(label string) *spectrumLikeAnchor {
+	l.PropLabel = label
 	return l
 }
 
 // OnClick sets the click event handler
-func (l *LikeAnchor) OnClick(handler app.EventHandler) *LikeAnchor {
-	l.onClick = handler
+func (l *spectrumLikeAnchor) OnClick(handler app.EventHandler) *spectrumLikeAnchor {
+	l.PropOnClick = handler
 	return l
 }
 
 // Child adds a child element
-func (l *LikeAnchor) Child(child app.UI) *LikeAnchor {
-	l.children = append(l.children, child)
+func (l *spectrumLikeAnchor) Child(child app.UI) *spectrumLikeAnchor {
+	l.PropChildren = append(l.PropChildren, child)
 	return l
 }
 
 // Children adds multiple child elements
-func (l *LikeAnchor) Children(children ...app.UI) *LikeAnchor {
-	l.children = append(l.children, children...)
+func (l *spectrumLikeAnchor) Children(children ...app.UI) *spectrumLikeAnchor {
+	l.PropChildren = append(l.PropChildren, children...)
 	return l
 }
 
 // Render renders the anchor-like component
-func (l *LikeAnchor) Render() app.UI {
+func (l *spectrumLikeAnchor) Render() app.UI {
 	anchor := app.Elem("a")
 
 	// Set attributes
-	if l.href != "" {
-		anchor = anchor.Attr("href", l.href)
+	if l.PropHref != "" {
+		anchor = anchor.Attr("href", l.PropHref)
 	}
-	if l.target != "" {
-		anchor = anchor.Attr("target", l.target)
+	if l.PropTarget != "" {
+		anchor = anchor.Attr("target", l.PropTarget)
 	}
-	if l.rel != "" {
-		anchor = anchor.Attr("rel", l.rel)
+	if l.PropRel != "" {
+		anchor = anchor.Attr("rel", l.PropRel)
 	}
-	if l.download != "" {
-		anchor = anchor.Attr("download", l.download)
+	if l.PropDownload != "" {
+		anchor = anchor.Attr("download", l.PropDownload)
 	}
-	if l.label != "" {
-		anchor = anchor.Attr("label", l.label)
+	if l.PropLabel != "" {
+		anchor = anchor.Attr("label", l.PropLabel)
 	}
 
 	// Add event handler
-	if l.onClick != nil {
-		anchor = anchor.OnClick(l.onClick)
+	if l.PropOnClick != nil {
+		anchor = anchor.OnClick(l.PropOnClick)
 	}
 
 	// Add children if provided
-	if len(l.children) > 0 {
-		anchor = anchor.Body(l.children...)
+	if len(l.PropChildren) > 0 {
+		anchor = anchor.Body(l.PropChildren...)
 	}
 
 	return anchor
 }
 
-// ObserveSlotText represents a component that observes slot text changes
-type ObserveSlotText struct {
+// spectrumObserveSlotText represents a component that observes slot text changes
+type spectrumObserveSlotText struct {
 	app.Compo
 
 	// Properties
-	slotName string
-	onChange app.EventHandler
+	PropSlotName string
+	PropOnChange app.EventHandler
 
 	// Children
-	children []app.UI
+	PropChildren []app.UI
 }
 
 // NewObserveSlotText creates a new slot text observer component
-func NewObserveSlotText() *ObserveSlotText {
-	return &ObserveSlotText{}
+func NewObserveSlotText() *spectrumObserveSlotText {
+	return &spectrumObserveSlotText{}
 }
 
 // SlotName sets the name of the slot to observe
-func (o *ObserveSlotText) SlotName(name string) *ObserveSlotText {
-	o.slotName = name
+func (o *spectrumObserveSlotText) SlotName(name string) *spectrumObserveSlotText {
+	o.PropSlotName = name
 	return o
 }
 
 // OnChange sets the change event handler
-func (o *ObserveSlotText) OnChange(handler app.EventHandler) *ObserveSlotText {
-	o.onChange = handler
+func (o *spectrumObserveSlotText) OnChange(handler app.EventHandler) *spectrumObserveSlotText {
+	o.PropOnChange = handler
 	return o
 }
 
 // Child adds a child element
-func (o *ObserveSlotText) Child(child app.UI) *ObserveSlotText {
-	o.children = append(o.children, child)
+func (o *spectrumObserveSlotText) Child(child app.UI) *spectrumObserveSlotText {
+	o.PropChildren = append(o.PropChildren, child)
 	return o
 }
 
 // Children adds multiple child elements
-func (o *ObserveSlotText) Children(children ...app.UI) *ObserveSlotText {
-	o.children = append(o.children, children...)
+func (o *spectrumObserveSlotText) Children(children ...app.UI) *spectrumObserveSlotText {
+	o.PropChildren = append(o.PropChildren, children...)
 	return o
 }
 
 // Render renders the slot text observer component
-func (o *ObserveSlotText) Render() app.UI {
+func (o *spectrumObserveSlotText) Render() app.UI {
 	observer := app.Elem("div")
 
 	// Set attributes
-	if o.slotName != "" {
-		observer = observer.Attr("slot", o.slotName)
+	if o.PropSlotName != "" {
+		observer = observer.Attr("slot", o.PropSlotName)
 	}
 
 	// Add event handler
-	if o.onChange != nil {
-		observer = observer.On("change", o.onChange)
+	if o.PropOnChange != nil {
+		observer = observer.On("change", o.PropOnChange)
 	}
 
 	// Add children if provided
-	if len(o.children) > 0 {
-		observer = observer.Body(o.children...)
+	if len(o.PropChildren) > 0 {
+		observer = observer.Body(o.PropChildren...)
 	}
 
 	return observer

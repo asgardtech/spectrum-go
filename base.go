@@ -15,69 +15,70 @@ const (
 	TextDirectionRTL TextDirection = "rtl"
 )
 
-// SpectrumElementMixin provides core functionality shared by Spectrum components.
+// spectrumElementMixin provides core functionality shared by Spectrum components.
 // It enhances structs that embed app.Compo with additional capabilities.
-type SpectrumElementMixin struct {
+type spectrumElementMixin struct {
 	// Direction of text (LTR or RTL)
-	dir TextDirection
+	PropDir TextDirection
 
 	// Whether the direction was explicitly set
-	dirExplicitlySet bool
+	PropDirExplicitlySet bool
 }
 
 // Dir sets the text direction of the component.
 // Setting this explicitly prevents inheriting direction from document or theme.
-func (m *SpectrumElementMixin) Dir(dir TextDirection) {
-	m.dir = dir
-	m.dirExplicitlySet = true
+func (m *spectrumElementMixin) Dir(dir TextDirection) *spectrumElementMixin {
+	m.PropDir = dir
+	m.PropDirExplicitlySet = true
+	return m
 }
 
 // GetDir returns the current text direction.
-func (m *SpectrumElementMixin) GetDir() TextDirection {
-	if m.dir == "" {
+func (m *spectrumElementMixin) GetDir() TextDirection {
+	if m.PropDir == "" {
 		return TextDirectionLTR // Default to LTR if not set
 	}
-	return m.dir
+	return m.PropDir
 }
 
 // IsLTR returns true if the text direction is left-to-right.
-func (m *SpectrumElementMixin) IsLTR() bool {
+func (m *spectrumElementMixin) IsLTR() bool {
 	return m.GetDir() == TextDirectionLTR
 }
 
 // IsRTL returns true if the text direction is right-to-left.
-func (m *SpectrumElementMixin) IsRTL() bool {
+func (m *spectrumElementMixin) IsRTL() bool {
 	return m.GetDir() == TextDirectionRTL
 }
 
 // DirWasExplicitlySet returns whether the direction was explicitly set.
-func (m *SpectrumElementMixin) DirWasExplicitlySet() bool {
-	return m.dirExplicitlySet
+func (m *spectrumElementMixin) DirWasExplicitlySet() bool {
+	return m.PropDirExplicitlySet
 }
 
-// SpectrumElement is the base struct for Spectrum Web Components.
+// spectrumElement is the base struct for Spectrum Web Components.
 // It embeds app.Compo for standard component functionality and
-// SpectrumElementMixin for Spectrum-specific features.
-type SpectrumElement struct {
+// spectrumElementMixin for Spectrum-specific features.
+type spectrumElement struct {
 	app.Compo
-	SpectrumElementMixin
+	spectrumElementMixin
 }
 
-// NewSpectrumElement creates a new SpectrumElement with default values.
-func NewSpectrumElement() *SpectrumElement {
-	return &SpectrumElement{
-		SpectrumElementMixin: SpectrumElementMixin{
-			dir:              TextDirectionLTR,
-			dirExplicitlySet: false,
+// NewSpectrumElement creates a new spectrumElement with default values.
+func NewSpectrumElement() *spectrumElement {
+	return &spectrumElement{
+		spectrumElementMixin: spectrumElementMixin{
+			PropDir:              TextDirectionLTR,
+			PropDirExplicitlySet: false,
 		},
 	}
 }
 
 // ApplySpectrumAttributes applies common Spectrum component attributes to an HTML element.
 // This is a utility function for use in Render() methods to ensure consistent attribute handling.
-func ApplySpectrumAttributes(element app.HTMLElem, mixin *SpectrumElementMixin) app.HTMLElem {
+func ApplySpectrumAttributes(element app.HTMLElem, mixin *spectrumElementMixin) app.HTMLElem {
 	// Apply direction attribute if explicitly set
-	if mixin.dirExplicitlySet {
+	if mixin.PropDirExplicitlySet {
 		element = element.Attr("dir", string(mixin.GetDir()))
 	}
 

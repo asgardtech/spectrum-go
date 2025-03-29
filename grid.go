@@ -16,124 +16,124 @@ type GridItem struct {
 	Height int
 }
 
-// SpectrumGrid represents a component that displays a virtualized grid
-type SpectrumGrid struct {
+// spectrumGrid represents a component that displays a virtualized grid
+type spectrumGrid struct {
 	app.Compo
 
 	// Properties
-	items             []GridItem
-	itemSize          int
-	gap               int
-	focusableSelector string
-	onFocus           app.EventHandler
-	onBlur            app.EventHandler
-	onKeyDown         app.EventHandler
-	onScroll          app.EventHandler
+	PropItems             []GridItem
+	PropItemSize          int
+	PropGap               int
+	PropFocusableSelector string
+	PropOnFocus           app.EventHandler
+	PropOnBlur            app.EventHandler
+	PropOnKeyDown         app.EventHandler
+	PropOnScroll          app.EventHandler
 
 	// Children
-	children []app.UI
+	PropChildren []app.UI
 }
 
 // NewSpectrumGrid creates a new grid component
-func NewSpectrumGrid() *SpectrumGrid {
-	return &SpectrumGrid{}
+func NewSpectrumGrid() *spectrumGrid {
+	return &spectrumGrid{}
 }
 
 // Items sets the grid items
-func (g *SpectrumGrid) Items(items []GridItem) *SpectrumGrid {
-	g.items = items
+func (g *spectrumGrid) Items(items []GridItem) *spectrumGrid {
+	g.PropItems = items
 	return g
 }
 
 // ItemSize sets the size of each grid item
-func (g *SpectrumGrid) ItemSize(size int) *SpectrumGrid {
-	g.itemSize = size
+func (g *spectrumGrid) ItemSize(size int) *spectrumGrid {
+	g.PropItemSize = size
 	return g
 }
 
 // Gap sets the gap between grid items
-func (g *SpectrumGrid) Gap(gap int) *SpectrumGrid {
-	g.gap = gap
+func (g *spectrumGrid) Gap(gap int) *spectrumGrid {
+	g.PropGap = gap
 	return g
 }
 
 // FocusableSelector sets the selector for focusable elements
-func (g *SpectrumGrid) FocusableSelector(selector string) *SpectrumGrid {
-	g.focusableSelector = selector
+func (g *spectrumGrid) FocusableSelector(selector string) *spectrumGrid {
+	g.PropFocusableSelector = selector
 	return g
 }
 
 // OnFocus sets the focus event handler
-func (g *SpectrumGrid) OnFocus(handler app.EventHandler) *SpectrumGrid {
-	g.onFocus = handler
+func (g *spectrumGrid) OnFocus(handler app.EventHandler) *spectrumGrid {
+	g.PropOnFocus = handler
 	return g
 }
 
 // OnBlur sets the blur event handler
-func (g *SpectrumGrid) OnBlur(handler app.EventHandler) *SpectrumGrid {
-	g.onBlur = handler
+func (g *spectrumGrid) OnBlur(handler app.EventHandler) *spectrumGrid {
+	g.PropOnBlur = handler
 	return g
 }
 
 // OnKeyDown sets the key down event handler
-func (g *SpectrumGrid) OnKeyDown(handler app.EventHandler) *SpectrumGrid {
-	g.onKeyDown = handler
+func (g *spectrumGrid) OnKeyDown(handler app.EventHandler) *spectrumGrid {
+	g.PropOnKeyDown = handler
 	return g
 }
 
 // OnScroll sets the scroll event handler
-func (g *SpectrumGrid) OnScroll(handler app.EventHandler) *SpectrumGrid {
-	g.onScroll = handler
+func (g *spectrumGrid) OnScroll(handler app.EventHandler) *spectrumGrid {
+	g.PropOnScroll = handler
 	return g
 }
 
 // Child adds a child element
-func (g *SpectrumGrid) Child(child app.UI) *SpectrumGrid {
-	g.children = append(g.children, child)
+func (g *spectrumGrid) Child(child app.UI) *spectrumGrid {
+	g.PropChildren = append(g.PropChildren, child)
 	return g
 }
 
 // Children adds multiple child elements
-func (g *SpectrumGrid) Children(children ...app.UI) *SpectrumGrid {
-	g.children = append(g.children, children...)
+func (g *spectrumGrid) Children(children ...app.UI) *spectrumGrid {
+	g.PropChildren = append(g.PropChildren, children...)
 	return g
 }
 
 // Render renders the grid component
-func (g *SpectrumGrid) Render() app.UI {
+func (g *spectrumGrid) Render() app.UI {
 	grid := app.Elem("div").
 		Class("spectrum-Grid")
 
 	// Set attributes
-	if g.itemSize > 0 {
-		grid = grid.Attr("data-item-size", g.itemSize)
+	if g.PropItemSize > 0 {
+		grid = grid.Attr("data-item-size", g.PropItemSize)
 	}
-	if g.gap > 0 {
-		grid = grid.Attr("data-gap", g.gap)
+	if g.PropGap > 0 {
+		grid = grid.Attr("data-gap", g.PropGap)
 	}
-	if g.focusableSelector != "" {
-		grid = grid.Attr("data-focusable-selector", g.focusableSelector)
+	if g.PropFocusableSelector != "" {
+		grid = grid.Attr("data-focusable-selector", g.PropFocusableSelector)
 	}
 
 	// Add event handlers
-	if g.onFocus != nil {
-		grid = grid.On("focus", g.onFocus)
+	if g.PropOnFocus != nil {
+		grid = grid.On("focus", g.PropOnFocus)
 	}
-	if g.onBlur != nil {
-		grid = grid.On("blur", g.onBlur)
+	if g.PropOnBlur != nil {
+		grid = grid.On("blur", g.PropOnBlur)
 	}
-	if g.onKeyDown != nil {
-		grid = grid.On("keydown", g.onKeyDown)
+	if g.PropOnKeyDown != nil {
+		grid = grid.On("keydown", g.PropOnKeyDown)
 	}
-	if g.onScroll != nil {
-		grid = grid.On("scroll", g.onScroll)
+	if g.PropOnScroll != nil {
+		grid = grid.On("scroll", g.PropOnScroll)
 	}
 
 	// Add items if provided
-	if len(g.items) > 0 {
+	if len(g.PropItems) > 0 {
 		itemsContainer := app.Elem("div").
 			Class("spectrum-Grid-items")
-		for _, item := range g.items {
+		for _, item := range g.PropItems {
 			itemElem := app.Elem("div").
 				Class("spectrum-Grid-item")
 			if item.Width > 0 {
@@ -158,90 +158,90 @@ func (g *SpectrumGrid) Render() app.UI {
 	}
 
 	// Add children if provided
-	if len(g.children) > 0 {
-		grid = grid.Body(g.children...)
+	if len(g.PropChildren) > 0 {
+		grid = grid.Body(g.PropChildren...)
 	}
 
 	return grid
 }
 
-// SpectrumGridManager represents a manager for grid components
-type SpectrumGridManager struct {
+// spectrumGridManager represents a manager for grid components
+type spectrumGridManager struct {
 	app.Compo
 
 	// Properties
-	components        map[string]*SpectrumGrid
-	onComponentChange app.EventHandler
+	PropComponents        map[string]*spectrumGrid
+	PropOnComponentChange app.EventHandler
 
 	// Children
-	children []app.UI
+	PropChildren []app.UI
 }
 
 // NewSpectrumGridManager creates a new grid manager component
-func NewSpectrumGridManager() *SpectrumGridManager {
-	return &SpectrumGridManager{
-		components: make(map[string]*SpectrumGrid),
+func NewSpectrumGridManager() *spectrumGridManager {
+	return &spectrumGridManager{
+		PropComponents: make(map[string]*spectrumGrid),
 	}
 }
 
 // AddComponent adds a grid component
-func (m *SpectrumGridManager) AddComponent(name string, component *SpectrumGrid) *SpectrumGridManager {
-	m.components[name] = component
+func (m *spectrumGridManager) AddComponent(name string, component *spectrumGrid) *spectrumGridManager {
+	m.PropComponents[name] = component
 	return m
 }
 
 // RemoveComponent removes a grid component
-func (m *SpectrumGridManager) RemoveComponent(name string) *SpectrumGridManager {
-	delete(m.components, name)
+func (m *spectrumGridManager) RemoveComponent(name string) *spectrumGridManager {
+	delete(m.PropComponents, name)
 	return m
 }
 
 // GetComponent gets a grid component by name
-func (m *SpectrumGridManager) GetComponent(name string) *SpectrumGrid {
-	return m.components[name]
+func (m *spectrumGridManager) GetComponent(name string) *spectrumGrid {
+	return m.PropComponents[name]
 }
 
 // ClearComponents clears all grid components
-func (m *SpectrumGridManager) ClearComponents() *SpectrumGridManager {
-	m.components = make(map[string]*SpectrumGrid)
+func (m *spectrumGridManager) ClearComponents() *spectrumGridManager {
+	m.PropComponents = make(map[string]*spectrumGrid)
 	return m
 }
 
 // OnComponentChange sets the component change event handler
-func (m *SpectrumGridManager) OnComponentChange(handler app.EventHandler) *SpectrumGridManager {
-	m.onComponentChange = handler
+func (m *spectrumGridManager) OnComponentChange(handler app.EventHandler) *spectrumGridManager {
+	m.PropOnComponentChange = handler
 	return m
 }
 
 // Child adds a child element
-func (m *SpectrumGridManager) Child(child app.UI) *SpectrumGridManager {
-	m.children = append(m.children, child)
+func (m *spectrumGridManager) Child(child app.UI) *spectrumGridManager {
+	m.PropChildren = append(m.PropChildren, child)
 	return m
 }
 
 // Children adds multiple child elements
-func (m *SpectrumGridManager) Children(children ...app.UI) *SpectrumGridManager {
-	m.children = append(m.children, children...)
+func (m *spectrumGridManager) Children(children ...app.UI) *spectrumGridManager {
+	m.PropChildren = append(m.PropChildren, children...)
 	return m
 }
 
 // Render renders the grid manager component
-func (m *SpectrumGridManager) Render() app.UI {
+func (m *spectrumGridManager) Render() app.UI {
 	manager := app.Elem("div")
 
 	// Add components
-	for _, component := range m.components {
+	for _, component := range m.PropComponents {
 		manager = manager.Body(component)
 	}
 
 	// Add event handler
-	if m.onComponentChange != nil {
-		manager = manager.On("component-change", m.onComponentChange)
+	if m.PropOnComponentChange != nil {
+		manager = manager.On("component-change", m.PropOnComponentChange)
 	}
 
 	// Add children if provided
-	if len(m.children) > 0 {
-		manager = manager.Body(m.children...)
+	if len(m.PropChildren) > 0 {
+		manager = manager.Body(m.PropChildren...)
 	}
 
 	return manager

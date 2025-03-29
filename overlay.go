@@ -53,190 +53,190 @@ const (
 	OverlayTriggerInteractionLongpress OverlayTriggerInteraction = "longpress"
 )
 
-// SpectrumOverlay represents an sp-overlay component
-type SpectrumOverlay struct {
+// spectrumOverlay represents an sp-overlay component
+type spectrumOverlay struct {
 	app.Compo
 
 	// Properties
-	open               bool
-	delayed            bool
-	offset             interface{} // Can be a number or [number, number]
-	placement          OverlayPlacement
-	receivesFocus      OverlayReceivesFocus
-	trigger            string
-	triggerElement     app.UI
-	triggerInteraction OverlayTriggerInteraction
-	overlayType        OverlayType
+	PropOpen               bool
+	PropDelayed            bool
+	PropOffset             interface{} // Can be a number or [number, number]
+	PropPlacement          OverlayPlacement
+	PropReceivesFocus      OverlayReceivesFocus
+	PropTrigger            string
+	PropTriggerElement     app.UI
+	PropTriggerInteraction OverlayTriggerInteraction
+	PropOverlayType        OverlayType
 
 	// Child element to display in the overlay
-	child app.UI
+	PropChild app.UI
 
 	// Event handlers
-	onOpened app.EventHandler
-	onClosed app.EventHandler
+	PropOnOpened app.EventHandler
+	PropOnClosed app.EventHandler
 }
 
 // Overlay creates a new overlay component
-func Overlay() *SpectrumOverlay {
-	return &SpectrumOverlay{
-		receivesFocus: OverlayReceivesFocusAuto, // Default receives-focus is "auto"
+func Overlay() *spectrumOverlay {
+	return &spectrumOverlay{
+		PropReceivesFocus: OverlayReceivesFocusAuto, // Default receives-focus is "auto"
 	}
 }
 
 // Open sets whether the overlay is open
-func (o *SpectrumOverlay) Open(open bool) *SpectrumOverlay {
-	o.open = open
+func (o *spectrumOverlay) Open(open bool) *spectrumOverlay {
+	o.PropOpen = open
 	return o
 }
 
 // Delayed sets whether the overlay should be delayed
-func (o *SpectrumOverlay) Delayed(delayed bool) *SpectrumOverlay {
-	o.delayed = delayed
+func (o *spectrumOverlay) Delayed(delayed bool) *spectrumOverlay {
+	o.PropDelayed = delayed
 	return o
 }
 
 // Offset sets the distance between the overlay and the trigger
-func (o *SpectrumOverlay) Offset(offset interface{}) *SpectrumOverlay {
-	o.offset = offset
+func (o *spectrumOverlay) Offset(offset interface{}) *spectrumOverlay {
+	o.PropOffset = offset
 	return o
 }
 
 // Placement sets the placement of the overlay relative to the trigger
-func (o *SpectrumOverlay) Placement(placement OverlayPlacement) *SpectrumOverlay {
-	o.placement = placement
+func (o *spectrumOverlay) Placement(placement OverlayPlacement) *spectrumOverlay {
+	o.PropPlacement = placement
 	return o
 }
 
 // ReceivesFocus sets how focus should be handled
-func (o *SpectrumOverlay) ReceivesFocus(receivesFocus OverlayReceivesFocus) *SpectrumOverlay {
-	o.receivesFocus = receivesFocus
+func (o *spectrumOverlay) ReceivesFocus(receivesFocus OverlayReceivesFocus) *spectrumOverlay {
+	o.PropReceivesFocus = receivesFocus
 	return o
 }
 
 // Trigger sets the trigger element ID or ID@interaction string
-func (o *SpectrumOverlay) Trigger(trigger string) *SpectrumOverlay {
-	o.trigger = trigger
+func (o *spectrumOverlay) Trigger(trigger string) *spectrumOverlay {
+	o.PropTrigger = trigger
 	return o
 }
 
 // TriggerElement sets the trigger element directly
-func (o *SpectrumOverlay) TriggerElement(triggerElement app.UI) *SpectrumOverlay {
-	o.triggerElement = triggerElement
+func (o *spectrumOverlay) TriggerElement(triggerElement app.UI) *spectrumOverlay {
+	o.PropTriggerElement = triggerElement
 	return o
 }
 
 // TriggerInteraction sets the interaction type for triggering the overlay
-func (o *SpectrumOverlay) TriggerInteraction(triggerInteraction OverlayTriggerInteraction) *SpectrumOverlay {
-	o.triggerInteraction = triggerInteraction
+func (o *spectrumOverlay) TriggerInteraction(triggerInteraction OverlayTriggerInteraction) *spectrumOverlay {
+	o.PropTriggerInteraction = triggerInteraction
 	return o
 }
 
 // Type sets the overlay type
-func (o *SpectrumOverlay) Type(overlayType OverlayType) *SpectrumOverlay {
-	o.overlayType = overlayType
+func (o *spectrumOverlay) Type(overlayType OverlayType) *spectrumOverlay {
+	o.PropOverlayType = overlayType
 	return o
 }
 
 // Child sets the child element to display in the overlay
-func (o *SpectrumOverlay) Child(child app.UI) *SpectrumOverlay {
-	o.child = child
+func (o *spectrumOverlay) Child(child app.UI) *spectrumOverlay {
+	o.PropChild = child
 	return o
 }
 
 // OnOpened sets the opened event handler
-func (o *SpectrumOverlay) OnOpened(handler app.EventHandler) *SpectrumOverlay {
-	o.onOpened = handler
+func (o *spectrumOverlay) OnOpened(handler app.EventHandler) *spectrumOverlay {
+	o.PropOnOpened = handler
 	return o
 }
 
 // OnClosed sets the closed event handler
-func (o *SpectrumOverlay) OnClosed(handler app.EventHandler) *SpectrumOverlay {
-	o.onClosed = handler
+func (o *spectrumOverlay) OnClosed(handler app.EventHandler) *spectrumOverlay {
+	o.PropOnClosed = handler
 	return o
 }
 
 // Convenience methods for setting overlay types
 
 // Auto sets type to auto
-func (o *SpectrumOverlay) Auto() *SpectrumOverlay {
+func (o *spectrumOverlay) Auto() *spectrumOverlay {
 	return o.Type(OverlayTypeAuto)
 }
 
 // Hint sets type to hint
-func (o *SpectrumOverlay) Hint() *SpectrumOverlay {
+func (o *spectrumOverlay) Hint() *spectrumOverlay {
 	return o.Type(OverlayTypeHint)
 }
 
 // Manual sets type to manual
-func (o *SpectrumOverlay) Manual() *SpectrumOverlay {
+func (o *spectrumOverlay) Manual() *spectrumOverlay {
 	return o.Type(OverlayTypeManual)
 }
 
 // Modal sets type to modal
-func (o *SpectrumOverlay) Modal() *SpectrumOverlay {
+func (o *spectrumOverlay) Modal() *spectrumOverlay {
 	return o.Type(OverlayTypeModal)
 }
 
 // Page sets type to page
-func (o *SpectrumOverlay) Page() *SpectrumOverlay {
+func (o *spectrumOverlay) Page() *spectrumOverlay {
 	return o.Type(OverlayTypePage)
 }
 
 // Convenience methods for setting trigger interactions
 
 // ClickTrigger sets trigger interaction to click
-func (o *SpectrumOverlay) ClickTrigger() *SpectrumOverlay {
+func (o *spectrumOverlay) ClickTrigger() *spectrumOverlay {
 	return o.TriggerInteraction(OverlayTriggerInteractionClick)
 }
 
 // HoverTrigger sets trigger interaction to hover
-func (o *SpectrumOverlay) HoverTrigger() *SpectrumOverlay {
+func (o *spectrumOverlay) HoverTrigger() *spectrumOverlay {
 	return o.TriggerInteraction(OverlayTriggerInteractionHover)
 }
 
 // LongpressTrigger sets trigger interaction to longpress
-func (o *SpectrumOverlay) LongpressTrigger() *SpectrumOverlay {
+func (o *spectrumOverlay) LongpressTrigger() *spectrumOverlay {
 	return o.TriggerInteraction(OverlayTriggerInteractionLongpress)
 }
 
 // Render renders the overlay component
-func (o *SpectrumOverlay) Render() app.UI {
+func (o *spectrumOverlay) Render() app.UI {
 	overlay := app.Elem("sp-overlay")
 
 	// Add properties
-	if o.open {
+	if o.PropOpen {
 		overlay = overlay.Attr("open", true)
 	}
-	if o.delayed {
+	if o.PropDelayed {
 		overlay = overlay.Attr("delayed", true)
 	}
-	if o.offset != nil {
-		overlay = overlay.Attr("offset", o.offset)
+	if o.PropOffset != nil {
+		overlay = overlay.Attr("offset", o.PropOffset)
 	}
-	if o.placement != "" {
-		overlay = overlay.Attr("placement", string(o.placement))
+	if o.PropPlacement != "" {
+		overlay = overlay.Attr("placement", string(o.PropPlacement))
 	}
-	if o.receivesFocus != "" {
-		overlay = overlay.Attr("receives-focus", string(o.receivesFocus))
+	if o.PropReceivesFocus != "" {
+		overlay = overlay.Attr("receives-focus", string(o.PropReceivesFocus))
 	}
-	if o.trigger != "" {
-		overlay = overlay.Attr("trigger", o.trigger)
+	if o.PropTrigger != "" {
+		overlay = overlay.Attr("trigger", o.PropTrigger)
 	}
-	if o.overlayType != "" {
-		overlay = overlay.Attr("type", string(o.overlayType))
+	if o.PropOverlayType != "" {
+		overlay = overlay.Attr("type", string(o.PropOverlayType))
 	}
 
 	// Add event handlers
-	if o.onOpened != nil {
-		overlay = overlay.On("sp-opened", o.onOpened)
+	if o.PropOnOpened != nil {
+		overlay = overlay.On("sp-opened", o.PropOnOpened)
 	}
-	if o.onClosed != nil {
-		overlay = overlay.On("sp-closed", o.onClosed)
+	if o.PropOnClosed != nil {
+		overlay = overlay.On("sp-closed", o.PropOnClosed)
 	}
 
 	// Add the child element if provided
-	if o.child != nil {
-		overlay = overlay.Body(o.child)
+	if o.PropChild != nil {
+		overlay = overlay.Body(o.PropChild)
 	}
 
 	return overlay

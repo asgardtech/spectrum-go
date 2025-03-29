@@ -2,177 +2,177 @@ package sp
 
 import "github.com/maxence-charriere/go-app/v10/pkg/app"
 
-// SpectrumTruncated represents a component that truncates text with tooltips
-type SpectrumTruncated struct {
+// spectrumTruncated represents a component that truncates text with tooltips
+type spectrumTruncated struct {
 	app.Compo
 
 	// Properties
-	placement string
-	content   string
-	innerHTML string
-	child     app.UI
-	overflow  app.UI
+	PropPlacement string
+	PropContent   string
+	PropInnerHTML string
+	PropChild     app.UI
+	PropOverflow  app.UI
 
 	// Children
-	children []app.UI
+	PropChildren []app.UI
 }
 
 // NewSpectrumTruncated creates a new truncated component
-func NewSpectrumTruncated() *SpectrumTruncated {
-	return &SpectrumTruncated{}
+func NewSpectrumTruncated() *spectrumTruncated {
+	return &spectrumTruncated{}
 }
 
 // Placement sets the tooltip placement
-func (t *SpectrumTruncated) Placement(placement string) *SpectrumTruncated {
-	t.placement = placement
+func (t *spectrumTruncated) Placement(placement string) *spectrumTruncated {
+	t.PropPlacement = placement
 	return t
 }
 
 // Content sets the content to be truncated
-func (t *SpectrumTruncated) Content(content string) *SpectrumTruncated {
-	t.content = content
+func (t *spectrumTruncated) Content(content string) *spectrumTruncated {
+	t.PropContent = content
 	return t
 }
 
 // InnerHTML sets the inner HTML content
-func (t *SpectrumTruncated) InnerHTML(innerHTML string) *SpectrumTruncated {
-	t.innerHTML = innerHTML
+func (t *spectrumTruncated) InnerHTML(innerHTML string) *spectrumTruncated {
+	t.PropInnerHTML = innerHTML
 	return t
 }
 
 // Child sets the child element
-func (t *SpectrumTruncated) Child(child app.UI) *SpectrumTruncated {
-	t.child = child
+func (t *spectrumTruncated) Child(child app.UI) *spectrumTruncated {
+	t.PropChild = child
 	return t
 }
 
 // Overflow sets the overflow content
-func (t *SpectrumTruncated) Overflow(overflow app.UI) *SpectrumTruncated {
-	t.overflow = overflow
+func (t *spectrumTruncated) Overflow(overflow app.UI) *spectrumTruncated {
+	t.PropOverflow = overflow
 	return t
 }
 
 // Children adds multiple child elements
-func (t *SpectrumTruncated) Children(children ...app.UI) *SpectrumTruncated {
-	t.children = append(t.children, children...)
+func (t *spectrumTruncated) Children(children ...app.UI) *spectrumTruncated {
+	t.PropChildren = append(t.PropChildren, children...)
 	return t
 }
 
 // Render renders the truncated component
-func (t *SpectrumTruncated) Render() app.UI {
+func (t *spectrumTruncated) Render() app.UI {
 	truncated := app.Elem("div").
 		Class("spectrum-Truncated")
 
 	// Set attributes
-	if t.placement != "" {
-		truncated = truncated.Attr("data-placement", t.placement)
+	if t.PropPlacement != "" {
+		truncated = truncated.Attr("data-placement", t.PropPlacement)
 	}
 
 	// Set content
-	if t.content != "" {
-		truncated = truncated.Text(t.content)
+	if t.PropContent != "" {
+		truncated = truncated.Text(t.PropContent)
 	}
-	if t.innerHTML != "" {
-		truncated = truncated.Body(app.Raw(t.innerHTML))
+	if t.PropInnerHTML != "" {
+		truncated = truncated.Body(app.Raw(t.PropInnerHTML))
 	}
 
 	// Add child if provided
-	if t.child != nil {
-		truncated = truncated.Body(t.child)
+	if t.PropChild != nil {
+		truncated = truncated.Body(t.PropChild)
 	}
 
 	// Add overflow if provided
-	if t.overflow != nil {
+	if t.PropOverflow != nil {
 		truncated = truncated.Body(app.Elem("div").
 			Class("spectrum-Truncated-overflow").
-			Body(t.overflow))
+			Body(t.PropOverflow))
 	}
 
 	// Add children if provided
-	if len(t.children) > 0 {
-		truncated = truncated.Body(t.children...)
+	if len(t.PropChildren) > 0 {
+		truncated = truncated.Body(t.PropChildren...)
 	}
 
 	return truncated
 }
 
-// SpectrumTruncatedManager represents a manager for truncated components
-type SpectrumTruncatedManager struct {
+// spectrumTruncatedManager represents a manager for truncated components
+type spectrumTruncatedManager struct {
 	app.Compo
 
 	// Properties
-	components        map[string]*SpectrumTruncated
-	onComponentChange app.EventHandler
+	PropComponents        map[string]*spectrumTruncated
+	PropOnComponentChange app.EventHandler
 
 	// Children
-	children []app.UI
+	PropChildren []app.UI
 }
 
 // NewSpectrumTruncatedManager creates a new truncated manager component
-func NewSpectrumTruncatedManager() *SpectrumTruncatedManager {
-	return &SpectrumTruncatedManager{
-		components: make(map[string]*SpectrumTruncated),
+func NewSpectrumTruncatedManager() *spectrumTruncatedManager {
+	return &spectrumTruncatedManager{
+		PropComponents: make(map[string]*spectrumTruncated),
 	}
 }
 
 // AddComponent adds a truncated component
-func (m *SpectrumTruncatedManager) AddComponent(name string, component *SpectrumTruncated) *SpectrumTruncatedManager {
-	m.components[name] = component
+func (m *spectrumTruncatedManager) AddComponent(name string, component *spectrumTruncated) *spectrumTruncatedManager {
+	m.PropComponents[name] = component
 	return m
 }
 
 // RemoveComponent removes a truncated component
-func (m *SpectrumTruncatedManager) RemoveComponent(name string) *SpectrumTruncatedManager {
-	delete(m.components, name)
+func (m *spectrumTruncatedManager) RemoveComponent(name string) *spectrumTruncatedManager {
+	delete(m.PropComponents, name)
 	return m
 }
 
 // GetComponent gets a truncated component by name
-func (m *SpectrumTruncatedManager) GetComponent(name string) *SpectrumTruncated {
-	return m.components[name]
+func (m *spectrumTruncatedManager) GetComponent(name string) *spectrumTruncated {
+	return m.PropComponents[name]
 }
 
 // ClearComponents clears all truncated components
-func (m *SpectrumTruncatedManager) ClearComponents() *SpectrumTruncatedManager {
-	m.components = make(map[string]*SpectrumTruncated)
+func (m *spectrumTruncatedManager) ClearComponents() *spectrumTruncatedManager {
+	m.PropComponents = make(map[string]*spectrumTruncated)
 	return m
 }
 
 // OnComponentChange sets the component change event handler
-func (m *SpectrumTruncatedManager) OnComponentChange(handler app.EventHandler) *SpectrumTruncatedManager {
-	m.onComponentChange = handler
+func (m *spectrumTruncatedManager) OnComponentChange(handler app.EventHandler) *spectrumTruncatedManager {
+	m.PropOnComponentChange = handler
 	return m
 }
 
 // Child adds a child element
-func (m *SpectrumTruncatedManager) Child(child app.UI) *SpectrumTruncatedManager {
-	m.children = append(m.children, child)
+func (m *spectrumTruncatedManager) Child(child app.UI) *spectrumTruncatedManager {
+	m.PropChildren = append(m.PropChildren, child)
 	return m
 }
 
 // Children adds multiple child elements
-func (m *SpectrumTruncatedManager) Children(children ...app.UI) *SpectrumTruncatedManager {
-	m.children = append(m.children, children...)
+func (m *spectrumTruncatedManager) Children(children ...app.UI) *spectrumTruncatedManager {
+	m.PropChildren = append(m.PropChildren, children...)
 	return m
 }
 
 // Render renders the truncated manager component
-func (m *SpectrumTruncatedManager) Render() app.UI {
+func (m *spectrumTruncatedManager) Render() app.UI {
 	manager := app.Elem("div")
 
 	// Add components
-	for _, component := range m.components {
+	for _, component := range m.PropComponents {
 		manager = manager.Body(component)
 	}
 
 	// Add event handler
-	if m.onComponentChange != nil {
-		manager = manager.On("component-change", m.onComponentChange)
+	if m.PropOnComponentChange != nil {
+		manager = manager.On("component-change", m.PropOnComponentChange)
 	}
 
 	// Add children if provided
-	if len(m.children) > 0 {
-		manager = manager.Body(m.children...)
+	if len(m.PropChildren) > 0 {
+		manager = manager.Body(m.PropChildren...)
 	}
 
 	return manager

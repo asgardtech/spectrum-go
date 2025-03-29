@@ -23,112 +23,112 @@ const (
 	Thumbnail1000 ThumbnailSize = "1000"
 )
 
-// SpectrumThumbnail represents a thumbnail component that can be used to display
+// spectrumThumbnail represents a thumbnail component that can be used to display
 // a preview of an image, layer, or effect.
-type SpectrumThumbnail struct {
+type spectrumThumbnail struct {
 	app.Compo
 
 	// Properties
-	background string
-	cover      bool
-	disabled   bool
-	focused    bool
-	layer      bool
-	selected   bool
-	size       ThumbnailSize
+	PropBackground string
+	PropCover      bool
+	PropDisabled   bool
+	PropFocused    bool
+	PropLayer      bool
+	PropSelected   bool
+	PropSize       ThumbnailSize
 
 	// Content
-	children []app.UI
+	PropChildren []app.UI
 }
 
 // Thumbnail creates a new thumbnail component.
-func Thumbnail() *SpectrumThumbnail {
-	return &SpectrumThumbnail{}
+func Thumbnail() *spectrumThumbnail {
+	return &spectrumThumbnail{}
 }
 
 // Background sets the background color for letterboxing non-square content.
-func (t *SpectrumThumbnail) Background(bg string) *SpectrumThumbnail {
-	t.background = bg
+func (t *spectrumThumbnail) Background(bg string) *spectrumThumbnail {
+	t.PropBackground = bg
 	return t
 }
 
 // Cover sets whether the content should fill the space provided by the thumbnail.
-func (t *SpectrumThumbnail) Cover(cover bool) *SpectrumThumbnail {
-	t.cover = cover
+func (t *spectrumThumbnail) Cover(cover bool) *spectrumThumbnail {
+	t.PropCover = cover
 	return t
 }
 
 // Disabled sets the disabled state of the thumbnail.
-func (t *SpectrumThumbnail) Disabled(disabled bool) *SpectrumThumbnail {
-	t.disabled = disabled
+func (t *spectrumThumbnail) Disabled(disabled bool) *spectrumThumbnail {
+	t.PropDisabled = disabled
 	return t
 }
 
 // Focused sets the focused state of the thumbnail.
-func (t *SpectrumThumbnail) Focused(focused bool) *SpectrumThumbnail {
-	t.focused = focused
+func (t *spectrumThumbnail) Focused(focused bool) *spectrumThumbnail {
+	t.PropFocused = focused
 	return t
 }
 
 // Layer sets whether the thumbnail is used in layer management.
-func (t *SpectrumThumbnail) Layer(layer bool) *SpectrumThumbnail {
-	t.layer = layer
+func (t *spectrumThumbnail) Layer(layer bool) *spectrumThumbnail {
+	t.PropLayer = layer
 	return t
 }
 
 // Selected sets whether the thumbnail is selected when used in layer management.
-func (t *SpectrumThumbnail) Selected(selected bool) *SpectrumThumbnail {
-	t.selected = selected
+func (t *spectrumThumbnail) Selected(selected bool) *spectrumThumbnail {
+	t.PropSelected = selected
 	return t
 }
 
 // Size sets the size of the thumbnail.
-func (t *SpectrumThumbnail) Size(size ThumbnailSize) *SpectrumThumbnail {
-	t.size = size
+func (t *spectrumThumbnail) Size(size ThumbnailSize) *spectrumThumbnail {
+	t.PropSize = size
 	return t
 }
 
 // Children sets the content of the thumbnail.
-func (t *SpectrumThumbnail) Children(children ...app.UI) *SpectrumThumbnail {
-	t.children = children
+func (t *spectrumThumbnail) Children(children ...app.UI) *spectrumThumbnail {
+	t.PropChildren = children
 	return t
 }
 
 // Render renders the thumbnail component.
-func (t *SpectrumThumbnail) Render() app.UI {
+func (t *spectrumThumbnail) Render() app.UI {
 	thumbnail := app.Elem("sp-thumbnail")
 
 	// Set attributes based on properties
-	if t.background != "" {
-		thumbnail.Attr("background", t.background)
+	if t.PropBackground != "" {
+		thumbnail.Attr("background", t.PropBackground)
 	}
 
-	if t.cover {
+	if t.PropCover {
 		thumbnail.Attr("cover", "")
 	}
 
-	if t.disabled {
+	if t.PropDisabled {
 		thumbnail.Attr("disabled", "")
 	}
 
-	if t.focused {
+	if t.PropFocused {
 		thumbnail.Attr("focused", "")
 	}
 
-	if t.layer {
+	if t.PropLayer {
 		thumbnail.Attr("layer", "")
 	}
 
-	if t.selected {
+	if t.PropSelected {
 		thumbnail.Attr("selected", "")
 	}
 
-	if t.size != "" {
-		thumbnail.Attr("size", string(t.size))
+	if t.PropSize != "" {
+		thumbnail.Attr("size", string(t.PropSize))
 	}
 
 	// Add children content
-	for _, child := range t.children {
+	for _, child := range t.PropChildren {
 		thumbnail.Body(child)
 	}
 

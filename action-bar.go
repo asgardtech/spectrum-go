@@ -11,101 +11,101 @@ const (
 	ActionBarVariantSticky ActionBarVariant = "sticky"
 )
 
-// SpectrumActionBar represents an sp-action-bar component
-type SpectrumActionBar struct {
+// spectrumActionBar represents an sp-action-bar component
+type spectrumActionBar struct {
 	app.Compo
 
 	// Properties
-	emphasized bool
-	flexible   bool
-	open       bool
-	variant    ActionBarVariant
-	content    string
-	innerHTML  string
+	PropEmphasized bool
+	PropFlexible   bool
+	PropOpen       bool
+	PropVariant    ActionBarVariant
+	PropContent    string
+	PropInnerHTML  string
 
 	// Child elements
-	buttons []app.UI
-	child   app.UI
+	PropButtons []app.UI
+	PropChild   app.UI
 }
 
 // ActionBar creates a new action bar component
-func ActionBar() *SpectrumActionBar {
-	return &SpectrumActionBar{}
+func ActionBar() *spectrumActionBar {
+	return &spectrumActionBar{}
 }
 
 // Emphasized sets whether the action bar has additional visual emphasis
-func (a *SpectrumActionBar) Emphasized(emphasized bool) *SpectrumActionBar {
-	a.emphasized = emphasized
+func (a *spectrumActionBar) Emphasized(emphasized bool) *spectrumActionBar {
+	a.PropEmphasized = emphasized
 	return a
 }
 
 // Flexible sets whether the action bar sizes itself to its content
-func (a *SpectrumActionBar) Flexible(flexible bool) *SpectrumActionBar {
-	a.flexible = flexible
+func (a *spectrumActionBar) Flexible(flexible bool) *spectrumActionBar {
+	a.PropFlexible = flexible
 	return a
 }
 
 // Open sets whether the action bar is visible
-func (a *SpectrumActionBar) Open(open bool) *SpectrumActionBar {
-	a.open = open
+func (a *spectrumActionBar) Open(open bool) *spectrumActionBar {
+	a.PropOpen = open
 	return a
 }
 
 // Variant sets the variant of the action bar (fixed or sticky)
-func (a *SpectrumActionBar) Variant(variant ActionBarVariant) *SpectrumActionBar {
-	a.variant = variant
+func (a *spectrumActionBar) Variant(variant ActionBarVariant) *spectrumActionBar {
+	a.PropVariant = variant
 	return a
 }
 
 // Content sets the text content of the action bar
-func (a *SpectrumActionBar) Content(content string) *SpectrumActionBar {
-	a.content = content
+func (a *spectrumActionBar) Content(content string) *spectrumActionBar {
+	a.PropContent = content
 	return a
 }
 
 // InnerHTML sets the inner HTML of the action bar
-func (a *SpectrumActionBar) InnerHTML(html string) *SpectrumActionBar {
-	a.innerHTML = html
+func (a *spectrumActionBar) InnerHTML(html string) *spectrumActionBar {
+	a.PropInnerHTML = html
 	return a
 }
 
 // AddButton adds a button to the action bar
-func (a *SpectrumActionBar) AddButton(button app.UI) *SpectrumActionBar {
-	a.buttons = append(a.buttons, button)
+func (a *spectrumActionBar) AddButton(button app.UI) *spectrumActionBar {
+	a.PropButtons = append(a.PropButtons, button)
 	return a
 }
 
 // Child sets a UI element as the child of the action bar
-func (a *SpectrumActionBar) Child(child app.UI) *SpectrumActionBar {
-	a.child = child
+func (a *spectrumActionBar) Child(child app.UI) *spectrumActionBar {
+	a.PropChild = child
 	return a
 }
 
 // Render renders the action bar component
-func (a *SpectrumActionBar) Render() app.UI {
+func (a *spectrumActionBar) Render() app.UI {
 	actionBar := app.Elem("sp-action-bar").
-		Attr("emphasized", a.emphasized).
-		Attr("flexible", a.flexible).
-		Attr("open", a.open)
+		Attr("emphasized", a.PropEmphasized).
+		Attr("flexible", a.PropFlexible).
+		Attr("open", a.PropOpen)
 
-	if a.variant != "" {
-		actionBar = actionBar.Attr("variant", string(a.variant))
+	if a.PropVariant != "" {
+		actionBar = actionBar.Attr("variant", string(a.PropVariant))
 	}
 
 	// Create elements array for children
 	elements := []app.UI{}
 
 	// Add content or child first
-	if a.child != nil {
-		elements = append(elements, a.child)
-	} else if a.innerHTML != "" {
-		elements = append(elements, app.Raw(a.innerHTML))
-	} else if a.content != "" {
-		elements = append(elements, app.Text(a.content))
+	if a.PropChild != nil {
+		elements = append(elements, a.PropChild)
+	} else if a.PropInnerHTML != "" {
+		elements = append(elements, app.Raw(a.PropInnerHTML))
+	} else if a.PropContent != "" {
+		elements = append(elements, app.Text(a.PropContent))
 	}
 
 	// Add buttons in the buttons slot
-	for _, button := range a.buttons {
+	for _, button := range a.PropButtons {
 		buttonElem := button
 		if buttonWithSlot, ok := buttonElem.(interface{ Slot(string) app.UI }); ok {
 			buttonElem = buttonWithSlot.Slot("buttons")

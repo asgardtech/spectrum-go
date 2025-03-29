@@ -2,155 +2,155 @@ package sp
 
 import "github.com/maxence-charriere/go-app/v10/pkg/app"
 
-// SpectrumBreadcrumbItem represents an sp-breadcrumb-item component
-type SpectrumBreadcrumbItem struct {
+// spectrumBreadcrumbItem represents an sp-breadcrumb-item component
+type spectrumBreadcrumbItem struct {
 	app.Compo
 
 	// Properties
-	disabled       bool
-	download       string
-	href           string
-	label          string
-	referrerpolicy string
-	rel            string
-	tabIndex       int
-	target         string
-	value          string
-	slot           string
+	PropDisabled       bool
+	PropDownload       string
+	PropHref           string
+	PropLabel          string
+	PropReferrerpolicy string
+	PropRel            string
+	PropTabIndex       int
+	PropTarget         string
+	PropValue          string
+	PropSlot           string
 
 	// Text content
-	text string
+	PropText string
 
 	// Event handlers
-	onClick app.EventHandler
+	PropOnClick app.EventHandler
 }
 
 // BreadcrumbItem creates a new breadcrumb item component
-func BreadcrumbItem() *SpectrumBreadcrumbItem {
-	return &SpectrumBreadcrumbItem{}
+func BreadcrumbItem() *spectrumBreadcrumbItem {
+	return &spectrumBreadcrumbItem{}
 }
 
 // Disabled sets whether the breadcrumb item is disabled
-func (bi *SpectrumBreadcrumbItem) Disabled(disabled bool) *SpectrumBreadcrumbItem {
-	bi.disabled = disabled
+func (bi *spectrumBreadcrumbItem) Disabled(disabled bool) *spectrumBreadcrumbItem {
+	bi.PropDisabled = disabled
 	return bi
 }
 
 // Download sets the download attribute
-func (bi *SpectrumBreadcrumbItem) Download(download string) *SpectrumBreadcrumbItem {
-	bi.download = download
+func (bi *spectrumBreadcrumbItem) Download(download string) *spectrumBreadcrumbItem {
+	bi.PropDownload = download
 	return bi
 }
 
 // Href sets the URL the breadcrumb item points to
-func (bi *SpectrumBreadcrumbItem) Href(href string) *SpectrumBreadcrumbItem {
-	bi.href = href
+func (bi *spectrumBreadcrumbItem) Href(href string) *spectrumBreadcrumbItem {
+	bi.PropHref = href
 	return bi
 }
 
 // Label sets the accessible label
-func (bi *SpectrumBreadcrumbItem) Label(label string) *SpectrumBreadcrumbItem {
-	bi.label = label
+func (bi *spectrumBreadcrumbItem) Label(label string) *spectrumBreadcrumbItem {
+	bi.PropLabel = label
 	return bi
 }
 
 // Referrerpolicy sets the referrer policy for the breadcrumb item
-func (bi *SpectrumBreadcrumbItem) Referrerpolicy(policy string) *SpectrumBreadcrumbItem {
-	bi.referrerpolicy = policy
+func (bi *spectrumBreadcrumbItem) Referrerpolicy(policy string) *spectrumBreadcrumbItem {
+	bi.PropReferrerpolicy = policy
 	return bi
 }
 
 // Rel sets the relationship of the linked URL
-func (bi *SpectrumBreadcrumbItem) Rel(rel string) *SpectrumBreadcrumbItem {
-	bi.rel = rel
+func (bi *spectrumBreadcrumbItem) Rel(rel string) *spectrumBreadcrumbItem {
+	bi.PropRel = rel
 	return bi
 }
 
 // TabIndex sets the tab index of the breadcrumb item
-func (bi *SpectrumBreadcrumbItem) TabIndex(tabIndex int) *SpectrumBreadcrumbItem {
-	bi.tabIndex = tabIndex
+func (bi *spectrumBreadcrumbItem) TabIndex(tabIndex int) *spectrumBreadcrumbItem {
+	bi.PropTabIndex = tabIndex
 	return bi
 }
 
 // Target sets where to display the linked URL
-func (bi *SpectrumBreadcrumbItem) Target(target string) *SpectrumBreadcrumbItem {
-	bi.target = target
+func (bi *spectrumBreadcrumbItem) Target(target string) *spectrumBreadcrumbItem {
+	bi.PropTarget = target
 	return bi
 }
 
 // Value sets the value of the breadcrumb item
-func (bi *SpectrumBreadcrumbItem) Value(value string) *SpectrumBreadcrumbItem {
-	bi.value = value
+func (bi *spectrumBreadcrumbItem) Value(value string) *spectrumBreadcrumbItem {
+	bi.PropValue = value
 	return bi
 }
 
 // Slot sets the slot attribute of the breadcrumb item
-func (bi *SpectrumBreadcrumbItem) Slot(slot string) *SpectrumBreadcrumbItem {
-	bi.slot = slot
+func (bi *spectrumBreadcrumbItem) Slot(slot string) *spectrumBreadcrumbItem {
+	bi.PropSlot = slot
 	return bi
 }
 
 // Root sets the slot to "root"
-func (bi *SpectrumBreadcrumbItem) Root() *SpectrumBreadcrumbItem {
+func (bi *spectrumBreadcrumbItem) Root() *spectrumBreadcrumbItem {
 	return bi.Slot("root")
 }
 
 // Text sets the text content of the breadcrumb item
-func (bi *SpectrumBreadcrumbItem) Text(text string) *SpectrumBreadcrumbItem {
-	bi.text = text
+func (bi *spectrumBreadcrumbItem) Text(text string) *spectrumBreadcrumbItem {
+	bi.PropText = text
 	return bi
 }
 
 // OnClick sets the click event handler
-func (bi *SpectrumBreadcrumbItem) OnClick(handler app.EventHandler) *SpectrumBreadcrumbItem {
-	bi.onClick = handler
+func (bi *spectrumBreadcrumbItem) OnClick(handler app.EventHandler) *spectrumBreadcrumbItem {
+	bi.PropOnClick = handler
 	return bi
 }
 
 // Render renders the breadcrumb item component
-func (bi *SpectrumBreadcrumbItem) Render() app.UI {
+func (bi *spectrumBreadcrumbItem) Render() app.UI {
 	breadcrumbItem := app.Elem("sp-breadcrumb-item")
 
 	// Set attributes
-	if bi.disabled {
+	if bi.PropDisabled {
 		breadcrumbItem = breadcrumbItem.Attr("disabled", true)
 	}
-	if bi.download != "" {
-		breadcrumbItem = breadcrumbItem.Attr("download", bi.download)
+	if bi.PropDownload != "" {
+		breadcrumbItem = breadcrumbItem.Attr("download", bi.PropDownload)
 	}
-	if bi.href != "" {
-		breadcrumbItem = breadcrumbItem.Attr("href", bi.href)
+	if bi.PropHref != "" {
+		breadcrumbItem = breadcrumbItem.Attr("href", bi.PropHref)
 	}
-	if bi.label != "" {
-		breadcrumbItem = breadcrumbItem.Attr("label", bi.label)
+	if bi.PropLabel != "" {
+		breadcrumbItem = breadcrumbItem.Attr("label", bi.PropLabel)
 	}
-	if bi.referrerpolicy != "" {
-		breadcrumbItem = breadcrumbItem.Attr("referrerpolicy", bi.referrerpolicy)
+	if bi.PropReferrerpolicy != "" {
+		breadcrumbItem = breadcrumbItem.Attr("referrerpolicy", bi.PropReferrerpolicy)
 	}
-	if bi.rel != "" {
-		breadcrumbItem = breadcrumbItem.Attr("rel", bi.rel)
+	if bi.PropRel != "" {
+		breadcrumbItem = breadcrumbItem.Attr("rel", bi.PropRel)
 	}
-	if bi.tabIndex != 0 {
-		breadcrumbItem = breadcrumbItem.Attr("tabIndex", bi.tabIndex)
+	if bi.PropTabIndex != 0 {
+		breadcrumbItem = breadcrumbItem.Attr("tabIndex", bi.PropTabIndex)
 	}
-	if bi.target != "" {
-		breadcrumbItem = breadcrumbItem.Attr("target", bi.target)
+	if bi.PropTarget != "" {
+		breadcrumbItem = breadcrumbItem.Attr("target", bi.PropTarget)
 	}
-	if bi.value != "" {
-		breadcrumbItem = breadcrumbItem.Attr("value", bi.value)
+	if bi.PropValue != "" {
+		breadcrumbItem = breadcrumbItem.Attr("value", bi.PropValue)
 	}
-	if bi.slot != "" {
-		breadcrumbItem = breadcrumbItem.Attr("slot", bi.slot)
+	if bi.PropSlot != "" {
+		breadcrumbItem = breadcrumbItem.Attr("slot", bi.PropSlot)
 	}
 
 	// Add event handlers
-	if bi.onClick != nil {
-		breadcrumbItem = breadcrumbItem.On("click", bi.onClick)
+	if bi.PropOnClick != nil {
+		breadcrumbItem = breadcrumbItem.On("click", bi.PropOnClick)
 	}
 
 	// Add the text content
-	if bi.text != "" {
-		breadcrumbItem = breadcrumbItem.Text(bi.text)
+	if bi.PropText != "" {
+		breadcrumbItem = breadcrumbItem.Text(bi.PropText)
 	}
 
 	return breadcrumbItem

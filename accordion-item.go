@@ -2,66 +2,66 @@ package sp
 
 import "github.com/maxence-charriere/go-app/v10/pkg/app"
 
-// SpectrumAccordionItem represents an sp-accordion-item component
-type SpectrumAccordionItem struct {
+// spectrumAccordionItem represents an sp-accordion-item component
+type spectrumAccordionItem struct {
 	app.Compo
 
 	// Properties
-	label    string
-	open     bool
-	disabled bool
-	tabIndex int
+	PropLabel    string
+	PropOpen     bool
+	PropDisabled bool
+	PropTabIndex int
 
 	// Content
-	content []app.UI
+	PropContent []app.UI
 }
 
 // AccordionItem creates a new accordion item component
-func AccordionItem() *SpectrumAccordionItem {
-	return &SpectrumAccordionItem{}
+func AccordionItem() *spectrumAccordionItem {
+	return &spectrumAccordionItem{}
 }
 
 // Label sets the label text content
-func (ai *SpectrumAccordionItem) Label(label string) *SpectrumAccordionItem {
-	ai.label = label
+func (ai *spectrumAccordionItem) Label(label string) *spectrumAccordionItem {
+	ai.PropLabel = label
 	return ai
 }
 
 // Open sets the accordion item's open state
-func (ai *SpectrumAccordionItem) Open(open bool) *SpectrumAccordionItem {
-	ai.open = open
+func (ai *spectrumAccordionItem) Open(open bool) *spectrumAccordionItem {
+	ai.PropOpen = open
 	return ai
 }
 
 // Disabled sets the accordion item's disabled state
-func (ai *SpectrumAccordionItem) Disabled(disabled bool) *SpectrumAccordionItem {
-	ai.disabled = disabled
+func (ai *spectrumAccordionItem) Disabled(disabled bool) *spectrumAccordionItem {
+	ai.PropDisabled = disabled
 	return ai
 }
 
 // TabIndex sets the tab index for the accordion item
-func (ai *SpectrumAccordionItem) TabIndex(index int) *SpectrumAccordionItem {
-	ai.tabIndex = index
+func (ai *spectrumAccordionItem) TabIndex(index int) *spectrumAccordionItem {
+	ai.PropTabIndex = index
 	return ai
 }
 
 // Content sets the content of the accordion item
-func (ai *SpectrumAccordionItem) Content(content ...app.UI) *SpectrumAccordionItem {
-	ai.content = content
+func (ai *spectrumAccordionItem) Content(content ...app.UI) *spectrumAccordionItem {
+	ai.PropContent = content
 	return ai
 }
 
 // Render renders the accordion item component
-func (ai *SpectrumAccordionItem) Render() app.UI {
+func (ai *spectrumAccordionItem) Render() app.UI {
 	accordionItem := app.Elem("sp-accordion-item").
-		Attr("label", ai.label).
-		Attr("open", ai.open).
-		Attr("disabled", ai.disabled).
-		Attr("tabindex", ai.tabIndex)
+		Attr("label", ai.PropLabel).
+		Attr("open", ai.PropOpen).
+		Attr("disabled", ai.PropDisabled).
+		Attr("tabindex", ai.PropTabIndex)
 
 	// Add content if provided
-	if len(ai.content) > 0 {
-		accordionItem.Body(ai.content...)
+	if len(ai.PropContent) > 0 {
+		accordionItem.Body(ai.PropContent...)
 	}
 
 	return accordionItem

@@ -25,226 +25,226 @@ const (
 	TextfieldTypeTel      TextfieldType = "tel"
 )
 
-// SpectrumTextfield represents an sp-textfield component
-type SpectrumTextfield struct {
+// spectrumTextfield represents an sp-textfield component
+type spectrumTextfield struct {
 	app.Compo
 
 	// Properties
-	size         TextfieldSize
-	label        string
-	value        string
-	placeholder  string
-	inputType    TextfieldType
-	name         string
-	autocomplete string
-	disabled     bool
-	grows        bool
-	invalid      bool
-	maxlength    int
-	minlength    int
-	multiline    bool
-	pattern      string
-	quiet        bool
-	readonly     bool
-	required     bool
+	PropSize         TextfieldSize
+	PropLabel        string
+	PropValue        string
+	PropPlaceholder  string
+	PropInputType    TextfieldType
+	PropName         string
+	PropAutocomplete string
+	PropDisabled     bool
+	PropGrows        bool
+	PropInvalid      bool
+	PropMaxlength    int
+	PropMinlength    int
+	PropMultiline    bool
+	PropPattern      string
+	PropQuiet        bool
+	PropReadonly     bool
+	PropRequired     bool
 
 	// Help text slots
-	helpText         app.UI
-	negativeHelpText app.UI
+	PropHelpText         app.UI
+	PropNegativeHelpText app.UI
 
 	// Event handlers
-	onInput  app.EventHandler
-	onChange app.EventHandler
-	onFocus  app.EventHandler
-	onBlur   app.EventHandler
+	PropOnInput  app.EventHandler
+	PropOnChange app.EventHandler
+	PropOnFocus  app.EventHandler
+	PropOnBlur   app.EventHandler
 }
 
 // Textfield creates a new textfield component
-func Textfield() *SpectrumTextfield {
-	return &SpectrumTextfield{
-		size:      TextfieldSizeM,    // Default size is medium
-		inputType: TextfieldTypeText, // Default input type is text
+func Textfield() *spectrumTextfield {
+	return &spectrumTextfield{
+		PropSize:      TextfieldSizeM,    // Default size is medium
+		PropInputType: TextfieldTypeText, // Default input type is text
 	}
 }
 
 // Size sets the visual size of the textfield
-func (t *SpectrumTextfield) Size(size TextfieldSize) *SpectrumTextfield {
-	t.size = size
+func (t *spectrumTextfield) Size(size TextfieldSize) *spectrumTextfield {
+	t.PropSize = size
 	return t
 }
 
 // Label sets the accessibility label
-func (t *SpectrumTextfield) Label(label string) *SpectrumTextfield {
-	t.label = label
+func (t *spectrumTextfield) Label(label string) *spectrumTextfield {
+	t.PropLabel = label
 	return t
 }
 
 // Value sets the input value
-func (t *SpectrumTextfield) Value(value string) *SpectrumTextfield {
-	t.value = value
+func (t *spectrumTextfield) Value(value string) *spectrumTextfield {
+	t.PropValue = value
 	return t
 }
 
 // Placeholder sets the placeholder text
-func (t *SpectrumTextfield) Placeholder(placeholder string) *SpectrumTextfield {
-	t.placeholder = placeholder
+func (t *spectrumTextfield) Placeholder(placeholder string) *spectrumTextfield {
+	t.PropPlaceholder = placeholder
 	return t
 }
 
 // Type sets the input type
-func (t *SpectrumTextfield) Type(inputType TextfieldType) *SpectrumTextfield {
-	t.inputType = inputType
+func (t *spectrumTextfield) Type(inputType TextfieldType) *spectrumTextfield {
+	t.PropInputType = inputType
 	return t
 }
 
 // Name sets the form control name
-func (t *SpectrumTextfield) Name(name string) *SpectrumTextfield {
-	t.name = name
+func (t *spectrumTextfield) Name(name string) *spectrumTextfield {
+	t.PropName = name
 	return t
 }
 
 // Autocomplete sets the autocomplete attribute
-func (t *SpectrumTextfield) Autocomplete(autocomplete string) *SpectrumTextfield {
-	t.autocomplete = autocomplete
+func (t *spectrumTextfield) Autocomplete(autocomplete string) *spectrumTextfield {
+	t.PropAutocomplete = autocomplete
 	return t
 }
 
 // Disabled sets the disabled state
-func (t *SpectrumTextfield) Disabled(disabled bool) *SpectrumTextfield {
-	t.disabled = disabled
+func (t *spectrumTextfield) Disabled(disabled bool) *spectrumTextfield {
+	t.PropDisabled = disabled
 	return t
 }
 
 // Grows sets whether multiline textfield grows with content
-func (t *SpectrumTextfield) Grows(grows bool) *SpectrumTextfield {
-	t.grows = grows
+func (t *spectrumTextfield) Grows(grows bool) *spectrumTextfield {
+	t.PropGrows = grows
 	return t
 }
 
 // Invalid sets the invalid state
-func (t *SpectrumTextfield) Invalid(invalid bool) *SpectrumTextfield {
-	t.invalid = invalid
+func (t *spectrumTextfield) Invalid(invalid bool) *spectrumTextfield {
+	t.PropInvalid = invalid
 	return t
 }
 
 // Maxlength sets the maximum allowed length
-func (t *SpectrumTextfield) Maxlength(maxlength int) *SpectrumTextfield {
-	t.maxlength = maxlength
+func (t *spectrumTextfield) Maxlength(maxlength int) *spectrumTextfield {
+	t.PropMaxlength = maxlength
 	return t
 }
 
 // Minlength sets the minimum allowed length
-func (t *SpectrumTextfield) Minlength(minlength int) *SpectrumTextfield {
-	t.minlength = minlength
+func (t *spectrumTextfield) Minlength(minlength int) *spectrumTextfield {
+	t.PropMinlength = minlength
 	return t
 }
 
 // Multiline sets whether the textfield accepts multiple lines
-func (t *SpectrumTextfield) Multiline(multiline bool) *SpectrumTextfield {
-	t.multiline = multiline
+func (t *spectrumTextfield) Multiline(multiline bool) *spectrumTextfield {
+	t.PropMultiline = multiline
 	return t
 }
 
 // Pattern sets the validation pattern
-func (t *SpectrumTextfield) Pattern(pattern string) *SpectrumTextfield {
-	t.pattern = pattern
+func (t *spectrumTextfield) Pattern(pattern string) *spectrumTextfield {
+	t.PropPattern = pattern
 	return t
 }
 
 // Quiet sets whether the textfield uses quiet styling
-func (t *SpectrumTextfield) Quiet(quiet bool) *SpectrumTextfield {
-	t.quiet = quiet
+func (t *spectrumTextfield) Quiet(quiet bool) *spectrumTextfield {
+	t.PropQuiet = quiet
 	return t
 }
 
 // Readonly sets the readonly state
-func (t *SpectrumTextfield) Readonly(readonly bool) *SpectrumTextfield {
-	t.readonly = readonly
+func (t *spectrumTextfield) Readonly(readonly bool) *spectrumTextfield {
+	t.PropReadonly = readonly
 	return t
 }
 
 // Required sets the required state
-func (t *SpectrumTextfield) Required(required bool) *SpectrumTextfield {
-	t.required = required
+func (t *spectrumTextfield) Required(required bool) *spectrumTextfield {
+	t.PropRequired = required
 	return t
 }
 
 // HelpText sets the help text UI element for the help-text slot
-func (t *SpectrumTextfield) HelpText(helpText app.UI) *SpectrumTextfield {
-	t.helpText = helpText
+func (t *spectrumTextfield) HelpText(helpText app.UI) *spectrumTextfield {
+	t.PropHelpText = helpText
 	return t
 }
 
 // NegativeHelpText sets the negative help text UI element for the negative-help-text slot
-func (t *SpectrumTextfield) NegativeHelpText(helpText app.UI) *SpectrumTextfield {
-	t.negativeHelpText = helpText
+func (t *spectrumTextfield) NegativeHelpText(helpText app.UI) *spectrumTextfield {
+	t.PropNegativeHelpText = helpText
 	return t
 }
 
 // OnInput sets the input event handler
-func (t *SpectrumTextfield) OnInput(handler app.EventHandler) *SpectrumTextfield {
-	t.onInput = handler
+func (t *spectrumTextfield) OnInput(handler app.EventHandler) *spectrumTextfield {
+	t.PropOnInput = handler
 	return t
 }
 
 // OnChange sets the change event handler
-func (t *SpectrumTextfield) OnChange(handler app.EventHandler) *SpectrumTextfield {
-	t.onChange = handler
+func (t *spectrumTextfield) OnChange(handler app.EventHandler) *spectrumTextfield {
+	t.PropOnChange = handler
 	return t
 }
 
 // OnFocus sets the focus event handler
-func (t *SpectrumTextfield) OnFocus(handler app.EventHandler) *SpectrumTextfield {
-	t.onFocus = handler
+func (t *spectrumTextfield) OnFocus(handler app.EventHandler) *spectrumTextfield {
+	t.PropOnFocus = handler
 	return t
 }
 
 // OnBlur sets the blur event handler
-func (t *SpectrumTextfield) OnBlur(handler app.EventHandler) *SpectrumTextfield {
-	t.onBlur = handler
+func (t *spectrumTextfield) OnBlur(handler app.EventHandler) *spectrumTextfield {
+	t.PropOnBlur = handler
 	return t
 }
 
 // Render renders the textfield component
-func (t *SpectrumTextfield) Render() app.UI {
+func (t *spectrumTextfield) Render() app.UI {
 	textfield := app.Elem("sp-textfield").
-		Attr("size", string(t.size)).
-		Attr("type", string(t.inputType)).
-		Attr("label", t.label).
-		Attr("value", t.value).
-		Attr("placeholder", t.placeholder).
-		Attr("name", t.name).
-		Attr("autocomplete", t.autocomplete).
-		Attr("disabled", t.disabled).
-		Attr("grows", t.grows).
-		Attr("invalid", t.invalid).
-		Attr("maxlength", t.maxlength).
-		Attr("minlength", t.minlength).
-		Attr("multiline", t.multiline).
-		Attr("pattern", t.pattern).
-		Attr("quiet", t.quiet).
-		Attr("readonly", t.readonly).
-		Attr("required", t.required)
+		Attr("size", string(t.PropSize)).
+		Attr("type", string(t.PropInputType)).
+		Attr("label", t.PropLabel).
+		Attr("value", t.PropValue).
+		Attr("placeholder", t.PropPlaceholder).
+		Attr("name", t.PropName).
+		Attr("autocomplete", t.PropAutocomplete).
+		Attr("disabled", t.PropDisabled).
+		Attr("grows", t.PropGrows).
+		Attr("invalid", t.PropInvalid).
+		Attr("maxlength", t.PropMaxlength).
+		Attr("minlength", t.PropMinlength).
+		Attr("multiline", t.PropMultiline).
+		Attr("pattern", t.PropPattern).
+		Attr("quiet", t.PropQuiet).
+		Attr("readonly", t.PropReadonly).
+		Attr("required", t.PropRequired)
 
 	// Add event handlers
-	if t.onInput != nil {
-		textfield = textfield.On("input", t.onInput)
+	if t.PropOnInput != nil {
+		textfield = textfield.On("input", t.PropOnInput)
 	}
-	if t.onChange != nil {
-		textfield = textfield.On("change", t.onChange)
+	if t.PropOnChange != nil {
+		textfield = textfield.On("change", t.PropOnChange)
 	}
-	if t.onFocus != nil {
-		textfield = textfield.On("focus", t.onFocus)
+	if t.PropOnFocus != nil {
+		textfield = textfield.On("focus", t.PropOnFocus)
 	}
-	if t.onBlur != nil {
-		textfield = textfield.On("blur", t.onBlur)
+	if t.PropOnBlur != nil {
+		textfield = textfield.On("blur", t.PropOnBlur)
 	}
 
 	// Add help text slots if provided
 	elements := []app.UI{}
 
-	if t.helpText != nil {
-		helpTextElem := t.helpText
+	if t.PropHelpText != nil {
+		helpTextElem := t.PropHelpText
 		if helpTextWithSlot, ok := helpTextElem.(interface{ Slot(string) app.UI }); ok {
 			helpTextElem = helpTextWithSlot.Slot("help-text")
 		} else {
@@ -255,8 +255,8 @@ func (t *SpectrumTextfield) Render() app.UI {
 		elements = append(elements, helpTextElem)
 	}
 
-	if t.negativeHelpText != nil {
-		negativeHelpTextElem := t.negativeHelpText
+	if t.PropNegativeHelpText != nil {
+		negativeHelpTextElem := t.PropNegativeHelpText
 		if negativeHelpTextWithSlot, ok := negativeHelpTextElem.(interface{ Slot(string) app.UI }); ok {
 			negativeHelpTextElem = negativeHelpTextWithSlot.Slot("negative-help-text")
 		} else {

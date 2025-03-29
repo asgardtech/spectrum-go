@@ -7,21 +7,21 @@ import (
 // MatchMediaUpdatedSymbol is a sentinel value to indicate when a media query match state has changed
 var MatchMediaUpdatedSymbol = "match-media-updated"
 
-// SpectrumMatchMediaController binds a CSS media query to a host element and
+// spectrumMatchMediaController binds a CSS media query to a host element and
 // allows for reactivity based on whether that query is currently matching or not
-type SpectrumMatchMediaController struct {
-	host       app.Composer
-	MediaQuery string
-	Matches    bool
-	mql        app.Value
-	ctx        *app.Context
+type spectrumMatchMediaController struct {
+	PropHost       app.Composer
+	PropMediaQuery string
+	PropMatches    bool
+	mql            app.Value
+	ctx            *app.Context
 }
 
-// MatchMediaController creates a new SpectrumMatchMediaController
-func MatchMediaController(host app.Composer, mediaQuery string) *SpectrumMatchMediaController {
-	controller := &SpectrumMatchMediaController{
-		host:       host,
-		MediaQuery: mediaQuery,
+// MatchMediaController creates a new spectrumMatchMediaController
+func MatchMediaController(host app.Composer, mediaQuery string) *spectrumMatchMediaController {
+	controller := &spectrumMatchMediaController{
+		PropHost:       host,
+		PropMediaQuery: mediaQuery,
 	}
 
 	// Initialize the controller and start listening for changes
@@ -31,26 +31,26 @@ func MatchMediaController(host app.Composer, mediaQuery string) *SpectrumMatchMe
 }
 
 // SetMediaQuery updates the media query for this controller
-func (c *SpectrumMatchMediaController) SetMediaQuery(mediaQuery string) *SpectrumMatchMediaController {
-	if c.MediaQuery == mediaQuery {
+func (c *spectrumMatchMediaController) SetMediaQuery(mediaQuery string) *spectrumMatchMediaController {
+	if c.PropMediaQuery == mediaQuery {
 		return c
 	}
 
-	c.MediaQuery = mediaQuery
+	c.PropMediaQuery = mediaQuery
 	c.initialize()
 
 	return c
 }
 
 // Connect starts listening for media query changes
-func (c *SpectrumMatchMediaController) Connect() {
-	if c.MediaQuery != "" && c.mql.IsNull() {
+func (c *spectrumMatchMediaController) Connect() {
+	if c.PropMediaQuery != "" && c.mql.IsNull() {
 		c.initialize()
 	}
 }
 
 // Disconnect stops listening for media query changes
-func (c *SpectrumMatchMediaController) Disconnect() {
+func (c *spectrumMatchMediaController) Disconnect() {
 	if !c.mql.IsNull() {
 		// Remove event listener
 		c.mql.Call("removeEventListener", "change", app.FuncOf(c.handleChange))
@@ -59,8 +59,8 @@ func (c *SpectrumMatchMediaController) Disconnect() {
 }
 
 // initialize sets up the MediaQueryList and starts listening for changes
-func (c *SpectrumMatchMediaController) initialize() {
-	if c.MediaQuery == "" {
+func (c *spectrumMatchMediaController) initialize() {
+	if c.PropMediaQuery == "" {
 		return
 	}
 
@@ -70,33 +70,33 @@ func (c *SpectrumMatchMediaController) initialize() {
 	}
 
 	// Create a new MediaQueryList
-	c.mql = app.Window().Call("matchMedia", c.MediaQuery)
+	c.mql = app.Window().Call("matchMedia", c.PropMediaQuery)
 
 	// Set initial matches state
-	c.Matches = c.mql.Get("matches").Bool()
+	c.PropMatches = c.mql.Get("matches").Bool()
 
 	// Add change listener
 	c.mql.Call("addEventListener", "change", app.FuncOf(c.handleChange))
 }
 
 // handleChange is called when the media query match state changes
-func (c *SpectrumMatchMediaController) handleChange(this app.Value, args []app.Value) interface{} {
+func (c *spectrumMatchMediaController) handleChange(this app.Value, args []app.Value) interface{} {
 	// Update matches state
-	oldMatches := c.Matches
-	c.Matches = args[0].Get("matches").Bool()
+	oldMatches := c.PropMatches
+	c.PropMatches = args[0].Get("matches").Bool()
 
 	// Only trigger update if the match state has changed
-	if oldMatches != c.Matches && c.ctx != nil {
+	if oldMatches != c.PropMatches && c.ctx != nil {
 		c.ctx.Update()
 	}
 
 	return nil
 }
 
-func (c *SpectrumMatchMediaController) OnMount(ctx app.Context) {
+func (c *spectrumMatchMediaController) OnMount(ctx app.Context) {
 	c.ctx = &ctx
 }
 
-func (c *SpectrumMatchMediaController) OnUnmount() {
+func (c *spectrumMatchMediaController) OnUnmount() {
 	c.ctx = nil
 }

@@ -10,264 +10,268 @@ const (
 	PickerIconsNone PickerIcons = "none"
 )
 
-// SpectrumPicker represents an sp-picker component
-type SpectrumPicker struct {
+// spectrumPicker represents an sp-picker component
+type spectrumPicker struct {
 	app.Compo
 
 	// Properties
-	disabled     bool
-	focused      bool
-	forcePopover bool
-	icons        PickerIcons
-	invalid      bool
-	label        string
-	open         bool
-	pending      bool
-	pendingLabel string
-	placement    OverlayPlacement
-	quiet        bool
-	readonly     bool
-	value        string
+	PropDisabled     bool
+	PropFocused      bool
+	PropForcePopover bool
+	PropIcons        PickerIcons
+	PropInvalid      bool
+	PropLabel        string
+	PropOpen         bool
+	PropPending      bool
+	PropPendingLabel string
+	PropPlacement    OverlayPlacement
+	PropQuiet        bool
+	PropReadonly     bool
+	PropValue        string
 
 	// Slots
-	descriptionSlot app.UI
-	labelSlot       app.UI
-	tooltipSlot     app.UI
-	menuItems       []*SpectrumMenuItem
-	menuGroups      []*SpectrumMenuGroup
-	menuDividers    []*SpectrumMenuDivider
-	customItems     []app.UI
+	PropDescriptionSlot app.UI
+	PropLabelSlot       app.UI
+	PropTooltipSlot     app.UI
+	PropMenuItems       []app.UI
+	PropMenuGroups      []app.UI
+	PropMenuDividers    []app.UI
+	PropCustomItems     []app.UI
 
 	// Event handlers
-	onChange app.EventHandler
-	onScroll app.EventHandler
-	onOpened app.EventHandler
+	PropOnChange app.EventHandler
+	PropOnScroll app.EventHandler
+	PropOnOpened app.EventHandler
 }
 
 // Picker creates a new picker component
-func Picker() *SpectrumPicker {
-	return &SpectrumPicker{
-		placement:    OverlayPlacementBottomStart, // Default placement
-		pendingLabel: "Pending",                   // Default pending label
+func Picker() *spectrumPicker {
+	return &spectrumPicker{
+		PropPlacement:    OverlayPlacementBottomStart, // Default placement
+		PropPendingLabel: "Pending",                   // Default pending label
 	}
 }
 
 // Disabled sets whether the picker is disabled
-func (p *SpectrumPicker) Disabled(disabled bool) *SpectrumPicker {
-	p.disabled = disabled
+func (p *spectrumPicker) Disabled(disabled bool) *spectrumPicker {
+	p.PropDisabled = disabled
 	return p
 }
 
 // Focused sets whether the picker has keyboard focus
-func (p *SpectrumPicker) Focused(focused bool) *SpectrumPicker {
-	p.focused = focused
+func (p *spectrumPicker) Focused(focused bool) *spectrumPicker {
+	p.PropFocused = focused
 	return p
 }
 
 // ForcePopover forces the Picker to render as a popover on mobile instead of a tray
-func (p *SpectrumPicker) ForcePopover(forcePopover bool) *SpectrumPicker {
-	p.forcePopover = forcePopover
+func (p *spectrumPicker) ForcePopover(forcePopover bool) *spectrumPicker {
+	p.PropForcePopover = forcePopover
 	return p
 }
 
 // Icons sets the icon display mode for the picker
-func (p *SpectrumPicker) Icons(icons PickerIcons) *SpectrumPicker {
-	p.icons = icons
+func (p *spectrumPicker) Icons(icons PickerIcons) *spectrumPicker {
+	p.PropIcons = icons
 	return p
 }
 
 // Invalid sets whether the picker is in an invalid state
-func (p *SpectrumPicker) Invalid(invalid bool) *SpectrumPicker {
-	p.invalid = invalid
+func (p *spectrumPicker) Invalid(invalid bool) *spectrumPicker {
+	p.PropInvalid = invalid
 	return p
 }
 
 // Label sets the visible label text for the picker
-func (p *SpectrumPicker) Label(label string) *SpectrumPicker {
-	p.label = label
+func (p *spectrumPicker) Label(label string) *spectrumPicker {
+	p.PropLabel = label
 	return p
 }
 
 // Open sets whether the picker is open
-func (p *SpectrumPicker) Open(open bool) *SpectrumPicker {
-	p.open = open
+func (p *spectrumPicker) Open(open bool) *spectrumPicker {
+	p.PropOpen = open
 	return p
 }
 
 // Pending sets whether the picker is in a pending/loading state
-func (p *SpectrumPicker) Pending(pending bool) *SpectrumPicker {
-	p.pending = pending
+func (p *spectrumPicker) Pending(pending bool) *spectrumPicker {
+	p.PropPending = pending
 	return p
 }
 
 // PendingLabel sets the assistive text for the pending state
-func (p *SpectrumPicker) PendingLabel(pendingLabel string) *SpectrumPicker {
-	p.pendingLabel = pendingLabel
+func (p *spectrumPicker) PendingLabel(pendingLabel string) *spectrumPicker {
+	p.PropPendingLabel = pendingLabel
 	return p
 }
 
 // Placement sets the placement of the picker overlay
-func (p *SpectrumPicker) Placement(placement OverlayPlacement) *SpectrumPicker {
-	p.placement = placement
+func (p *spectrumPicker) Placement(placement OverlayPlacement) *spectrumPicker {
+	p.PropPlacement = placement
 	return p
 }
 
 // Quiet sets whether the picker has a quiet appearance
-func (p *SpectrumPicker) Quiet(quiet bool) *SpectrumPicker {
-	p.quiet = quiet
+func (p *spectrumPicker) Quiet(quiet bool) *spectrumPicker {
+	p.PropQuiet = quiet
 	return p
 }
 
 // Readonly sets whether the picker is readonly
-func (p *SpectrumPicker) Readonly(readonly bool) *SpectrumPicker {
-	p.readonly = readonly
+func (p *spectrumPicker) Readonly(readonly bool) *spectrumPicker {
+	p.PropReadonly = readonly
 	return p
 }
 
 // Value sets the value of the selected item
-func (p *SpectrumPicker) Value(value string) *SpectrumPicker {
-	p.value = value
+func (p *spectrumPicker) Value(value string) *spectrumPicker {
+	p.PropValue = value
 	return p
 }
 
 // Description sets the description content for the picker
-func (p *SpectrumPicker) Description(description app.UI) *SpectrumPicker {
-	p.descriptionSlot = description
+func (p *spectrumPicker) Description(description app.UI) *spectrumPicker {
+	p.PropDescriptionSlot = description
 	return p
 }
 
 // LabelSlot sets content for the label slot
-func (p *SpectrumPicker) LabelSlot(label app.UI) *SpectrumPicker {
-	p.labelSlot = label
+func (p *spectrumPicker) LabelSlot(label app.UI) *spectrumPicker {
+	p.PropLabelSlot = label
 	return p
 }
 
 // Tooltip sets content for the tooltip slot
-func (p *SpectrumPicker) Tooltip(tooltip app.UI) *SpectrumPicker {
-	p.tooltipSlot = tooltip
+func (p *spectrumPicker) Tooltip(tooltip app.UI) *spectrumPicker {
+	p.PropTooltipSlot = tooltip
 	return p
 }
 
 // Items sets the menu items for the picker
-func (p *SpectrumPicker) Items(items ...*SpectrumMenuItem) *SpectrumPicker {
-	p.menuItems = items
+func (p *spectrumPicker) Items(items ...*spectrumMenuItem) *spectrumPicker {
+	for _, item := range items {
+		p.PropMenuItems = append(p.PropMenuItems, item)
+	}
 	return p
 }
 
 // Groups sets the menu groups for the picker
-func (p *SpectrumPicker) Groups(groups ...*SpectrumMenuGroup) *SpectrumPicker {
-	p.menuGroups = groups
+func (p *spectrumPicker) Groups(groups ...app.UI) *spectrumPicker {
+	for _, group := range groups {
+		p.PropMenuGroups = append(p.PropMenuGroups, group)
+	}
 	return p
 }
 
 // Divider adds a menu divider to the picker
-func (p *SpectrumPicker) Divider() *SpectrumPicker {
-	p.menuDividers = append(p.menuDividers, MenuDivider())
+func (p *spectrumPicker) Divider() *spectrumPicker {
+	p.PropMenuDividers = append(p.PropMenuDividers, MenuDivider())
 	return p
 }
 
 // DividerWithSize adds a menu divider with a specific size to the picker
-func (p *SpectrumPicker) DividerWithSize(size string) *SpectrumPicker {
-	p.menuDividers = append(p.menuDividers, MenuDivider().Size(size))
+func (p *spectrumPicker) DividerWithSize(size string) *spectrumPicker {
+	p.PropMenuDividers = append(p.PropMenuDividers, MenuDivider().Size(size))
 	return p
 }
 
 // CustomItem adds a custom UI element to the picker
-func (p *SpectrumPicker) CustomItem(item app.UI) *SpectrumPicker {
-	p.customItems = append(p.customItems, item)
+func (p *spectrumPicker) CustomItem(item app.UI) *spectrumPicker {
+	p.PropCustomItems = append(p.PropCustomItems, item)
 	return p
 }
 
 // OnChange sets the change event handler
-func (p *SpectrumPicker) OnChange(handler app.EventHandler) *SpectrumPicker {
-	p.onChange = handler
+func (p *spectrumPicker) OnChange(handler app.EventHandler) *spectrumPicker {
+	p.PropOnChange = handler
 	return p
 }
 
 // OnScroll sets the scroll event handler
-func (p *SpectrumPicker) OnScroll(handler app.EventHandler) *SpectrumPicker {
-	p.onScroll = handler
+func (p *spectrumPicker) OnScroll(handler app.EventHandler) *spectrumPicker {
+	p.PropOnScroll = handler
 	return p
 }
 
 // OnOpened sets the opened event handler
-func (p *SpectrumPicker) OnOpened(handler app.EventHandler) *SpectrumPicker {
-	p.onOpened = handler
+func (p *spectrumPicker) OnOpened(handler app.EventHandler) *spectrumPicker {
+	p.PropOnOpened = handler
 	return p
 }
 
 // IconsOnly sets icons display mode to "only"
-func (p *SpectrumPicker) IconsOnly() *SpectrumPicker {
+func (p *spectrumPicker) IconsOnly() *spectrumPicker {
 	return p.Icons(PickerIconsOnly)
 }
 
 // IconsNone sets icons display mode to "none"
-func (p *SpectrumPicker) IconsNone() *SpectrumPicker {
+func (p *spectrumPicker) IconsNone() *spectrumPicker {
 	return p.Icons(PickerIconsNone)
 }
 
 // Render renders the picker component
-func (p *SpectrumPicker) Render() app.UI {
+func (p *spectrumPicker) Render() app.UI {
 	picker := app.Elem("sp-picker")
 
 	// Set attributes
-	if p.disabled {
+	if p.PropDisabled {
 		picker = picker.Attr("disabled", true)
 	}
-	if p.focused {
+	if p.PropFocused {
 		picker = picker.Attr("focused", true)
 	}
-	if p.forcePopover {
+	if p.PropForcePopover {
 		picker = picker.Attr("force-popover", true)
 	}
-	if p.icons != "" {
-		picker = picker.Attr("icons", string(p.icons))
+	if p.PropIcons != "" {
+		picker = picker.Attr("icons", string(p.PropIcons))
 	}
-	if p.invalid {
+	if p.PropInvalid {
 		picker = picker.Attr("invalid", true)
 	}
-	if p.label != "" {
-		picker = picker.Attr("label", p.label)
+	if p.PropLabel != "" {
+		picker = picker.Attr("label", p.PropLabel)
 	}
-	if p.open {
+	if p.PropOpen {
 		picker = picker.Attr("open", true)
 	}
-	if p.pending {
+	if p.PropPending {
 		picker = picker.Attr("pending", true)
 	}
-	if p.pendingLabel != "Pending" { // Only set if not the default
-		picker = picker.Attr("pending-label", p.pendingLabel)
+	if p.PropPendingLabel != "Pending" { // Only set if not the default
+		picker = picker.Attr("pending-label", p.PropPendingLabel)
 	}
-	if p.placement != "" {
-		picker = picker.Attr("placement", string(p.placement))
+	if p.PropPlacement != "" {
+		picker = picker.Attr("placement", string(p.PropPlacement))
 	}
-	if p.quiet {
+	if p.PropQuiet {
 		picker = picker.Attr("quiet", true)
 	}
-	if p.readonly {
+	if p.PropReadonly {
 		picker = picker.Attr("readonly", true)
 	}
-	if p.value != "" {
-		picker = picker.Attr("value", p.value)
+	if p.PropValue != "" {
+		picker = picker.Attr("value", p.PropValue)
 	}
 
 	// Add event handlers
-	if p.onChange != nil {
-		picker = picker.On("change", p.onChange)
+	if p.PropOnChange != nil {
+		picker = picker.On("change", p.PropOnChange)
 	}
-	if p.onScroll != nil {
-		picker = picker.On("scroll", p.onScroll)
+	if p.PropOnScroll != nil {
+		picker = picker.On("scroll", p.PropOnScroll)
 	}
-	if p.onOpened != nil {
-		picker = picker.On("sp-opened", p.onOpened)
+	if p.PropOnOpened != nil {
+		picker = picker.On("sp-opened", p.PropOnOpened)
 	}
 
 	// Collect all slotted elements
 	var elements []app.UI
 
 	// Add description slot if provided
-	if p.descriptionSlot != nil {
-		desc := p.descriptionSlot
+	if p.PropDescriptionSlot != nil {
+		desc := p.PropDescriptionSlot
 		if descWithSlot, ok := desc.(interface{ Slot(string) app.UI }); ok {
 			desc = descWithSlot.Slot("description")
 		} else {
@@ -279,8 +283,8 @@ func (p *SpectrumPicker) Render() app.UI {
 	}
 
 	// Add label slot if provided
-	if p.labelSlot != nil {
-		label := p.labelSlot
+	if p.PropLabelSlot != nil {
+		label := p.PropLabelSlot
 		if labelWithSlot, ok := label.(interface{ Slot(string) app.UI }); ok {
 			label = labelWithSlot.Slot("label")
 		} else {
@@ -292,8 +296,8 @@ func (p *SpectrumPicker) Render() app.UI {
 	}
 
 	// Add tooltip slot if provided
-	if p.tooltipSlot != nil {
-		tooltip := p.tooltipSlot
+	if p.PropTooltipSlot != nil {
+		tooltip := p.PropTooltipSlot
 		if tooltipWithSlot, ok := tooltip.(interface{ Slot(string) app.UI }); ok {
 			tooltip = tooltipWithSlot.Slot("tooltip")
 		} else {
@@ -305,22 +309,22 @@ func (p *SpectrumPicker) Render() app.UI {
 	}
 
 	// Add menu items
-	for _, item := range p.menuItems {
+	for _, item := range p.PropMenuItems {
 		elements = append(elements, item)
 	}
 
 	// Add menu groups
-	for _, group := range p.menuGroups {
+	for _, group := range p.PropMenuGroups {
 		elements = append(elements, group)
 	}
 
 	// Add menu dividers
-	for _, divider := range p.menuDividers {
+	for _, divider := range p.PropMenuDividers {
 		elements = append(elements, divider)
 	}
 
 	// Add custom items
-	for _, item := range p.customItems {
+	for _, item := range p.PropCustomItems {
 		elements = append(elements, item)
 	}
 

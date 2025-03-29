@@ -2,182 +2,182 @@ package sp
 
 import "github.com/maxence-charriere/go-app/v10/pkg/app"
 
-// SpectrumBundle represents a bundle of Spectrum components
-type SpectrumBundle struct {
+// spectrumBundle represents a bundle of Spectrum components
+type spectrumBundle struct {
 	app.Compo
 
 	// Properties
-	name         string
-	version      string
-	components   []app.UI
-	onBundleLoad app.EventHandler
+	PropName         string
+	PropVersion      string
+	PropComponents   []app.UI
+	PropOnBundleLoad app.EventHandler
 
 	// Children
-	children []app.UI
+	PropChildren []app.UI
 }
 
 // NewSpectrumBundle creates a new Spectrum bundle component
-func NewSpectrumBundle() *SpectrumBundle {
-	return &SpectrumBundle{}
+func NewSpectrumBundle() *spectrumBundle {
+	return &spectrumBundle{}
 }
 
 // Name sets the bundle name
-func (b *SpectrumBundle) Name(name string) *SpectrumBundle {
-	b.name = name
+func (b *spectrumBundle) Name(name string) *spectrumBundle {
+	b.PropName = name
 	return b
 }
 
 // Version sets the bundle version
-func (b *SpectrumBundle) Version(version string) *SpectrumBundle {
-	b.version = version
+func (b *spectrumBundle) Version(version string) *spectrumBundle {
+	b.PropVersion = version
 	return b
 }
 
 // AddComponent adds a component to the bundle
-func (b *SpectrumBundle) AddComponent(component app.UI) *SpectrumBundle {
-	b.components = append(b.components, component)
+func (b *spectrumBundle) AddComponent(component app.UI) *spectrumBundle {
+	b.PropComponents = append(b.PropComponents, component)
 	return b
 }
 
 // AddComponents adds multiple components to the bundle
-func (b *SpectrumBundle) AddComponents(components ...app.UI) *SpectrumBundle {
-	b.components = append(b.components, components...)
+func (b *spectrumBundle) AddComponents(components ...app.UI) *spectrumBundle {
+	b.PropComponents = append(b.PropComponents, components...)
 	return b
 }
 
 // ClearComponents clears all components from the bundle
-func (b *SpectrumBundle) ClearComponents() *SpectrumBundle {
-	b.components = nil
+func (b *spectrumBundle) ClearComponents() *spectrumBundle {
+	b.PropComponents = nil
 	return b
 }
 
 // OnBundleLoad sets the bundle load event handler
-func (b *SpectrumBundle) OnBundleLoad(handler app.EventHandler) *SpectrumBundle {
-	b.onBundleLoad = handler
+func (b *spectrumBundle) OnBundleLoad(handler app.EventHandler) *spectrumBundle {
+	b.PropOnBundleLoad = handler
 	return b
 }
 
 // Child adds a child element
-func (b *SpectrumBundle) Child(child app.UI) *SpectrumBundle {
-	b.children = append(b.children, child)
+func (b *spectrumBundle) Child(child app.UI) *spectrumBundle {
+	b.PropChildren = append(b.PropChildren, child)
 	return b
 }
 
 // Children adds multiple child elements
-func (b *SpectrumBundle) Children(children ...app.UI) *SpectrumBundle {
-	b.children = append(b.children, children...)
+func (b *spectrumBundle) Children(children ...app.UI) *spectrumBundle {
+	b.PropChildren = append(b.PropChildren, children...)
 	return b
 }
 
 // Render renders the Spectrum bundle component
-func (b *SpectrumBundle) Render() app.UI {
+func (b *spectrumBundle) Render() app.UI {
 	bundle := app.Elem("div")
 
 	// Set attributes
-	if b.name != "" {
-		bundle = bundle.Attr("data-bundle-name", b.name)
+	if b.PropName != "" {
+		bundle = bundle.Attr("data-bundle-name", b.PropName)
 	}
-	if b.version != "" {
-		bundle = bundle.Attr("data-bundle-version", b.version)
+	if b.PropVersion != "" {
+		bundle = bundle.Attr("data-bundle-version", b.PropVersion)
 	}
 
 	// Add event handler
-	if b.onBundleLoad != nil {
-		bundle = bundle.On("bundle-load", b.onBundleLoad)
+	if b.PropOnBundleLoad != nil {
+		bundle = bundle.On("bundle-load", b.PropOnBundleLoad)
 	}
 
 	// Add components if provided
-	if len(b.components) > 0 {
-		bundle = bundle.Body(b.components...)
+	if len(b.PropComponents) > 0 {
+		bundle = bundle.Body(b.PropComponents...)
 	}
 
 	// Add children if provided
-	if len(b.children) > 0 {
-		bundle = bundle.Body(b.children...)
+	if len(b.PropChildren) > 0 {
+		bundle = bundle.Body(b.PropChildren...)
 	}
 
 	return bundle
 }
 
-// BundleManager represents a manager for Spectrum bundles
-type BundleManager struct {
+// spectrumBundleManager represents a manager for Spectrum bundles
+type spectrumBundleManager struct {
 	app.Compo
 
 	// Properties
-	bundles        map[string]*SpectrumBundle
-	onBundleChange app.EventHandler
+	PropBundles        map[string]*spectrumBundle
+	PropOnBundleChange app.EventHandler
 
 	// Children
-	children []app.UI
+	PropChildren []app.UI
 }
 
 // NewBundleManager creates a new bundle manager component
-func NewBundleManager() *BundleManager {
-	return &BundleManager{
-		bundles: make(map[string]*SpectrumBundle),
+func NewBundleManager() *spectrumBundleManager {
+	return &spectrumBundleManager{
+		PropBundles: make(map[string]*spectrumBundle),
 	}
 }
 
 // AddBundle adds a bundle to the manager
-func (m *BundleManager) AddBundle(bundle *SpectrumBundle) *BundleManager {
-	if bundle.name != "" {
-		m.bundles[bundle.name] = bundle
+func (m *spectrumBundleManager) AddBundle(bundle *spectrumBundle) *spectrumBundleManager {
+	if bundle.PropName != "" {
+		m.PropBundles[bundle.PropName] = bundle
 	}
 	return m
 }
 
 // RemoveBundle removes a bundle from the manager
-func (m *BundleManager) RemoveBundle(name string) *BundleManager {
-	delete(m.bundles, name)
+func (m *spectrumBundleManager) RemoveBundle(name string) *spectrumBundleManager {
+	delete(m.PropBundles, name)
 	return m
 }
 
 // GetBundle gets a bundle by name
-func (m *BundleManager) GetBundle(name string) *SpectrumBundle {
-	return m.bundles[name]
+func (m *spectrumBundleManager) GetBundle(name string) *spectrumBundle {
+	return m.PropBundles[name]
 }
 
 // ClearBundles clears all bundles from the manager
-func (m *BundleManager) ClearBundles() *BundleManager {
-	m.bundles = make(map[string]*SpectrumBundle)
+func (m *spectrumBundleManager) ClearBundles() *spectrumBundleManager {
+	m.PropBundles = make(map[string]*spectrumBundle)
 	return m
 }
 
 // OnBundleChange sets the bundle change event handler
-func (m *BundleManager) OnBundleChange(handler app.EventHandler) *BundleManager {
-	m.onBundleChange = handler
+func (m *spectrumBundleManager) OnBundleChange(handler app.EventHandler) *spectrumBundleManager {
+	m.PropOnBundleChange = handler
 	return m
 }
 
 // Child adds a child element
-func (m *BundleManager) Child(child app.UI) *BundleManager {
-	m.children = append(m.children, child)
+func (m *spectrumBundleManager) Child(child app.UI) *spectrumBundleManager {
+	m.PropChildren = append(m.PropChildren, child)
 	return m
 }
 
 // Children adds multiple child elements
-func (m *BundleManager) Children(children ...app.UI) *BundleManager {
-	m.children = append(m.children, children...)
+func (m *spectrumBundleManager) Children(children ...app.UI) *spectrumBundleManager {
+	m.PropChildren = append(m.PropChildren, children...)
 	return m
 }
 
 // Render renders the bundle manager component
-func (m *BundleManager) Render() app.UI {
+func (m *spectrumBundleManager) Render() app.UI {
 	manager := app.Elem("div")
 
 	// Add bundles
-	for _, bundle := range m.bundles {
+	for _, bundle := range m.PropBundles {
 		manager = manager.Body(bundle)
 	}
 
 	// Add event handler
-	if m.onBundleChange != nil {
-		manager = manager.On("bundle-change", m.onBundleChange)
+	if m.PropOnBundleChange != nil {
+		manager = manager.On("bundle-change", m.PropOnBundleChange)
 	}
 
 	// Add children if provided
-	if len(m.children) > 0 {
-		manager = manager.Body(m.children...)
+	if len(m.PropChildren) > 0 {
+		manager = manager.Body(m.PropChildren...)
 	}
 
 	return manager

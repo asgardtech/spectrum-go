@@ -31,164 +31,174 @@ const (
 	TooltipVariantNegative TooltipVariant = "negative"
 )
 
-// SpectrumTooltip represents an sp-tooltip component
-type SpectrumTooltip struct {
+// spectrumTooltip represents an sp-tooltip component
+type spectrumTooltip struct {
 	app.Compo
 
 	// Properties
-	open        bool
-	placement   TooltipPlacement
-	offset      int
-	selfManaged bool
-	tipPadding  int
-	variant     TooltipVariant
-	slot        string
-	content     string
-	innerHTML   string
+	PropOpen        bool
+	PropPlacement   TooltipPlacement
+	PropOffset      int
+	PropSelfManaged bool
+	PropTipPadding  int
+	PropVariant     TooltipVariant
+	PropSlot        string
+	PropContent     string
+	PropInnerHTML   string
 
 	// Child elements
-	icon  app.UI
-	child app.UI
+	PropIcon  app.UI
+	PropChild app.UI
 }
 
 // Tooltip creates a new tooltip component
-func Tooltip() *SpectrumTooltip {
-	return &SpectrumTooltip{}
+func Tooltip() *spectrumTooltip {
+	return &spectrumTooltip{}
 }
 
 // Open sets whether the tooltip is visible
-func (t *SpectrumTooltip) Open(open bool) *SpectrumTooltip {
-	t.open = open
+func (t *spectrumTooltip) Open(open bool) *spectrumTooltip {
+	t.PropOpen = open
 	return t
 }
 
 // Placement sets the position of the tooltip relative to its target
-func (t *SpectrumTooltip) Placement(placement TooltipPlacement) *SpectrumTooltip {
-	t.placement = placement
+func (t *spectrumTooltip) Placement(placement TooltipPlacement) *spectrumTooltip {
+	t.PropPlacement = placement
 	return t
 }
 
 // Offset sets the distance from the tooltip to its target
-func (t *SpectrumTooltip) Offset(offset int) *SpectrumTooltip {
-	t.offset = offset
+func (t *spectrumTooltip) Offset(offset int) *spectrumTooltip {
+	t.PropOffset = offset
 	return t
 }
 
 // SelfManaged sets whether the tooltip auto-binds to its parent element
-func (t *SpectrumTooltip) SelfManaged(selfManaged bool) *SpectrumTooltip {
-	t.selfManaged = selfManaged
+func (t *spectrumTooltip) SelfManaged(selfManaged bool) *spectrumTooltip {
+	t.PropSelfManaged = selfManaged
 	return t
 }
 
 // TipPadding sets the padding for the tip of the tooltip
-func (t *SpectrumTooltip) TipPadding(tipPadding int) *SpectrumTooltip {
-	t.tipPadding = tipPadding
+func (t *spectrumTooltip) TipPadding(tipPadding int) *spectrumTooltip {
+	t.PropTipPadding = tipPadding
 	return t
 }
 
 // Variant sets the visual variant of the tooltip
-func (t *SpectrumTooltip) Variant(variant TooltipVariant) *SpectrumTooltip {
-	t.variant = variant
+func (t *spectrumTooltip) Variant(variant TooltipVariant) *spectrumTooltip {
+	t.PropVariant = variant
 	return t
 }
 
 // Slot sets the slot attribute
-func (t *SpectrumTooltip) Slot(slot string) *SpectrumTooltip {
-	t.slot = slot
+func (t *spectrumTooltip) Slot(slot string) *spectrumTooltip {
+	t.PropSlot = slot
 	return t
 }
 
 // Content sets the text content of the tooltip
-func (t *SpectrumTooltip) Content(content string) *SpectrumTooltip {
-	t.content = content
+func (t *spectrumTooltip) Content(content string) *spectrumTooltip {
+	t.PropContent = content
 	return t
 }
 
 // InnerHTML sets the inner HTML of the tooltip
-func (t *SpectrumTooltip) InnerHTML(html string) *SpectrumTooltip {
-	t.innerHTML = html
+func (t *spectrumTooltip) InnerHTML(html string) *spectrumTooltip {
+	t.PropInnerHTML = html
 	return t
 }
 
 // Icon sets the icon UI element in the icon slot
-func (t *SpectrumTooltip) Icon(icon app.UI) *SpectrumTooltip {
-	t.icon = icon
+func (t *spectrumTooltip) Icon(icon app.UI) *spectrumTooltip {
+	t.PropIcon = icon
 	return t
 }
 
 // Child sets a UI element as the child of the tooltip
-func (t *SpectrumTooltip) Child(child app.UI) *SpectrumTooltip {
-	t.child = child
+func (t *spectrumTooltip) Child(child app.UI) *spectrumTooltip {
+	t.PropChild = child
 	return t
 }
 
 // InfoVariant is a convenience method to set the variant to info
-func (t *SpectrumTooltip) InfoVariant() *SpectrumTooltip {
-	t.variant = TooltipVariantInfo
+func (t *spectrumTooltip) InfoVariant() *spectrumTooltip {
+	t.PropVariant = TooltipVariantInfo
 	return t
 }
 
 // PositiveVariant is a convenience method to set the variant to positive
-func (t *SpectrumTooltip) PositiveVariant() *SpectrumTooltip {
-	t.variant = TooltipVariantPositive
+func (t *spectrumTooltip) PositiveVariant() *spectrumTooltip {
+	t.PropVariant = TooltipVariantPositive
 	return t
 }
 
 // NegativeVariant is a convenience method to set the variant to negative
-func (t *SpectrumTooltip) NegativeVariant() *SpectrumTooltip {
-	t.variant = TooltipVariantNegative
+func (t *spectrumTooltip) NegativeVariant() *spectrumTooltip {
+	t.PropVariant = TooltipVariantNegative
 	return t
 }
 
 // Render renders the tooltip component
-func (t *SpectrumTooltip) Render() app.UI {
-	tooltip := app.Elem("sp-tooltip").
-		Attr("open", t.open).
-		Attr("self-managed", t.selfManaged)
+func (t *spectrumTooltip) Render() app.UI {
+	tooltip := app.Elem("sp-tooltip")
 
-	if t.placement != "" {
-		tooltip = tooltip.Attr("placement", string(t.placement))
+	// Set attributes based on properties
+	if t.PropOpen {
+		tooltip = tooltip.Attr("open", true)
 	}
 
-	if t.offset != 0 {
-		tooltip = tooltip.Attr("offset", t.offset)
+	if t.PropPlacement != "" {
+		tooltip = tooltip.Attr("placement", string(t.PropPlacement))
 	}
 
-	if t.tipPadding != 0 {
-		tooltip = tooltip.Attr("tipPadding", t.tipPadding)
+	if t.PropOffset != 0 {
+		tooltip = tooltip.Attr("offset", t.PropOffset)
 	}
 
-	if t.variant != "" {
-		tooltip = tooltip.Attr("variant", string(t.variant))
+	if t.PropSelfManaged {
+		tooltip = tooltip.Attr("self-managed", true)
 	}
 
-	if t.slot != "" {
-		tooltip = tooltip.Attr("slot", t.slot)
+	if t.PropTipPadding != 0 {
+		tooltip = tooltip.Attr("tip-padding", t.PropTipPadding)
 	}
 
-	// Add elements
+	if t.PropVariant != "" {
+		tooltip = tooltip.Attr("variant", string(t.PropVariant))
+	}
+
+	if t.PropSlot != "" {
+		tooltip = tooltip.Attr("slot", t.PropSlot)
+	}
+
+	// Handle content
 	elements := []app.UI{}
 
 	// Add icon if provided
-	if t.icon != nil {
-		iconElem := t.icon
-		if iconWithSlot, ok := iconElem.(interface{ Slot(string) app.UI }); ok {
-			iconElem = iconWithSlot.Slot("icon")
+	if t.PropIcon != nil {
+		icon := t.PropIcon
+		if iconWithSlot, ok := icon.(interface{ Slot(string) app.UI }); ok {
+			icon = iconWithSlot.Slot("icon")
 		} else {
-			iconElem = app.Elem("div").
+			icon = app.Elem("div").
 				Attr("slot", "icon").
-				Body(iconElem)
+				Body(icon)
 		}
-		elements = append(elements, iconElem)
+		elements = append(elements, icon)
 	}
 
-	// Handle content in the right order of precedence
-	if t.child != nil {
-		elements = append(elements, t.child)
-	} else if t.innerHTML != "" {
-		elements = append(elements, app.Raw(t.innerHTML))
-	} else if t.content != "" {
-		elements = append(elements, app.Text(t.content))
+	// Add content or child element
+	if t.PropContent != "" {
+		// Use text content if provided
+		elements = append(elements, app.Text(t.PropContent))
+	} else if t.PropInnerHTML != "" {
+		// Use innerHTML if provided
+		elements = append(elements, app.Raw(t.PropInnerHTML))
+	} else if t.PropChild != nil {
+		// Use child element if provided
+		elements = append(elements, t.PropChild)
 	}
 
 	// Add all elements to the tooltip

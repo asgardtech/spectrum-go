@@ -11,108 +11,108 @@ const (
 	AlertBannerVariantNegative AlertBannerVariant = "negative"
 )
 
-// SpectrumAlertBanner represents an sp-alert-banner component
-type SpectrumAlertBanner struct {
+// spectrumAlertBanner represents an sp-alert-banner component
+type spectrumAlertBanner struct {
 	app.Compo
 
 	// Properties
-	dismissible bool
-	open        bool
-	variant     AlertBannerVariant
+	PropDismissible bool
+	PropOpen        bool
+	PropVariant     AlertBannerVariant
 
 	// Event handlers
-	onClose app.EventHandler
+	PropOnClose app.EventHandler
 
 	// Content
-	content   string
-	innerHTML string
-	action    app.UI
-	child     app.UI
+	PropContent   string
+	PropInnerHTML string
+	PropAction    app.UI
+	PropChild     app.UI
 }
 
 // AlertBanner creates a new alert banner component
-func AlertBanner() *SpectrumAlertBanner {
-	return &SpectrumAlertBanner{}
+func AlertBanner() *spectrumAlertBanner {
+	return &spectrumAlertBanner{}
 }
 
 // Dismissible sets whether the alert banner should include a close button
-func (a *SpectrumAlertBanner) Dismissible(dismissible bool) *SpectrumAlertBanner {
-	a.dismissible = dismissible
+func (a *spectrumAlertBanner) Dismissible(dismissible bool) *spectrumAlertBanner {
+	a.PropDismissible = dismissible
 	return a
 }
 
 // Open sets whether the alert banner is visible
-func (a *SpectrumAlertBanner) Open(open bool) *SpectrumAlertBanner {
-	a.open = open
+func (a *spectrumAlertBanner) Open(open bool) *spectrumAlertBanner {
+	a.PropOpen = open
 	return a
 }
 
 // Variant sets the visual variant of the alert banner
-func (a *SpectrumAlertBanner) Variant(variant AlertBannerVariant) *SpectrumAlertBanner {
-	a.variant = variant
+func (a *spectrumAlertBanner) Variant(variant AlertBannerVariant) *spectrumAlertBanner {
+	a.PropVariant = variant
 	return a
 }
 
 // OnClose sets the close event handler
-func (a *SpectrumAlertBanner) OnClose(handler app.EventHandler) *SpectrumAlertBanner {
-	a.onClose = handler
+func (a *spectrumAlertBanner) OnClose(handler app.EventHandler) *spectrumAlertBanner {
+	a.PropOnClose = handler
 	return a
 }
 
 // Content sets the text content of the alert banner
-func (a *SpectrumAlertBanner) Content(content string) *SpectrumAlertBanner {
-	a.content = content
+func (a *spectrumAlertBanner) Content(content string) *spectrumAlertBanner {
+	a.PropContent = content
 	return a
 }
 
 // InnerHTML sets the inner HTML of the alert banner
-func (a *SpectrumAlertBanner) InnerHTML(html string) *SpectrumAlertBanner {
-	a.innerHTML = html
+func (a *spectrumAlertBanner) InnerHTML(html string) *spectrumAlertBanner {
+	a.PropInnerHTML = html
 	return a
 }
 
 // Action sets the action button UI element in the action slot
-func (a *SpectrumAlertBanner) Action(action app.UI) *SpectrumAlertBanner {
-	a.action = action
+func (a *spectrumAlertBanner) Action(action app.UI) *spectrumAlertBanner {
+	a.PropAction = action
 	return a
 }
 
 // Child sets a UI element as the child of the alert banner
-func (a *SpectrumAlertBanner) Child(child app.UI) *SpectrumAlertBanner {
-	a.child = child
+func (a *spectrumAlertBanner) Child(child app.UI) *spectrumAlertBanner {
+	a.PropChild = child
 	return a
 }
 
 // Render renders the alert banner component
-func (a *SpectrumAlertBanner) Render() app.UI {
+func (a *spectrumAlertBanner) Render() app.UI {
 	alertBanner := app.Elem("sp-alert-banner").
-		Attr("dismissible", a.dismissible).
-		Attr("open", a.open)
+		Attr("dismissible", a.PropDismissible).
+		Attr("open", a.PropOpen)
 
-	if a.variant != "" {
-		alertBanner = alertBanner.Attr("variant", string(a.variant))
+	if a.PropVariant != "" {
+		alertBanner = alertBanner.Attr("variant", string(a.PropVariant))
 	}
 
 	// Add event handlers
-	if a.onClose != nil {
-		alertBanner = alertBanner.On("close", a.onClose)
+	if a.PropOnClose != nil {
+		alertBanner = alertBanner.On("close", a.PropOnClose)
 	}
 
 	// Create elements array for children
 	elements := []app.UI{}
 
 	// Add content or child
-	if a.child != nil {
-		elements = append(elements, a.child)
-	} else if a.innerHTML != "" {
-		elements = append(elements, app.Raw(a.innerHTML))
-	} else if a.content != "" {
-		elements = append(elements, app.Text(a.content))
+	if a.PropChild != nil {
+		elements = append(elements, a.PropChild)
+	} else if a.PropInnerHTML != "" {
+		elements = append(elements, app.Raw(a.PropInnerHTML))
+	} else if a.PropContent != "" {
+		elements = append(elements, app.Text(a.PropContent))
 	}
 
 	// Add action button if provided
-	if a.action != nil {
-		actionElem := a.action
+	if a.PropAction != nil {
+		actionElem := a.PropAction
 		if actionWithSlot, ok := actionElem.(interface{ Slot(string) app.UI }); ok {
 			actionElem = actionWithSlot.Slot("action")
 		} else {

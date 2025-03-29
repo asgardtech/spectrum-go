@@ -2,177 +2,173 @@ package sp
 
 import "github.com/maxence-charriere/go-app/v10/pkg/app"
 
-// SpectrumMenu represents an sp-menu component
-type SpectrumMenu struct {
+// spectrumMenu represents an sp-menu component
+type spectrumMenu struct {
 	app.Compo
 
 	// Properties
-	label          string
-	ignore         bool
-	selects        MenuSelects
-	value          string
-	valueSeparator string
+	PropLabel          string
+	PropIgnore         bool
+	PropSelects        string
+	PropValue          string
+	PropValueSeparator string
 
-	// Children
-	menuItems    []*SpectrumMenuItem
-	menuGroups   []*SpectrumMenuGroup
-	menuDividers []*SpectrumMenuDivider
-	customItems  []app.UI
+	// Collections
+	PropMenuItems    []app.UI
+	PropMenuGroups   []app.UI
+	PropMenuDividers []app.UI
+	PropCustomItems  []app.UI
 
 	// Event handlers
-	onChange app.EventHandler
-	onClose  app.EventHandler
+	PropOnChange app.EventHandler
+	PropOnClose  app.EventHandler
 }
 
 // Menu creates a new menu component
-func Menu() *SpectrumMenu {
-	return &SpectrumMenu{
-		valueSeparator: ",", // Default value separator
+func Menu() *spectrumMenu {
+	return &spectrumMenu{}
+}
+
+// Label sets the menu label
+func (m *spectrumMenu) Label(label string) *spectrumMenu {
+	m.PropLabel = label
+	return m
+}
+
+// Ignore sets whether the menu should ignore keyboard focus navigation
+func (m *spectrumMenu) Ignore(ignore bool) *spectrumMenu {
+	m.PropIgnore = ignore
+	return m
+}
+
+// Selects sets the selection mode
+func (m *spectrumMenu) Selects(selects string) *spectrumMenu {
+	m.PropSelects = selects
+	return m
+}
+
+// Value sets the selected value(s)
+func (m *spectrumMenu) Value(value string) *spectrumMenu {
+	m.PropValue = value
+	return m
+}
+
+// ValueSeparator sets the separator character for multiple selection values
+func (m *spectrumMenu) ValueSeparator(separator string) *spectrumMenu {
+	m.PropValueSeparator = separator
+	return m
+}
+
+// Items adds menu items to the menu
+func (m *spectrumMenu) Items(items ...*spectrumMenuItem) *spectrumMenu {
+	for _, item := range items {
+		m.PropMenuItems = append(m.PropMenuItems, item)
 	}
-}
-
-// Label sets the label of the menu
-func (m *SpectrumMenu) Label(label string) *SpectrumMenu {
-	m.label = label
 	return m
 }
 
-// Ignore sets whether menu should be ignored by roving tabindex controller
-func (m *SpectrumMenu) Ignore(ignore bool) *SpectrumMenu {
-	m.ignore = ignore
-	return m
-}
-
-// Selects sets how the menu allows selection of its items
-func (m *SpectrumMenu) Selects(selects MenuSelects) *SpectrumMenu {
-	m.selects = selects
-	return m
-}
-
-// Value sets the value of the selected item(s)
-func (m *SpectrumMenu) Value(value string) *SpectrumMenu {
-	m.value = value
-	return m
-}
-
-// ValueSeparator sets the separator for multiple values
-func (m *SpectrumMenu) ValueSeparator(separator string) *SpectrumMenu {
-	m.valueSeparator = separator
-	return m
-}
-
-// Items sets the menu items
-func (m *SpectrumMenu) Items(items ...*SpectrumMenuItem) *SpectrumMenu {
-	m.menuItems = items
-	return m
-}
-
-// Groups sets the menu groups
-func (m *SpectrumMenu) Groups(groups ...*SpectrumMenuGroup) *SpectrumMenu {
-	m.menuGroups = groups
+// Groups adds menu groups to the menu
+func (m *spectrumMenu) Groups(groups ...app.UI) *spectrumMenu {
+	for _, group := range groups {
+		m.PropMenuGroups = append(m.PropMenuGroups, group)
+	}
 	return m
 }
 
 // Divider adds a menu divider
-func (m *SpectrumMenu) Divider() *SpectrumMenu {
-	m.menuDividers = append(m.menuDividers, MenuDivider())
+func (m *spectrumMenu) Divider(divider app.UI) *spectrumMenu {
+	m.PropMenuDividers = append(m.PropMenuDividers, divider)
 	return m
 }
 
-// DividerWithSize adds a menu divider with a specific size
-func (m *SpectrumMenu) DividerWithSize(size string) *SpectrumMenu {
-	m.menuDividers = append(m.menuDividers, MenuDivider().Size(size))
-	return m
-}
-
-// CustomItem adds a custom UI element to the menu
-func (m *SpectrumMenu) CustomItem(item app.UI) *SpectrumMenu {
-	m.customItems = append(m.customItems, item)
+// CustomItem adds a custom item
+func (m *spectrumMenu) CustomItem(item app.UI) *spectrumMenu {
+	m.PropCustomItems = append(m.PropCustomItems, item)
 	return m
 }
 
 // OnChange sets the change event handler
-func (m *SpectrumMenu) OnChange(handler app.EventHandler) *SpectrumMenu {
-	m.onChange = handler
+func (m *spectrumMenu) OnChange(handler app.EventHandler) *spectrumMenu {
+	m.PropOnChange = handler
 	return m
 }
 
 // OnClose sets the close event handler
-func (m *SpectrumMenu) OnClose(handler app.EventHandler) *SpectrumMenu {
-	m.onClose = handler
+func (m *spectrumMenu) OnClose(handler app.EventHandler) *spectrumMenu {
+	m.PropOnClose = handler
 	return m
 }
 
-// SelectsInherit sets selects to "inherit"
-func (m *SpectrumMenu) SelectsInherit() *SpectrumMenu {
-	return m.Selects(MenuSelectsInherit)
+// SelectsNone sets the selection mode to none
+func (m *spectrumMenu) SelectsNone() *spectrumMenu {
+	return m.Selects("none")
 }
 
-// SelectsSingle sets selects to "single"
-func (m *SpectrumMenu) SelectsSingle() *SpectrumMenu {
-	return m.Selects(MenuSelectsSingle)
+// SelectsSingle sets the selection mode to single
+func (m *spectrumMenu) SelectsSingle() *spectrumMenu {
+	return m.Selects("single")
 }
 
-// SelectsMultiple sets selects to "multiple"
-func (m *SpectrumMenu) SelectsMultiple() *SpectrumMenu {
-	return m.Selects(MenuSelectsMultiple)
+// SelectsMultiple sets the selection mode to multiple
+func (m *spectrumMenu) SelectsMultiple() *spectrumMenu {
+	return m.Selects("multiple")
 }
 
 // Render renders the menu component
-func (m *SpectrumMenu) Render() app.UI {
+func (m *spectrumMenu) Render() app.UI {
 	menu := app.Elem("sp-menu")
 
 	// Set attributes
-	if m.label != "" {
-		menu = menu.Attr("label", m.label)
+	if m.PropLabel != "" {
+		menu = menu.Attr("label", m.PropLabel)
 	}
-	if m.ignore {
+	if m.PropIgnore {
 		menu = menu.Attr("ignore", true)
 	}
-	if m.selects != "" {
-		menu = menu.Attr("selects", string(m.selects))
+	if m.PropSelects != "" {
+		menu = menu.Attr("selects", m.PropSelects)
 	}
-	if m.value != "" {
-		menu = menu.Attr("value", m.value)
+	if m.PropValue != "" {
+		menu = menu.Attr("value", m.PropValue)
 	}
-	if m.valueSeparator != "," { // Only set if not the default
-		menu = menu.Attr("value-separator", m.valueSeparator)
+	if m.PropValueSeparator != "" {
+		menu = menu.Attr("value-separator", m.PropValueSeparator)
 	}
 
 	// Add event handlers
-	if m.onChange != nil {
-		menu = menu.On("change", m.onChange)
+	if m.PropOnChange != nil {
+		menu = menu.On("change", m.PropOnChange)
 	}
-	if m.onClose != nil {
-		menu = menu.On("close", m.onClose)
+	if m.PropOnClose != nil {
+		menu = menu.On("close", m.PropOnClose)
 	}
 
-	// Collect all children elements
-	var children []app.UI
+	// Gather all menu items, groups, dividers and custom items
+	var elements []app.UI
 
 	// Add menu items
-	for _, item := range m.menuItems {
-		children = append(children, item)
+	for _, item := range m.PropMenuItems {
+		elements = append(elements, item)
 	}
 
 	// Add menu groups
-	for _, group := range m.menuGroups {
-		children = append(children, group)
+	for _, group := range m.PropMenuGroups {
+		elements = append(elements, group)
 	}
 
 	// Add menu dividers
-	for _, divider := range m.menuDividers {
-		children = append(children, divider)
+	for _, divider := range m.PropMenuDividers {
+		elements = append(elements, divider)
 	}
 
 	// Add custom items
-	for _, item := range m.customItems {
-		children = append(children, item)
+	for _, item := range m.PropCustomItems {
+		elements = append(elements, item)
 	}
 
-	// Add all children to the menu
-	if len(children) > 0 {
-		menu = menu.Body(children...)
+	// Add all elements to the menu
+	if len(elements) > 0 {
+		menu = menu.Body(elements...)
 	}
 
 	return menu

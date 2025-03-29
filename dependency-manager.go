@@ -2,145 +2,145 @@ package sp
 
 import "github.com/maxence-charriere/go-app/v10/pkg/app"
 
-// DependencyManager represents a manager for component dependencies
-type DependencyManager struct {
+// spectrumDependencyManager represents a manager for component dependencies
+type spectrumDependencyManager struct {
 	app.Compo
 
 	// Properties
-	dependencies       map[string]bool
-	onDependencyChange app.EventHandler
+	PropDependencies       map[string]bool
+	PropOnDependencyChange app.EventHandler
 
 	// Children
-	children []app.UI
+	PropChildren []app.UI
 }
 
 // NewDependencyManager creates a new dependency manager component
-func NewDependencyManager() *DependencyManager {
-	return &DependencyManager{
-		dependencies: make(map[string]bool),
+func NewDependencyManager() *spectrumDependencyManager {
+	return &spectrumDependencyManager{
+		PropDependencies: make(map[string]bool),
 	}
 }
 
 // AddDependency adds a dependency
-func (d *DependencyManager) AddDependency(name string) *DependencyManager {
-	d.dependencies[name] = true
+func (d *spectrumDependencyManager) AddDependency(name string) *spectrumDependencyManager {
+	d.PropDependencies[name] = true
 	return d
 }
 
 // RemoveDependency removes a dependency
-func (d *DependencyManager) RemoveDependency(name string) *DependencyManager {
-	delete(d.dependencies, name)
+func (d *spectrumDependencyManager) RemoveDependency(name string) *spectrumDependencyManager {
+	delete(d.PropDependencies, name)
 	return d
 }
 
 // HasDependency checks if a dependency exists
-func (d *DependencyManager) HasDependency(name string) bool {
-	return d.dependencies[name]
+func (d *spectrumDependencyManager) HasDependency(name string) bool {
+	return d.PropDependencies[name]
 }
 
 // ClearDependencies clears all dependencies
-func (d *DependencyManager) ClearDependencies() *DependencyManager {
-	d.dependencies = make(map[string]bool)
+func (d *spectrumDependencyManager) ClearDependencies() *spectrumDependencyManager {
+	d.PropDependencies = make(map[string]bool)
 	return d
 }
 
 // OnDependencyChange sets the dependency change event handler
-func (d *DependencyManager) OnDependencyChange(handler app.EventHandler) *DependencyManager {
-	d.onDependencyChange = handler
+func (d *spectrumDependencyManager) OnDependencyChange(handler app.EventHandler) *spectrumDependencyManager {
+	d.PropOnDependencyChange = handler
 	return d
 }
 
 // Child adds a child element
-func (d *DependencyManager) Child(child app.UI) *DependencyManager {
-	d.children = append(d.children, child)
+func (d *spectrumDependencyManager) Child(child app.UI) *spectrumDependencyManager {
+	d.PropChildren = append(d.PropChildren, child)
 	return d
 }
 
 // Children adds multiple child elements
-func (d *DependencyManager) Children(children ...app.UI) *DependencyManager {
-	d.children = append(d.children, children...)
+func (d *spectrumDependencyManager) Children(children ...app.UI) *spectrumDependencyManager {
+	d.PropChildren = append(d.PropChildren, children...)
 	return d
 }
 
 // Render renders the dependency manager component
-func (d *DependencyManager) Render() app.UI {
+func (d *spectrumDependencyManager) Render() app.UI {
 	manager := app.Elem("div")
 
 	// Set dependencies
-	for name := range d.dependencies {
+	for name := range d.PropDependencies {
 		manager = manager.Attr("data-dependency", name)
 	}
 
 	// Add event handler
-	if d.onDependencyChange != nil {
-		manager = manager.On("dependency-change", d.onDependencyChange)
+	if d.PropOnDependencyChange != nil {
+		manager = manager.On("dependency-change", d.PropOnDependencyChange)
 	}
 
 	// Add children if provided
-	if len(d.children) > 0 {
-		manager = manager.Body(d.children...)
+	if len(d.PropChildren) > 0 {
+		manager = manager.Body(d.PropChildren...)
 	}
 
 	return manager
 }
 
-// DependencyController represents a controller for managing component dependencies
-type DependencyController struct {
+// spectrumDependencyController represents a controller for managing component dependencies
+type spectrumDependencyController struct {
 	app.Compo
 
 	// Properties
-	manager            *DependencyManager
-	onDependencyChange app.EventHandler
+	PropManager            *spectrumDependencyManager
+	PropOnDependencyChange app.EventHandler
 
 	// Children
-	children []app.UI
+	PropChildren []app.UI
 }
 
 // NewDependencyController creates a new dependency controller component
-func NewDependencyController() *DependencyController {
-	return &DependencyController{
-		manager: NewDependencyManager(),
+func NewDependencyController() *spectrumDependencyController {
+	return &spectrumDependencyController{
+		PropManager: NewDependencyManager(),
 	}
 }
 
 // Manager returns the dependency manager
-func (c *DependencyController) Manager() *DependencyManager {
-	return c.manager
+func (c *spectrumDependencyController) Manager() *spectrumDependencyManager {
+	return c.PropManager
 }
 
 // OnDependencyChange sets the dependency change event handler
-func (c *DependencyController) OnDependencyChange(handler app.EventHandler) *DependencyController {
-	c.onDependencyChange = handler
+func (c *spectrumDependencyController) OnDependencyChange(handler app.EventHandler) *spectrumDependencyController {
+	c.PropOnDependencyChange = handler
 	return c
 }
 
 // Child adds a child element
-func (c *DependencyController) Child(child app.UI) *DependencyController {
-	c.children = append(c.children, child)
+func (c *spectrumDependencyController) Child(child app.UI) *spectrumDependencyController {
+	c.PropChildren = append(c.PropChildren, child)
 	return c
 }
 
 // Children adds multiple child elements
-func (c *DependencyController) Children(children ...app.UI) *DependencyController {
-	c.children = append(c.children, children...)
+func (c *spectrumDependencyController) Children(children ...app.UI) *spectrumDependencyController {
+	c.PropChildren = append(c.PropChildren, children...)
 	return c
 }
 
 // Render renders the dependency controller component
-func (c *DependencyController) Render() app.UI {
+func (c *spectrumDependencyController) Render() app.UI {
 	controller := app.Elem("div")
 
 	// Add manager
-	controller = controller.Body(c.manager)
+	controller = controller.Body(c.PropManager)
 
 	// Add event handler
-	if c.onDependencyChange != nil {
-		controller = controller.On("dependency-change", c.onDependencyChange)
+	if c.PropOnDependencyChange != nil {
+		controller = controller.On("dependency-change", c.PropOnDependencyChange)
 	}
 
 	// Add children if provided
-	if len(c.children) > 0 {
-		controller = controller.Body(c.children...)
+	if len(c.PropChildren) > 0 {
+		controller = controller.Body(c.PropChildren...)
 	}
 
 	return controller

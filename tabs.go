@@ -22,144 +22,144 @@ const (
 	TabsDirectionVerticalRight TabsDirection = "vertical-right"
 )
 
-// SpectrumTabs represents a tabbed interface with tabs and panels
-type SpectrumTabs struct {
+// spectrumTabs represents a tabbed interface with tabs and panels
+type spectrumTabs struct {
 	app.Compo
 
 	// Properties
-	selected         string
-	size             TabsSize
-	direction        TabsDirection
-	auto             bool
-	compact          bool
-	disabled         bool
-	emphasized       bool
-	quiet            bool
-	enableTabsScroll bool
-	label            string
+	PropSelected         string
+	PropSize             TabsSize
+	PropDirection        TabsDirection
+	PropAuto             bool
+	PropCompact          bool
+	PropDisabled         bool
+	PropEmphasized       bool
+	PropQuiet            bool
+	PropEnableTabsScroll bool
+	PropLabel            string
 
 	// Child elements
-	tabs      []app.UI
-	tabPanels []app.UI
+	PropTabs      []app.UI
+	PropTabPanels []app.UI
 }
 
 // Tabs creates a new tabs component
-func Tabs() *SpectrumTabs {
-	return &SpectrumTabs{
-		direction: TabsDirectionHorizontal,
-		size:      TabsSizeM,
+func Tabs() *spectrumTabs {
+	return &spectrumTabs{
+		PropDirection: TabsDirectionHorizontal,
+		PropSize:      TabsSizeM,
 	}
 }
 
 // Selected sets the value of the selected tab
-func (t *SpectrumTabs) Selected(value string) *SpectrumTabs {
-	t.selected = value
+func (t *spectrumTabs) Selected(value string) *spectrumTabs {
+	t.PropSelected = value
 	return t
 }
 
 // Size sets the visual size of the tabs
-func (t *SpectrumTabs) Size(size TabsSize) *SpectrumTabs {
-	t.size = size
+func (t *spectrumTabs) Size(size TabsSize) *spectrumTabs {
+	t.PropSize = size
 	return t
 }
 
 // Direction sets the direction of the tabs
-func (t *SpectrumTabs) Direction(direction TabsDirection) *SpectrumTabs {
-	t.direction = direction
+func (t *spectrumTabs) Direction(direction TabsDirection) *spectrumTabs {
+	t.PropDirection = direction
 	return t
 }
 
 // Auto sets whether tabs are automatically activated on keyboard focus
-func (t *SpectrumTabs) Auto(auto bool) *SpectrumTabs {
-	t.auto = auto
+func (t *spectrumTabs) Auto(auto bool) *spectrumTabs {
+	t.PropAuto = auto
 	return t
 }
 
 // Compact sets whether the tabs are displayed more compactly
-func (t *SpectrumTabs) Compact(compact bool) *SpectrumTabs {
-	t.compact = compact
+func (t *spectrumTabs) Compact(compact bool) *spectrumTabs {
+	t.PropCompact = compact
 	return t
 }
 
 // Disabled sets whether the tabs component is disabled
-func (t *SpectrumTabs) Disabled(disabled bool) *SpectrumTabs {
-	t.disabled = disabled
+func (t *spectrumTabs) Disabled(disabled bool) *spectrumTabs {
+	t.PropDisabled = disabled
 	return t
 }
 
 // Emphasized sets whether the tabs should have an emphasized appearance
-func (t *SpectrumTabs) Emphasized(emphasized bool) *SpectrumTabs {
-	t.emphasized = emphasized
+func (t *spectrumTabs) Emphasized(emphasized bool) *spectrumTabs {
+	t.PropEmphasized = emphasized
 	return t
 }
 
 // Quiet sets whether the tabs have a quiet appearance without a border
-func (t *SpectrumTabs) Quiet(quiet bool) *SpectrumTabs {
-	t.quiet = quiet
+func (t *spectrumTabs) Quiet(quiet bool) *spectrumTabs {
+	t.PropQuiet = quiet
 	return t
 }
 
 // EnableTabsScroll sets whether tabs can be scrolled
-func (t *SpectrumTabs) EnableTabsScroll(enable bool) *SpectrumTabs {
-	t.enableTabsScroll = enable
+func (t *spectrumTabs) EnableTabsScroll(enable bool) *spectrumTabs {
+	t.PropEnableTabsScroll = enable
 	return t
 }
 
 // Label sets the accessible label for the tabs component
-func (t *SpectrumTabs) Label(label string) *SpectrumTabs {
-	t.label = label
+func (t *spectrumTabs) Label(label string) *spectrumTabs {
+	t.PropLabel = label
 	return t
 }
 
 // Tab adds a tab to the tabs component
-func (t *SpectrumTabs) Tab(tab *SpectrumTab) *SpectrumTabs {
-	t.tabs = append(t.tabs, tab)
+func (t *spectrumTabs) Tab(tab *spectrumTab) *spectrumTabs {
+	t.PropTabs = append(t.PropTabs, tab)
 	return t
 }
 
 // TabPanel adds a tab panel to the tabs component
-func (t *SpectrumTabs) TabPanel(panel *SpectrumTabPanel) *SpectrumTabs {
-	t.tabPanels = append(t.tabPanels, panel)
+func (t *spectrumTabs) TabPanel(panel *spectrumTabPanel) *spectrumTabs {
+	t.PropTabPanels = append(t.PropTabPanels, panel)
 	return t
 }
 
 // Render renders the tabs component
-func (t *SpectrumTabs) Render() app.UI {
+func (t *spectrumTabs) Render() app.UI {
 	tabs := app.Elem("sp-tabs").
-		Attr("size", string(t.size)).
-		Attr("direction", string(t.direction))
+		Attr("size", string(t.PropSize)).
+		Attr("direction", string(t.PropDirection))
 
-	if t.selected != "" {
-		tabs = tabs.Attr("selected", t.selected)
+	if t.PropSelected != "" {
+		tabs = tabs.Attr("selected", t.PropSelected)
 	}
-	if t.auto {
+	if t.PropAuto {
 		tabs = tabs.Attr("auto", "")
 	}
-	if t.compact {
+	if t.PropCompact {
 		tabs = tabs.Attr("compact", "")
 	}
-	if t.disabled {
+	if t.PropDisabled {
 		tabs = tabs.Attr("disabled", "")
 	}
-	if t.emphasized {
+	if t.PropEmphasized {
 		tabs = tabs.Attr("emphasized", "")
 	}
-	if t.enableTabsScroll {
+	if t.PropEnableTabsScroll {
 		tabs = tabs.Attr("enableTabsScroll", "")
 	}
-	if t.quiet {
+	if t.PropQuiet {
 		tabs = tabs.Attr("quiet", "")
 	}
-	if t.label != "" {
-		tabs = tabs.Attr("label", t.label)
+	if t.PropLabel != "" {
+		tabs = tabs.Attr("label", t.PropLabel)
 	}
 
 	// Add tab elements first
 	elements := []app.UI{}
-	elements = append(elements, t.tabs...)
+	elements = append(elements, t.PropTabs...)
 
 	// Then add tab panels
-	elements = append(elements, t.tabPanels...)
+	elements = append(elements, t.PropTabPanels...)
 
 	// Add all elements to the tabs
 	if len(elements) > 0 {

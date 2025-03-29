@@ -2,170 +2,170 @@ package sp
 
 import "github.com/maxence-charriere/go-app/v10/pkg/app"
 
-// SpectrumSidenavItem represents an sp-sidenav-item component
-type SpectrumSidenavItem struct {
+// spectrumSidenavItem represents an sp-sidenav-item component
+type spectrumSidenavItem struct {
 	app.Compo
 
 	// Properties
-	disabled       bool
-	download       string
-	expanded       bool
-	href           string
-	label          string
-	referrerpolicy string
-	rel            string
-	selected       bool
-	tabIndex       int
-	target         string
-	value          string
+	PropDisabled       bool
+	PropDownload       string
+	PropExpanded       bool
+	PropHref           string
+	PropLabel          string
+	PropReferrerpolicy string
+	PropRel            string
+	PropSelected       bool
+	PropTabIndex       int
+	PropTarget         string
+	PropValue          string
 
 	// Slots
-	icon     app.UI
-	children []*SpectrumSidenavItem
+	PropIcon     app.UI
+	PropChildren []*spectrumSidenavItem
 
 	// Event handlers
-	onClick app.EventHandler
+	PropOnClick app.EventHandler
 }
 
 // SidenavItem creates a new sidenav item component
-func SidenavItem() *SpectrumSidenavItem {
-	return &SpectrumSidenavItem{}
+func SidenavItem() *spectrumSidenavItem {
+	return &spectrumSidenavItem{}
 }
 
 // Disabled sets whether the item is disabled
-func (si *SpectrumSidenavItem) Disabled(disabled bool) *SpectrumSidenavItem {
-	si.disabled = disabled
+func (si *spectrumSidenavItem) Disabled(disabled bool) *spectrumSidenavItem {
+	si.PropDisabled = disabled
 	return si
 }
 
 // Download sets the download attribute
-func (si *SpectrumSidenavItem) Download(download string) *SpectrumSidenavItem {
-	si.download = download
+func (si *spectrumSidenavItem) Download(download string) *spectrumSidenavItem {
+	si.PropDownload = download
 	return si
 }
 
 // Expanded sets whether the item is expanded to show child items
-func (si *SpectrumSidenavItem) Expanded(expanded bool) *SpectrumSidenavItem {
-	si.expanded = expanded
+func (si *spectrumSidenavItem) Expanded(expanded bool) *spectrumSidenavItem {
+	si.PropExpanded = expanded
 	return si
 }
 
 // Href sets the URL the item points to
-func (si *SpectrumSidenavItem) Href(href string) *SpectrumSidenavItem {
-	si.href = href
+func (si *spectrumSidenavItem) Href(href string) *spectrumSidenavItem {
+	si.PropHref = href
 	return si
 }
 
 // Label sets the accessible label for the item
-func (si *SpectrumSidenavItem) Label(label string) *SpectrumSidenavItem {
-	si.label = label
+func (si *spectrumSidenavItem) Label(label string) *spectrumSidenavItem {
+	si.PropLabel = label
 	return si
 }
 
 // Referrerpolicy sets the referrer policy for the item
-func (si *SpectrumSidenavItem) Referrerpolicy(policy string) *SpectrumSidenavItem {
-	si.referrerpolicy = policy
+func (si *spectrumSidenavItem) Referrerpolicy(policy string) *spectrumSidenavItem {
+	si.PropReferrerpolicy = policy
 	return si
 }
 
 // Rel sets the relationship of the linked URL
-func (si *SpectrumSidenavItem) Rel(rel string) *SpectrumSidenavItem {
-	si.rel = rel
+func (si *spectrumSidenavItem) Rel(rel string) *spectrumSidenavItem {
+	si.PropRel = rel
 	return si
 }
 
 // Selected sets whether the item is selected
-func (si *SpectrumSidenavItem) Selected(selected bool) *SpectrumSidenavItem {
-	si.selected = selected
+func (si *spectrumSidenavItem) Selected(selected bool) *spectrumSidenavItem {
+	si.PropSelected = selected
 	return si
 }
 
 // TabIndex sets the tab index of the item
-func (si *SpectrumSidenavItem) TabIndex(tabIndex int) *SpectrumSidenavItem {
-	si.tabIndex = tabIndex
+func (si *spectrumSidenavItem) TabIndex(tabIndex int) *spectrumSidenavItem {
+	si.PropTabIndex = tabIndex
 	return si
 }
 
 // Target sets where to display the linked URL
-func (si *SpectrumSidenavItem) Target(target string) *SpectrumSidenavItem {
-	si.target = target
+func (si *spectrumSidenavItem) Target(target string) *spectrumSidenavItem {
+	si.PropTarget = target
 	return si
 }
 
 // Value sets the value of the item
-func (si *SpectrumSidenavItem) Value(value string) *SpectrumSidenavItem {
-	si.value = value
+func (si *spectrumSidenavItem) Value(value string) *spectrumSidenavItem {
+	si.PropValue = value
 	return si
 }
 
 // Icon sets content for the icon slot
-func (si *SpectrumSidenavItem) Icon(icon app.UI) *SpectrumSidenavItem {
-	si.icon = icon
+func (si *spectrumSidenavItem) Icon(icon app.UI) *spectrumSidenavItem {
+	si.PropIcon = icon
 	return si
 }
 
 // Children sets the child sidenav items
-func (si *SpectrumSidenavItem) Children(children ...*SpectrumSidenavItem) *SpectrumSidenavItem {
-	si.children = children
+func (si *spectrumSidenavItem) Children(children ...*spectrumSidenavItem) *spectrumSidenavItem {
+	si.PropChildren = children
 	return si
 }
 
 // OnClick sets the click event handler
-func (si *SpectrumSidenavItem) OnClick(handler app.EventHandler) *SpectrumSidenavItem {
-	si.onClick = handler
+func (si *spectrumSidenavItem) OnClick(handler app.EventHandler) *spectrumSidenavItem {
+	si.PropOnClick = handler
 	return si
 }
 
 // Render renders the sidenav item component
-func (si *SpectrumSidenavItem) Render() app.UI {
+func (si *spectrumSidenavItem) Render() app.UI {
 	sidenavItem := app.Elem("sp-sidenav-item")
 
 	// Set attributes
-	if si.disabled {
+	if si.PropDisabled {
 		sidenavItem = sidenavItem.Attr("disabled", true)
 	}
-	if si.download != "" {
-		sidenavItem = sidenavItem.Attr("download", si.download)
+	if si.PropDownload != "" {
+		sidenavItem = sidenavItem.Attr("download", si.PropDownload)
 	}
-	if si.expanded {
+	if si.PropExpanded {
 		sidenavItem = sidenavItem.Attr("expanded", true)
 	}
-	if si.href != "" {
-		sidenavItem = sidenavItem.Attr("href", si.href)
+	if si.PropHref != "" {
+		sidenavItem = sidenavItem.Attr("href", si.PropHref)
 	}
-	if si.label != "" {
-		sidenavItem = sidenavItem.Attr("label", si.label)
+	if si.PropLabel != "" {
+		sidenavItem = sidenavItem.Attr("label", si.PropLabel)
 	}
-	if si.referrerpolicy != "" {
-		sidenavItem = sidenavItem.Attr("referrerpolicy", si.referrerpolicy)
+	if si.PropReferrerpolicy != "" {
+		sidenavItem = sidenavItem.Attr("referrerpolicy", si.PropReferrerpolicy)
 	}
-	if si.rel != "" {
-		sidenavItem = sidenavItem.Attr("rel", si.rel)
+	if si.PropRel != "" {
+		sidenavItem = sidenavItem.Attr("rel", si.PropRel)
 	}
-	if si.selected {
+	if si.PropSelected {
 		sidenavItem = sidenavItem.Attr("selected", true)
 	}
-	if si.tabIndex != 0 {
-		sidenavItem = sidenavItem.Attr("tabIndex", si.tabIndex)
+	if si.PropTabIndex != 0 {
+		sidenavItem = sidenavItem.Attr("tabIndex", si.PropTabIndex)
 	}
-	if si.target != "" {
-		sidenavItem = sidenavItem.Attr("target", si.target)
+	if si.PropTarget != "" {
+		sidenavItem = sidenavItem.Attr("target", si.PropTarget)
 	}
-	if si.value != "" {
-		sidenavItem = sidenavItem.Attr("value", si.value)
+	if si.PropValue != "" {
+		sidenavItem = sidenavItem.Attr("value", si.PropValue)
 	}
 
 	// Add event handlers
-	if si.onClick != nil {
-		sidenavItem = sidenavItem.OnClick(si.onClick)
+	if si.PropOnClick != nil {
+		sidenavItem = sidenavItem.On("click", si.PropOnClick)
 	}
 
 	// Collect all elements
 	var elements []app.UI
 
 	// Add icon if provided
-	if si.icon != nil {
-		icon := si.icon
+	if si.PropIcon != nil {
+		icon := si.PropIcon
 		if iconWithSlot, ok := icon.(interface{ Slot(string) app.UI }); ok {
 			icon = iconWithSlot.Slot("icon")
 		} else {
@@ -177,10 +177,10 @@ func (si *SpectrumSidenavItem) Render() app.UI {
 	}
 
 	// Add child items if provided
-	if len(si.children) > 0 {
-		// Convert SpectrumSidenavItem children to app.UI
+	if len(si.PropChildren) > 0 {
+		// Convert spectrumSidenavItem children to app.UI
 		var items []app.UI
-		for _, child := range si.children {
+		for _, child := range si.PropChildren {
 			items = append(items, child)
 		}
 

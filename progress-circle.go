@@ -20,66 +20,66 @@ const (
 	ProgressCircleStaticColorWhite ProgressCircleStaticColor = "white"
 )
 
-// SpectrumProgressCircle represents an sp-progress-circle component
-type SpectrumProgressCircle struct {
+// spectrumProgressCircle represents an sp-progress-circle component
+type spectrumProgressCircle struct {
 	app.Compo
 
 	// Properties
-	size          ProgressCircleSize
-	label         string
-	progress      float64
-	indeterminate bool
-	staticColor   ProgressCircleStaticColor
+	PropSize          ProgressCircleSize
+	PropLabel         string
+	PropProgress      float64
+	PropIndeterminate bool
+	PropStaticColor   ProgressCircleStaticColor
 }
 
 // ProgressCircle creates a new progress circle component
-func ProgressCircle() *SpectrumProgressCircle {
-	return &SpectrumProgressCircle{
-		size: ProgressCircleSizeM, // Default size is medium
+func ProgressCircle() *spectrumProgressCircle {
+	return &spectrumProgressCircle{
+		PropSize: ProgressCircleSizeM, // Default size is medium
 	}
 }
 
 // Size sets the visual size of the progress circle
-func (p *SpectrumProgressCircle) Size(size ProgressCircleSize) *SpectrumProgressCircle {
-	p.size = size
+func (p *spectrumProgressCircle) Size(size ProgressCircleSize) *spectrumProgressCircle {
+	p.PropSize = size
 	return p
 }
 
 // Label sets the accessibility label
-func (p *SpectrumProgressCircle) Label(label string) *SpectrumProgressCircle {
-	p.label = label
+func (p *spectrumProgressCircle) Label(label string) *spectrumProgressCircle {
+	p.PropLabel = label
 	return p
 }
 
 // Progress sets the progress value (0-100)
-func (p *SpectrumProgressCircle) Progress(progress float64) *SpectrumProgressCircle {
-	p.progress = progress
+func (p *spectrumProgressCircle) Progress(progress float64) *spectrumProgressCircle {
+	p.PropProgress = progress
 	return p
 }
 
 // Indeterminate sets whether the progress circle shows indeterminate progress
-func (p *SpectrumProgressCircle) Indeterminate(indeterminate bool) *SpectrumProgressCircle {
-	p.indeterminate = indeterminate
+func (p *spectrumProgressCircle) Indeterminate(indeterminate bool) *spectrumProgressCircle {
+	p.PropIndeterminate = indeterminate
 	return p
 }
 
 // StaticColor sets the static color for use over backgrounds
-func (p *SpectrumProgressCircle) StaticColor(color ProgressCircleStaticColor) *SpectrumProgressCircle {
-	p.staticColor = color
+func (p *spectrumProgressCircle) StaticColor(color ProgressCircleStaticColor) *spectrumProgressCircle {
+	p.PropStaticColor = color
 	return p
 }
 
 // Render renders the progress circle component
-func (p *SpectrumProgressCircle) Render() app.UI {
+func (p *spectrumProgressCircle) Render() app.UI {
 	progressCircle := app.Elem("sp-progress-circle").
-		Attr("size", string(p.size)).
-		Attr("progress", p.progress).
-		Attr("indeterminate", p.indeterminate).
-		Attr("static-color", string(p.staticColor))
+		Attr("size", string(p.PropSize)).
+		Attr("progress", p.PropProgress).
+		Attr("indeterminate", p.PropIndeterminate).
+		Attr("static-color", string(p.PropStaticColor))
 
 	// Add label for accessibility
-	if p.label != "" {
-		progressCircle = progressCircle.Attr("label", p.label)
+	if p.PropLabel != "" {
+		progressCircle = progressCircle.Attr("label", p.PropLabel)
 	}
 
 	return progressCircle

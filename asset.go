@@ -2,7 +2,7 @@ package sp
 
 import "github.com/maxence-charriere/go-app/v10/pkg/app"
 
-// AssetVariant represents the variant of a SpectrumAsset.
+// AssetVariant represents the variant of a spectrumAsset.
 type AssetVariant string
 
 const (
@@ -12,72 +12,72 @@ const (
 	AssetFolder AssetVariant = "folder"
 )
 
-// SpectrumAsset represents an sp-asset component
-type SpectrumAsset struct {
+// spectrumAsset represents an sp-asset component
+type spectrumAsset struct {
 	app.Compo
 
 	// Properties
-	label   string
-	variant AssetVariant
+	PropLabel   string
+	PropVariant AssetVariant
 
 	// Content
-	children []app.UI
+	PropChildren []app.UI
 }
 
 // Asset creates a new asset component
-func Asset() *SpectrumAsset {
-	return &SpectrumAsset{}
+func Asset() *spectrumAsset {
+	return &spectrumAsset{}
 }
 
 // Label sets the label for the asset
-func (a *SpectrumAsset) Label(label string) *SpectrumAsset {
-	a.label = label
+func (a *spectrumAsset) Label(label string) *spectrumAsset {
+	a.PropLabel = label
 	return a
 }
 
 // Variant sets the asset variant (file or folder)
-func (a *SpectrumAsset) Variant(variant AssetVariant) *SpectrumAsset {
-	a.variant = variant
+func (a *spectrumAsset) Variant(variant AssetVariant) *spectrumAsset {
+	a.PropVariant = variant
 	return a
 }
 
 // File sets the variant to "file"
-func (a *SpectrumAsset) File() *SpectrumAsset {
+func (a *spectrumAsset) File() *spectrumAsset {
 	return a.Variant(AssetFile)
 }
 
 // Folder sets the variant to "folder"
-func (a *SpectrumAsset) Folder() *SpectrumAsset {
+func (a *spectrumAsset) Folder() *spectrumAsset {
 	return a.Variant(AssetFolder)
 }
 
 // Children sets the child elements of the asset
-func (a *SpectrumAsset) Children(children ...app.UI) *SpectrumAsset {
-	a.children = children
+func (a *spectrumAsset) Children(children ...app.UI) *spectrumAsset {
+	a.PropChildren = children
 	return a
 }
 
 // Child adds a child element to the asset
-func (a *SpectrumAsset) Child(child app.UI) *SpectrumAsset {
-	a.children = append(a.children, child)
+func (a *spectrumAsset) Child(child app.UI) *spectrumAsset {
+	a.PropChildren = append(a.PropChildren, child)
 	return a
 }
 
 // Render renders the asset component
-func (a *SpectrumAsset) Render() app.UI {
+func (a *spectrumAsset) Render() app.UI {
 	asset := app.Elem("sp-asset")
 
 	// Set attributes
-	if a.label != "" {
-		asset = asset.Attr("label", a.label)
+	if a.PropLabel != "" {
+		asset = asset.Attr("label", a.PropLabel)
 	}
-	if a.variant != "" {
-		asset = asset.Attr("variant", string(a.variant))
+	if a.PropVariant != "" {
+		asset = asset.Attr("variant", string(a.PropVariant))
 	}
 
 	// Add children if provided
-	if len(a.children) > 0 {
-		asset = asset.Body(a.children...)
+	if len(a.PropChildren) > 0 {
+		asset = asset.Body(a.PropChildren...)
 	}
 
 	return asset

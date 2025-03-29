@@ -21,95 +21,95 @@ const (
 	ProgressBarStaticColorWhite ProgressBarStaticColor = "white"
 )
 
-// SpectrumProgressBar represents an sp-progress-bar component
-type SpectrumProgressBar struct {
+// spectrumProgressBar represents an sp-progress-bar component
+type spectrumProgressBar struct {
 	app.Compo
 
 	// Properties
-	size           ProgressBarSize
-	label          string
-	ariaLabel      string // Used when no visible label is desired
-	progress       float64
-	indeterminate  bool
-	overBackground bool
-	sideLabel      bool
-	staticColor    ProgressBarStaticColor
+	PropSize           ProgressBarSize
+	PropLabel          string
+	PropAriaLabel      string // Used when no visible label is desired
+	PropProgress       float64
+	PropIndeterminate  bool
+	PropOverBackground bool
+	PropSideLabel      bool
+	PropStaticColor    ProgressBarStaticColor
 }
 
 // ProgressBar creates a new progress bar component
-func ProgressBar() *SpectrumProgressBar {
-	return &SpectrumProgressBar{
-		size: ProgressBarSizeM, // Default size is medium
+func ProgressBar() *spectrumProgressBar {
+	return &spectrumProgressBar{
+		PropSize: ProgressBarSizeM, // Default size is medium
 	}
 }
 
 // Size sets the visual size of the progress bar
-func (p *SpectrumProgressBar) Size(size ProgressBarSize) *SpectrumProgressBar {
-	p.size = size
+func (p *spectrumProgressBar) Size(size ProgressBarSize) *spectrumProgressBar {
+	p.PropSize = size
 	return p
 }
 
 // Label sets the text label content
 // This label will be visible and also used for accessibility
-func (p *SpectrumProgressBar) Label(label string) *SpectrumProgressBar {
-	p.label = label
+func (p *spectrumProgressBar) Label(label string) *spectrumProgressBar {
+	p.PropLabel = label
 	return p
 }
 
 // AriaLabel sets the aria-label attribute
 // Use this when you don't want a visible label but still need accessibility
-func (p *SpectrumProgressBar) AriaLabel(label string) *SpectrumProgressBar {
-	p.ariaLabel = label
+func (p *spectrumProgressBar) AriaLabel(label string) *spectrumProgressBar {
+	p.PropAriaLabel = label
 	return p
 }
 
 // Progress sets the progress value (0-100)
-func (p *SpectrumProgressBar) Progress(progress float64) *SpectrumProgressBar {
-	p.progress = progress
+func (p *spectrumProgressBar) Progress(progress float64) *spectrumProgressBar {
+	p.PropProgress = progress
 	return p
 }
 
 // Indeterminate sets whether the progress bar shows indeterminate progress
-func (p *SpectrumProgressBar) Indeterminate(indeterminate bool) *SpectrumProgressBar {
-	p.indeterminate = indeterminate
+func (p *spectrumProgressBar) Indeterminate(indeterminate bool) *spectrumProgressBar {
+	p.PropIndeterminate = indeterminate
 	return p
 }
 
 // OverBackground sets whether the progress bar should be displayed over a background
-func (p *SpectrumProgressBar) OverBackground(overBackground bool) *SpectrumProgressBar {
-	p.overBackground = overBackground
+func (p *spectrumProgressBar) OverBackground(overBackground bool) *spectrumProgressBar {
+	p.PropOverBackground = overBackground
 	return p
 }
 
 // SideLabel sets whether the label should be displayed beside the progress bar
-func (p *SpectrumProgressBar) SideLabel(sideLabel bool) *SpectrumProgressBar {
-	p.sideLabel = sideLabel
+func (p *spectrumProgressBar) SideLabel(sideLabel bool) *spectrumProgressBar {
+	p.PropSideLabel = sideLabel
 	return p
 }
 
 // StaticColor sets the static color
-func (p *SpectrumProgressBar) StaticColor(color ProgressBarStaticColor) *SpectrumProgressBar {
-	p.staticColor = color
+func (p *spectrumProgressBar) StaticColor(color ProgressBarStaticColor) *spectrumProgressBar {
+	p.PropStaticColor = color
 	return p
 }
 
 // Render renders the progress bar component
-func (p *SpectrumProgressBar) Render() app.UI {
+func (p *spectrumProgressBar) Render() app.UI {
 	progressBar := app.Elem("sp-progress-bar").
-		Attr("size", string(p.size)).
-		Attr("progress", p.progress).
-		Attr("indeterminate", p.indeterminate).
-		Attr("over-background", p.overBackground).
-		Attr("side-label", p.sideLabel).
-		Attr("static-color", string(p.staticColor))
+		Attr("size", string(p.PropSize)).
+		Attr("progress", p.PropProgress).
+		Attr("indeterminate", p.PropIndeterminate).
+		Attr("over-background", p.PropOverBackground).
+		Attr("side-label", p.PropSideLabel).
+		Attr("static-color", string(p.PropStaticColor))
 
 	// Add label or aria-label
-	if p.label != "" {
-		progressBar = progressBar.Attr("label", p.label)
+	if p.PropLabel != "" {
+		progressBar = progressBar.Attr("label", p.PropLabel)
 	}
 
-	if p.ariaLabel != "" {
-		progressBar = progressBar.Attr("aria-label", p.ariaLabel)
+	if p.PropAriaLabel != "" {
+		progressBar = progressBar.Attr("aria-label", p.PropAriaLabel)
 	}
 
 	return progressBar

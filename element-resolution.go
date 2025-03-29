@@ -7,21 +7,21 @@ import (
 // ElementResolverUpdatedSymbol is a sentinel value to indicate when an element reference has been updated
 var ElementResolverUpdatedSymbol = "element-resolver-updated"
 
-// SpectrumElementResolutionController keeps an active reference to another element in the same DOM tree
+// spectrumElementResolutionController keeps an active reference to another element in the same DOM tree
 // It manages periodic checking of the DOM tree to ensure that the reference it holds is always the first matched element or nil
-type SpectrumElementResolutionController struct {
-	host           app.Composer
-	Element        interface{}
-	Selector       string
+type spectrumElementResolutionController struct {
+	PropHost       app.Composer
+	PropElement    interface{}
+	PropSelector   string
 	observing      bool
 	pollingTimerID interface{}
 	pollingEnabled bool
 }
 
-// ElementResolutionController creates a new SpectrumElementResolutionController
-func ElementResolutionController(host app.Composer) *SpectrumElementResolutionController {
-	controller := &SpectrumElementResolutionController{
-		host: host,
+// ElementResolutionController creates a new spectrumElementResolutionController
+func ElementResolutionController(host app.Composer) *spectrumElementResolutionController {
+	controller := &spectrumElementResolutionController{
+		PropHost: host,
 	}
 
 	// Initialize the controller
@@ -29,28 +29,28 @@ func ElementResolutionController(host app.Composer) *SpectrumElementResolutionCo
 }
 
 // SetSelector sets the CSS selector to use for element resolution and updates the reference
-func (c *SpectrumElementResolutionController) SetSelector(selector string) *SpectrumElementResolutionController {
-	c.Selector = selector
+func (c *spectrumElementResolutionController) SetSelector(selector string) *spectrumElementResolutionController {
+	c.PropSelector = selector
 	c.updateReference()
 	return c
 }
 
 // Connect starts observing DOM changes if a selector is provided
-func (c *SpectrumElementResolutionController) Connect() {
-	if c.Selector != "" && !c.observing {
+func (c *spectrumElementResolutionController) Connect() {
+	if c.PropSelector != "" && !c.observing {
 		c.startObserving()
 	}
 }
 
 // Disconnect stops observing DOM changes
-func (c *SpectrumElementResolutionController) Disconnect() {
+func (c *spectrumElementResolutionController) Disconnect() {
 	if c.observing {
 		c.stopObserving()
 	}
 }
 
 // startObserving sets up a polling mechanism to check for DOM changes
-func (c *SpectrumElementResolutionController) startObserving() {
+func (c *spectrumElementResolutionController) startObserving() {
 	if c.pollingEnabled {
 		return
 	}
@@ -65,7 +65,7 @@ func (c *SpectrumElementResolutionController) startObserving() {
 }
 
 // setupPolling creates a recurring timer to check for DOM changes
-func (c *SpectrumElementResolutionController) setupPolling() {
+func (c *spectrumElementResolutionController) setupPolling() {
 	// Clear any existing timer
 	if c.pollingTimerID != nil {
 		app.Window().Call("clearInterval", c.pollingTimerID)
@@ -91,7 +91,7 @@ func (c *SpectrumElementResolutionController) setupPolling() {
 }
 
 // stopObserving stops the polling mechanism
-func (c *SpectrumElementResolutionController) stopObserving() {
+func (c *spectrumElementResolutionController) stopObserving() {
 	c.pollingEnabled = false
 
 	// Clear the polling timer if it exists
@@ -104,32 +104,32 @@ func (c *SpectrumElementResolutionController) stopObserving() {
 }
 
 // updateReference queries the DOM and updates the element reference
-func (c *SpectrumElementResolutionController) updateReference() {
-	if c.Selector == "" {
-		c.Element = nil
+func (c *spectrumElementResolutionController) updateReference() {
+	if c.PropSelector == "" {
+		c.PropElement = nil
 		// Notify the host component that the reference has been updated
-		notifyHostOfUpdate(c.host)
+		notifyHostOfUpdate(c.PropHost)
 		return
 	}
 
 	// Query the DOM for the first element matching the selector
 	doc := app.Window().Get("document")
-	element := doc.Call("querySelector", c.Selector)
+	element := doc.Call("querySelector", c.PropSelector)
 
 	// Check if the element has changed
-	oldElement := c.Element
+	oldElement := c.PropElement
 
 	if !element.IsNull() {
 		// Store the JavaScript DOM element reference
-		c.Element = element
+		c.PropElement = element
 	} else {
-		c.Element = nil
+		c.PropElement = nil
 	}
 
 	// If the element reference has changed, notify the host
-	if oldElement != c.Element {
+	if oldElement != c.PropElement {
 		// Notify the host component that the reference has been updated
-		notifyHostOfUpdate(c.host)
+		notifyHostOfUpdate(c.PropHost)
 	}
 }
 
@@ -142,13 +142,13 @@ func notifyHostOfUpdate(host app.Composer) {
 }
 
 // GetElementProperty retrieves a property value from the current element reference
-func (c *SpectrumElementResolutionController) GetElementProperty(property string) interface{} {
-	if c.Element == nil {
+func (c *spectrumElementResolutionController) GetElementProperty(property string) interface{} {
+	if c.PropElement == nil {
 		return nil
 	}
 
 	// Access element property via the JavaScript value
-	if jsValue, ok := c.Element.(app.Value); ok && !jsValue.IsNull() {
+	if jsValue, ok := c.PropElement.(app.Value); ok && !jsValue.IsNull() {
 		return jsValue.Get(property).Get("value").String()
 	}
 
@@ -156,13 +156,13 @@ func (c *SpectrumElementResolutionController) GetElementProperty(property string
 }
 
 // CallElementMethod calls a method on the current element reference
-func (c *SpectrumElementResolutionController) CallElementMethod(method string, args ...interface{}) interface{} {
-	if c.Element == nil {
+func (c *spectrumElementResolutionController) CallElementMethod(method string, args ...interface{}) interface{} {
+	if c.PropElement == nil {
 		return nil
 	}
 
 	// Call element method via the JavaScript value
-	if jsValue, ok := c.Element.(app.Value); ok && !jsValue.IsNull() {
+	if jsValue, ok := c.PropElement.(app.Value); ok && !jsValue.IsNull() {
 		return jsValue.Call(method, args...)
 	}
 

@@ -2,92 +2,92 @@ package sp
 
 import "github.com/maxence-charriere/go-app/v10/pkg/app"
 
-// SpectrumPopover represents an sp-popover component
-type SpectrumPopover struct {
+// spectrumPopover represents an sp-popover component
+type spectrumPopover struct {
 	app.Compo
 
 	// Properties
-	open      bool
-	placement OverlayPlacement
-	tip       bool
-	dialog    bool
-	variant   string
+	PropOpen      bool
+	PropPlacement OverlayPlacement
+	PropTip       bool
+	PropDialog    bool
+	PropVariant   string
 
 	// Child content
-	children []app.UI
+	PropChildren []app.UI
 }
 
 // Popover creates a new popover component
-func Popover() *SpectrumPopover {
-	return &SpectrumPopover{}
+func Popover() *spectrumPopover {
+	return &spectrumPopover{}
 }
 
 // Open sets whether the popover is visible
-func (p *SpectrumPopover) Open(open bool) *SpectrumPopover {
-	p.open = open
+func (p *spectrumPopover) Open(open bool) *spectrumPopover {
+	p.PropOpen = open
 	return p
 }
 
 // Placement sets the placement of the popover relative to its trigger
-func (p *SpectrumPopover) Placement(placement OverlayPlacement) *SpectrumPopover {
-	p.placement = placement
+func (p *spectrumPopover) Placement(placement OverlayPlacement) *spectrumPopover {
+	p.PropPlacement = placement
 	return p
 }
 
 // Tip sets whether the popover has a tip pointing to the trigger
-func (p *SpectrumPopover) Tip(tip bool) *SpectrumPopover {
-	p.tip = tip
+func (p *spectrumPopover) Tip(tip bool) *spectrumPopover {
+	p.PropTip = tip
 	return p
 }
 
 // Dialog sets whether the popover should have dialog styling
-func (p *SpectrumPopover) Dialog(dialog bool) *SpectrumPopover {
-	p.dialog = dialog
+func (p *spectrumPopover) Dialog(dialog bool) *spectrumPopover {
+	p.PropDialog = dialog
 	return p
 }
 
 // Variant sets the visual variant of the popover
-func (p *SpectrumPopover) Variant(variant string) *SpectrumPopover {
-	p.variant = variant
+func (p *spectrumPopover) Variant(variant string) *spectrumPopover {
+	p.PropVariant = variant
 	return p
 }
 
 // Child adds a child element to the popover
-func (p *SpectrumPopover) Child(child app.UI) *SpectrumPopover {
-	p.children = append(p.children, child)
+func (p *spectrumPopover) Child(child app.UI) *spectrumPopover {
+	p.PropChildren = append(p.PropChildren, child)
 	return p
 }
 
 // Children sets all child elements of the popover
-func (p *SpectrumPopover) Children(children ...app.UI) *SpectrumPopover {
-	p.children = children
+func (p *spectrumPopover) Children(children ...app.UI) *spectrumPopover {
+	p.PropChildren = children
 	return p
 }
 
 // Render renders the popover component
-func (p *SpectrumPopover) Render() app.UI {
+func (p *spectrumPopover) Render() app.UI {
 	popover := app.Elem("sp-popover")
 
 	// Add properties
-	if p.open {
+	if p.PropOpen {
 		popover = popover.Attr("open", true)
 	}
-	if p.placement != "" {
-		popover = popover.Attr("placement", string(p.placement))
+	if p.PropPlacement != "" {
+		popover = popover.Attr("placement", string(p.PropPlacement))
 	}
-	if p.tip {
+	if p.PropTip {
 		popover = popover.Attr("tip", true)
 	}
-	if p.dialog {
+	if p.PropDialog {
 		popover = popover.Attr("dialog", true)
 	}
-	if p.variant != "" {
-		popover = popover.Attr("variant", p.variant)
+	if p.PropVariant != "" {
+		popover = popover.Attr("variant", p.PropVariant)
 	}
 
 	// Add child elements if provided
-	if len(p.children) > 0 {
-		popover = popover.Body(p.children...)
+	if len(p.PropChildren) > 0 {
+		popover = popover.Body(p.PropChildren...)
 	}
 
 	return popover
@@ -96,61 +96,61 @@ func (p *SpectrumPopover) Render() app.UI {
 // Convenience methods for placement
 
 // PlacementTop sets placement to top
-func (p *SpectrumPopover) PlacementTop() *SpectrumPopover {
+func (p *spectrumPopover) PlacementTop() *spectrumPopover {
 	return p.Placement(OverlayPlacementTop)
 }
 
 // PlacementTopStart sets placement to top-start
-func (p *SpectrumPopover) PlacementTopStart() *SpectrumPopover {
+func (p *spectrumPopover) PlacementTopStart() *spectrumPopover {
 	return p.Placement(OverlayPlacementTopStart)
 }
 
 // PlacementTopEnd sets placement to top-end
-func (p *SpectrumPopover) PlacementTopEnd() *SpectrumPopover {
+func (p *spectrumPopover) PlacementTopEnd() *spectrumPopover {
 	return p.Placement(OverlayPlacementTopEnd)
 }
 
 // PlacementRight sets placement to right
-func (p *SpectrumPopover) PlacementRight() *SpectrumPopover {
+func (p *spectrumPopover) PlacementRight() *spectrumPopover {
 	return p.Placement(OverlayPlacementRight)
 }
 
 // PlacementRightStart sets placement to right-start
-func (p *SpectrumPopover) PlacementRightStart() *SpectrumPopover {
+func (p *spectrumPopover) PlacementRightStart() *spectrumPopover {
 	return p.Placement(OverlayPlacementRightStart)
 }
 
 // PlacementRightEnd sets placement to right-end
-func (p *SpectrumPopover) PlacementRightEnd() *SpectrumPopover {
+func (p *spectrumPopover) PlacementRightEnd() *spectrumPopover {
 	return p.Placement(OverlayPlacementRightEnd)
 }
 
 // PlacementBottom sets placement to bottom
-func (p *SpectrumPopover) PlacementBottom() *SpectrumPopover {
+func (p *spectrumPopover) PlacementBottom() *spectrumPopover {
 	return p.Placement(OverlayPlacementBottom)
 }
 
 // PlacementBottomStart sets placement to bottom-start
-func (p *SpectrumPopover) PlacementBottomStart() *SpectrumPopover {
+func (p *spectrumPopover) PlacementBottomStart() *spectrumPopover {
 	return p.Placement(OverlayPlacementBottomStart)
 }
 
 // PlacementBottomEnd sets placement to bottom-end
-func (p *SpectrumPopover) PlacementBottomEnd() *SpectrumPopover {
+func (p *spectrumPopover) PlacementBottomEnd() *spectrumPopover {
 	return p.Placement(OverlayPlacementBottomEnd)
 }
 
 // PlacementLeft sets placement to left
-func (p *SpectrumPopover) PlacementLeft() *SpectrumPopover {
+func (p *spectrumPopover) PlacementLeft() *spectrumPopover {
 	return p.Placement(OverlayPlacementLeft)
 }
 
 // PlacementLeftStart sets placement to left-start
-func (p *SpectrumPopover) PlacementLeftStart() *SpectrumPopover {
+func (p *spectrumPopover) PlacementLeftStart() *spectrumPopover {
 	return p.Placement(OverlayPlacementLeftStart)
 }
 
 // PlacementLeftEnd sets placement to left-end
-func (p *SpectrumPopover) PlacementLeftEnd() *SpectrumPopover {
+func (p *spectrumPopover) PlacementLeftEnd() *spectrumPopover {
 	return p.Placement(OverlayPlacementLeftEnd)
 }

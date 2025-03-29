@@ -2,284 +2,284 @@ package sp
 
 import "github.com/maxence-charriere/go-app/v10/pkg/app"
 
-// SpectrumMenuItem represents an sp-menu-item component
-type SpectrumMenuItem struct {
+// spectrumMenuItem represents an sp-menu-item component
+type spectrumMenuItem struct {
 	app.Compo
 
 	// Properties
-	text       string
-	value      string
-	active     bool
-	disabled   bool
-	download   string
-	focused    bool
-	hasSubmenu bool
-	href       string
-	label      string
-	noWrap     bool
-	open       bool
-	selected   bool
-	invalid    bool
+	PropText       string
+	PropValue      string
+	PropActive     bool
+	PropDisabled   bool
+	PropDownload   string
+	PropFocused    bool
+	PropHasSubmenu bool
+	PropHref       string
+	PropLabel      string
+	PropNoWrap     bool
+	PropOpen       bool
+	PropSelected   bool
+	PropInvalid    bool
 
 	// Event handlers
-	onClick app.EventHandler
-	onBlur  app.EventHandler
-	onFocus app.EventHandler
+	PropOnClick app.EventHandler
+	PropOnBlur  app.EventHandler
+	PropOnFocus app.EventHandler
 
 	// Slots
-	content     app.UI
-	description app.UI
-	icon        app.UI
-	submenu     app.UI
-	valueSlot   app.UI
+	PropContent     app.UI
+	PropDescription app.UI
+	PropIcon        app.UI
+	PropSubmenu     app.UI
+	PropValueSlot   app.UI
 }
 
 // MenuItem creates a new menu item component
-func MenuItem() *SpectrumMenuItem {
-	return &SpectrumMenuItem{}
+func MenuItem() *spectrumMenuItem {
+	return &spectrumMenuItem{}
 }
 
 // Text sets the text content of the menu item
-func (m *SpectrumMenuItem) Text(text string) *SpectrumMenuItem {
-	m.text = text
+func (m *spectrumMenuItem) Text(text string) *spectrumMenuItem {
+	m.PropText = text
 	return m
 }
 
 // Value sets the value attribute of the menu item
-func (m *SpectrumMenuItem) Value(value string) *SpectrumMenuItem {
-	m.value = value
+func (m *spectrumMenuItem) Value(value string) *spectrumMenuItem {
+	m.PropValue = value
 	return m
 }
 
 // Active sets whether the menu item is active or has an active descendant
-func (m *SpectrumMenuItem) Active(active bool) *SpectrumMenuItem {
-	m.active = active
+func (m *spectrumMenuItem) Active(active bool) *spectrumMenuItem {
+	m.PropActive = active
 	return m
 }
 
 // Disabled sets whether the menu item is disabled
-func (m *SpectrumMenuItem) Disabled(disabled bool) *SpectrumMenuItem {
-	m.disabled = disabled
+func (m *spectrumMenuItem) Disabled(disabled bool) *spectrumMenuItem {
+	m.PropDisabled = disabled
 	return m
 }
 
 // Download sets the download attribute that causes the browser to treat the linked URL as a download
-func (m *SpectrumMenuItem) Download(download string) *SpectrumMenuItem {
-	m.download = download
+func (m *spectrumMenuItem) Download(download string) *spectrumMenuItem {
+	m.PropDownload = download
 	return m
 }
 
 // Focused sets whether the menu item has keyboard focus
-func (m *SpectrumMenuItem) Focused(focused bool) *SpectrumMenuItem {
-	m.focused = focused
+func (m *spectrumMenuItem) Focused(focused bool) *spectrumMenuItem {
+	m.PropFocused = focused
 	return m
 }
 
 // HasSubmenu sets whether the menu item has a submenu
-func (m *SpectrumMenuItem) HasSubmenu(hasSubmenu bool) *SpectrumMenuItem {
-	m.hasSubmenu = hasSubmenu
+func (m *spectrumMenuItem) HasSubmenu(hasSubmenu bool) *spectrumMenuItem {
+	m.PropHasSubmenu = hasSubmenu
 	return m
 }
 
 // Href sets the URL that the hyperlink points to
-func (m *SpectrumMenuItem) Href(href string) *SpectrumMenuItem {
-	m.href = href
+func (m *spectrumMenuItem) Href(href string) *spectrumMenuItem {
+	m.PropHref = href
 	return m
 }
 
 // Label sets an accessible label that describes the component
-func (m *SpectrumMenuItem) Label(label string) *SpectrumMenuItem {
-	m.label = label
+func (m *spectrumMenuItem) Label(label string) *spectrumMenuItem {
+	m.PropLabel = label
 	return m
 }
 
 // NoWrap sets whether menu item text content should not wrap
-func (m *SpectrumMenuItem) NoWrap(noWrap bool) *SpectrumMenuItem {
-	m.noWrap = noWrap
+func (m *spectrumMenuItem) NoWrap(noWrap bool) *spectrumMenuItem {
+	m.PropNoWrap = noWrap
 	return m
 }
 
 // Open sets whether the submenu is open
-func (m *SpectrumMenuItem) Open(open bool) *SpectrumMenuItem {
-	m.open = open
+func (m *spectrumMenuItem) Open(open bool) *spectrumMenuItem {
+	m.PropOpen = open
 	return m
 }
 
 // Selected sets whether the menu item is selected
-func (m *SpectrumMenuItem) Selected(selected bool) *SpectrumMenuItem {
-	m.selected = selected
+func (m *spectrumMenuItem) Selected(selected bool) *spectrumMenuItem {
+	m.PropSelected = selected
 	return m
 }
 
 // Invalid sets whether the menu item is invalid
-func (m *SpectrumMenuItem) Invalid(invalid bool) *SpectrumMenuItem {
-	m.invalid = invalid
+func (m *spectrumMenuItem) Invalid(invalid bool) *spectrumMenuItem {
+	m.PropInvalid = invalid
 	return m
 }
 
 // Content sets the content of the menu item
-func (m *SpectrumMenuItem) Content(content app.UI) *SpectrumMenuItem {
-	m.content = content
+func (m *spectrumMenuItem) Content(content app.UI) *spectrumMenuItem {
+	m.PropContent = content
 	return m
 }
 
 // Description sets content for the description slot
-func (m *SpectrumMenuItem) Description(description app.UI) *SpectrumMenuItem {
-	m.description = description
+func (m *spectrumMenuItem) Description(description app.UI) *spectrumMenuItem {
+	m.PropDescription = description
 	return m
 }
 
 // Icon sets content for the icon slot
-func (m *SpectrumMenuItem) Icon(icon app.UI) *SpectrumMenuItem {
-	m.icon = icon
+func (m *spectrumMenuItem) Icon(icon app.UI) *spectrumMenuItem {
+	m.PropIcon = icon
 	return m
 }
 
 // Submenu sets content for the submenu slot
-func (m *SpectrumMenuItem) Submenu(submenu app.UI) *SpectrumMenuItem {
-	m.submenu = submenu
+func (m *spectrumMenuItem) Submenu(submenu app.UI) *spectrumMenuItem {
+	m.PropSubmenu = submenu
 	return m
 }
 
 // ValueSlot sets content for the value slot (displayed at the end of the menu item)
-func (m *SpectrumMenuItem) ValueSlot(value app.UI) *SpectrumMenuItem {
-	m.valueSlot = value
+func (m *spectrumMenuItem) ValueSlot(value app.UI) *spectrumMenuItem {
+	m.PropValueSlot = value
 	return m
 }
 
 // OnClick sets the click event handler
-func (m *SpectrumMenuItem) OnClick(handler app.EventHandler) *SpectrumMenuItem {
-	m.onClick = handler
+func (m *spectrumMenuItem) OnClick(handler app.EventHandler) *spectrumMenuItem {
+	m.PropOnClick = handler
 	return m
 }
 
 // OnBlur sets the blur event handler
-func (m *SpectrumMenuItem) OnBlur(handler app.EventHandler) *SpectrumMenuItem {
-	m.onBlur = handler
+func (m *spectrumMenuItem) OnBlur(handler app.EventHandler) *spectrumMenuItem {
+	m.PropOnBlur = handler
 	return m
 }
 
 // OnFocus sets the focus event handler
-func (m *SpectrumMenuItem) OnFocus(handler app.EventHandler) *SpectrumMenuItem {
-	m.onFocus = handler
+func (m *spectrumMenuItem) OnFocus(handler app.EventHandler) *spectrumMenuItem {
+	m.PropOnFocus = handler
 	return m
 }
 
 // Render renders the menu item component
-func (m *SpectrumMenuItem) Render() app.UI {
+func (m *spectrumMenuItem) Render() app.UI {
 	menuItem := app.Elem("sp-menu-item")
 
 	// Set attributes
-	if m.value != "" {
-		menuItem = menuItem.Attr("value", m.value)
+	if m.PropValue != "" {
+		menuItem = menuItem.Attr("value", m.PropValue)
 	}
-	if m.active {
+	if m.PropActive {
 		menuItem = menuItem.Attr("active", true)
 	}
-	if m.disabled {
+	if m.PropDisabled {
 		menuItem = menuItem.Attr("disabled", true)
 	}
-	if m.download != "" {
-		menuItem = menuItem.Attr("download", m.download)
+	if m.PropDownload != "" {
+		menuItem = menuItem.Attr("download", m.PropDownload)
 	}
-	if m.focused {
+	if m.PropFocused {
 		menuItem = menuItem.Attr("focused", true)
 	}
-	if m.hasSubmenu {
+	if m.PropHasSubmenu {
 		menuItem = menuItem.Attr("has-submenu", true)
 	}
-	if m.href != "" {
-		menuItem = menuItem.Attr("href", m.href)
+	if m.PropHref != "" {
+		menuItem = menuItem.Attr("href", m.PropHref)
 	}
-	if m.label != "" {
-		menuItem = menuItem.Attr("label", m.label)
+	if m.PropLabel != "" {
+		menuItem = menuItem.Attr("label", m.PropLabel)
 	}
-	if m.noWrap {
+	if m.PropNoWrap {
 		menuItem = menuItem.Attr("no-wrap", true)
 	}
-	if m.open {
+	if m.PropOpen {
 		menuItem = menuItem.Attr("open", true)
 	}
-	if m.selected {
+	if m.PropSelected {
 		menuItem = menuItem.Attr("selected", true)
 	}
-	if m.invalid {
+	if m.PropInvalid {
 		menuItem = menuItem.Attr("invalid", true)
 	}
 
 	// Add event handlers
-	if m.onClick != nil {
-		menuItem = menuItem.OnClick(m.onClick)
+	if m.PropOnClick != nil {
+		menuItem = menuItem.On("click", m.PropOnClick)
 	}
-	if m.onBlur != nil {
-		menuItem = menuItem.OnBlur(m.onBlur)
+	if m.PropOnBlur != nil {
+		menuItem = menuItem.On("blur", m.PropOnBlur)
 	}
-	if m.onFocus != nil {
-		menuItem = menuItem.OnFocus(m.onFocus)
+	if m.PropOnFocus != nil {
+		menuItem = menuItem.On("focus", m.PropOnFocus)
 	}
 
-	// Handle slots
+	// Create elements array for content and slots
 	elements := []app.UI{}
 
-	// Add icon if provided
-	if m.icon != nil {
-		icon := m.icon
-		if iconWithSlot, ok := icon.(interface{ Slot(string) app.UI }); ok {
-			icon = iconWithSlot.Slot("icon")
-		} else {
-			icon = app.Elem("div").
-				Attr("slot", "icon").
-				Body(icon)
-		}
-		elements = append(elements, icon)
+	// Add text content
+	if m.PropText != "" {
+		elements = append(elements, app.Text(m.PropText))
 	}
 
-	// Add description if provided
-	if m.description != nil {
-		desc := m.description
-		if descWithSlot, ok := desc.(interface{ Slot(string) app.UI }); ok {
-			desc = descWithSlot.Slot("description")
+	// Add content UI if provided
+	if m.PropContent != nil {
+		elements = append(elements, m.PropContent)
+	}
+
+	// Add description slot
+	if m.PropDescription != nil {
+		description := m.PropDescription
+		if descWithSlot, ok := description.(interface{ Slot(string) app.UI }); ok {
+			elements = append(elements, descWithSlot.Slot("description"))
 		} else {
-			desc = app.Elem("div").
+			elements = append(elements, app.Elem("div").
 				Attr("slot", "description").
-				Body(desc)
+				Body(description))
 		}
-		elements = append(elements, desc)
 	}
 
-	// Add value if provided
-	if m.valueSlot != nil {
-		val := m.valueSlot
-		if valWithSlot, ok := val.(interface{ Slot(string) app.UI }); ok {
-			val = valWithSlot.Slot("value")
+	// Add icon slot
+	if m.PropIcon != nil {
+		icon := m.PropIcon
+		if iconWithSlot, ok := icon.(interface{ Slot(string) app.UI }); ok {
+			elements = append(elements, iconWithSlot.Slot("icon"))
 		} else {
-			val = app.Elem("div").
-				Attr("slot", "value").
-				Body(val)
+			elements = append(elements, app.Elem("div").
+				Attr("slot", "icon").
+				Body(icon))
 		}
-		elements = append(elements, val)
 	}
 
-	// Add submenu if provided
-	if m.submenu != nil {
-		sub := m.submenu
-		if subWithSlot, ok := sub.(interface{ Slot(string) app.UI }); ok {
-			sub = subWithSlot.Slot("submenu")
+	// Add submenu slot
+	if m.PropSubmenu != nil {
+		submenu := m.PropSubmenu
+		if submenuWithSlot, ok := submenu.(interface{ Slot(string) app.UI }); ok {
+			elements = append(elements, submenuWithSlot.Slot("submenu"))
 		} else {
-			sub = app.Elem("div").
+			elements = append(elements, app.Elem("div").
 				Attr("slot", "submenu").
-				Body(sub)
+				Body(submenu))
 		}
-		elements = append(elements, sub)
 	}
 
-	// Add content or text if provided
-	if m.content != nil {
-		elements = append(elements, m.content)
-	} else if m.text != "" {
-		menuItem = menuItem.Text(m.text)
+	// Add value slot
+	if m.PropValueSlot != nil {
+		valueSlot := m.PropValueSlot
+		if valueWithSlot, ok := valueSlot.(interface{ Slot(string) app.UI }); ok {
+			elements = append(elements, valueWithSlot.Slot("value"))
+		} else {
+			elements = append(elements, app.Elem("div").
+				Attr("slot", "value").
+				Body(valueSlot))
+		}
 	}
 
+	// Add all elements to the menu item
 	if len(elements) > 0 {
 		menuItem = menuItem.Body(elements...)
 	}

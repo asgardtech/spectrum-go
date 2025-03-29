@@ -2,116 +2,116 @@ package sp
 
 import "github.com/maxence-charriere/go-app/v10/pkg/app"
 
-// SpectrumBreadcrumbs represents an sp-breadcrumbs component
-type SpectrumBreadcrumbs struct {
+// spectrumBreadcrumbs represents an sp-breadcrumbs component
+type spectrumBreadcrumbs struct {
 	app.Compo
 
 	// Properties
-	compact         bool
-	label           string
-	maxVisibleItems int
-	menuLabel       string
+	PropCompact         bool
+	PropLabel           string
+	PropMaxVisibleItems int
+	PropMenuLabel       string
 
 	// Slots
-	icon            app.UI
-	rootItem        *SpectrumBreadcrumbItem
-	breadcrumbItems []*SpectrumBreadcrumbItem
+	PropIcon            app.UI
+	PropRootItem        *spectrumBreadcrumbItem
+	PropBreadcrumbItems []*spectrumBreadcrumbItem
 
 	// Event handlers
-	onChange app.EventHandler
+	PropOnChange app.EventHandler
 }
 
 // Breadcrumbs creates a new breadcrumbs component
-func Breadcrumbs() *SpectrumBreadcrumbs {
-	return &SpectrumBreadcrumbs{
-		maxVisibleItems: 4,            // Default maximum visible items
-		menuLabel:       "More items", // Default menu label
+func Breadcrumbs() *spectrumBreadcrumbs {
+	return &spectrumBreadcrumbs{
+		PropMaxVisibleItems: 4,            // Default maximum visible items
+		PropMenuLabel:       "More items", // Default menu label
 	}
 }
 
 // Compact sets whether the breadcrumbs are displayed compactly
-func (b *SpectrumBreadcrumbs) Compact(compact bool) *SpectrumBreadcrumbs {
-	b.compact = compact
+func (b *spectrumBreadcrumbs) Compact(compact bool) *spectrumBreadcrumbs {
+	b.PropCompact = compact
 	return b
 }
 
 // Label sets the accessible label for the breadcrumbs
-func (b *SpectrumBreadcrumbs) Label(label string) *SpectrumBreadcrumbs {
-	b.label = label
+func (b *spectrumBreadcrumbs) Label(label string) *spectrumBreadcrumbs {
+	b.PropLabel = label
 	return b
 }
 
 // MaxVisibleItems sets the maximum number of visible breadcrumb items
-func (b *SpectrumBreadcrumbs) MaxVisibleItems(max int) *SpectrumBreadcrumbs {
-	b.maxVisibleItems = max
+func (b *spectrumBreadcrumbs) MaxVisibleItems(max int) *spectrumBreadcrumbs {
+	b.PropMaxVisibleItems = max
 	return b
 }
 
 // MenuLabel sets the label for the action menu
-func (b *SpectrumBreadcrumbs) MenuLabel(label string) *SpectrumBreadcrumbs {
-	b.menuLabel = label
+func (b *spectrumBreadcrumbs) MenuLabel(label string) *spectrumBreadcrumbs {
+	b.PropMenuLabel = label
 	return b
 }
 
 // Icon sets the content for the icon slot (replaces the menu icon)
-func (b *SpectrumBreadcrumbs) Icon(icon app.UI) *SpectrumBreadcrumbs {
-	b.icon = icon
+func (b *spectrumBreadcrumbs) Icon(icon app.UI) *spectrumBreadcrumbs {
+	b.PropIcon = icon
 	return b
 }
 
 // RootItem sets a breadcrumb item to always display (in the root slot)
-func (b *SpectrumBreadcrumbs) RootItem(item *SpectrumBreadcrumbItem) *SpectrumBreadcrumbs {
-	b.rootItem = item.Root()
+func (b *spectrumBreadcrumbs) RootItem(item *spectrumBreadcrumbItem) *spectrumBreadcrumbs {
+	b.PropRootItem = item.Root()
 	return b
 }
 
 // Items sets the breadcrumb items
-func (b *SpectrumBreadcrumbs) Items(items ...*SpectrumBreadcrumbItem) *SpectrumBreadcrumbs {
-	b.breadcrumbItems = items
+func (b *spectrumBreadcrumbs) Items(items ...*spectrumBreadcrumbItem) *spectrumBreadcrumbs {
+	b.PropBreadcrumbItems = items
 	return b
 }
 
 // AddItem adds a single breadcrumb item
-func (b *SpectrumBreadcrumbs) AddItem(item *SpectrumBreadcrumbItem) *SpectrumBreadcrumbs {
-	b.breadcrumbItems = append(b.breadcrumbItems, item)
+func (b *spectrumBreadcrumbs) AddItem(item *spectrumBreadcrumbItem) *spectrumBreadcrumbs {
+	b.PropBreadcrumbItems = append(b.PropBreadcrumbItems, item)
 	return b
 }
 
 // OnChange sets the change event handler
-func (b *SpectrumBreadcrumbs) OnChange(handler app.EventHandler) *SpectrumBreadcrumbs {
-	b.onChange = handler
+func (b *spectrumBreadcrumbs) OnChange(handler app.EventHandler) *spectrumBreadcrumbs {
+	b.PropOnChange = handler
 	return b
 }
 
 // Render renders the breadcrumbs component
-func (b *SpectrumBreadcrumbs) Render() app.UI {
+func (b *spectrumBreadcrumbs) Render() app.UI {
 	breadcrumbs := app.Elem("sp-breadcrumbs")
 
 	// Set attributes
-	if b.compact {
+	if b.PropCompact {
 		breadcrumbs = breadcrumbs.Attr("compact", true)
 	}
-	if b.label != "" {
-		breadcrumbs = breadcrumbs.Attr("label", b.label)
+	if b.PropLabel != "" {
+		breadcrumbs = breadcrumbs.Attr("label", b.PropLabel)
 	}
-	if b.maxVisibleItems != 4 { // Only set if not the default value
-		breadcrumbs = breadcrumbs.Attr("max-visible-items", b.maxVisibleItems)
+	if b.PropMaxVisibleItems != 4 { // Only set if not the default value
+		breadcrumbs = breadcrumbs.Attr("max-visible-items", b.PropMaxVisibleItems)
 	}
-	if b.menuLabel != "More items" { // Only set if not the default value
-		breadcrumbs = breadcrumbs.Attr("menu-label", b.menuLabel)
+	if b.PropMenuLabel != "More items" { // Only set if not the default value
+		breadcrumbs = breadcrumbs.Attr("menu-label", b.PropMenuLabel)
 	}
 
 	// Add event handlers
-	if b.onChange != nil {
-		breadcrumbs = breadcrumbs.On("change", b.onChange)
+	if b.PropOnChange != nil {
+		breadcrumbs = breadcrumbs.On("change", b.PropOnChange)
 	}
 
 	// Collect all elements
 	var elements []app.UI
 
 	// Add icon if provided
-	if b.icon != nil {
-		icon := b.icon
+	if b.PropIcon != nil {
+		icon := b.PropIcon
 		if iconWithSlot, ok := icon.(interface{ Slot(string) app.UI }); ok {
 			icon = iconWithSlot.Slot("icon")
 		} else {
@@ -123,12 +123,12 @@ func (b *SpectrumBreadcrumbs) Render() app.UI {
 	}
 
 	// Add root item if provided
-	if b.rootItem != nil {
-		elements = append(elements, b.rootItem)
+	if b.PropRootItem != nil {
+		elements = append(elements, b.PropRootItem)
 	}
 
 	// Add breadcrumb items
-	for _, item := range b.breadcrumbItems {
+	for _, item := range b.PropBreadcrumbItems {
 		elements = append(elements, item)
 	}
 

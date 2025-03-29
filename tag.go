@@ -12,104 +12,104 @@ const (
 	TagSizeL TagSize = "l"
 )
 
-// SpectrumTag represents an sp-tag component
-type SpectrumTag struct {
+// spectrumTag represents an sp-tag component
+type spectrumTag struct {
 	app.Compo
 
 	// Properties
-	text      string
-	size      TagSize
-	deletable bool
-	disabled  bool
-	readonly  bool
-	invalid   bool
+	PropText      string
+	PropSize      TagSize
+	PropDeletable bool
+	PropDisabled  bool
+	PropReadonly  bool
+	PropInvalid   bool
 
 	// Slots
-	avatar app.UI
-	icon   app.UI
+	PropAvatar app.UI
+	PropIcon   app.UI
 
 	// Event handlers
-	onDelete app.EventHandler
+	PropOnDelete app.EventHandler
 }
 
 // Tag creates a new tag component
-func Tag() *SpectrumTag {
-	return &SpectrumTag{
-		size: TagSizeM, // Default size is medium
+func Tag() *spectrumTag {
+	return &spectrumTag{
+		PropSize: TagSizeM, // Default size is medium
 	}
 }
 
 // Text sets the tag text content
-func (t *SpectrumTag) Text(text string) *SpectrumTag {
-	t.text = text
+func (t *spectrumTag) Text(text string) *spectrumTag {
+	t.PropText = text
 	return t
 }
 
 // Size sets the visual size of the tag
-func (t *SpectrumTag) Size(size TagSize) *SpectrumTag {
-	t.size = size
+func (t *spectrumTag) Size(size TagSize) *spectrumTag {
+	t.PropSize = size
 	return t
 }
 
 // Deletable sets whether the tag is deletable
-func (t *SpectrumTag) Deletable(deletable bool) *SpectrumTag {
-	t.deletable = deletable
+func (t *spectrumTag) Deletable(deletable bool) *spectrumTag {
+	t.PropDeletable = deletable
 	return t
 }
 
 // Disabled sets the disabled state of the tag
-func (t *SpectrumTag) Disabled(disabled bool) *SpectrumTag {
-	t.disabled = disabled
+func (t *spectrumTag) Disabled(disabled bool) *spectrumTag {
+	t.PropDisabled = disabled
 	return t
 }
 
 // Readonly sets the readonly state of the tag
-func (t *SpectrumTag) Readonly(readonly bool) *SpectrumTag {
-	t.readonly = readonly
+func (t *spectrumTag) Readonly(readonly bool) *spectrumTag {
+	t.PropReadonly = readonly
 	return t
 }
 
 // Invalid sets the invalid state of the tag
-func (t *SpectrumTag) Invalid(invalid bool) *SpectrumTag {
-	t.invalid = invalid
+func (t *spectrumTag) Invalid(invalid bool) *spectrumTag {
+	t.PropInvalid = invalid
 	return t
 }
 
 // Avatar sets the avatar in the avatar slot
-func (t *SpectrumTag) Avatar(avatar app.UI) *SpectrumTag {
-	t.avatar = avatar
+func (t *spectrumTag) Avatar(avatar app.UI) *spectrumTag {
+	t.PropAvatar = avatar
 	return t
 }
 
 // Icon sets the icon in the icon slot
-func (t *SpectrumTag) Icon(icon app.UI) *SpectrumTag {
-	t.icon = icon
+func (t *spectrumTag) Icon(icon app.UI) *spectrumTag {
+	t.PropIcon = icon
 	return t
 }
 
 // OnDelete sets the delete event handler
-func (t *SpectrumTag) OnDelete(handler app.EventHandler) *SpectrumTag {
-	t.onDelete = handler
+func (t *spectrumTag) OnDelete(handler app.EventHandler) *spectrumTag {
+	t.PropOnDelete = handler
 	return t
 }
 
 // Render renders the tag component
-func (t *SpectrumTag) Render() app.UI {
+func (t *spectrumTag) Render() app.UI {
 	tag := app.Elem("sp-tag").
-		Attr("size", string(t.size)).
-		Attr("deletable", t.deletable).
-		Attr("disabled", t.disabled).
-		Attr("readonly", t.readonly).
-		Attr("invalid", t.invalid)
+		Attr("size", string(t.PropSize)).
+		Attr("deletable", t.PropDeletable).
+		Attr("disabled", t.PropDisabled).
+		Attr("readonly", t.PropReadonly).
+		Attr("invalid", t.PropInvalid)
 
 	// Add event handlers
-	if t.onDelete != nil {
-		tag = tag.On("delete", t.onDelete)
+	if t.PropOnDelete != nil {
+		tag = tag.On("delete", t.PropOnDelete)
 	}
 
 	// Add slots if provided
-	if t.avatar != nil {
-		avatar := t.avatar
+	if t.PropAvatar != nil {
+		avatar := t.PropAvatar
 		if avatarWithSlot, ok := avatar.(interface{ Slot(string) app.UI }); ok {
 			avatar = avatarWithSlot.Slot("avatar")
 		} else {
@@ -120,8 +120,8 @@ func (t *SpectrumTag) Render() app.UI {
 		tag = tag.Body(avatar)
 	}
 
-	if t.icon != nil {
-		icon := t.icon
+	if t.PropIcon != nil {
+		icon := t.PropIcon
 		if iconWithSlot, ok := icon.(interface{ Slot(string) app.UI }); ok {
 			icon = iconWithSlot.Slot("icon")
 		} else {
@@ -133,8 +133,8 @@ func (t *SpectrumTag) Render() app.UI {
 	}
 
 	// Add text content
-	if t.text != "" {
-		tag = tag.Text(t.text)
+	if t.PropText != "" {
+		tag = tag.Text(t.PropText)
 	}
 
 	return tag
