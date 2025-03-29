@@ -29,9 +29,11 @@ func (p *homePage) Render() app.UI {
 				Children(
 					sp.TopNavItem().
 						Label("Home").
-						Value("home"),
+						Value("home").
+						Text("Home"),
 					sp.ActionMenu().
 						Placement("bottom-end").
+						Style("margin-inline-start", "auto").
 						Quiet(true).
 						AddItem(sp.MenuItem().
 							Label("Toggle Theme").
@@ -76,12 +78,12 @@ func (p *homePage) renderSidenav() app.UI {
 	// Create Sidenav with components
 	return sp.Sidenav().
 		Label("Component Navigation").
-		AddItem(sp.SidenavItem().Label("Button").Value("button")).
-		AddItem(sp.SidenavItem().Label("Accordion").Value("accordion")).
-		AddItem(sp.SidenavItem().Label("Button Group").Value("button-group")).
-		AddItem(sp.SidenavItem().Label("Checkbox").Value("checkbox")).
-		AddItem(sp.SidenavItem().Label("Dropdown").Value("dropdown")).
-		AddItem(sp.SidenavItem().Label("Label").Value("label"))
+		AddItem(sp.SidenavItem().Label("Button").Value("button").Href("/button")).
+		AddItem(sp.SidenavItem().Label("Accordion").Value("accordion").Href("/accordion")).
+		AddItem(sp.SidenavItem().Label("Button Group").Value("button-group").Href("/button-group")).
+		AddItem(sp.SidenavItem().Label("Checkbox").Value("checkbox").Href("/checkbox")).
+		AddItem(sp.SidenavItem().Label("Dropdown").Value("dropdown").Href("/dropdown")).
+		AddItem(sp.SidenavItem().Label("Label").Value("label").Href("/label"))
 }
 
 func (p *homePage) renderContent() app.UI {

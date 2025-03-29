@@ -13,6 +13,7 @@ const (
 // spectrumActionMenu represents an sp-action-menu component
 type spectrumActionMenu struct {
 	app.Compo
+	*styler[*spectrumActionMenu]
 
 	// Properties
 	PropDisabled     bool
@@ -49,10 +50,14 @@ type spectrumActionMenu struct {
 
 // ActionMenu creates a new action menu component
 func ActionMenu() *spectrumActionMenu {
-	return &spectrumActionMenu{
+	element := &spectrumActionMenu{
 		PropPlacement:    "bottom-start", // Default placement
 		PropPendingLabel: "Pending",      // Default pending label
 	}
+
+	element.styler = newStyler(element)
+
+	return element
 }
 
 // Disabled sets whether the action menu is disabled
@@ -371,6 +376,8 @@ func (am *spectrumActionMenu) Render() app.UI {
 	if len(slotElements) > 0 {
 		actionMenu = actionMenu.Body(slotElements...)
 	}
+
+	actionMenu = actionMenu.Styles(am.styler.styles)
 
 	return actionMenu
 }

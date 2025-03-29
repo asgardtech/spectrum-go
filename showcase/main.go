@@ -4,13 +4,12 @@ import (
 	"context"
 	"fmt"
 	"net/http"
-	"os"
-	"syscall"
 
 	"github.com/maxence-charriere/go-app/v10/pkg/app"
 	"github.com/maxence-charriere/go-app/v10/pkg/cli"
-	"github.com/maxence-charriere/go-app/v10/pkg/errors"
 	"github.com/maxence-charriere/go-app/v10/pkg/logs"
+
+	"sigs.k8s.io/controller-runtime/pkg/manager/signals"
 )
 
 const (
@@ -29,12 +28,7 @@ func main() {
 
 	app.RunWhenOnBrowser()
 
-	ctx, cancel := cli.ContextWithSignals(context.Background(),
-		os.Interrupt,
-		syscall.SIGTERM,
-	)
-	defer cancel()
-	defer exit()
+	ctx := signals.SetupSignalHandler()
 
 	localOpts := localOptions{Port: 7777}
 	cli.Register("local").
@@ -117,14 +111,6 @@ func runLocal(ctx context.Context, h *app.Handler, opts localOptions) {
 	}()
 
 	if err := s.ListenAndServe(); err != nil {
-		panic(err)
-	}
-}
-
-func exit() {
-	err := recover()
-	if err != nil {
-		app.Log("command failed:", errors.Newf("%v", err))
-		os.Exit(-1)
+		fmt.Println("server stopped:", err)
 	}
 }
