@@ -21,206 +21,206 @@ const (
 	DialogModeFullscreenTakeover DialogMode = "fullscreenTakeover"
 )
 
-// SpectrumDialog represents an sp-dialog component
-type SpectrumDialog struct {
+// spectrumDialog represents an sp-dialog component
+type spectrumDialog struct {
 	app.Compo
 
 	// Properties
-	dismissLabel string
-	dismissable  bool
-	error        bool
-	mode         DialogMode
-	noDivider    bool
-	size         DialogSize
-	variant      string
+	PropDismissLabel string
+	PropDismissable  bool
+	PropError        bool
+	PropMode         DialogMode
+	PropNoDivider    bool
+	PropSize         DialogSize
+	PropVariant      string
 
 	// Slots
-	buttons []app.UI
-	footer  app.UI
-	heading app.UI
-	hero    app.UI
-	content []app.UI
+	PropButtons []app.UI
+	PropFooter  app.UI
+	PropHeading app.UI
+	PropHero    app.UI
+	PropContent []app.UI
 
 	// Event handlers
-	onClose app.EventHandler
+	PropOnClose app.EventHandler
 }
 
 // Dialog creates a new dialog component
-func Dialog() *SpectrumDialog {
-	return &SpectrumDialog{
-		dismissLabel: "Close", // Default dismiss label
+func Dialog() *spectrumDialog {
+	return &spectrumDialog{
+		PropDismissLabel: "Close", // Default dismiss label
 	}
 }
 
 // DismissLabel sets the label for the dismiss button
-func (d *SpectrumDialog) DismissLabel(label string) *SpectrumDialog {
-	d.dismissLabel = label
+func (d *spectrumDialog) DismissLabel(label string) *spectrumDialog {
+	d.PropDismissLabel = label
 	return d
 }
 
 // Dismissable sets whether the dialog has a dismiss button
-func (d *SpectrumDialog) Dismissable(dismissable bool) *SpectrumDialog {
-	d.dismissable = dismissable
+func (d *spectrumDialog) Dismissable(dismissable bool) *spectrumDialog {
+	d.PropDismissable = dismissable
 	return d
 }
 
 // Error sets whether the dialog displays an error state
-func (d *SpectrumDialog) Error(error bool) *SpectrumDialog {
-	d.error = error
+func (d *spectrumDialog) Error(error bool) *spectrumDialog {
+	d.PropError = error
 	return d
 }
 
 // Mode sets the display mode of the dialog
-func (d *SpectrumDialog) Mode(mode DialogMode) *SpectrumDialog {
-	d.mode = mode
+func (d *spectrumDialog) Mode(mode DialogMode) *spectrumDialog {
+	d.PropMode = mode
 	return d
 }
 
 // NoDivider sets whether the dialog should have a divider between header and content
-func (d *SpectrumDialog) NoDivider(noDivider bool) *SpectrumDialog {
-	d.noDivider = noDivider
+func (d *spectrumDialog) NoDivider(noDivider bool) *spectrumDialog {
+	d.PropNoDivider = noDivider
 	return d
 }
 
 // Size sets the visual size of the dialog
-func (d *SpectrumDialog) Size(size DialogSize) *SpectrumDialog {
-	d.size = size
+func (d *spectrumDialog) Size(size DialogSize) *spectrumDialog {
+	d.PropSize = size
 	return d
 }
 
 // Variant sets the variant style of the dialog
-func (d *SpectrumDialog) Variant(variant string) *SpectrumDialog {
-	d.variant = variant
+func (d *spectrumDialog) Variant(variant string) *spectrumDialog {
+	d.PropVariant = variant
 	return d
 }
 
 // Heading sets the heading element for the dialog
-func (d *SpectrumDialog) Heading(heading app.UI) *SpectrumDialog {
-	d.heading = heading
+func (d *spectrumDialog) Heading(heading app.UI) *spectrumDialog {
+	d.PropHeading = heading
 	return d
 }
 
 // HeadingText sets a text heading for the dialog
-func (d *SpectrumDialog) HeadingText(text string) *SpectrumDialog {
-	d.heading = app.H2().Text(text)
+func (d *spectrumDialog) HeadingText(text string) *spectrumDialog {
+	d.PropHeading = app.H2().Text(text)
 	return d
 }
 
 // Hero sets the hero image element for the dialog
-func (d *SpectrumDialog) Hero(hero app.UI) *SpectrumDialog {
-	d.hero = hero
+func (d *spectrumDialog) Hero(hero app.UI) *spectrumDialog {
+	d.PropHero = hero
 	return d
 }
 
 // Button adds a button to the dialog's button area
-func (d *SpectrumDialog) Button(button app.UI) *SpectrumDialog {
-	d.buttons = append(d.buttons, button)
+func (d *spectrumDialog) Button(button app.UI) *spectrumDialog {
+	d.PropButtons = append(d.PropButtons, button)
 	return d
 }
 
 // Buttons sets all buttons for the dialog
-func (d *SpectrumDialog) Buttons(buttons ...app.UI) *SpectrumDialog {
-	d.buttons = buttons
+func (d *spectrumDialog) Buttons(buttons ...app.UI) *spectrumDialog {
+	d.PropButtons = buttons
 	return d
 }
 
 // Footer sets the footer content for the dialog
-func (d *SpectrumDialog) Footer(footer app.UI) *SpectrumDialog {
-	d.footer = footer
+func (d *spectrumDialog) Footer(footer app.UI) *spectrumDialog {
+	d.PropFooter = footer
 	return d
 }
 
 // Content adds content to the dialog's main content area
-func (d *SpectrumDialog) Content(content app.UI) *SpectrumDialog {
-	d.content = append(d.content, content)
+func (d *spectrumDialog) Content(content app.UI) *spectrumDialog {
+	d.PropContent = append(d.PropContent, content)
 	return d
 }
 
 // ContentList sets all content elements for the dialog
-func (d *SpectrumDialog) ContentList(content ...app.UI) *SpectrumDialog {
-	d.content = content
+func (d *spectrumDialog) ContentList(content ...app.UI) *spectrumDialog {
+	d.PropContent = content
 	return d
 }
 
 // ContentText adds text content to the dialog
-func (d *SpectrumDialog) ContentText(text string) *SpectrumDialog {
-	d.content = append(d.content, app.P().Text(text))
+func (d *spectrumDialog) ContentText(text string) *spectrumDialog {
+	d.PropContent = append(d.PropContent, app.P().Text(text))
 	return d
 }
 
 // OnClose sets the close event handler
-func (d *SpectrumDialog) OnClose(handler app.EventHandler) *SpectrumDialog {
-	d.onClose = handler
+func (d *spectrumDialog) OnClose(handler app.EventHandler) *spectrumDialog {
+	d.PropOnClose = handler
 	return d
 }
 
 // Convenience methods for setting dialog sizes
 
 // Small sets size to small (s)
-func (d *SpectrumDialog) Small() *SpectrumDialog {
+func (d *spectrumDialog) Small() *spectrumDialog {
 	return d.Size(DialogSizeS)
 }
 
 // Medium sets size to medium (m)
-func (d *SpectrumDialog) Medium() *SpectrumDialog {
+func (d *spectrumDialog) Medium() *spectrumDialog {
 	return d.Size(DialogSizeM)
 }
 
 // Large sets size to large (l)
-func (d *SpectrumDialog) Large() *SpectrumDialog {
+func (d *spectrumDialog) Large() *spectrumDialog {
 	return d.Size(DialogSizeL)
 }
 
 // Convenience methods for setting dialog modes
 
 // Fullscreen sets mode to fullscreen
-func (d *SpectrumDialog) Fullscreen() *SpectrumDialog {
+func (d *spectrumDialog) Fullscreen() *spectrumDialog {
 	return d.Mode(DialogModeFullscreen)
 }
 
 // FullscreenTakeover sets mode to fullscreenTakeover
-func (d *SpectrumDialog) FullscreenTakeover() *SpectrumDialog {
+func (d *spectrumDialog) FullscreenTakeover() *spectrumDialog {
 	return d.Mode(DialogModeFullscreenTakeover)
 }
 
 // Render renders the dialog component
-func (d *SpectrumDialog) Render() app.UI {
+func (d *spectrumDialog) Render() app.UI {
 	dialog := app.Elem("sp-dialog")
 
 	// Add properties
-	if d.dismissLabel != "" {
-		dialog = dialog.Attr("dismiss-label", d.dismissLabel)
+	if d.PropDismissLabel != "" {
+		dialog = dialog.Attr("dismiss-label", d.PropDismissLabel)
 	}
-	if d.dismissable {
+	if d.PropDismissable {
 		dialog = dialog.Attr("dismissable", true)
 	}
-	if d.error {
+	if d.PropError {
 		dialog = dialog.Attr("error", true)
 	}
-	if d.mode != "" {
-		dialog = dialog.Attr("mode", string(d.mode))
+	if d.PropMode != "" {
+		dialog = dialog.Attr("mode", string(d.PropMode))
 	}
-	if d.noDivider {
+	if d.PropNoDivider {
 		dialog = dialog.Attr("no-divider", true)
 	}
-	if d.size != "" {
-		dialog = dialog.Attr("size", string(d.size))
+	if d.PropSize != "" {
+		dialog = dialog.Attr("size", string(d.PropSize))
 	}
-	if d.variant != "" {
-		dialog = dialog.Attr("variant", d.variant)
+	if d.PropVariant != "" {
+		dialog = dialog.Attr("variant", d.PropVariant)
 	}
 
 	// Add event handlers
-	if d.onClose != nil {
-		dialog = dialog.On("close", d.onClose)
+	if d.PropOnClose != nil {
+		dialog = dialog.On("close", d.PropOnClose)
 	}
 
 	// Collect slot elements
 	elements := []app.UI{}
 
 	// Add heading slot if provided
-	if d.heading != nil {
-		headingElem := d.heading
+	if d.PropHeading != nil {
+		headingElem := d.PropHeading
 		if headingWithSlot, ok := headingElem.(interface{ Slot(string) app.UI }); ok {
 			headingElem = headingWithSlot.Slot("heading")
 		} else {
@@ -232,8 +232,8 @@ func (d *SpectrumDialog) Render() app.UI {
 	}
 
 	// Add hero slot if provided
-	if d.hero != nil {
-		heroElem := d.hero
+	if d.PropHero != nil {
+		heroElem := d.PropHero
 		if heroWithSlot, ok := heroElem.(interface{ Slot(string) app.UI }); ok {
 			heroElem = heroWithSlot.Slot("hero")
 		} else {
@@ -245,8 +245,8 @@ func (d *SpectrumDialog) Render() app.UI {
 	}
 
 	// Add footer slot if provided
-	if d.footer != nil {
-		footerElem := d.footer
+	if d.PropFooter != nil {
+		footerElem := d.PropFooter
 		if footerWithSlot, ok := footerElem.(interface{ Slot(string) app.UI }); ok {
 			footerElem = footerWithSlot.Slot("footer")
 		} else {
@@ -258,7 +258,7 @@ func (d *SpectrumDialog) Render() app.UI {
 	}
 
 	// Add button slots if provided
-	for _, button := range d.buttons {
+	for _, button := range d.PropButtons {
 		buttonElem := button
 		if buttonWithSlot, ok := buttonElem.(interface{ Slot(string) app.UI }); ok {
 			buttonElem = buttonWithSlot.Slot("button")
@@ -271,7 +271,7 @@ func (d *SpectrumDialog) Render() app.UI {
 	}
 
 	// Add content (default slot) if provided
-	elements = append(elements, d.content...)
+	elements = append(elements, d.PropContent...)
 
 	// Add all elements to the dialog
 	dialog = dialog.Body(elements...)

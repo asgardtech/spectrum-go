@@ -16,119 +16,119 @@ const (
 	DropEffectNone DropEffect = "none"
 )
 
-// SpectrumDropzone represents an area into which an object can be dragged and dropped
+// spectrumDropzone represents an area into which an object can be dragged and dropped
 // to accomplish a task.
-type SpectrumDropzone struct {
+type spectrumDropzone struct {
 	app.Compo
 
-	dragged    bool
-	filled     bool
-	dropEffect DropEffect
-	children   []app.UI
+	PropDragged    bool
+	PropFilled     bool
+	PropDropEffect DropEffect
+	PropChildren   []app.UI
 
 	// Event handlers
-	onDragLeaveHandler    app.EventHandler
-	onDragOverHandler     app.EventHandler
-	onDropHandler         app.EventHandler
-	onShouldAcceptHandler app.EventHandler
+	PropOnDragLeaveHandler    app.EventHandler
+	PropOnDragOverHandler     app.EventHandler
+	PropOnDropHandler         app.EventHandler
+	PropOnShouldAcceptHandler app.EventHandler
 }
 
 // Dropzone creates a new dropzone element.
-func Dropzone() *SpectrumDropzone {
-	return &SpectrumDropzone{}
+func Dropzone() *spectrumDropzone {
+	return &spectrumDropzone{}
 }
 
 // Dragged sets whether files are currently being dragged over the dropzone.
-func (d *SpectrumDropzone) Dragged(dragged bool) *SpectrumDropzone {
-	d.dragged = dragged
+func (d *spectrumDropzone) Dragged(dragged bool) *spectrumDropzone {
+	d.PropDragged = dragged
 	return d
 }
 
 // Filled sets whether the dropzone is in a filled state.
-func (d *SpectrumDropzone) Filled(filled bool) *SpectrumDropzone {
-	d.filled = filled
+func (d *spectrumDropzone) Filled(filled bool) *spectrumDropzone {
+	d.PropFilled = filled
 	return d
 }
 
 // DropEffect sets the visual feedback given to the user during a drag and drop operation.
-func (d *SpectrumDropzone) DropEffect(effect DropEffect) *SpectrumDropzone {
-	d.dropEffect = effect
+func (d *spectrumDropzone) DropEffect(effect DropEffect) *spectrumDropzone {
+	d.PropDropEffect = effect
 	return d
 }
 
 // OnDragLeave sets the handler for when dragged files have been moved out of the UI
 // without having been dropped.
-func (d *SpectrumDropzone) OnDragLeave(handler app.EventHandler) *SpectrumDropzone {
-	d.onDragLeaveHandler = handler
+func (d *spectrumDropzone) OnDragLeave(handler app.EventHandler) *spectrumDropzone {
+	d.PropOnDragLeaveHandler = handler
 	return d
 }
 
 // OnDragOver sets the handler for when files have been dragged over the UI,
 // but not yet dropped.
-func (d *SpectrumDropzone) OnDragOver(handler app.EventHandler) *SpectrumDropzone {
-	d.onDragOverHandler = handler
+func (d *spectrumDropzone) OnDragOver(handler app.EventHandler) *spectrumDropzone {
+	d.PropOnDragOverHandler = handler
 	return d
 }
 
 // OnDrop sets the handler for when dragged files have been dropped on the UI.
-func (d *SpectrumDropzone) OnDrop(handler app.EventHandler) *SpectrumDropzone {
-	d.onDropHandler = handler
+func (d *spectrumDropzone) OnDrop(handler app.EventHandler) *spectrumDropzone {
+	d.PropOnDropHandler = handler
 	return d
 }
 
 // OnShouldAccept sets the handler for confirming whether or not a file dropped
 // on the UI should be accepted.
-func (d *SpectrumDropzone) OnShouldAccept(handler app.EventHandler) *SpectrumDropzone {
-	d.onShouldAcceptHandler = handler
+func (d *spectrumDropzone) OnShouldAccept(handler app.EventHandler) *spectrumDropzone {
+	d.PropOnShouldAcceptHandler = handler
 	return d
 }
 
 // Children sets the child elements of the dropzone.
-func (d *SpectrumDropzone) Children(children ...app.UI) *SpectrumDropzone {
-	d.children = children
+func (d *spectrumDropzone) Children(children ...app.UI) *spectrumDropzone {
+	d.PropChildren = children
 	return d
 }
 
 // Render renders the dropzone component.
-func (d *SpectrumDropzone) Render() app.UI {
+func (d *spectrumDropzone) Render() app.UI {
 	element := app.Div().
 		Class("spectrum-Dropzone").
 		DataSet("spectrum-dropzone", "")
 
-	if d.dragged {
+	if d.PropDragged {
 		element.Attr("dragged", "")
 	}
 
-	if d.filled {
+	if d.PropFilled {
 		element.Attr("filled", "")
 	}
 
-	if d.dropEffect != "" {
-		element.Attr("drop-effect", string(d.dropEffect))
+	if d.PropDropEffect != "" {
+		element.Attr("drop-effect", string(d.PropDropEffect))
 	}
 
-	if d.onDragLeaveHandler != nil {
-		element.OnDragLeave(d.onDragLeaveHandler)
+	if d.PropOnDragLeaveHandler != nil {
+		element.OnDragLeave(d.PropOnDragLeaveHandler)
 	}
 
-	if d.onDragOverHandler != nil {
-		element.OnDragOver(d.onDragOverHandler)
+	if d.PropOnDragOverHandler != nil {
+		element.OnDragOver(d.PropOnDragOverHandler)
 	}
 
-	if d.onDropHandler != nil {
-		element.OnDrop(d.onDropHandler)
+	if d.PropOnDropHandler != nil {
+		element.OnDrop(d.PropOnDropHandler)
 	}
 
-	if d.onShouldAcceptHandler != nil {
+	if d.PropOnShouldAcceptHandler != nil {
 		// For custom events, we need to handle them during the standard drag events
 		// We'll use the dragenter event to check if we should accept the dragged items
 		element.OnDragEnter(func(ctx app.Context, e app.Event) {
 			// Call the shouldAccept handler with the original event
-			d.onShouldAcceptHandler(ctx, e)
+			d.PropOnShouldAcceptHandler(ctx, e)
 		})
 	}
 
-	element.Body(d.children...)
+	element.Body(d.PropChildren...)
 
 	return element
 }

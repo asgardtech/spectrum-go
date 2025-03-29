@@ -8,13 +8,14 @@ import (
 var ElementResolverUpdatedSymbol = "element-resolver-updated"
 
 // SpectrumElementResolutionController keeps an active reference to another element in the same DOM tree
-// It manages observing the DOM tree to ensure that the reference it holds is always the first matched element or nil
+// It manages periodic checking of the DOM tree to ensure that the reference it holds is always the first matched element or nil
 type SpectrumElementResolutionController struct {
-	host        app.Composer
-	Element     app.UI
-	Selector    string
-	mutationObs app.MutationObserver
-	observing   bool
+	host           app.Composer
+	Element        interface{}
+	Selector       string
+	observing      bool
+	pollingTimerID interface{}
+	pollingEnabled bool
 }
 
 // ElementResolutionController creates a new SpectrumElementResolutionController
@@ -34,82 +35,72 @@ func (c *SpectrumElementResolutionController) SetSelector(selector string) *Spec
 	return c
 }
 
-// Connect starts observing DOM mutations if a selector is provided
+// Connect starts observing DOM changes if a selector is provided
 func (c *SpectrumElementResolutionController) Connect() {
 	if c.Selector != "" && !c.observing {
 		c.startObserving()
 	}
 }
 
-// Disconnect stops observing DOM mutations
+// Disconnect stops observing DOM changes
 func (c *SpectrumElementResolutionController) Disconnect() {
 	if c.observing {
 		c.stopObserving()
 	}
 }
 
-// startObserving sets up a MutationObserver to track DOM changes that might affect the resolved element
+// startObserving sets up a polling mechanism to check for DOM changes
 func (c *SpectrumElementResolutionController) startObserving() {
-	if c.mutationObs != nil {
+	if c.pollingEnabled {
 		return
 	}
 
-	// Set up mutation observer options
-	options := app.MutationObserverInit{
-		ChildList:       true,
-		Attributes:      true,
-		CharacterData:   true,
-		Subtree:         true,
-		AttributeFilter: []string{"class", "id", "hidden"},
-	}
-
-	// Create the mutation observer
-	c.mutationObs = app.NewMutationObserver(func(mutations []app.Mutation) {
-		c.handleMutations(mutations)
-	})
-
-	// Start observing the document body
-	c.mutationObs.Observe(app.Window().Get("document").Get("body"), options)
-	c.observing = true
+	// Set up polling using JavaScript setInterval
+	c.pollingEnabled = true
+	c.setupPolling()
 
 	// Make initial reference update
 	c.updateReference()
+	c.observing = true
 }
 
-// stopObserving disconnects the mutation observer
+// setupPolling creates a recurring timer to check for DOM changes
+func (c *SpectrumElementResolutionController) setupPolling() {
+	// Clear any existing timer
+	if c.pollingTimerID != nil {
+		app.Window().Call("clearInterval", c.pollingTimerID)
+		c.pollingTimerID = nil
+	}
+
+	// Only set up polling if enabled
+	if !c.pollingEnabled {
+		return
+	}
+
+	// Create a function to check for updates periodically
+	checkFunc := app.FuncOf(func(this app.Value, args []app.Value) interface{} {
+		if c.pollingEnabled {
+			c.updateReference()
+		}
+		return nil
+	})
+
+	// Set up interval to check every 500ms
+	// This is a compromise between responsiveness and performance
+	c.pollingTimerID = app.Window().Call("setInterval", checkFunc, 500)
+}
+
+// stopObserving stops the polling mechanism
 func (c *SpectrumElementResolutionController) stopObserving() {
-	if c.mutationObs != nil {
-		c.mutationObs.Disconnect()
-		c.mutationObs = nil
+	c.pollingEnabled = false
+
+	// Clear the polling timer if it exists
+	if c.pollingTimerID != nil {
+		app.Window().Call("clearInterval", c.pollingTimerID)
+		c.pollingTimerID = nil
 	}
+
 	c.observing = false
-}
-
-// handleMutations processes DOM mutations and updates the element reference if needed
-func (c *SpectrumElementResolutionController) handleMutations(mutations []app.Mutation) {
-	// Check if any of the mutations are relevant to our selector
-	shouldUpdate := false
-
-	for _, mutation := range mutations {
-		// If nodes were added or removed, we need to update
-		if mutation.Type == "childList" {
-			shouldUpdate = true
-			break
-		}
-
-		// If attributes changed on potential target elements, we need to update
-		if mutation.Type == "attributes" {
-			attrName := mutation.AttributeName
-			if attrName == "class" || attrName == "id" || attrName == "hidden" {
-				shouldUpdate = true
-				break
-			}
-		}
-	}
-
-	if shouldUpdate {
-		c.updateReference()
-	}
 }
 
 // updateReference queries the DOM and updates the element reference
@@ -117,24 +108,20 @@ func (c *SpectrumElementResolutionController) updateReference() {
 	if c.Selector == "" {
 		c.Element = nil
 		// Notify the host component that the reference has been updated
-		if _, ok := c.host.(app.Updater); ok {
-			c.host.(app.Updater).RequestUpdate(ElementResolverUpdatedSymbol)
-		}
+		notifyHostOfUpdate(c.host)
 		return
 	}
 
 	// Query the DOM for the first element matching the selector
 	doc := app.Window().Get("document")
-	element := doc.QuerySelector(c.Selector)
+	element := doc.Call("querySelector", c.Selector)
 
 	// Check if the element has changed
 	oldElement := c.Element
 
 	if !element.IsNull() {
-		// We found an element, convert it to app.UI type
-		// This is a simplified representation - in a real implementation
-		// you would need to convert the JS element to an appropriate app.UI type
-		c.Element = app.Elem("div") // Placeholder - actual conversion would depend on the element type
+		// Store the JavaScript DOM element reference
+		c.Element = element
 	} else {
 		c.Element = nil
 	}
@@ -142,8 +129,42 @@ func (c *SpectrumElementResolutionController) updateReference() {
 	// If the element reference has changed, notify the host
 	if oldElement != c.Element {
 		// Notify the host component that the reference has been updated
-		if _, ok := c.host.(app.Updater); ok {
-			c.host.(app.Updater).RequestUpdate(ElementResolverUpdatedSymbol)
-		}
+		notifyHostOfUpdate(c.host)
 	}
+}
+
+// notifyHostOfUpdate triggers an update on the host component
+func notifyHostOfUpdate(host app.Composer) {
+	// In go-app v10, we need to use Update method if the component implements app.Updater
+	if updater, ok := host.(interface{ Update() }); ok {
+		updater.Update()
+	}
+}
+
+// GetElementProperty retrieves a property value from the current element reference
+func (c *SpectrumElementResolutionController) GetElementProperty(property string) interface{} {
+	if c.Element == nil {
+		return nil
+	}
+
+	// Access element property via the JavaScript value
+	if jsValue, ok := c.Element.(app.Value); ok && !jsValue.IsNull() {
+		return jsValue.Get(property).Get("value").String()
+	}
+
+	return nil
+}
+
+// CallElementMethod calls a method on the current element reference
+func (c *SpectrumElementResolutionController) CallElementMethod(method string, args ...interface{}) interface{} {
+	if c.Element == nil {
+		return nil
+	}
+
+	// Call element method via the JavaScript value
+	if jsValue, ok := c.Element.(app.Value); ok && !jsValue.IsNull() {
+		return jsValue.Call(method, args...)
+	}
+
+	return nil
 }

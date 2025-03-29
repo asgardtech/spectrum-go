@@ -14,6 +14,7 @@ type SpectrumMatchMediaController struct {
 	MediaQuery string
 	Matches    bool
 	mql        app.Value
+	ctx        *app.Context
 }
 
 // MatchMediaController creates a new SpectrumMatchMediaController
@@ -53,7 +54,7 @@ func (c *SpectrumMatchMediaController) Disconnect() {
 	if !c.mql.IsNull() {
 		// Remove event listener
 		c.mql.Call("removeEventListener", "change", app.FuncOf(c.handleChange))
-		c.mql = app.Value{}
+		c.mql = nil
 	}
 }
 
@@ -85,12 +86,17 @@ func (c *SpectrumMatchMediaController) handleChange(this app.Value, args []app.V
 	c.Matches = args[0].Get("matches").Bool()
 
 	// Only trigger update if the match state has changed
-	if oldMatches != c.Matches {
-		// Notify the host component that the match state has changed
-		if updater, ok := c.host.(app.Updater); ok {
-			updater.Update()
-		}
+	if oldMatches != c.Matches && c.ctx != nil {
+		c.ctx.Update()
 	}
 
 	return nil
+}
+
+func (c *SpectrumMatchMediaController) OnMount(ctx app.Context) {
+	c.ctx = &ctx
+}
+
+func (c *SpectrumMatchMediaController) OnUnmount() {
+	c.ctx = nil
 }

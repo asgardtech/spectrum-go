@@ -4,42 +4,42 @@ import "github.com/maxence-charriere/go-app/v10/pkg/app"
 
 // SpectrumIconsWorkflow represents a component that provides access to the Spectrum Workflow icons.
 // This is a wrapper around the Adobe Spectrum Web Components icons-workflow package.
-type SpectrumIconsWorkflow struct {
+type spectrumIconsWorkflow struct {
 	app.Compo
 
 	// Properties
-	label string
-	size  IconSize
+	PropLabel string
+	PropSize  IconSize
 }
 
 // IconsWorkflow creates a new icons-workflow component.
-func IconsWorkflow() *SpectrumIconsWorkflow {
-	return &SpectrumIconsWorkflow{}
+func IconsWorkflow() *spectrumIconsWorkflow {
+	return &spectrumIconsWorkflow{}
 }
 
 // Label sets the accessible label for the icon.
-func (i *SpectrumIconsWorkflow) Label(label string) *SpectrumIconsWorkflow {
-	i.label = label
+func (i *spectrumIconsWorkflow) Label(label string) *spectrumIconsWorkflow {
+	i.PropLabel = label
 	return i
 }
 
 // Size sets the size of the icons.
-func (i *SpectrumIconsWorkflow) Size(size IconSize) *SpectrumIconsWorkflow {
-	i.size = size
+func (i *spectrumIconsWorkflow) Size(size IconSize) *spectrumIconsWorkflow {
+	i.PropSize = size
 	return i
 }
 
 // Render renders the icons-workflow component.
-func (i *SpectrumIconsWorkflow) Render() app.UI {
+func (i *spectrumIconsWorkflow) Render() app.UI {
 	iconsWorkflow := app.Elem("sp-icons-workflow")
 
 	// Set attributes based on properties
-	if i.label != "" {
-		iconsWorkflow.Attr("label", i.label)
+	if i.PropLabel != "" {
+		iconsWorkflow.Attr("label", i.PropLabel)
 	}
 
-	if i.size != "" {
-		iconsWorkflow.Attr("size", string(i.size))
+	if i.PropSize != "" {
+		iconsWorkflow.Attr("size", string(i.PropSize))
 	}
 
 	return iconsWorkflow

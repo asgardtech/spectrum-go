@@ -2,115 +2,115 @@ package sp
 
 import "github.com/maxence-charriere/go-app/v10/pkg/app"
 
-// SpectrumColorWheel represents the sp-color-wheel component
+// spectrumColorWheel represents the sp-color-wheel component
 // It lets users visually change an individual channel of a color on a circular track.
-type SpectrumColorWheel struct {
+type spectrumColorWheel struct {
 	app.Compo
 
 	// Properties
-	color    string
-	disabled bool
-	focused  bool
-	label    string
-	step     float64
-	tabIndex int
-	value    float64
+	PropColor    string
+	PropDisabled bool
+	PropFocused  bool
+	PropLabel    string
+	PropStep     float64
+	PropTabIndex int
+	PropValue    float64
 
 	// Event handlers
-	onChange app.EventHandler
-	onInput  app.EventHandler
+	PropOnChange app.EventHandler
+	PropOnInput  app.EventHandler
 }
 
-// ColorWheel creates a new SpectrumColorWheel instance.
-func ColorWheel() *SpectrumColorWheel {
-	return &SpectrumColorWheel{
-		label: "hue",
-		step:  1,
+// ColorWheel creates a new spectrumColorWheel instance.
+func ColorWheel() *spectrumColorWheel {
+	return &spectrumColorWheel{
+		PropLabel: "hue",
+		PropStep:  1,
 	}
 }
 
-// Color sets the color property of the SpectrumColorWheel
-func (c *SpectrumColorWheel) Color(color string) *SpectrumColorWheel {
-	c.color = color
+// Color sets the color property of the spectrumColorWheel
+func (c *spectrumColorWheel) Color(color string) *spectrumColorWheel {
+	c.PropColor = color
 	return c
 }
 
 // Disabled sets whether the color wheel is disabled
-func (c *SpectrumColorWheel) Disabled(disabled bool) *SpectrumColorWheel {
-	c.disabled = disabled
+func (c *spectrumColorWheel) Disabled(disabled bool) *spectrumColorWheel {
+	c.PropDisabled = disabled
 	return c
 }
 
 // Focused sets whether the color wheel is focused
-func (c *SpectrumColorWheel) Focused(focused bool) *SpectrumColorWheel {
-	c.focused = focused
+func (c *spectrumColorWheel) Focused(focused bool) *spectrumColorWheel {
+	c.PropFocused = focused
 	return c
 }
 
-// Label sets the label property of the SpectrumColorWheel
-func (c *SpectrumColorWheel) Label(label string) *SpectrumColorWheel {
-	c.label = label
+// Label sets the label property of the spectrumColorWheel
+func (c *spectrumColorWheel) Label(label string) *spectrumColorWheel {
+	c.PropLabel = label
 	return c
 }
 
-// Step sets the step property of the SpectrumColorWheel
-func (c *SpectrumColorWheel) Step(step float64) *SpectrumColorWheel {
-	c.step = step
+// Step sets the step property of the spectrumColorWheel
+func (c *spectrumColorWheel) Step(step float64) *spectrumColorWheel {
+	c.PropStep = step
 	return c
 }
 
-// TabIndex sets the tabIndex property of the SpectrumColorWheel
-func (c *SpectrumColorWheel) TabIndex(tabIndex int) *SpectrumColorWheel {
-	c.tabIndex = tabIndex
+// TabIndex sets the tabIndex property of the spectrumColorWheel
+func (c *spectrumColorWheel) TabIndex(tabIndex int) *spectrumColorWheel {
+	c.PropTabIndex = tabIndex
 	return c
 }
 
-// Value sets the value property of the SpectrumColorWheel
-func (c *SpectrumColorWheel) Value(value float64) *SpectrumColorWheel {
-	c.value = value
+// Value sets the value property of the spectrumColorWheel
+func (c *spectrumColorWheel) Value(value float64) *spectrumColorWheel {
+	c.PropValue = value
 	return c
 }
 
 // OnChange sets the change event handler
-func (c *SpectrumColorWheel) OnChange(handler app.EventHandler) *SpectrumColorWheel {
-	c.onChange = handler
+func (c *spectrumColorWheel) OnChange(handler app.EventHandler) *spectrumColorWheel {
+	c.PropOnChange = handler
 	return c
 }
 
 // OnInput sets the input event handler
-func (c *SpectrumColorWheel) OnInput(handler app.EventHandler) *SpectrumColorWheel {
-	c.onInput = handler
+func (c *spectrumColorWheel) OnInput(handler app.EventHandler) *spectrumColorWheel {
+	c.PropOnInput = handler
 	return c
 }
 
-// Render renders the SpectrumColorWheel component.
-func (c *SpectrumColorWheel) Render() app.UI {
+// Render renders the spectrumColorWheel component.
+func (c *spectrumColorWheel) Render() app.UI {
 	colorWheel := app.Elem("sp-color-wheel").
-		Attr("label", c.label).
-		Attr("step", c.step)
+		Attr("label", c.PropLabel).
+		Attr("step", c.PropStep)
 
-	if c.color != "" {
-		colorWheel = colorWheel.Attr("color", c.color)
+	if c.PropColor != "" {
+		colorWheel = colorWheel.Attr("color", c.PropColor)
 	}
-	if c.disabled {
+	if c.PropDisabled {
 		colorWheel = colorWheel.Attr("disabled", true)
 	}
-	if c.focused {
+	if c.PropFocused {
 		colorWheel = colorWheel.Attr("focused", true)
 	}
-	if c.tabIndex != 0 {
-		colorWheel = colorWheel.Attr("tabindex", c.tabIndex)
+	if c.PropTabIndex != 0 {
+		colorWheel = colorWheel.Attr("tabindex", c.PropTabIndex)
 	}
-	if c.value != 0 {
-		colorWheel = colorWheel.Attr("value", c.value)
+	if c.PropValue != 0 {
+		colorWheel = colorWheel.Attr("value", c.PropValue)
 	}
 
 	// Add event handlers
-	if c.onChange != nil {
-		colorWheel = colorWheel.On("change", c.onChange)
+	if c.PropOnChange != nil {
+		colorWheel = colorWheel.On("change", c.PropOnChange)
 	}
-	if c.onInput != nil {
-		colorWheel = colorWheel.On("input", c.onInput)
+	if c.PropOnInput != nil {
+		colorWheel = colorWheel.On("input", c.PropOnInput)
 	}
 
 	return colorWheel

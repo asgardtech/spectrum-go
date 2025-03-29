@@ -50,222 +50,222 @@ const (
 
 // SpectrumInfieldButton represents an sp-infield-button component
 // that visually associates button functionality with form fields.
-type SpectrumInfieldButton struct {
+type spectrumInfieldButton struct {
 	app.Compo
 
 	// Properties
-	active         bool
-	disabled       bool
-	download       string
-	href           string
-	label          string
-	referrerpolicy string
-	rel            string
-	tabIndex       int
-	target         string
-	buttonType     InfieldButtonType
-	inline         InfieldButtonInlinePosition
-	block          InfieldButtonBlockPosition
-	size           InfieldButtonSize
-	quiet          bool
+	PropActive         bool
+	PropDisabled       bool
+	PropDownload       string
+	PropHref           string
+	PropLabel          string
+	PropReferrerPolicy string
+	PropRel            string
+	PropTabIndex       int
+	PropTarget         string
+	PropButtonType     InfieldButtonType
+	PropInline         InfieldButtonInlinePosition
+	PropBlock          InfieldButtonBlockPosition
+	PropSize           InfieldButtonSize
+	PropQuiet          bool
 
 	// Events
-	onClick app.EventHandler
+	PropOnClick app.EventHandler
 
 	// Content
-	content app.UI
-	icon    app.UI
+	PropContent app.UI
+	PropIcon    app.UI
 }
 
 // InfieldButton creates a new infield button component
-func InfieldButton() *SpectrumInfieldButton {
-	return &SpectrumInfieldButton{
-		buttonType: InfieldButtonTypeButton,
-		size:       InfieldButtonSizeM,
+func InfieldButton() *spectrumInfieldButton {
+	return &spectrumInfieldButton{
+		PropButtonType: InfieldButtonTypeButton,
+		PropSize:       InfieldButtonSizeM,
 	}
 }
 
 // Active sets the active state
-func (i *SpectrumInfieldButton) Active(active bool) *SpectrumInfieldButton {
-	i.active = active
+func (i *spectrumInfieldButton) Active(active bool) *spectrumInfieldButton {
+	i.PropActive = active
 	return i
 }
 
 // Disabled sets the disabled state
-func (i *SpectrumInfieldButton) Disabled(disabled bool) *SpectrumInfieldButton {
-	i.disabled = disabled
+func (i *spectrumInfieldButton) Disabled(disabled bool) *spectrumInfieldButton {
+	i.PropDisabled = disabled
 	return i
 }
 
 // Download sets the download attribute
-func (i *SpectrumInfieldButton) Download(download string) *SpectrumInfieldButton {
-	i.download = download
+func (i *spectrumInfieldButton) Download(download string) *spectrumInfieldButton {
+	i.PropDownload = download
 	return i
 }
 
 // Href sets the URL that the button points to
-func (i *SpectrumInfieldButton) Href(href string) *SpectrumInfieldButton {
-	i.href = href
+func (i *spectrumInfieldButton) Href(href string) *spectrumInfieldButton {
+	i.PropHref = href
 	return i
 }
 
 // Label sets the accessible label
-func (i *SpectrumInfieldButton) Label(label string) *SpectrumInfieldButton {
-	i.label = label
+func (i *spectrumInfieldButton) Label(label string) *spectrumInfieldButton {
+	i.PropLabel = label
 	return i
 }
 
 // ReferrerPolicy sets the referrer policy
-func (i *SpectrumInfieldButton) ReferrerPolicy(policy string) *SpectrumInfieldButton {
-	i.referrerpolicy = policy
+func (i *spectrumInfieldButton) ReferrerPolicy(policy string) *spectrumInfieldButton {
+	i.PropReferrerPolicy = policy
 	return i
 }
 
 // Rel sets the relationship attribute
-func (i *SpectrumInfieldButton) Rel(rel string) *SpectrumInfieldButton {
-	i.rel = rel
+func (i *spectrumInfieldButton) Rel(rel string) *spectrumInfieldButton {
+	i.PropRel = rel
 	return i
 }
 
 // TabIndex sets the tab index
-func (i *SpectrumInfieldButton) TabIndex(index int) *SpectrumInfieldButton {
-	i.tabIndex = index
+func (i *spectrumInfieldButton) TabIndex(index int) *spectrumInfieldButton {
+	i.PropTabIndex = index
 	return i
 }
 
 // Target sets the target for the link
-func (i *SpectrumInfieldButton) Target(target string) *SpectrumInfieldButton {
-	i.target = target
+func (i *spectrumInfieldButton) Target(target string) *spectrumInfieldButton {
+	i.PropTarget = target
 	return i
 }
 
 // Type sets the button type
-func (i *SpectrumInfieldButton) Type(buttonType InfieldButtonType) *SpectrumInfieldButton {
-	i.buttonType = buttonType
+func (i *spectrumInfieldButton) Type(buttonType InfieldButtonType) *spectrumInfieldButton {
+	i.PropButtonType = buttonType
 	return i
 }
 
 // Inline sets the inline position
-func (i *SpectrumInfieldButton) Inline(position InfieldButtonInlinePosition) *SpectrumInfieldButton {
-	i.inline = position
+func (i *spectrumInfieldButton) Inline(position InfieldButtonInlinePosition) *spectrumInfieldButton {
+	i.PropInline = position
 	return i
 }
 
 // Block sets the block position for stacked buttons
-func (i *SpectrumInfieldButton) Block(position InfieldButtonBlockPosition) *SpectrumInfieldButton {
-	i.block = position
+func (i *spectrumInfieldButton) Block(position InfieldButtonBlockPosition) *spectrumInfieldButton {
+	i.PropBlock = position
 	return i
 }
 
 // Size sets the visual size
-func (i *SpectrumInfieldButton) Size(size InfieldButtonSize) *SpectrumInfieldButton {
-	i.size = size
+func (i *spectrumInfieldButton) Size(size InfieldButtonSize) *spectrumInfieldButton {
+	i.PropSize = size
 	return i
 }
 
 // Quiet sets the quiet visual style
-func (i *SpectrumInfieldButton) Quiet(quiet bool) *SpectrumInfieldButton {
-	i.quiet = quiet
+func (i *spectrumInfieldButton) Quiet(quiet bool) *spectrumInfieldButton {
+	i.PropQuiet = quiet
 	return i
 }
 
 // OnClick sets the click event handler
-func (i *SpectrumInfieldButton) OnClick(handler app.EventHandler) *SpectrumInfieldButton {
-	i.onClick = handler
+func (i *spectrumInfieldButton) OnClick(handler app.EventHandler) *spectrumInfieldButton {
+	i.PropOnClick = handler
 	return i
 }
 
 // Content sets the button text content
-func (i *SpectrumInfieldButton) Content(content app.UI) *SpectrumInfieldButton {
-	i.content = content
+func (i *spectrumInfieldButton) Content(content app.UI) *spectrumInfieldButton {
+	i.PropContent = content
 	return i
 }
 
 // Icon sets the icon element
-func (i *SpectrumInfieldButton) Icon(icon app.UI) *SpectrumInfieldButton {
-	i.icon = icon
+func (i *spectrumInfieldButton) Icon(icon app.UI) *spectrumInfieldButton {
+	i.PropIcon = icon
 	return i
 }
 
 // Render renders the infield button component
-func (i *SpectrumInfieldButton) Render() app.UI {
+func (i *spectrumInfieldButton) Render() app.UI {
 	button := app.Elem("sp-infield-button")
 
 	// Set attributes
-	if i.active {
+	if i.PropActive {
 		button = button.Attr("active", "")
 	}
 
-	if i.disabled {
+	if i.PropDisabled {
 		button = button.Attr("disabled", "")
 	}
 
-	if i.download != "" {
-		button = button.Attr("download", i.download)
+	if i.PropDownload != "" {
+		button = button.Attr("download", i.PropDownload)
 	}
 
-	if i.href != "" {
-		button = button.Attr("href", i.href)
+	if i.PropHref != "" {
+		button = button.Attr("href", i.PropHref)
 	}
 
-	if i.label != "" {
-		button = button.Attr("label", i.label)
+	if i.PropLabel != "" {
+		button = button.Attr("label", i.PropLabel)
 	}
 
-	if i.referrerpolicy != "" {
-		button = button.Attr("referrerpolicy", i.referrerpolicy)
+	if i.PropReferrerPolicy != "" {
+		button = button.Attr("referrerpolicy", i.PropReferrerPolicy)
 	}
 
-	if i.rel != "" {
-		button = button.Attr("rel", i.rel)
+	if i.PropRel != "" {
+		button = button.Attr("rel", i.PropRel)
 	}
 
-	if i.tabIndex != 0 {
-		button = button.Attr("tabindex", i.tabIndex)
+	if i.PropTabIndex != 0 {
+		button = button.Attr("tabindex", i.PropTabIndex)
 	}
 
-	if i.target != "" {
-		button = button.Attr("target", i.target)
+	if i.PropTarget != "" {
+		button = button.Attr("target", i.PropTarget)
 	}
 
-	if i.buttonType != InfieldButtonTypeButton {
-		button = button.Attr("type", string(i.buttonType))
+	if i.PropButtonType != InfieldButtonTypeButton {
+		button = button.Attr("type", string(i.PropButtonType))
 	}
 
-	if i.inline != "" {
-		button = button.Attr("inline", string(i.inline))
+	if i.PropInline != "" {
+		button = button.Attr("inline", string(i.PropInline))
 	}
 
-	if i.block != "" {
-		button = button.Attr("block", string(i.block))
+	if i.PropBlock != "" {
+		button = button.Attr("block", string(i.PropBlock))
 	}
 
-	if i.size != InfieldButtonSizeM {
-		button = button.Attr("size", string(i.size))
+	if i.PropSize != InfieldButtonSizeM {
+		button = button.Attr("size", string(i.PropSize))
 	}
 
-	if i.quiet {
+	if i.PropQuiet {
 		button = button.Attr("quiet", "")
 	}
 
 	// Add event handlers
-	if i.onClick != nil {
-		button = button.OnClick(i.onClick)
+	if i.PropOnClick != nil {
+		button = button.OnClick(i.PropOnClick)
 	}
 
 	// Add content
 	elements := []app.UI{}
 
-	if i.icon != nil {
-		if iconWithSlot, ok := i.icon.(interface{ Slot(string) app.UI }); ok {
+	if i.PropIcon != nil {
+		if iconWithSlot, ok := i.PropIcon.(interface{ Slot(string) app.UI }); ok {
 			elements = append(elements, iconWithSlot.Slot("icon"))
 		} else {
-			elements = append(elements, app.Div().Attr("slot", "icon").Body(i.icon))
+			elements = append(elements, app.Div().Attr("slot", "icon").Body(i.PropIcon))
 		}
 	}
 
-	if i.content != nil {
-		elements = append(elements, i.content)
+	if i.PropContent != nil {
+		elements = append(elements, i.PropContent)
 	}
 
 	if len(elements) > 0 {

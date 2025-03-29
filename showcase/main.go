@@ -71,12 +71,15 @@ func main() {
 			"adobe spectrum",
 			"adobe",
 		},
-		BackgroundColor:    "#d2d2d2",
-		ThemeColor:         "#d2d2d2",
-		LoadingLabel:       "go-app adobe spectrum components {progress}%",
-		Styles:             []string{},
-		Scripts:            []string{},
-		RawHeaders:         []string{},
+		BackgroundColor: "#d2d2d2",
+		ThemeColor:      "#d2d2d2",
+		LoadingLabel:    "go-app adobe spectrum components {progress}%",
+		Styles:          []string{},
+		Scripts:         []string{},
+		RawHeaders: []string{
+			// Load Spectrum Web Components as recommended in their docs
+			`<script src="https://jspm.dev/@spectrum-web-components/bundle/elements.js" type="module" async></script>`,
+		},
 		CacheableResources: []string{},
 	}
 

@@ -2,271 +2,271 @@ package sp
 
 import "github.com/maxence-charriere/go-app/v10/pkg/app"
 
-// SpectrumColorField represents an sp-color-field component
-type SpectrumColorField struct {
+// spectrumColorField represents an sp-color-field component
+type spectrumColorField struct {
 	app.Compo
 
 	// Properties
-	autocomplete string
-	disabled     bool
-	grows        bool
-	invalid      bool
-	label        string
-	maxlength    int
-	minlength    int
-	multiline    bool
-	name         string
-	pattern      string
-	placeholder  string
-	quiet        bool
-	readonly     bool
-	required     bool
-	rows         int
-	tabIndex     int
-	valid        bool
-	value        string
-	viewColor    bool
-	size         string
+	PropAutocomplete string
+	PropDisabled     bool
+	PropGrows        bool
+	PropInvalid      bool
+	PropLabel        string
+	PropMaxlength    int
+	PropMinlength    int
+	PropMultiline    bool
+	PropName         string
+	PropPattern      string
+	PropPlaceholder  string
+	PropQuiet        bool
+	PropReadonly     bool
+	PropRequired     bool
+	PropRows         int
+	PropTabIndex     int
+	PropValid        bool
+	PropValue        string
+	PropViewColor    bool
+	PropSize         string
 
 	// Event handlers
-	onChange app.EventHandler
-	onInput  app.EventHandler
+	PropOnChange app.EventHandler
+	PropOnInput  app.EventHandler
 }
 
 // ColorField creates a new color field component
-func ColorField() *SpectrumColorField {
-	return &SpectrumColorField{
-		label:     "",
-		maxlength: -1,
-		minlength: -1,
-		rows:      -1,
+func ColorField() *spectrumColorField {
+	return &spectrumColorField{
+		PropLabel:     "",
+		PropMaxlength: -1,
+		PropMinlength: -1,
+		PropRows:      -1,
 	}
 }
 
 // Autocomplete sets the autocomplete attribute
-func (cf *SpectrumColorField) Autocomplete(autocomplete string) *SpectrumColorField {
-	cf.autocomplete = autocomplete
+func (cf *spectrumColorField) Autocomplete(autocomplete string) *spectrumColorField {
+	cf.PropAutocomplete = autocomplete
 	return cf
 }
 
 // Disabled sets whether the color field is disabled
-func (cf *SpectrumColorField) Disabled(disabled bool) *SpectrumColorField {
-	cf.disabled = disabled
+func (cf *spectrumColorField) Disabled(disabled bool) *spectrumColorField {
+	cf.PropDisabled = disabled
 	return cf
 }
 
 // Grows sets whether the textarea will grow vertically to accommodate longer input
-func (cf *SpectrumColorField) Grows(grows bool) *SpectrumColorField {
-	cf.grows = grows
+func (cf *spectrumColorField) Grows(grows bool) *spectrumColorField {
+	cf.PropGrows = grows
 	return cf
 }
 
 // Invalid sets whether the value held by the form control is invalid
-func (cf *SpectrumColorField) Invalid(invalid bool) *SpectrumColorField {
-	cf.invalid = invalid
+func (cf *spectrumColorField) Invalid(invalid bool) *spectrumColorField {
+	cf.PropInvalid = invalid
 	return cf
 }
 
 // Label sets the aria-label for the color field
-func (cf *SpectrumColorField) Label(label string) *SpectrumColorField {
-	cf.label = label
+func (cf *spectrumColorField) Label(label string) *spectrumColorField {
+	cf.PropLabel = label
 	return cf
 }
 
 // Maxlength sets the maximum string length that the user can enter
-func (cf *SpectrumColorField) Maxlength(maxlength int) *SpectrumColorField {
-	cf.maxlength = maxlength
+func (cf *spectrumColorField) Maxlength(maxlength int) *spectrumColorField {
+	cf.PropMaxlength = maxlength
 	return cf
 }
 
 // Minlength sets the minimum string length that the user can enter
-func (cf *SpectrumColorField) Minlength(minlength int) *SpectrumColorField {
-	cf.minlength = minlength
+func (cf *spectrumColorField) Minlength(minlength int) *spectrumColorField {
+	cf.PropMinlength = minlength
 	return cf
 }
 
 // Multiline sets whether the form control should accept a value longer than one line
-func (cf *SpectrumColorField) Multiline(multiline bool) *SpectrumColorField {
-	cf.multiline = multiline
+func (cf *spectrumColorField) Multiline(multiline bool) *spectrumColorField {
+	cf.PropMultiline = multiline
 	return cf
 }
 
 // Name sets the name of the form control
-func (cf *SpectrumColorField) Name(name string) *SpectrumColorField {
-	cf.name = name
+func (cf *spectrumColorField) Name(name string) *spectrumColorField {
+	cf.PropName = name
 	return cf
 }
 
 // Pattern sets the pattern the value must match to be valid
-func (cf *SpectrumColorField) Pattern(pattern string) *SpectrumColorField {
-	cf.pattern = pattern
+func (cf *spectrumColorField) Pattern(pattern string) *spectrumColorField {
+	cf.PropPattern = pattern
 	return cf
 }
 
 // Placeholder sets the text that appears in the form control when it has no value set
-func (cf *SpectrumColorField) Placeholder(placeholder string) *SpectrumColorField {
-	cf.placeholder = placeholder
+func (cf *spectrumColorField) Placeholder(placeholder string) *spectrumColorField {
+	cf.PropPlaceholder = placeholder
 	return cf
 }
 
 // Quiet sets whether to display the form control with no visible background
-func (cf *SpectrumColorField) Quiet(quiet bool) *SpectrumColorField {
-	cf.quiet = quiet
+func (cf *spectrumColorField) Quiet(quiet bool) *spectrumColorField {
+	cf.PropQuiet = quiet
 	return cf
 }
 
 // Readonly sets whether a user can interact with the value of the form control
-func (cf *SpectrumColorField) Readonly(readonly bool) *SpectrumColorField {
-	cf.readonly = readonly
+func (cf *spectrumColorField) Readonly(readonly bool) *spectrumColorField {
+	cf.PropReadonly = readonly
 	return cf
 }
 
 // Required sets whether the form control will be found to be invalid when it holds no value
-func (cf *SpectrumColorField) Required(required bool) *SpectrumColorField {
-	cf.required = required
+func (cf *spectrumColorField) Required(required bool) *spectrumColorField {
+	cf.PropRequired = required
 	return cf
 }
 
 // Rows sets the specific number of rows the form control should provide in the user interface
-func (cf *SpectrumColorField) Rows(rows int) *SpectrumColorField {
-	cf.rows = rows
+func (cf *spectrumColorField) Rows(rows int) *spectrumColorField {
+	cf.PropRows = rows
 	return cf
 }
 
 // TabIndex sets the tab index
-func (cf *SpectrumColorField) TabIndex(tabIndex int) *SpectrumColorField {
-	cf.tabIndex = tabIndex
+func (cf *spectrumColorField) TabIndex(tabIndex int) *spectrumColorField {
+	cf.PropTabIndex = tabIndex
 	return cf
 }
 
 // Valid sets whether the value held by the form control is valid
-func (cf *SpectrumColorField) Valid(valid bool) *SpectrumColorField {
-	cf.valid = valid
+func (cf *spectrumColorField) Valid(valid bool) *spectrumColorField {
+	cf.PropValid = valid
 	return cf
 }
 
 // Value sets the value held by the form control
-func (cf *SpectrumColorField) Value(value string) *SpectrumColorField {
-	cf.value = value
+func (cf *spectrumColorField) Value(value string) *spectrumColorField {
+	cf.PropValue = value
 	return cf
 }
 
 // ViewColor sets whether to render the color handle
-func (cf *SpectrumColorField) ViewColor(viewColor bool) *SpectrumColorField {
-	cf.viewColor = viewColor
+func (cf *spectrumColorField) ViewColor(viewColor bool) *spectrumColorField {
+	cf.PropViewColor = viewColor
 	return cf
 }
 
 // Size sets the size of the color field (s, m, l, xl)
-func (cf *SpectrumColorField) Size(size string) *SpectrumColorField {
-	cf.size = size
+func (cf *spectrumColorField) Size(size string) *spectrumColorField {
+	cf.PropSize = size
 	return cf
 }
 
 // Small sets the size to small
-func (cf *SpectrumColorField) Small() *SpectrumColorField {
+func (cf *spectrumColorField) Small() *spectrumColorField {
 	return cf.Size("s")
 }
 
 // Medium sets the size to medium
-func (cf *SpectrumColorField) Medium() *SpectrumColorField {
+func (cf *spectrumColorField) Medium() *spectrumColorField {
 	return cf.Size("m")
 }
 
 // Large sets the size to large
-func (cf *SpectrumColorField) Large() *SpectrumColorField {
+func (cf *spectrumColorField) Large() *spectrumColorField {
 	return cf.Size("l")
 }
 
 // ExtraLarge sets the size to extra large
-func (cf *SpectrumColorField) ExtraLarge() *SpectrumColorField {
+func (cf *spectrumColorField) ExtraLarge() *spectrumColorField {
 	return cf.Size("xl")
 }
 
 // OnChange sets the change event handler
-func (cf *SpectrumColorField) OnChange(handler app.EventHandler) *SpectrumColorField {
-	cf.onChange = handler
+func (cf *spectrumColorField) OnChange(handler app.EventHandler) *spectrumColorField {
+	cf.PropOnChange = handler
 	return cf
 }
 
 // OnInput sets the input event handler
-func (cf *SpectrumColorField) OnInput(handler app.EventHandler) *SpectrumColorField {
-	cf.onInput = handler
+func (cf *spectrumColorField) OnInput(handler app.EventHandler) *spectrumColorField {
+	cf.PropOnInput = handler
 	return cf
 }
 
 // Render renders the color field component
-func (cf *SpectrumColorField) Render() app.UI {
+func (cf *spectrumColorField) Render() app.UI {
 	colorField := app.Elem("sp-color-field")
 
 	// Set attributes
-	if cf.autocomplete != "" {
-		colorField = colorField.Attr("autocomplete", cf.autocomplete)
+	if cf.PropAutocomplete != "" {
+		colorField = colorField.Attr("autocomplete", cf.PropAutocomplete)
 	}
-	if cf.disabled {
+	if cf.PropDisabled {
 		colorField = colorField.Attr("disabled", true)
 	}
-	if cf.grows {
+	if cf.PropGrows {
 		colorField = colorField.Attr("grows", true)
 	}
-	if cf.invalid {
+	if cf.PropInvalid {
 		colorField = colorField.Attr("invalid", true)
 	}
-	if cf.label != "" {
-		colorField = colorField.Attr("label", cf.label)
+	if cf.PropLabel != "" {
+		colorField = colorField.Attr("label", cf.PropLabel)
 	}
-	if cf.maxlength != -1 {
-		colorField = colorField.Attr("maxlength", cf.maxlength)
+	if cf.PropMaxlength != -1 {
+		colorField = colorField.Attr("maxlength", cf.PropMaxlength)
 	}
-	if cf.minlength != -1 {
-		colorField = colorField.Attr("minlength", cf.minlength)
+	if cf.PropMinlength != -1 {
+		colorField = colorField.Attr("minlength", cf.PropMinlength)
 	}
-	if cf.multiline {
+	if cf.PropMultiline {
 		colorField = colorField.Attr("multiline", true)
 	}
-	if cf.name != "" {
-		colorField = colorField.Attr("name", cf.name)
+	if cf.PropName != "" {
+		colorField = colorField.Attr("name", cf.PropName)
 	}
-	if cf.pattern != "" {
-		colorField = colorField.Attr("pattern", cf.pattern)
+	if cf.PropPattern != "" {
+		colorField = colorField.Attr("pattern", cf.PropPattern)
 	}
-	if cf.placeholder != "" {
-		colorField = colorField.Attr("placeholder", cf.placeholder)
+	if cf.PropPlaceholder != "" {
+		colorField = colorField.Attr("placeholder", cf.PropPlaceholder)
 	}
-	if cf.quiet {
+	if cf.PropQuiet {
 		colorField = colorField.Attr("quiet", true)
 	}
-	if cf.readonly {
+	if cf.PropReadonly {
 		colorField = colorField.Attr("readonly", true)
 	}
-	if cf.required {
+	if cf.PropRequired {
 		colorField = colorField.Attr("required", true)
 	}
-	if cf.rows != -1 {
-		colorField = colorField.Attr("rows", cf.rows)
+	if cf.PropRows != -1 {
+		colorField = colorField.Attr("rows", cf.PropRows)
 	}
-	if cf.tabIndex != 0 {
-		colorField = colorField.Attr("tabIndex", cf.tabIndex)
+	if cf.PropTabIndex != 0 {
+		colorField = colorField.Attr("tabIndex", cf.PropTabIndex)
 	}
-	if cf.valid {
+	if cf.PropValid {
 		colorField = colorField.Attr("valid", true)
 	}
-	if cf.value != "" {
-		colorField = colorField.Attr("value", cf.value)
+	if cf.PropValue != "" {
+		colorField = colorField.Attr("value", cf.PropValue)
 	}
-	if cf.viewColor {
+	if cf.PropViewColor {
 		colorField = colorField.Attr("view-color", true)
 	}
-	if cf.size != "" {
-		colorField = colorField.Attr("size", cf.size)
+	if cf.PropSize != "" {
+		colorField = colorField.Attr("size", cf.PropSize)
 	}
 
 	// Add event handlers
-	if cf.onChange != nil {
-		colorField = colorField.On("change", cf.onChange)
+	if cf.PropOnChange != nil {
+		colorField = colorField.On("change", cf.PropOnChange)
 	}
-	if cf.onInput != nil {
-		colorField = colorField.On("input", cf.onInput)
+	if cf.PropOnInput != nil {
+		colorField = colorField.On("input", cf.PropOnInput)
 	}
 
 	return colorField

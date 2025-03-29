@@ -55,95 +55,95 @@ const (
 	BadgeFixedInlineStart BadgeFixed = "inline-start"
 )
 
-// SpectrumBadge represents an sp-badge component
-type SpectrumBadge struct {
+// spectrumBadge represents an sp-badge component
+type spectrumBadge struct {
 	app.Compo
 
 	// Properties
-	variant BadgeVariant
-	size    BadgeSize
-	fixed   BadgeFixed
+	PropVariant BadgeVariant
+	PropSize    BadgeSize
+	PropFixed   BadgeFixed
 
 	// Content
-	content   string
-	innerHTML string
-	icon      app.UI
-	child     app.UI
+	PropContent   string
+	PropInnerHTML string
+	PropIcon      app.UI
+	PropChild     app.UI
 }
 
 // Badge creates a new badge component
-func Badge() *SpectrumBadge {
-	return &SpectrumBadge{
-		variant: BadgeVariantInformative, // Default variant is informative
-		size:    BadgeSizeM,              // Default size is medium
+func Badge() *spectrumBadge {
+	return &spectrumBadge{
+		PropVariant: BadgeVariantInformative, // Default variant is informative
+		PropSize:    BadgeSizeM,              // Default size is medium
 	}
 }
 
 // Variant sets the visual variant of the badge
-func (b *SpectrumBadge) Variant(variant BadgeVariant) *SpectrumBadge {
-	b.variant = variant
+func (b *spectrumBadge) Variant(variant BadgeVariant) *spectrumBadge {
+	b.PropVariant = variant
 	return b
 }
 
 // Size sets the visual size of the badge
-func (b *SpectrumBadge) Size(size BadgeSize) *SpectrumBadge {
-	b.size = size
+func (b *spectrumBadge) Size(size BadgeSize) *spectrumBadge {
+	b.PropSize = size
 	return b
 }
 
 // Fixed sets the fixed position of the badge
-func (b *SpectrumBadge) Fixed(fixed BadgeFixed) *SpectrumBadge {
-	b.fixed = fixed
+func (b *spectrumBadge) Fixed(fixed BadgeFixed) *spectrumBadge {
+	b.PropFixed = fixed
 	return b
 }
 
 // Content sets the text content of the badge
-func (b *SpectrumBadge) Content(content string) *SpectrumBadge {
-	b.content = content
+func (b *spectrumBadge) Content(content string) *spectrumBadge {
+	b.PropContent = content
 	return b
 }
 
 // InnerHTML sets the inner HTML of the badge
-func (b *SpectrumBadge) InnerHTML(html string) *SpectrumBadge {
-	b.innerHTML = html
+func (b *spectrumBadge) InnerHTML(html string) *spectrumBadge {
+	b.PropInnerHTML = html
 	return b
 }
 
 // Icon sets the icon UI element in the icon slot
-func (b *SpectrumBadge) Icon(icon app.UI) *SpectrumBadge {
-	b.icon = icon
+func (b *spectrumBadge) Icon(icon app.UI) *spectrumBadge {
+	b.PropIcon = icon
 	return b
 }
 
 // Child sets a UI element as the child of the badge
-func (b *SpectrumBadge) Child(child app.UI) *SpectrumBadge {
-	b.child = child
+func (b *spectrumBadge) Child(child app.UI) *spectrumBadge {
+	b.PropChild = child
 	return b
 }
 
 // Render renders the badge component
-func (b *SpectrumBadge) Render() app.UI {
+func (b *spectrumBadge) Render() app.UI {
 	badge := app.Elem("sp-badge")
 
 	// Set attributes conditionally
-	if b.variant != BadgeVariantInformative {
-		badge = badge.Attr("variant", string(b.variant))
+	if b.PropVariant != BadgeVariantInformative {
+		badge = badge.Attr("variant", string(b.PropVariant))
 	}
 
-	if b.size != BadgeSizeM {
-		badge = badge.Attr("size", string(b.size))
+	if b.PropSize != BadgeSizeM {
+		badge = badge.Attr("size", string(b.PropSize))
 	}
 
-	if b.fixed != "" {
-		badge = badge.Attr("fixed", string(b.fixed))
+	if b.PropFixed != "" {
+		badge = badge.Attr("fixed", string(b.PropFixed))
 	}
 
 	// Create an elements slice for body content
 	elements := []app.UI{}
 
 	// Add icon if provided
-	if b.icon != nil {
-		iconElem := b.icon
+	if b.PropIcon != nil {
+		iconElem := b.PropIcon
 		if iconWithSlot, ok := iconElem.(interface{ Slot(string) app.UI }); ok {
 			iconElem = iconWithSlot.Slot("icon")
 		} else {
@@ -155,12 +155,12 @@ func (b *SpectrumBadge) Render() app.UI {
 	}
 
 	// Add content or child based on precedence
-	if b.child != nil {
-		elements = append(elements, b.child)
-	} else if b.innerHTML != "" {
-		elements = append(elements, app.Raw(b.innerHTML))
-	} else if b.content != "" {
-		elements = append(elements, app.Text(b.content))
+	if b.PropChild != nil {
+		elements = append(elements, b.PropChild)
+	} else if b.PropInnerHTML != "" {
+		elements = append(elements, app.Raw(b.PropInnerHTML))
+	} else if b.PropContent != "" {
+		elements = append(elements, app.Text(b.PropContent))
 	}
 
 	// Add all elements to the badge

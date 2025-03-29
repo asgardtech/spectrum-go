@@ -7,29 +7,43 @@ import (
 
 type homePage struct {
 	app.Compo
+
+	// Theme state
+	currentTheme sp.ThemeColor
 }
 
 func newHomePage() *homePage {
-	return &homePage{}
+	return &homePage{
+		currentTheme: sp.ThemeColorLight, // Default to light theme
+	}
 }
 
 func (p *homePage) Render() app.UI {
 	// Create a main container with theme-aware styling
-	return app.Div().
-		Class("app-container").
-		Body(
-			// Header with theme toggle
-			app.Header().
-				Body(
-					app.H2().Text("Spectrum Go Components"),
-					// Using the Button component with OnClick
-					sp.Button().
-						Text("Hello there!").
-						Variant(sp.ButtonVariantSecondary).
-						OnClick(func(ctx app.Context, e app.Event) {
-							app.Log("Button clicked")
-						}),
-				),
+	return sp.Theme().
+		Color(p.currentTheme).
+		Scale(sp.ThemeScaleMedium).
+		Children(
+			app.Elem("sp-icons-medium"),
+			app.H2().Text("Spectrum Go Components"),
+			// Theme toggle button
+			sp.ActionButton().
+				//Icon(p.getThemeIcon()).
+				Quiet(true).
+				Content("Toggle Theme").
+				OnClick(func(ctx app.Context, e app.Event) {
+					app.Log("Toggle Theme", p.currentTheme)
+					p.toggleTheme()
+				}),
+
+			// Using the Button component with OnClick
+			sp.Button().
+				Text("Hello there!").
+				Variant(sp.ButtonVariantSecondary).
+				OnClick(func(ctx app.Context, e app.Event) {
+					app.Log("Button clicked")
+				}),
+
 			// Main content with split view
 			app.Div().
 				Body(
@@ -43,6 +57,23 @@ func (p *homePage) Render() app.UI {
 		)
 }
 
+// Toggle theme between light and dark
+func (p *homePage) toggleTheme() {
+	if p.currentTheme == sp.ThemeColorLight {
+		p.currentTheme = sp.ThemeColorDark
+	} else {
+		p.currentTheme = sp.ThemeColorLight
+	}
+}
+
+// Get appropriate theme icon based on current theme
+func (p *homePage) getThemeIcon() app.UI {
+	if p.currentTheme == sp.ThemeColorLight {
+		return sp.Icon().Name("ui:Moon100")
+	}
+	return sp.Icon().Name("ui:Sun100")
+}
+
 func (p *homePage) renderSidenav() app.UI {
 	// Create Sidenav with components
 	return sp.Sidenav().
@@ -51,7 +82,7 @@ func (p *homePage) renderSidenav() app.UI {
 			sp.SidenavItem().
 				Label("Button").
 				Value("button").
-				Icon(sp.Icon().Name("ui:Button").Slot("icon")).
+				//	Icon(sp.Icon().Name("ui:Button").Slot("icon")).
 				Selected(true),
 		)
 }

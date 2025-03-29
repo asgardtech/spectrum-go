@@ -5,77 +5,77 @@ import "github.com/maxence-charriere/go-app/v10/pkg/app"
 // HelpTextManager manages help text elements for form controls
 type HelpTextManager struct {
 	// Properties
-	id               string
-	mode             string
-	helpText         app.UI
-	negativeHelpText app.UI
+	PropID               string
+	PropMode             string
+	PropHelpText         app.UI
+	PropNegativeHelpText app.UI
 }
 
 // NewHelpTextManager creates a new help text manager
 func NewHelpTextManager(id string, mode string) *HelpTextManager {
 	return &HelpTextManager{
-		id:   id,
-		mode: mode,
+		PropID:   id,
+		PropMode: mode,
 	}
 }
 
 // SetHelpText sets the help text UI element
 func (h *HelpTextManager) SetHelpText(helpText app.UI) {
-	h.helpText = helpText
+	h.PropHelpText = helpText
 }
 
 // SetNegativeHelpText sets the negative help text UI element
 func (h *HelpTextManager) SetNegativeHelpText(negativeHelpText app.UI) {
-	h.negativeHelpText = negativeHelpText
+	h.PropNegativeHelpText = negativeHelpText
 }
 
 // Render renders the appropriate help text based on the invalid state
 func (h *HelpTextManager) Render(invalid bool) app.UI {
-	if invalid && h.negativeHelpText != nil {
-		return h.negativeHelpText
+	if invalid && h.PropNegativeHelpText != nil {
+		return h.PropNegativeHelpText
 	}
-	return h.helpText
+	return h.PropHelpText
 }
 
 // GetHelpTextID returns the ID to be used for ARIA references
 func (h *HelpTextManager) GetHelpTextID() string {
-	return h.id + "-help-text"
+	return h.PropID + "-help-text"
 }
 
 // HelpTextMixin provides functionality for managing help text
 // in form controls
 type HelpTextMixin struct {
 	// The ID attribute of the component
-	componentID string
+	PropComponentID string
 
 	// Help text manager
-	helpTextManager *HelpTextManager
+	PropHelpTextManager *HelpTextManager
 }
 
 // InitHelpTextMixin initializes the help text mixin
 func (h *HelpTextMixin) InitHelpTextMixin(componentID string, mode string) {
-	h.componentID = componentID
-	h.helpTextManager = NewHelpTextManager(componentID, mode)
+	h.PropComponentID = componentID
+	h.PropHelpTextManager = NewHelpTextManager(componentID, mode)
 }
 
 // SetHelpText sets the help text UI element
 func (h *HelpTextMixin) SetHelpText(helpText app.UI) {
-	h.helpTextManager.SetHelpText(helpText)
+	h.PropHelpTextManager.SetHelpText(helpText)
 }
 
 // SetNegativeHelpText sets the negative help text UI element
 func (h *HelpTextMixin) SetNegativeHelpText(negativeHelpText app.UI) {
-	h.helpTextManager.SetNegativeHelpText(negativeHelpText)
+	h.PropHelpTextManager.SetNegativeHelpText(negativeHelpText)
 }
 
 // RenderHelpText renders the appropriate help text based on the invalid state
 func (h *HelpTextMixin) RenderHelpText(invalid bool) app.UI {
-	return h.helpTextManager.Render(invalid)
+	return h.PropHelpTextManager.Render(invalid)
 }
 
 // GetHelpTextID returns the ID to be used for ARIA references
 func (h *HelpTextMixin) GetHelpTextID() string {
-	return h.helpTextManager.GetHelpTextID()
+	return h.PropHelpTextManager.GetHelpTextID()
 }
 
 // MakeFormComponent is a helper function to create a form component with help text slots

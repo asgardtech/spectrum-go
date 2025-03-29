@@ -4,42 +4,42 @@ import "github.com/maxence-charriere/go-app/v10/pkg/app"
 
 // SpectrumIconsUI represents a component that provides access to the Spectrum UI icons.
 // This is a wrapper around the Adobe Spectrum Web Components icons-ui package.
-type SpectrumIconsUI struct {
+type spectrumIconsUI struct {
 	app.Compo
 
 	// Properties
-	label string
-	size  IconSize
+	PropLabel string
+	PropSize  IconSize
 }
 
 // IconsUI creates a new icons-ui component.
-func IconsUI() *SpectrumIconsUI {
-	return &SpectrumIconsUI{}
+func IconsUI() *spectrumIconsUI {
+	return &spectrumIconsUI{}
 }
 
 // Label sets the accessible label for the icon.
-func (i *SpectrumIconsUI) Label(label string) *SpectrumIconsUI {
-	i.label = label
+func (i *spectrumIconsUI) Label(label string) *spectrumIconsUI {
+	i.PropLabel = label
 	return i
 }
 
 // Size sets the size of the icons.
-func (i *SpectrumIconsUI) Size(size IconSize) *SpectrumIconsUI {
-	i.size = size
+func (i *spectrumIconsUI) Size(size IconSize) *spectrumIconsUI {
+	i.PropSize = size
 	return i
 }
 
 // Render renders the icons-ui component.
-func (i *SpectrumIconsUI) Render() app.UI {
+func (i *spectrumIconsUI) Render() app.UI {
 	iconsUI := app.Elem("sp-icons-ui")
 
 	// Set attributes based on properties
-	if i.label != "" {
-		iconsUI.Attr("label", i.label)
+	if i.PropLabel != "" {
+		iconsUI.Attr("label", i.PropLabel)
 	}
 
-	if i.size != "" {
-		iconsUI.Attr("size", string(i.size))
+	if i.PropSize != "" {
+		iconsUI.Attr("size", string(i.PropSize))
 	}
 
 	return iconsUI

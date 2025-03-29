@@ -23,108 +23,108 @@ const (
 )
 
 // SpectrumFieldLabel represents an sp-field-label component
-type SpectrumFieldLabel struct {
+type spectrumFieldLabel struct {
 	app.Compo
 
 	// Properties
-	size        FieldLabelSize
-	sideAligned FieldLabelSideAlignment
-	disabled    bool
-	required    bool
-	for_        string
-	id          string
-	content     string
-	innerHTML   string
-	child       app.UI
+	PropSize        FieldLabelSize
+	PropSideAligned FieldLabelSideAlignment
+	PropDisabled    bool
+	PropRequired    bool
+	PropFor         string
+	PropID          string
+	PropContent     string
+	PropInnerHTML   string
+	PropChild       app.UI
 }
 
 // FieldLabel creates a new field label component
-func FieldLabel() *SpectrumFieldLabel {
-	return &SpectrumFieldLabel{
-		size: FieldLabelSizeM, // Default size is medium
+func FieldLabel() *spectrumFieldLabel {
+	return &spectrumFieldLabel{
+		PropSize: FieldLabelSizeM, // Default size is medium
 	}
 }
 
 // Size sets the visual size of the field label
-func (f *SpectrumFieldLabel) Size(size FieldLabelSize) *SpectrumFieldLabel {
-	f.size = size
+func (f *spectrumFieldLabel) Size(size FieldLabelSize) *spectrumFieldLabel {
+	f.PropSize = size
 	return f
 }
 
 // SideAligned sets the side alignment of the field label
-func (f *SpectrumFieldLabel) SideAligned(alignment FieldLabelSideAlignment) *SpectrumFieldLabel {
-	f.sideAligned = alignment
+func (f *spectrumFieldLabel) SideAligned(alignment FieldLabelSideAlignment) *spectrumFieldLabel {
+	f.PropSideAligned = alignment
 	return f
 }
 
 // Disabled sets the disabled state
-func (f *SpectrumFieldLabel) Disabled(disabled bool) *SpectrumFieldLabel {
-	f.disabled = disabled
+func (f *spectrumFieldLabel) Disabled(disabled bool) *spectrumFieldLabel {
+	f.PropDisabled = disabled
 	return f
 }
 
 // Required sets the required state
-func (f *SpectrumFieldLabel) Required(required bool) *SpectrumFieldLabel {
-	f.required = required
+func (f *spectrumFieldLabel) Required(required bool) *spectrumFieldLabel {
+	f.PropRequired = required
 	return f
 }
 
 // For sets the "for" attribute to associate with a form element by ID
-func (f *SpectrumFieldLabel) For(for_ string) *SpectrumFieldLabel {
-	f.for_ = for_
+func (f *spectrumFieldLabel) For(for_ string) *spectrumFieldLabel {
+	f.PropFor = for_
 	return f
 }
 
 // ID sets the ID of the field label
-func (f *SpectrumFieldLabel) ID(id string) *SpectrumFieldLabel {
-	f.id = id
+func (f *spectrumFieldLabel) ID(id string) *spectrumFieldLabel {
+	f.PropID = id
 	return f
 }
 
 // Content sets the text content of the field label
-func (f *SpectrumFieldLabel) Content(content string) *SpectrumFieldLabel {
-	f.content = content
+func (f *spectrumFieldLabel) Content(content string) *spectrumFieldLabel {
+	f.PropContent = content
 	return f
 }
 
 // InnerHTML sets the inner HTML of the field label
-func (f *SpectrumFieldLabel) InnerHTML(html string) *SpectrumFieldLabel {
-	f.innerHTML = html
+func (f *spectrumFieldLabel) InnerHTML(html string) *spectrumFieldLabel {
+	f.PropInnerHTML = html
 	return f
 }
 
 // Child sets a UI element as the child of the field label
-func (f *SpectrumFieldLabel) Child(child app.UI) *SpectrumFieldLabel {
-	f.child = child
+func (f *spectrumFieldLabel) Child(child app.UI) *spectrumFieldLabel {
+	f.PropChild = child
 	return f
 }
 
 // Render renders the field label component
-func (f *SpectrumFieldLabel) Render() app.UI {
+func (f *spectrumFieldLabel) Render() app.UI {
 	fieldLabel := app.Elem("sp-field-label").
-		Attr("size", string(f.size)).
-		Attr("disabled", f.disabled).
-		Attr("required", f.required)
+		Attr("size", string(f.PropSize)).
+		Attr("disabled", f.PropDisabled).
+		Attr("required", f.PropRequired)
 
-	if f.for_ != "" {
-		fieldLabel = fieldLabel.Attr("for", f.for_)
+	if f.PropFor != "" {
+		fieldLabel = fieldLabel.Attr("for", f.PropFor)
 	}
 
-	if f.id != "" {
-		fieldLabel = fieldLabel.Attr("id", f.id)
+	if f.PropID != "" {
+		fieldLabel = fieldLabel.Attr("id", f.PropID)
 	}
 
-	if f.sideAligned != "" {
-		fieldLabel = fieldLabel.Attr("side-aligned", string(f.sideAligned))
+	if f.PropSideAligned != "" {
+		fieldLabel = fieldLabel.Attr("side-aligned", string(f.PropSideAligned))
 	}
 
 	// Handle content in the right order of precedence
-	if f.innerHTML != "" {
-		fieldLabel = fieldLabel.Body(app.Raw(f.innerHTML))
-	} else if f.child != nil {
-		fieldLabel = fieldLabel.Body(f.child)
-	} else if f.content != "" {
-		fieldLabel = fieldLabel.Body(app.Text(f.content))
+	if f.PropInnerHTML != "" {
+		fieldLabel = fieldLabel.Body(app.Raw(f.PropInnerHTML))
+	} else if f.PropChild != nil {
+		fieldLabel = fieldLabel.Body(f.PropChild)
+	} else if f.PropContent != "" {
+		fieldLabel = fieldLabel.Body(app.Text(f.PropContent))
 	}
 
 	return fieldLabel

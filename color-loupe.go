@@ -2,40 +2,40 @@ package sp
 
 import "github.com/maxence-charriere/go-app/v10/pkg/app"
 
-// SpectrumColorLoupe represents the sp-color-loupe component
+// spectrumColorLoupe represents the sp-color-loupe component
 // It shows the output color that would otherwise be covered by a cursor, stylus, or finger during color selection.
-type SpectrumColorLoupe struct {
+type spectrumColorLoupe struct {
 	app.Compo
 
-	color string
-	open  bool
+	PropColor string
+	PropOpen  bool
 }
 
-// ColorLoupe creates a new SpectrumColorLoupe instance.
-func ColorLoupe() *SpectrumColorLoupe {
-	return &SpectrumColorLoupe{
-		color: "rgba(255, 0, 0, 0.5)",
+// ColorLoupe creates a new spectrumColorLoupe instance.
+func ColorLoupe() *spectrumColorLoupe {
+	return &spectrumColorLoupe{
+		PropColor: "rgba(255, 0, 0, 0.5)",
 	}
 }
 
-// Color sets the color property of the SpectrumColorLoupe
-func (c *SpectrumColorLoupe) Color(color string) *SpectrumColorLoupe {
-	c.color = color
+// Color sets the color property of the spectrumColorLoupe
+func (c *spectrumColorLoupe) Color(color string) *spectrumColorLoupe {
+	c.PropColor = color
 	return c
 }
 
-// Open sets the open property of the SpectrumColorLoupe
-func (c *SpectrumColorLoupe) Open(open bool) *SpectrumColorLoupe {
-	c.open = open
+// Open sets the open property of the spectrumColorLoupe
+func (c *spectrumColorLoupe) Open(open bool) *spectrumColorLoupe {
+	c.PropOpen = open
 	return c
 }
 
-// Render renders the SpectrumColorLoupe component.
-func (c *SpectrumColorLoupe) Render() app.UI {
+// Render renders the spectrumColorLoupe component.
+func (c *spectrumColorLoupe) Render() app.UI {
 	colorLoupe := app.Elem("sp-color-loupe").
-		Attr("color", c.color)
+		Attr("color", c.PropColor)
 
-	if c.open {
+	if c.PropOpen {
 		colorLoupe = colorLoupe.Attr("open", true)
 	}
 

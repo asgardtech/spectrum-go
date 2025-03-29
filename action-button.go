@@ -23,375 +23,270 @@ const (
 	ActionButtonStaticColorBlack ActionButtonStaticColor = "black"
 )
 
-// SpectrumActionButton represents an sp-action-button component
-type SpectrumActionButton struct {
+// spectrumActionButton represents an sp-action-button component
+type spectrumActionButton struct {
 	app.Compo
 
 	// Properties
-	active         bool
-	disabled       bool
-	download       string
-	emphasized     bool
-	holdAffordance bool
-	href           string
-	label          string
-	quiet          bool
-	referrerpolicy string
-	rel            string
-	role           string
-	selected       bool
-	staticColor    ActionButtonStaticColor
-	tabIndex       int
-	target         string
-	toggles        bool
-	buttonType     string
-	value          string
-	size           ActionButtonSize
+	PropActive         bool
+	PropDisabled       bool
+	PropDownload       string
+	PropEmphasized     bool
+	PropHoldAffordance bool
+	PropHref           string
+	PropLabel          string
+	PropQuiet          bool
+	PropReferrerpolicy string
+	PropRel            string
+	PropRole           string
+	PropSelected       bool
+	PropStaticColor    ActionButtonStaticColor
+	PropTabIndex       int
+	PropTarget         string
+	PropToggles        bool
+	PropButtonType     string
+	PropValue          string
+	PropSize           ActionButtonSize
 
 	// Event handlers
-	onClick     app.EventHandler
-	onChange    app.EventHandler
-	onLongpress app.EventHandler
+	PropOnClick     app.EventHandler
+	PropOnChange    app.EventHandler
+	PropOnLongpress app.EventHandler
 
 	// Content
-	content   string
-	innerHTML string
-	icon      app.UI
-	child     app.UI
+	PropContent   string
+	PropInnerHTML string
+	PropIcon      app.UI
+	PropChild     app.UI
 }
 
 // ActionButton creates a new action button component
-func ActionButton() *SpectrumActionButton {
-	return &SpectrumActionButton{
-		role:       "button",
-		buttonType: "button",
-		size:       ActionButtonSizeM, // Default size is medium
+func ActionButton() *spectrumActionButton {
+	return &spectrumActionButton{
+		PropRole:       "button",
+		PropButtonType: "button",
+		PropSize:       ActionButtonSizeM, // Default size is medium
 	}
 }
 
 // Active sets the active state of the action button
-func (a *SpectrumActionButton) Active(active bool) *SpectrumActionButton {
-	a.active = active
+func (a *spectrumActionButton) Active(active bool) *spectrumActionButton {
+	a.PropActive = active
 	return a
 }
 
 // Disabled sets the disabled state of the action button
-func (a *SpectrumActionButton) Disabled(disabled bool) *SpectrumActionButton {
-	a.disabled = disabled
+func (a *spectrumActionButton) Disabled(disabled bool) *spectrumActionButton {
+	a.PropDisabled = disabled
 	return a
 }
 
 // Download sets the download attribute
-func (a *SpectrumActionButton) Download(download string) *SpectrumActionButton {
-	a.download = download
+func (a *spectrumActionButton) Download(download string) *spectrumActionButton {
+	a.PropDownload = download
 	return a
 }
 
 // Emphasized sets the emphasized visual style
-func (a *SpectrumActionButton) Emphasized(emphasized bool) *SpectrumActionButton {
-	a.emphasized = emphasized
+func (a *spectrumActionButton) Emphasized(emphasized bool) *spectrumActionButton {
+	a.PropEmphasized = emphasized
 	return a
 }
 
 // HoldAffordance sets whether the button should display a hold affordance
-func (a *SpectrumActionButton) HoldAffordance(holdAffordance bool) *SpectrumActionButton {
-	a.holdAffordance = holdAffordance
+func (a *spectrumActionButton) HoldAffordance(holdAffordance bool) *spectrumActionButton {
+	a.PropHoldAffordance = holdAffordance
 	return a
 }
 
 // Href sets the URL that the button links to
-func (a *SpectrumActionButton) Href(href string) *SpectrumActionButton {
-	a.href = href
+func (a *spectrumActionButton) Href(href string) *spectrumActionButton {
+	a.PropHref = href
 	return a
 }
 
 // Label sets the accessible label for the action button
-func (a *SpectrumActionButton) Label(label string) *SpectrumActionButton {
-	a.label = label
+func (a *spectrumActionButton) Label(label string) *spectrumActionButton {
+	a.PropLabel = label
 	return a
 }
 
 // Quiet sets the quiet visual style
-func (a *SpectrumActionButton) Quiet(quiet bool) *SpectrumActionButton {
-	a.quiet = quiet
+func (a *spectrumActionButton) Quiet(quiet bool) *spectrumActionButton {
+	a.PropQuiet = quiet
 	return a
 }
 
 // Referrerpolicy sets the referrer policy for the link
-func (a *SpectrumActionButton) Referrerpolicy(referrerpolicy string) *SpectrumActionButton {
-	a.referrerpolicy = referrerpolicy
+func (a *spectrumActionButton) Referrerpolicy(referrerpolicy string) *spectrumActionButton {
+	a.PropReferrerpolicy = referrerpolicy
 	return a
 }
 
 // Rel sets the relationship of the linked URL
-func (a *SpectrumActionButton) Rel(rel string) *SpectrumActionButton {
-	a.rel = rel
+func (a *spectrumActionButton) Rel(rel string) *spectrumActionButton {
+	a.PropRel = rel
 	return a
 }
 
 // Role sets the ARIA role
-func (a *SpectrumActionButton) Role(role string) *SpectrumActionButton {
-	a.role = role
+func (a *spectrumActionButton) Role(role string) *spectrumActionButton {
+	a.PropRole = role
 	return a
 }
 
 // Selected sets the selected state of the action button
-func (a *SpectrumActionButton) Selected(selected bool) *SpectrumActionButton {
-	a.selected = selected
+func (a *spectrumActionButton) Selected(selected bool) *spectrumActionButton {
+	a.PropSelected = selected
 	return a
 }
 
 // StaticColor sets the static color variant
-func (a *SpectrumActionButton) StaticColor(staticColor ActionButtonStaticColor) *SpectrumActionButton {
-	a.staticColor = staticColor
+func (a *spectrumActionButton) StaticColor(staticColor ActionButtonStaticColor) *spectrumActionButton {
+	a.PropStaticColor = staticColor
 	return a
 }
 
 // TabIndex sets the tab index
-func (a *SpectrumActionButton) TabIndex(tabIndex int) *SpectrumActionButton {
-	a.tabIndex = tabIndex
+func (a *spectrumActionButton) TabIndex(tabIndex int) *spectrumActionButton {
+	a.PropTabIndex = tabIndex
 	return a
 }
 
 // Target sets where to display the linked URL
-func (a *SpectrumActionButton) Target(target string) *SpectrumActionButton {
-	a.target = target
+func (a *spectrumActionButton) Target(target string) *spectrumActionButton {
+	a.PropTarget = target
 	return a
 }
 
 // Toggles sets whether the button toggles its selected state
-func (a *SpectrumActionButton) Toggles(toggles bool) *SpectrumActionButton {
-	a.toggles = toggles
+func (a *spectrumActionButton) Toggles(toggles bool) *spectrumActionButton {
+	a.PropToggles = toggles
 	return a
 }
 
 // Type sets the button type
-func (a *SpectrumActionButton) Type(buttonType string) *SpectrumActionButton {
-	a.buttonType = buttonType
+func (a *spectrumActionButton) Type(buttonType string) *spectrumActionButton {
+	a.PropButtonType = buttonType
 	return a
 }
 
 // Value sets the button value
-func (a *SpectrumActionButton) Value(value string) *SpectrumActionButton {
-	a.value = value
+func (a *spectrumActionButton) Value(value string) *spectrumActionButton {
+	a.PropValue = value
 	return a
 }
 
 // Size sets the visual size of the action button
-func (a *SpectrumActionButton) Size(size ActionButtonSize) *SpectrumActionButton {
-	a.size = size
+func (a *spectrumActionButton) Size(size ActionButtonSize) *spectrumActionButton {
+	a.PropSize = size
 	return a
 }
 
 // OnClick sets the click event handler
-func (a *SpectrumActionButton) OnClick(handler app.EventHandler) *SpectrumActionButton {
-	a.onClick = handler
+func (a *spectrumActionButton) OnClick(handler app.EventHandler) *spectrumActionButton {
+	a.PropOnClick = handler
 	return a
 }
 
 // OnChange sets the change event handler
-func (a *SpectrumActionButton) OnChange(handler app.EventHandler) *SpectrumActionButton {
-	a.onChange = handler
+func (a *spectrumActionButton) OnChange(handler app.EventHandler) *spectrumActionButton {
+	a.PropOnChange = handler
 	return a
 }
 
 // OnLongpress sets the longpress event handler
-func (a *SpectrumActionButton) OnLongpress(handler app.EventHandler) *SpectrumActionButton {
-	a.onLongpress = handler
+func (a *spectrumActionButton) OnLongpress(handler app.EventHandler) *spectrumActionButton {
+	a.PropOnLongpress = handler
 	return a
 }
 
 // Content sets the text content of the action button
-func (a *SpectrumActionButton) Content(content string) *SpectrumActionButton {
-	a.content = content
+func (a *spectrumActionButton) Content(content string) *spectrumActionButton {
+	a.PropContent = content
 	return a
 }
 
 // InnerHTML sets the inner HTML of the action button
-func (a *SpectrumActionButton) InnerHTML(html string) *SpectrumActionButton {
-	a.innerHTML = html
+func (a *spectrumActionButton) InnerHTML(html string) *spectrumActionButton {
+	a.PropInnerHTML = html
 	return a
 }
 
 // Icon sets the icon UI element in the icon slot
-func (a *SpectrumActionButton) Icon(icon app.UI) *SpectrumActionButton {
-	a.icon = icon
+func (a *spectrumActionButton) Icon(icon app.UI) *spectrumActionButton {
+	a.PropIcon = icon
 	return a
 }
 
 // Child sets a UI element as the child of the action button
-func (a *SpectrumActionButton) Child(child app.UI) *SpectrumActionButton {
-	a.child = child
+func (a *spectrumActionButton) Child(child app.UI) *spectrumActionButton {
+	a.PropChild = child
 	return a
 }
 
-// Slot implements the Slot interface for ActionButton
-func (a *SpectrumActionButton) Slot(slot string) app.UI {
-	// Create a duplicate of the component's configuration for slot use
-	actionButton := app.Elem("sp-action-button").
-		Attr("slot", slot).
-		Attr("active", a.active).
-		Attr("disabled", a.disabled).
-		Attr("emphasized", a.emphasized).
-		Attr("hold-affordance", a.holdAffordance).
-		Attr("quiet", a.quiet).
-		Attr("selected", a.selected).
-		Attr("toggles", a.toggles).
-		Attr("type", a.buttonType)
-
-	// Only add non-default attributes
-	if a.download != "" {
-		actionButton = actionButton.Attr("download", a.download)
-	}
-	if a.href != "" {
-		actionButton = actionButton.Attr("href", a.href)
-	}
-	if a.label != "" {
-		actionButton = actionButton.Attr("label", a.label)
-	}
-	if a.referrerpolicy != "" {
-		actionButton = actionButton.Attr("referrerpolicy", a.referrerpolicy)
-	}
-	if a.rel != "" {
-		actionButton = actionButton.Attr("rel", a.rel)
-	}
-	if a.role != "" && a.role != "button" {
-		actionButton = actionButton.Attr("role", a.role)
-	}
-	if a.staticColor != "" {
-		actionButton = actionButton.Attr("static-color", string(a.staticColor))
-	}
-	if a.tabIndex != 0 {
-		actionButton = actionButton.Attr("tabindex", a.tabIndex)
-	}
-	if a.target != "" {
-		actionButton = actionButton.Attr("target", a.target)
-	}
-	if a.value != "" {
-		actionButton = actionButton.Attr("value", a.value)
-	}
-	if a.size != "" && a.size != ActionButtonSizeM {
-		actionButton = actionButton.Attr("size", string(a.size))
-	}
-
-	// Create elements array for children
-	elements := []app.UI{}
-
-	// Add icon if provided
-	if a.icon != nil {
-		iconElem := a.icon
-		if iconWithSlot, ok := iconElem.(interface{ Slot(string) app.UI }); ok {
-			iconElem = iconWithSlot.Slot("icon")
-		} else {
-			iconElem = app.Elem("div").
-				Attr("slot", "icon").
-				Body(iconElem)
-		}
-		elements = append(elements, iconElem)
-	}
-
-	// Add content or child
-	if a.child != nil {
-		elements = append(elements, a.child)
-	} else if a.innerHTML != "" {
-		elements = append(elements, app.Raw(a.innerHTML))
-	} else if a.content != "" {
-		elements = append(elements, app.Text(a.content))
-	}
-
-	// Add all elements to the action button
-	if len(elements) > 0 {
-		actionButton = actionButton.Body(elements...)
-	}
-
-	return actionButton
-}
-
 // Render renders the action button component
-func (a *SpectrumActionButton) Render() app.UI {
+func (a *spectrumActionButton) Render() app.UI {
 	actionButton := app.Elem("sp-action-button").
-		Attr("active", a.active).
-		Attr("disabled", a.disabled).
-		Attr("emphasized", a.emphasized).
-		Attr("hold-affordance", a.holdAffordance).
-		Attr("quiet", a.quiet).
-		Attr("selected", a.selected).
-		Attr("toggles", a.toggles).
-		Attr("type", a.buttonType)
+		Attr("active", a.PropActive).
+		Attr("disabled", a.PropDisabled).
+		Attr("emphasized", a.PropEmphasized).
+		Attr("hold-affordance", a.PropHoldAffordance).
+		Attr("quiet", a.PropQuiet).
+		Attr("selected", a.PropSelected).
+		Attr("toggles", a.PropToggles).
+		Attr("type", a.PropButtonType).
+		OnClick(a.PropOnClick).
+		OnChange(a.PropOnChange).
+		Body(
+			a.PropIcon,
+			a.PropChild,
+			app.Text(a.PropContent),
+		).
+		On("longpress", a.PropOnLongpress)
 
-	if a.download != "" {
-		actionButton = actionButton.Attr("download", a.download)
-	}
-	if a.href != "" {
-		actionButton = actionButton.Attr("href", a.href)
-	}
-	if a.label != "" {
-		actionButton = actionButton.Attr("label", a.label)
-	}
-	if a.referrerpolicy != "" {
-		actionButton = actionButton.Attr("referrerpolicy", a.referrerpolicy)
-	}
-	if a.rel != "" {
-		actionButton = actionButton.Attr("rel", a.rel)
-	}
-	if a.role != "" {
-		actionButton = actionButton.Attr("role", a.role)
-	}
-	if a.staticColor != "" {
-		actionButton = actionButton.Attr("static-color", string(a.staticColor))
-	}
-	if a.tabIndex != 0 {
-		actionButton = actionButton.Attr("tabindex", a.tabIndex)
-	}
-	if a.target != "" {
-		actionButton = actionButton.Attr("target", a.target)
-	}
-	if a.value != "" {
-		actionButton = actionButton.Attr("value", a.value)
-	}
-	if a.size != "" {
-		actionButton = actionButton.Attr("size", string(a.size))
+	if a.PropDownload != "" {
+		actionButton = actionButton.Attr("download", a.PropDownload)
 	}
 
-	// Add event handlers
-	if a.onClick != nil {
-		actionButton = actionButton.OnClick(a.onClick)
-	}
-	if a.onChange != nil {
-		actionButton = actionButton.On("change", a.onChange)
-	}
-	if a.onLongpress != nil {
-		actionButton = actionButton.On("longpress", a.onLongpress)
+	if a.PropHref != "" {
+		actionButton = actionButton.Attr("href", a.PropHref)
 	}
 
-	// Create elements array for children
-	elements := []app.UI{}
-
-	// Add icon if provided
-	if a.icon != nil {
-		iconElem := a.icon
-		if iconWithSlot, ok := iconElem.(interface{ Slot(string) app.UI }); ok {
-			iconElem = iconWithSlot.Slot("icon")
-		} else {
-			iconElem = app.Elem("div").
-				Attr("slot", "icon").
-				Body(iconElem)
-		}
-		elements = append(elements, iconElem)
+	if a.PropLabel != "" {
+		actionButton = actionButton.Attr("label", a.PropLabel)
 	}
 
-	// Add content or child
-	if a.child != nil {
-		elements = append(elements, a.child)
-	} else if a.innerHTML != "" {
-		elements = append(elements, app.Raw(a.innerHTML))
-	} else if a.content != "" {
-		elements = append(elements, app.Text(a.content))
+	if a.PropReferrerpolicy != "" {
+		actionButton = actionButton.Attr("referrerpolicy", a.PropReferrerpolicy)
 	}
 
-	// Add all elements to the action button
-	if len(elements) > 0 {
-		actionButton = actionButton.Body(elements...)
+	if a.PropRel != "" {
+		actionButton = actionButton.Attr("rel", a.PropRel)
+	}
+
+	if a.PropRole != "" {
+		actionButton = actionButton.Attr("role", a.PropRole)
+	}
+
+	if a.PropStaticColor != "" {
+		actionButton = actionButton.Attr("static-color", string(a.PropStaticColor))
+	}
+
+	if a.PropTabIndex != 0 {
+		actionButton = actionButton.Attr("tabindex", a.PropTabIndex)
+	}
+
+	if a.PropTarget != "" {
+		actionButton = actionButton.Attr("target", a.PropTarget)
+	}
+
+	if a.PropValue != "" {
+		actionButton = actionButton.Attr("value", a.PropValue)
+	}
+
+	if a.PropSize != ActionButtonSizeM {
+		actionButton = actionButton.Attr("size", string(a.PropSize))
 	}
 
 	return actionButton

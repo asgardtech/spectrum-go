@@ -4,45 +4,45 @@ Go implementation of Adobe Spectrum Web Components.
 
 ## Components TODO
 
-- [x] [Button](spectrum-docs/md/button.md)
+- [ ] [Button](spectrum-docs/md/button.md) ✅
 - [x] [Accordion](spectrum-docs/md/accordion.md)
 - [x] [Accordion Item](spectrum-docs/md/accordion-item.md)
 - [x] [Action Bar](spectrum-docs/md/action-bar.md)
-- [x] [Action Button](spectrum-docs/md/action-button.md)
+- [ ] [Action Button](spectrum-docs/md/action-button.md) ✅
 - [x] [Action Group](spectrum-docs/md/action-group.md)
 - [x] [Action Menu](spectrum-docs/md/action-menu.md)
 - [x] [Alert Banner](spectrum-docs/md/alert-banner.md)
 - [x] [Alert Dialog](spectrum-docs/md/alert-dialog.md)
 - [x] [Asset](spectrum-docs/md/asset.md)
-- [x] [Avatar](spectrum-docs/md/avatar.md)
-- [x] [Badge](spectrum-docs/md/badge.md)
+- [ ] [Avatar](spectrum-docs/md/avatar.md) ✅
+- [ ] [Badge](spectrum-docs/md/badge.md) ✅
 - [x] [Breadcrumb Item](spectrum-docs/md/breadcrumb-item.md)
 - [x] [Breadcrumbs](spectrum-docs/md/breadcrumbs.md)
 - [x] [Button Group](spectrum-docs/md/button-group.md)
-- [x] [Card](spectrum-docs/md/card.md)
-- [x] [Checkbox](spectrum-docs/md/checkbox.md)
-- [x] [Coach Indicator](spectrum-docs/md/coach-indicator.md)
-- [x] [Coachmark](spectrum-docs/md/coachmark.md)
-- [x] [Color Area](spectrum-docs/md/color-area.md)
+- [ ] [Card](spectrum-docs/md/card.md) ✅
+- [ ] [Checkbox](spectrum-docs/md/checkbox.md) ✅
+- [ ] [Coach Indicator](spectrum-docs/md/coach-indicator.md) ✅
+- [x] [Coachmark](spectrum-docs/md/coachmark.md) ✅
+- [x] Color Area ✅
 - [x] [Color Field](spectrum-docs/md/color-field.md)
-- [x] [Color Handle](spectrum-docs/md/color-handle.md)
-- [x] [Color Loupe](spectrum-docs/md/color-loupe.md)
-- [x] [Color Slider](spectrum-docs/md/color-slider.md)
-- [x] [Color Wheel](spectrum-docs/md/color-wheel.md)
-- [x] [Combobox](spectrum-docs/md/combobox.md)
-- [x] [Contextual Help](spectrum-docs/md/contextual-help.md)
-- [x] [Dialog](spectrum-docs/md/dialog.md), [Dialog Base](spectrum-docs/md/dialog-base.md), [Dialog Wrapper](spectrum-docs/md/dialog-wrapper.md)
-- [x] [Dropzone](spectrum-docs/md/dropzone.md)
-- [x] [Field Group](spectrum-docs/md/field-group.md)
-- [x] [Field Label](spectrum-docs/md/field-label.md)
-- [x] [Help Text](spectrum-docs/md/help-text.md)
-- [x] [Help Text Mixin](spectrum-docs/md/help-text-mixin.md)
-- [x] [Icon](spectrum-docs/md/icon.md)
-- [x] [Icons UI](spectrum-docs/md/icons-ui.md)
-- [x] [Icons Workflow](spectrum-docs/md/icons-workflow.md)
-- [x] [Illustrated Message](spectrum-docs/md/illustrated-message.md)
-- [x] [Infield Button](spectrum-docs/md/infield-button.md)
-- [x] [Link](spectrum-docs/md/link.md)
+- [x] [Color Handle](spectrum-docs/md/color-handle.md) ✅
+- [x] [Color Loupe](spectrum-docs/md/color-loupe.md) ✅
+- [x] [Color Slider](spectrum-docs/md/color-slider.md) ✅
+- [x] [Color Wheel](spectrum-docs/md/color-wheel.md) ✅
+- [x] [Combobox](spectrum-docs/md/combobox.md) ✅
+- [x] [Contextual Help](spectrum-docs/md/contextual-help.md) ✅
+- [x] [Dialog](spectrum-docs/md/dialog.md), [Dialog Base](spectrum-docs/md/dialog-base.md), [Dialog Wrapper](spectrum-docs/md/dialog-wrapper.md) ✅
+- [x] [Dropzone](spectrum-docs/md/dropzone.md) ✅
+- [x] [Field Group](spectrum-docs/md/field-group.md) ✅
+- [x] [Field Label](spectrum-docs/md/field-label.md) ✅
+- [x] [Help Text](spectrum-docs/md/help-text.md) ✅
+- [x] [Help Text Mixin](spectrum-docs/md/help-text-mixin.md) ✅
+- [x] [Icon](spectrum-docs/md/icon.md) ✅
+- [x] [Icons UI](spectrum-docs/md/icons-ui.md) ✅
+- [x] [Icons Workflow](spectrum-docs/md/icons-workflow.md) ✅
+- [x] [Illustrated Message](spectrum-docs/md/illustrated-message.md) ✅
+- [x] [Infield Button](spectrum-docs/md/infield-button.md) ✅
+- [x] [Link](spectrum-docs/md/link.md) ✅
 - [x] [Menu](spectrum-docs/md/menu.md)
 - [x] [Menu Group](spectrum-docs/md/menu-group.md)
 - [x] [Menu Item](spectrum-docs/md/menu-item.md)
@@ -87,21 +87,21 @@ Go implementation of Adobe Spectrum Web Components.
 ## Tools and Utilities
 
 - [x] [Base](spectrum-docs/md/base.md) - Base class functionality
-- [ ] [Bundle](spectrum-docs/md/bundle.md) - Bundle management
+- [x] [Bundle](spectrum-docs/md/bundle.md) - Bundle management
 - [x] [Color Controller](spectrum-docs/md/color-controller.md) - Color management utilities
-- [ ] [Core Tokens](spectrum-docs/md/core-tokens.md) - Design token system
-- [ ] [Dependency Manager](spectrum-docs/md/dependency-manager.md) - Manages component dependencies
+- [x] [Core Tokens](spectrum-docs/md/core-tokens.md) - Design token system
+- [x] [Dependency Manager](spectrum-docs/md/dependency-manager.md) - Manages component dependencies
 - [x] [Element Resolution](spectrum-docs/md/element-resolution.md) - Element resolution utilities
-- [ ] [Grid](spectrum-docs/md/grid.md) - Grid layout system
+- [x] [Grid](spectrum-docs/md/grid.md) - Grid layout system
 - [x] [Match Media](spectrum-docs/md/match-media.md) - Media query utilities
-- [ ] [Opacity Checkerboard](spectrum-docs/md/opacity-checkerboard.md) - Visual aid for transparency
+- [x] [Opacity Checkerboard](spectrum-docs/md/opacity-checkerboard.md) - Visual aid for transparency
 - [x] [Pending State](spectrum-docs/md/pending-state.md) - State management for async operations
-- [ ] [Reactive Controllers](spectrum-docs/md/reactive-controllers.md) - Controllers for reactive patterns
-- [ ] [Roving Tab Index](spectrum-docs/md/roving-tab-index.md) - Accessibility navigation utility
-- [ ] [Shared](spectrum-docs/md/shared.md) - Shared utilities and functionality
-- [ ] [Styles](spectrum-docs/md/styles.md) - Style management system
-- [ ] [Theme](spectrum-docs/md/theme.md) - Theming functionality
-- [ ] [Truncated](spectrum-docs/md/truncated.md) - Text truncation utility
+- [x] [Reactive Controllers](spectrum-docs/md/reactive-controllers.md) - Controllers for reactive patterns
+- [x] [Roving Tab Index](spectrum-docs/md/roving-tab-index.md) - Accessibility navigation utility
+- [x] [Shared](spectrum-docs/md/shared.md) - Shared utilities and functionality
+- [x] [Styles](spectrum-docs/md/styles.md) - Style management system
+- [ ] [Theme](spectrum-docs/md/theme.md) ✅ - Theming functionality
+- [x] [Truncated](spectrum-docs/md/truncated.md) - Text truncation utility
 
 ## Design Principles
 

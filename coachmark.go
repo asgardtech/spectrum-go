@@ -10,316 +10,312 @@ const (
 	CoachmarkAssetFolder CoachmarkAssetType = "folder"
 )
 
-// SpectrumCoachmark represents an sp-coachmark component
-type SpectrumCoachmark struct {
+// spectrumCoachmark represents an sp-coachmark component
+type spectrumCoachmark struct {
 	app.Compo
 
 	// Properties
-	asset        CoachmarkAssetType
-	currentStep  int
-	hasAsset     bool
-	item         string // Using string as a simplification for CoachmarkItem
-	modifierKeys []string
-	open         bool
-	placement    string
-	tip          bool
-	totalSteps   int
-	primaryCta   string
-	secondaryCta string
-	src          string
-	mediaType    string
-	imageAlt     string
+	PropAsset        CoachmarkAssetType
+	PropCurrentStep  int
+	PropHasAsset     bool
+	PropItem         string // Using string as a simplification for CoachmarkItem
+	PropModifierKeys []string
+	PropOpen         bool
+	PropPlacement    string
+	PropTip          bool
+	PropTotalSteps   int
+	PropPrimaryCta   string
+	PropSecondaryCta string
+	PropSrc          string
+	PropMediaType    string
+	PropImageAlt     string
 
 	// Slots
-	title       app.UI
-	content     app.UI
-	actions     app.UI
-	assetSlot   app.UI
-	coverPhoto  app.UI
-	stepCount   app.UI
-	description app.UI
-	heading     app.UI
-	children    []app.UI
+	PropTitle       app.UI
+	PropContent     app.UI
+	PropActions     app.UI
+	PropAssetSlot   app.UI
+	PropCoverPhoto  app.UI
+	PropStepCount   app.UI
+	PropDescription app.UI
+	PropHeading     app.UI
+	PropChildren    []app.UI
 
 	// Event handlers
-	onPrimary   app.EventHandler
-	onSecondary app.EventHandler
+	PropOnPrimary   app.EventHandler
+	PropOnSecondary app.EventHandler
 }
 
 // Coachmark creates a new coachmark component
-func Coachmark() *SpectrumCoachmark {
-	return &SpectrumCoachmark{
-		placement: "right", // Default placement
+func Coachmark() *spectrumCoachmark {
+	return &spectrumCoachmark{
+		PropPlacement: "right", // Default placement
 	}
 }
 
 // Asset sets the asset type
-func (cm *SpectrumCoachmark) Asset(asset CoachmarkAssetType) *SpectrumCoachmark {
-	cm.asset = asset
+func (cm *spectrumCoachmark) Asset(asset CoachmarkAssetType) *spectrumCoachmark {
+	cm.PropAsset = asset
 	return cm
 }
 
 // CurrentStep sets the current step in a tour
-func (cm *SpectrumCoachmark) CurrentStep(step int) *SpectrumCoachmark {
-	cm.currentStep = step
+func (cm *spectrumCoachmark) CurrentStep(step int) *spectrumCoachmark {
+	cm.PropCurrentStep = step
 	return cm
 }
 
 // HasAsset sets whether the coachmark has an asset
-func (cm *SpectrumCoachmark) HasAsset(hasAsset bool) *SpectrumCoachmark {
-	cm.hasAsset = hasAsset
+func (cm *spectrumCoachmark) HasAsset(hasAsset bool) *spectrumCoachmark {
+	cm.PropHasAsset = hasAsset
 	return cm
 }
 
 // Item sets the coachmark item
-func (cm *SpectrumCoachmark) Item(item string) *SpectrumCoachmark {
-	cm.item = item
+func (cm *spectrumCoachmark) Item(item string) *spectrumCoachmark {
+	cm.PropItem = item
 	return cm
 }
 
 // ModifierKeys sets the modifier keys
-func (cm *SpectrumCoachmark) ModifierKeys(keys []string) *SpectrumCoachmark {
-	cm.modifierKeys = keys
+func (cm *spectrumCoachmark) ModifierKeys(keys []string) *spectrumCoachmark {
+	cm.PropModifierKeys = keys
 	return cm
 }
 
 // Open sets whether the coachmark is visible
-func (cm *SpectrumCoachmark) Open(open bool) *SpectrumCoachmark {
-	cm.open = open
+func (cm *spectrumCoachmark) Open(open bool) *spectrumCoachmark {
+	cm.PropOpen = open
 	return cm
 }
 
 // Placement sets the placement of the coachmark
-func (cm *SpectrumCoachmark) Placement(placement string) *SpectrumCoachmark {
-	cm.placement = placement
+func (cm *spectrumCoachmark) Placement(placement string) *spectrumCoachmark {
+	cm.PropPlacement = placement
 	return cm
 }
 
 // Tip sets whether the coachmark has a tip
-func (cm *SpectrumCoachmark) Tip(tip bool) *SpectrumCoachmark {
-	cm.tip = tip
+func (cm *spectrumCoachmark) Tip(tip bool) *spectrumCoachmark {
+	cm.PropTip = tip
 	return cm
 }
 
 // TotalSteps sets the total number of steps in a tour
-func (cm *SpectrumCoachmark) TotalSteps(steps int) *SpectrumCoachmark {
-	cm.totalSteps = steps
+func (cm *spectrumCoachmark) TotalSteps(steps int) *spectrumCoachmark {
+	cm.PropTotalSteps = steps
 	return cm
 }
 
 // PrimaryCta sets the text for the primary call to action button
-func (cm *SpectrumCoachmark) PrimaryCta(text string) *SpectrumCoachmark {
-	cm.primaryCta = text
+func (cm *spectrumCoachmark) PrimaryCta(text string) *spectrumCoachmark {
+	cm.PropPrimaryCta = text
 	return cm
 }
 
 // SecondaryCta sets the text for the secondary call to action button
-func (cm *SpectrumCoachmark) SecondaryCta(text string) *SpectrumCoachmark {
-	cm.secondaryCta = text
+func (cm *spectrumCoachmark) SecondaryCta(text string) *spectrumCoachmark {
+	cm.PropSecondaryCta = text
 	return cm
 }
 
 // Src sets the source URL for the media
-func (cm *SpectrumCoachmark) Src(src string) *SpectrumCoachmark {
-	cm.src = src
+func (cm *spectrumCoachmark) Src(src string) *spectrumCoachmark {
+	cm.PropSrc = src
 	return cm
 }
 
 // MediaType sets the type of media
-func (cm *SpectrumCoachmark) MediaType(mediaType string) *SpectrumCoachmark {
-	cm.mediaType = mediaType
+func (cm *spectrumCoachmark) MediaType(mediaType string) *spectrumCoachmark {
+	cm.PropMediaType = mediaType
 	return cm
 }
 
 // ImageAlt sets the alt text for the image
-func (cm *SpectrumCoachmark) ImageAlt(alt string) *SpectrumCoachmark {
-	cm.imageAlt = alt
+func (cm *spectrumCoachmark) ImageAlt(alt string) *spectrumCoachmark {
+	cm.PropImageAlt = alt
 	return cm
 }
 
 // Title sets the title content in the title slot
-func (cm *SpectrumCoachmark) Title(title app.UI) *SpectrumCoachmark {
-	cm.title = title
+func (cm *spectrumCoachmark) Title(title app.UI) *spectrumCoachmark {
+	cm.PropTitle = title
 	return cm
 }
 
 // TitleText sets a text title in the title slot
-func (cm *SpectrumCoachmark) TitleText(text string) *SpectrumCoachmark {
-	cm.title = app.Div().Text(text)
+func (cm *spectrumCoachmark) TitleText(text string) *spectrumCoachmark {
+	cm.PropTitle = app.Div().Text(text)
 	return cm
 }
 
 // Content sets the content in the content slot
-func (cm *SpectrumCoachmark) Content(content app.UI) *SpectrumCoachmark {
-	cm.content = content
+func (cm *spectrumCoachmark) Content(content app.UI) *spectrumCoachmark {
+	cm.PropContent = content
 	return cm
 }
 
 // ContentText sets text content in the content slot
-func (cm *SpectrumCoachmark) ContentText(text string) *SpectrumCoachmark {
-	cm.content = app.Div().Text(text)
+func (cm *spectrumCoachmark) ContentText(text string) *spectrumCoachmark {
+	cm.PropContent = app.Div().Text(text)
 	return cm
 }
 
 // Actions sets the actions menu in the actions slot
-func (cm *SpectrumCoachmark) Actions(actions app.UI) *SpectrumCoachmark {
-	cm.actions = actions
+func (cm *spectrumCoachmark) Actions(actions app.UI) *spectrumCoachmark {
+	cm.PropActions = actions
 	return cm
 }
 
 // AssetSlot sets the asset in the asset slot
-func (cm *SpectrumCoachmark) AssetSlot(asset app.UI) *SpectrumCoachmark {
-	cm.assetSlot = asset
+func (cm *spectrumCoachmark) AssetSlot(asset app.UI) *spectrumCoachmark {
+	cm.PropAssetSlot = asset
 	return cm
 }
 
 // CoverPhoto sets the cover photo in the cover-photo slot
-func (cm *SpectrumCoachmark) CoverPhoto(photo app.UI) *SpectrumCoachmark {
-	cm.coverPhoto = photo
+func (cm *spectrumCoachmark) CoverPhoto(photo app.UI) *spectrumCoachmark {
+	cm.PropCoverPhoto = photo
 	return cm
 }
 
 // StepCount sets the step count in the step-count slot
-func (cm *SpectrumCoachmark) StepCount(stepCount app.UI) *SpectrumCoachmark {
-	cm.stepCount = stepCount
+func (cm *spectrumCoachmark) StepCount(stepCount app.UI) *spectrumCoachmark {
+	cm.PropStepCount = stepCount
 	return cm
 }
 
 // Description sets the description in the description slot
-func (cm *SpectrumCoachmark) Description(description app.UI) *SpectrumCoachmark {
-	cm.description = description
+func (cm *spectrumCoachmark) Description(description app.UI) *spectrumCoachmark {
+	cm.PropDescription = description
 	return cm
 }
 
 // Heading sets the heading in the heading slot
-func (cm *SpectrumCoachmark) Heading(heading app.UI) *SpectrumCoachmark {
-	cm.heading = heading
+func (cm *spectrumCoachmark) Heading(heading app.UI) *spectrumCoachmark {
+	cm.PropHeading = heading
 	return cm
 }
 
 // Child adds a child element to the coachmark
-func (cm *SpectrumCoachmark) Child(child app.UI) *SpectrumCoachmark {
-	cm.children = append(cm.children, child)
+func (cm *spectrumCoachmark) Child(child app.UI) *spectrumCoachmark {
+	cm.PropChildren = append(cm.PropChildren, child)
 	return cm
 }
 
 // Children sets the child elements of the coachmark
-func (cm *SpectrumCoachmark) Children(children ...app.UI) *SpectrumCoachmark {
-	cm.children = children
+func (cm *spectrumCoachmark) Children(children ...app.UI) *spectrumCoachmark {
+	cm.PropChildren = children
 	return cm
 }
 
 // OnPrimary sets the primary button click event handler
-func (cm *SpectrumCoachmark) OnPrimary(handler app.EventHandler) *SpectrumCoachmark {
-	cm.onPrimary = handler
+func (cm *spectrumCoachmark) OnPrimary(handler app.EventHandler) *spectrumCoachmark {
+	cm.PropOnPrimary = handler
 	return cm
 }
 
 // OnSecondary sets the secondary button click event handler
-func (cm *SpectrumCoachmark) OnSecondary(handler app.EventHandler) *SpectrumCoachmark {
-	cm.onSecondary = handler
+func (cm *spectrumCoachmark) OnSecondary(handler app.EventHandler) *spectrumCoachmark {
+	cm.PropOnSecondary = handler
 	return cm
 }
 
 // Render renders the coachmark component
-func (cm *SpectrumCoachmark) Render() app.UI {
+func (cm *spectrumCoachmark) Render() app.UI {
 	coachmark := app.Elem("sp-coachmark")
 
 	// Set attributes
-	if cm.asset != "" {
-		coachmark = coachmark.Attr("asset", string(cm.asset))
+	if cm.PropAsset != "" {
+		coachmark = coachmark.Attr("asset", string(cm.PropAsset))
 	}
-	if cm.currentStep > 0 {
-		coachmark = coachmark.Attr("current-step", cm.currentStep)
+	if cm.PropCurrentStep > 0 {
+		coachmark = coachmark.Attr("current-step", cm.PropCurrentStep)
 	}
-	if cm.hasAsset {
+	if cm.PropHasAsset {
 		coachmark = coachmark.Attr("has-asset", true)
 	}
-	if cm.item != "" {
-		coachmark = coachmark.Attr("item", cm.item)
+	if cm.PropItem != "" {
+		coachmark = coachmark.Attr("item", cm.PropItem)
 	}
-	if len(cm.modifierKeys) > 0 {
+	if len(cm.PropModifierKeys) > 0 {
 		// We're simplifying here; in a real implementation,
 		// you'd need to handle the JSON serialization properly
-		coachmark = coachmark.Attr("modifier-keys", cm.modifierKeys)
+		coachmark = coachmark.Attr("modifier-keys", cm.PropModifierKeys)
 	}
-	if cm.open {
+	if cm.PropOpen {
 		coachmark = coachmark.Attr("open", true)
 	}
-	if cm.placement != "right" {
-		coachmark = coachmark.Attr("placement", cm.placement)
+	if cm.PropPlacement != "right" {
+		coachmark = coachmark.Attr("placement", cm.PropPlacement)
 	}
-	if cm.tip {
+	if cm.PropTip {
 		coachmark = coachmark.Attr("tip", true)
 	}
-	if cm.totalSteps > 0 {
-		coachmark = coachmark.Attr("total-steps", cm.totalSteps)
+	if cm.PropTotalSteps > 0 {
+		coachmark = coachmark.Attr("total-steps", cm.PropTotalSteps)
 	}
-	if cm.primaryCta != "" {
-		coachmark = coachmark.Attr("primary-cta", cm.primaryCta)
+	if cm.PropPrimaryCta != "" {
+		coachmark = coachmark.Attr("primary-cta", cm.PropPrimaryCta)
 	}
-	if cm.secondaryCta != "" {
-		coachmark = coachmark.Attr("secondary-cta", cm.secondaryCta)
+	if cm.PropSecondaryCta != "" {
+		coachmark = coachmark.Attr("secondary-cta", cm.PropSecondaryCta)
 	}
-	if cm.src != "" {
-		coachmark = coachmark.Attr("src", cm.src)
+	if cm.PropSrc != "" {
+		coachmark = coachmark.Attr("src", cm.PropSrc)
 	}
-	if cm.mediaType != "" {
-		coachmark = coachmark.Attr("media-type", cm.mediaType)
+	if cm.PropMediaType != "" {
+		coachmark = coachmark.Attr("media-type", cm.PropMediaType)
 	}
-	if cm.imageAlt != "" {
-		coachmark = coachmark.Attr("image-alt", cm.imageAlt)
-	}
-
-	// Add event handlers
-	if cm.onPrimary != nil {
-		coachmark = coachmark.On("primary", cm.onPrimary)
-	}
-	if cm.onSecondary != nil {
-		coachmark = coachmark.On("secondary", cm.onSecondary)
+	if cm.PropImageAlt != "" {
+		coachmark = coachmark.Attr("image-alt", cm.PropImageAlt)
 	}
 
-	// Prepare slot elements
+	// Set event handlers
+	if cm.PropOnPrimary != nil {
+		coachmark = coachmark.On("primary", cm.PropOnPrimary)
+	}
+	if cm.PropOnSecondary != nil {
+		coachmark = coachmark.On("secondary", cm.PropOnSecondary)
+	}
+
+	// Add slotted content
 	elements := []app.UI{}
 
-	// Add slotted elements
-	if cm.title != nil {
-		elements = append(elements, app.Elem("div").Attr("slot", "title").Body(cm.title))
-	}
-	if cm.content != nil {
-		elements = append(elements, app.Elem("div").Attr("slot", "content").Body(cm.content))
-	}
-	if cm.actions != nil {
-		if actionWithSlot, ok := cm.actions.(interface{ Slot(string) app.UI }); ok {
-			elements = append(elements, actionWithSlot.Slot("actions"))
-		} else {
-			elements = append(elements, app.Elem("div").Attr("slot", "actions").Body(cm.actions))
-		}
-	}
-	if cm.assetSlot != nil {
-		elements = append(elements, app.Elem("div").Attr("slot", "asset").Body(cm.assetSlot))
-	}
-	if cm.coverPhoto != nil {
-		elements = append(elements, app.Elem("div").Attr("slot", "cover-photo").Body(cm.coverPhoto))
-	}
-	if cm.stepCount != nil {
-		elements = append(elements, app.Elem("div").Attr("slot", "step-count").Body(cm.stepCount))
-	}
-	if cm.description != nil {
-		elements = append(elements, app.Elem("div").Attr("slot", "description").Body(cm.description))
-	}
-	if cm.heading != nil {
-		elements = append(elements, app.Elem("div").Attr("slot", "heading").Body(cm.heading))
+	if cm.PropTitle != nil {
+		elements = append(elements, app.Elem("div").Attr("slot", "title").Body(cm.PropTitle))
 	}
 
-	// Add default slot children
-	if len(cm.children) > 0 {
-		elements = append(elements, cm.children...)
+	if cm.PropContent != nil {
+		elements = append(elements, app.Elem("div").Attr("slot", "content").Body(cm.PropContent))
 	}
 
-	if len(elements) > 0 {
-		coachmark = coachmark.Body(elements...)
+	if cm.PropActions != nil {
+		elements = append(elements, app.Elem("div").Attr("slot", "actions").Body(cm.PropActions))
 	}
 
-	return coachmark
+	if cm.PropAssetSlot != nil {
+		elements = append(elements, app.Elem("div").Attr("slot", "asset").Body(cm.PropAssetSlot))
+	}
+
+	if cm.PropCoverPhoto != nil {
+		elements = append(elements, app.Elem("div").Attr("slot", "cover-photo").Body(cm.PropCoverPhoto))
+	}
+
+	if cm.PropStepCount != nil {
+		elements = append(elements, app.Elem("div").Attr("slot", "step-count").Body(cm.PropStepCount))
+	}
+
+	if cm.PropDescription != nil {
+		elements = append(elements, app.Elem("div").Attr("slot", "description").Body(cm.PropDescription))
+	}
+
+	if cm.PropHeading != nil {
+		elements = append(elements, app.Elem("div").Attr("slot", "heading").Body(cm.PropHeading))
+	}
+
+	// Add children
+	elements = append(elements, cm.PropChildren...)
+
+	return coachmark.Body(elements...)
 }

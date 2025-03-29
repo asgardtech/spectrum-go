@@ -6,214 +6,214 @@ import (
 	"github.com/maxence-charriere/go-app/v10/pkg/app"
 )
 
-// SpectrumColorArea represents an sp-color-area component.
-type SpectrumColorArea struct {
+// spectrumColorArea represents an sp-color-area component.
+type spectrumColorArea struct {
 	app.Compo
 
 	// Properties
-	color    string
-	disabled bool
-	focused  bool
-	hue      float64
-	labelX   string
-	labelY   string
-	step     float64
-	value    string
-	x        float64
-	y        float64
-	gradient app.UI
-	style    string
+	PropColor    string
+	PropDisabled bool
+	PropFocused  bool
+	PropHue      float64
+	PropLabelX   string
+	PropLabelY   string
+	PropStep     float64
+	PropValue    string
+	PropX        float64
+	PropY        float64
+	PropGradient app.UI
+	PropStyle    string
 
 	// Event handlers
-	onChange app.EventHandler
-	onInput  app.EventHandler
+	PropOnChange app.EventHandler
+	PropOnInput  app.EventHandler
 }
 
-// ColorArea creates a new SpectrumColorArea instance.
-func ColorArea() *SpectrumColorArea {
-	return &SpectrumColorArea{
-		labelX: "saturation",
-		labelY: "luminosity",
-		step:   0.01,
+// ColorArea creates a new spectrumColorArea instance.
+func ColorArea() *spectrumColorArea {
+	return &spectrumColorArea{
+		PropLabelX: "saturation",
+		PropLabelY: "luminosity",
+		PropStep:   0.01,
 	}
 }
 
 // Color sets the color for the color area.
-func (c *SpectrumColorArea) Color(color string) *SpectrumColorArea {
-	c.color = color
+func (c *spectrumColorArea) Color(color string) *spectrumColorArea {
+	c.PropColor = color
 	return c
 }
 
 // Disabled sets whether the color area is disabled.
-func (c *SpectrumColorArea) Disabled(disabled bool) *SpectrumColorArea {
-	c.disabled = disabled
+func (c *spectrumColorArea) Disabled(disabled bool) *spectrumColorArea {
+	c.PropDisabled = disabled
 	return c
 }
 
 // Focused sets whether the color area is focused.
-func (c *SpectrumColorArea) Focused(focused bool) *SpectrumColorArea {
-	c.focused = focused
+func (c *spectrumColorArea) Focused(focused bool) *spectrumColorArea {
+	c.PropFocused = focused
 	return c
 }
 
 // Hue sets the hue value for the color area.
-func (c *SpectrumColorArea) Hue(hue float64) *SpectrumColorArea {
-	c.hue = hue
+func (c *spectrumColorArea) Hue(hue float64) *spectrumColorArea {
+	c.PropHue = hue
 	return c
 }
 
 // LabelX sets the x-axis label.
-func (c *SpectrumColorArea) LabelX(label string) *SpectrumColorArea {
-	c.labelX = label
+func (c *spectrumColorArea) LabelX(label string) *spectrumColorArea {
+	c.PropLabelX = label
 	return c
 }
 
 // LabelY sets the y-axis label.
-func (c *SpectrumColorArea) LabelY(label string) *SpectrumColorArea {
-	c.labelY = label
+func (c *spectrumColorArea) LabelY(label string) *spectrumColorArea {
+	c.PropLabelY = label
 	return c
 }
 
 // Step sets the step value for the color area.
-func (c *SpectrumColorArea) Step(step float64) *SpectrumColorArea {
-	c.step = step
+func (c *spectrumColorArea) Step(step float64) *spectrumColorArea {
+	c.PropStep = step
 	return c
 }
 
 // Value sets the value for the color area.
-func (c *SpectrumColorArea) Value(value string) *SpectrumColorArea {
-	c.value = value
+func (c *spectrumColorArea) Value(value string) *spectrumColorArea {
+	c.PropValue = value
 	return c
 }
 
 // X sets the x position value.
-func (c *SpectrumColorArea) X(x float64) *SpectrumColorArea {
-	c.x = x
+func (c *spectrumColorArea) X(x float64) *spectrumColorArea {
+	c.PropX = x
 	return c
 }
 
 // Y sets the y position value.
-func (c *SpectrumColorArea) Y(y float64) *SpectrumColorArea {
-	c.y = y
+func (c *spectrumColorArea) Y(y float64) *spectrumColorArea {
+	c.PropY = y
 	return c
 }
 
 // Gradient sets a custom gradient UI for the color area.
-func (c *SpectrumColorArea) Gradient(gradient app.UI) *SpectrumColorArea {
-	c.gradient = gradient
+func (c *spectrumColorArea) Gradient(gradient app.UI) *spectrumColorArea {
+	c.PropGradient = gradient
 	return c
 }
 
 // Style sets custom CSS styles for the color area.
-func (c *SpectrumColorArea) Style(style string) *SpectrumColorArea {
-	c.style = style
+func (c *spectrumColorArea) Style(style string) *spectrumColorArea {
+	c.PropStyle = style
 	return c
 }
 
 // Width sets the width of the color area.
-func (c *SpectrumColorArea) Width(width int) *SpectrumColorArea {
-	if c.style == "" {
-		c.style = "width: " + strconv.Itoa(width) + "px;"
+func (c *spectrumColorArea) Width(width int) *spectrumColorArea {
+	if c.PropStyle == "" {
+		c.PropStyle = "width: " + strconv.Itoa(width) + "px;"
 	} else {
-		c.style += " width: " + strconv.Itoa(width) + "px;"
+		c.PropStyle += " width: " + strconv.Itoa(width) + "px;"
 	}
 	return c
 }
 
 // Height sets the height of the color area.
-func (c *SpectrumColorArea) Height(height int) *SpectrumColorArea {
-	if c.style == "" {
-		c.style = "height: " + strconv.Itoa(height) + "px;"
+func (c *spectrumColorArea) Height(height int) *spectrumColorArea {
+	if c.PropStyle == "" {
+		c.PropStyle = "height: " + strconv.Itoa(height) + "px;"
 	} else {
-		c.style += " height: " + strconv.Itoa(height) + "px;"
+		c.PropStyle += " height: " + strconv.Itoa(height) + "px;"
 	}
 	return c
 }
 
 // Size sets both width and height of the color area to the same value.
-func (c *SpectrumColorArea) Size(size int) *SpectrumColorArea {
-	if c.style == "" {
-		c.style = "width: " + strconv.Itoa(size) + "px; height: " + strconv.Itoa(size) + "px;"
+func (c *spectrumColorArea) Size(size int) *spectrumColorArea {
+	if c.PropStyle == "" {
+		c.PropStyle = "width: " + strconv.Itoa(size) + "px; height: " + strconv.Itoa(size) + "px;"
 	} else {
-		c.style += " width: " + strconv.Itoa(size) + "px; height: " + strconv.Itoa(size) + "px;"
+		c.PropStyle += " width: " + strconv.Itoa(size) + "px; height: " + strconv.Itoa(size) + "px;"
 	}
 	return c
 }
 
 // OnChange sets the handler for when a user commits a color change.
-func (c *SpectrumColorArea) OnChange(h app.EventHandler) *SpectrumColorArea {
-	c.onChange = h
+func (c *spectrumColorArea) OnChange(h app.EventHandler) *spectrumColorArea {
+	c.PropOnChange = h
 	return c
 }
 
 // OnInput sets the handler for when the color value changes.
-func (c *SpectrumColorArea) OnInput(h app.EventHandler) *SpectrumColorArea {
-	c.onInput = h
+func (c *spectrumColorArea) OnInput(h app.EventHandler) *spectrumColorArea {
+	c.PropOnInput = h
 	return c
 }
 
 // Render renders the component.
-func (c *SpectrumColorArea) Render() app.UI {
+func (c *spectrumColorArea) Render() app.UI {
 	colorArea := app.Elem("sp-color-area")
 
 	// Set attributes
-	if c.color != "" {
-		colorArea.Attr("color", c.color)
+	if c.PropColor != "" {
+		colorArea.Attr("color", c.PropColor)
 	}
 
-	if c.disabled {
+	if c.PropDisabled {
 		colorArea.Attr("disabled", "")
 	}
 
-	if c.focused {
+	if c.PropFocused {
 		colorArea.Attr("focused", "")
 	}
 
-	if c.hue != 0 {
-		colorArea.Attr("hue", c.hue)
+	if c.PropHue != 0 {
+		colorArea.Attr("hue", c.PropHue)
 	}
 
-	if c.labelX != "saturation" {
-		colorArea.Attr("label-x", c.labelX)
+	if c.PropLabelX != "saturation" {
+		colorArea.Attr("label-x", c.PropLabelX)
 	}
 
-	if c.labelY != "luminosity" {
-		colorArea.Attr("label-y", c.labelY)
+	if c.PropLabelY != "luminosity" {
+		colorArea.Attr("label-y", c.PropLabelY)
 	}
 
-	if c.step != 0.01 {
-		colorArea.Attr("step", c.step)
+	if c.PropStep != 0.01 {
+		colorArea.Attr("step", c.PropStep)
 	}
 
-	if c.value != "" {
-		colorArea.Attr("value", c.value)
+	if c.PropValue != "" {
+		colorArea.Attr("value", c.PropValue)
 	}
 
-	if c.x != 0 {
-		colorArea.Attr("x", c.x)
+	if c.PropX != 0 {
+		colorArea.Attr("x", c.PropX)
 	}
 
-	if c.y != 0 {
-		colorArea.Attr("y", c.y)
+	if c.PropY != 0 {
+		colorArea.Attr("y", c.PropY)
 	}
 
-	if c.style != "" {
-		colorArea.Attr("style", c.style)
+	if c.PropStyle != "" {
+		colorArea.Attr("style", c.PropStyle)
 	}
 
 	// Add event handlers
-	if c.onChange != nil {
-		colorArea = colorArea.On("change", c.onChange)
+	if c.PropOnChange != nil {
+		colorArea = colorArea.On("change", c.PropOnChange)
 	}
 
-	if c.onInput != nil {
-		colorArea = colorArea.On("input", c.onInput)
+	if c.PropOnInput != nil {
+		colorArea = colorArea.On("input", c.PropOnInput)
 	}
 
 	// Add the gradient slot if provided
-	if c.gradient != nil {
+	if c.PropGradient != nil {
 		colorArea = colorArea.Body(
-			app.Elem("div").Attr("slot", "gradient").Body(c.gradient),
+			app.Elem("div").Attr("slot", "gradient").Body(c.PropGradient),
 		)
 	}
 

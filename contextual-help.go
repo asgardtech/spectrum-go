@@ -30,91 +30,91 @@ const (
 	ContextualHelpVariantHelp ContextualHelpVariant = "help"
 )
 
-// SpectrumContextualHelp represents an sp-contextual-help component
-type SpectrumContextualHelp struct {
+// spectrumContextualHelp represents an sp-contextual-help component
+type spectrumContextualHelp struct {
 	app.Compo
 
 	// Properties
-	label     string
-	offset    interface{} // number or [number, number]
-	placement ContextualHelpPlacement
-	variant   ContextualHelpVariant
-	maxWidth  string
+	PropLabel     string
+	PropOffset    interface{} // number or [number, number]
+	PropPlacement ContextualHelpPlacement
+	PropVariant   ContextualHelpVariant
+	PropMaxWidth  string
 
 	// Content elements
-	heading app.UI
-	content app.UI
-	link    app.UI
+	PropHeading app.UI
+	PropContent app.UI
+	PropLink    app.UI
 }
 
 // ContextualHelp creates a new contextual help component
-func ContextualHelp() *SpectrumContextualHelp {
-	return &SpectrumContextualHelp{
-		placement: ContextualHelpPlacementBottomStart,
-		variant:   ContextualHelpVariantInfo,
+func ContextualHelp() *spectrumContextualHelp {
+	return &spectrumContextualHelp{
+		PropPlacement: ContextualHelpPlacementBottomStart,
+		PropVariant:   ContextualHelpVariantInfo,
 	}
 }
 
 // Label sets the accessible name for the action button trigger
-func (c *SpectrumContextualHelp) Label(label string) *SpectrumContextualHelp {
-	c.label = label
+func (c *spectrumContextualHelp) Label(label string) *spectrumContextualHelp {
+	c.PropLabel = label
 	return c
 }
 
 // Offset sets the offset of the popover
 // Can be a single number for the main axis, or [mainAxis, crossAxis]
-func (c *SpectrumContextualHelp) Offset(offset interface{}) *SpectrumContextualHelp {
-	c.offset = offset
+func (c *spectrumContextualHelp) Offset(offset interface{}) *spectrumContextualHelp {
+	c.PropOffset = offset
 	return c
 }
 
 // Placement sets the placement of the popover
-func (c *SpectrumContextualHelp) Placement(placement ContextualHelpPlacement) *SpectrumContextualHelp {
-	c.placement = placement
+func (c *spectrumContextualHelp) Placement(placement ContextualHelpPlacement) *spectrumContextualHelp {
+	c.PropPlacement = placement
 	return c
 }
 
 // Variant sets the variant of the contextual help (info/help)
-func (c *SpectrumContextualHelp) Variant(variant ContextualHelpVariant) *SpectrumContextualHelp {
-	c.variant = variant
+func (c *spectrumContextualHelp) Variant(variant ContextualHelpVariant) *spectrumContextualHelp {
+	c.PropVariant = variant
 	return c
 }
 
 // MaxWidth sets the custom maximum width of the popover
-func (c *SpectrumContextualHelp) MaxWidth(maxWidth string) *SpectrumContextualHelp {
-	c.maxWidth = maxWidth
+func (c *spectrumContextualHelp) MaxWidth(maxWidth string) *spectrumContextualHelp {
+	c.PropMaxWidth = maxWidth
 	return c
 }
 
 // Heading sets the heading content
-func (c *SpectrumContextualHelp) Heading(heading app.UI) *SpectrumContextualHelp {
-	c.heading = heading
+func (c *spectrumContextualHelp) Heading(heading app.UI) *spectrumContextualHelp {
+	c.PropHeading = heading
 	return c
 }
 
 // Content sets the main content
-func (c *SpectrumContextualHelp) Content(content app.UI) *SpectrumContextualHelp {
-	c.content = content
+func (c *spectrumContextualHelp) Content(content app.UI) *spectrumContextualHelp {
+	c.PropContent = content
 	return c
 }
 
 // Link sets the link content
-func (c *SpectrumContextualHelp) Link(link app.UI) *SpectrumContextualHelp {
-	c.link = link
+func (c *spectrumContextualHelp) Link(link app.UI) *spectrumContextualHelp {
+	c.PropLink = link
 	return c
 }
 
 // Render renders the contextual help component
-func (c *SpectrumContextualHelp) Render() app.UI {
+func (c *spectrumContextualHelp) Render() app.UI {
 	contextualHelp := app.Elem("sp-contextual-help")
 
 	// Set attributes
-	if c.label != "" {
-		contextualHelp = contextualHelp.Attr("label", c.label)
+	if c.PropLabel != "" {
+		contextualHelp = contextualHelp.Attr("label", c.PropLabel)
 	}
 
-	if c.offset != nil {
-		switch offset := c.offset.(type) {
+	if c.PropOffset != nil {
+		switch offset := c.PropOffset.(type) {
 		case int:
 			contextualHelp = contextualHelp.Attr("offset", offset)
 		case []int:
@@ -125,36 +125,36 @@ func (c *SpectrumContextualHelp) Render() app.UI {
 		}
 	}
 
-	if c.placement != ContextualHelpPlacementBottomStart {
-		contextualHelp = contextualHelp.Attr("placement", string(c.placement))
+	if c.PropPlacement != ContextualHelpPlacementBottomStart {
+		contextualHelp = contextualHelp.Attr("placement", string(c.PropPlacement))
 	}
 
-	if c.variant != ContextualHelpVariantInfo {
-		contextualHelp = contextualHelp.Attr("variant", string(c.variant))
+	if c.PropVariant != ContextualHelpVariantInfo {
+		contextualHelp = contextualHelp.Attr("variant", string(c.PropVariant))
 	}
 
-	if c.maxWidth != "" {
-		contextualHelp = contextualHelp.Style("--mod-spectrum-contextual-help-popover-maximum-width", c.maxWidth)
+	if c.PropMaxWidth != "" {
+		contextualHelp = contextualHelp.Style("--mod-spectrum-contextual-help-popover-maximum-width", c.PropMaxWidth)
 	}
 
 	// Prepare body elements
 	elements := []app.UI{}
 
 	// Add slot elements
-	if c.heading != nil {
+	if c.PropHeading != nil {
 		elements = append(elements, app.Elem("div").
 			Attr("slot", "heading").
-			Body(c.heading))
+			Body(c.PropHeading))
 	}
 
-	if c.content != nil {
-		elements = append(elements, c.content)
+	if c.PropContent != nil {
+		elements = append(elements, c.PropContent)
 	}
 
-	if c.link != nil {
+	if c.PropLink != nil {
 		elements = append(elements, app.Elem("div").
 			Attr("slot", "link").
-			Body(c.link))
+			Body(c.PropLink))
 	}
 
 	// Add all elements to the contextual help

@@ -2,298 +2,298 @@ package sp
 
 import "github.com/maxence-charriere/go-app/v10/pkg/app"
 
-// SpectrumDialogWrapper represents an sp-dialog-wrapper component
-type SpectrumDialogWrapper struct {
+// spectrumDialogWrapper represents an sp-dialog-wrapper component
+type spectrumDialogWrapper struct {
 	app.Compo
 
 	// Properties
-	open               bool
-	cancelLabel        string
-	confirmLabel       string
-	dismissLabel       string
-	dismissable        bool
-	error              bool
-	footer             string
-	headline           string
-	headlineVisibility string
-	hero               string
-	heroLabel          string
-	mode               DialogMode
-	noDivider          bool
-	responsive         bool
-	secondaryLabel     string
-	size               DialogSize
-	underlay           bool
+	PropOpen               bool
+	PropCancelLabel        string
+	PropConfirmLabel       string
+	PropDismissLabel       string
+	PropDismissable        bool
+	PropError              bool
+	PropFooter             string
+	PropHeadline           string
+	PropHeadlineVisibility string
+	PropHero               string
+	PropHeroLabel          string
+	PropMode               DialogMode
+	PropNoDivider          bool
+	PropResponsive         bool
+	PropSecondaryLabel     string
+	PropSize               DialogSize
+	PropUnderlay           bool
 
 	// Content
-	content []app.UI
+	PropContent []app.UI
 
 	// Event handlers
-	onCancel    app.EventHandler
-	onClose     app.EventHandler
-	onConfirm   app.EventHandler
-	onSecondary app.EventHandler
+	PropOnCancel    app.EventHandler
+	PropOnClose     app.EventHandler
+	PropOnConfirm   app.EventHandler
+	PropOnSecondary app.EventHandler
 }
 
 // DialogWrapper creates a new dialog wrapper component
-func DialogWrapper() *SpectrumDialogWrapper {
-	return &SpectrumDialogWrapper{
-		dismissLabel: "Close", // Default dismiss label
+func DialogWrapper() *spectrumDialogWrapper {
+	return &spectrumDialogWrapper{
+		PropDismissLabel: "Close", // Default dismiss label
 	}
 }
 
 // Open sets whether the dialog wrapper is open
-func (dw *SpectrumDialogWrapper) Open(open bool) *SpectrumDialogWrapper {
-	dw.open = open
+func (dw *spectrumDialogWrapper) Open(open bool) *spectrumDialogWrapper {
+	dw.PropOpen = open
 	return dw
 }
 
 // CancelLabel sets the label for the cancel button
-func (dw *SpectrumDialogWrapper) CancelLabel(label string) *SpectrumDialogWrapper {
-	dw.cancelLabel = label
+func (dw *spectrumDialogWrapper) CancelLabel(label string) *spectrumDialogWrapper {
+	dw.PropCancelLabel = label
 	return dw
 }
 
 // ConfirmLabel sets the label for the confirm button
-func (dw *SpectrumDialogWrapper) ConfirmLabel(label string) *SpectrumDialogWrapper {
-	dw.confirmLabel = label
+func (dw *spectrumDialogWrapper) ConfirmLabel(label string) *spectrumDialogWrapper {
+	dw.PropConfirmLabel = label
 	return dw
 }
 
 // DismissLabel sets the label for the dismiss button
-func (dw *SpectrumDialogWrapper) DismissLabel(label string) *SpectrumDialogWrapper {
-	dw.dismissLabel = label
+func (dw *spectrumDialogWrapper) DismissLabel(label string) *spectrumDialogWrapper {
+	dw.PropDismissLabel = label
 	return dw
 }
 
 // Dismissable sets whether the dialog has a dismiss button
-func (dw *SpectrumDialogWrapper) Dismissable(dismissable bool) *SpectrumDialogWrapper {
-	dw.dismissable = dismissable
+func (dw *spectrumDialogWrapper) Dismissable(dismissable bool) *spectrumDialogWrapper {
+	dw.PropDismissable = dismissable
 	return dw
 }
 
 // Error sets whether the dialog displays an error state
-func (dw *SpectrumDialogWrapper) Error(error bool) *SpectrumDialogWrapper {
-	dw.error = error
+func (dw *spectrumDialogWrapper) Error(error bool) *spectrumDialogWrapper {
+	dw.PropError = error
 	return dw
 }
 
 // Footer sets the footer content for the dialog
-func (dw *SpectrumDialogWrapper) Footer(footer string) *SpectrumDialogWrapper {
-	dw.footer = footer
+func (dw *spectrumDialogWrapper) Footer(footer string) *spectrumDialogWrapper {
+	dw.PropFooter = footer
 	return dw
 }
 
 // Headline sets the headline text for the dialog
-func (dw *SpectrumDialogWrapper) Headline(headline string) *SpectrumDialogWrapper {
-	dw.headline = headline
+func (dw *spectrumDialogWrapper) Headline(headline string) *spectrumDialogWrapper {
+	dw.PropHeadline = headline
 	return dw
 }
 
 // HeadlineVisibility sets the visibility of the headline
-func (dw *SpectrumDialogWrapper) HeadlineVisibility(visibility string) *SpectrumDialogWrapper {
-	dw.headlineVisibility = visibility
+func (dw *spectrumDialogWrapper) HeadlineVisibility(visibility string) *spectrumDialogWrapper {
+	dw.PropHeadlineVisibility = visibility
 	return dw
 }
 
 // Hero sets the hero image URL for the dialog
-func (dw *SpectrumDialogWrapper) Hero(hero string) *SpectrumDialogWrapper {
-	dw.hero = hero
+func (dw *spectrumDialogWrapper) Hero(hero string) *spectrumDialogWrapper {
+	dw.PropHero = hero
 	return dw
 }
 
 // HeroLabel sets the accessibility label for the hero image
-func (dw *SpectrumDialogWrapper) HeroLabel(label string) *SpectrumDialogWrapper {
-	dw.heroLabel = label
+func (dw *spectrumDialogWrapper) HeroLabel(label string) *spectrumDialogWrapper {
+	dw.PropHeroLabel = label
 	return dw
 }
 
 // Mode sets the display mode of the dialog
-func (dw *SpectrumDialogWrapper) Mode(mode DialogMode) *SpectrumDialogWrapper {
-	dw.mode = mode
+func (dw *spectrumDialogWrapper) Mode(mode DialogMode) *spectrumDialogWrapper {
+	dw.PropMode = mode
 	return dw
 }
 
 // NoDivider sets whether the dialog should have a divider between header and content
-func (dw *SpectrumDialogWrapper) NoDivider(noDivider bool) *SpectrumDialogWrapper {
-	dw.noDivider = noDivider
+func (dw *spectrumDialogWrapper) NoDivider(noDivider bool) *spectrumDialogWrapper {
+	dw.PropNoDivider = noDivider
 	return dw
 }
 
 // Responsive sets whether the dialog should be responsive
-func (dw *SpectrumDialogWrapper) Responsive(responsive bool) *SpectrumDialogWrapper {
-	dw.responsive = responsive
+func (dw *spectrumDialogWrapper) Responsive(responsive bool) *spectrumDialogWrapper {
+	dw.PropResponsive = responsive
 	return dw
 }
 
 // SecondaryLabel sets the label for the secondary button
-func (dw *SpectrumDialogWrapper) SecondaryLabel(label string) *SpectrumDialogWrapper {
-	dw.secondaryLabel = label
+func (dw *spectrumDialogWrapper) SecondaryLabel(label string) *spectrumDialogWrapper {
+	dw.PropSecondaryLabel = label
 	return dw
 }
 
 // Size sets the visual size of the dialog
-func (dw *SpectrumDialogWrapper) Size(size DialogSize) *SpectrumDialogWrapper {
-	dw.size = size
+func (dw *spectrumDialogWrapper) Size(size DialogSize) *spectrumDialogWrapper {
+	dw.PropSize = size
 	return dw
 }
 
 // Underlay sets whether the dialog should have an underlay
-func (dw *SpectrumDialogWrapper) Underlay(underlay bool) *SpectrumDialogWrapper {
-	dw.underlay = underlay
+func (dw *spectrumDialogWrapper) Underlay(underlay bool) *spectrumDialogWrapper {
+	dw.PropUnderlay = underlay
 	return dw
 }
 
 // Content adds content to the dialog's main content area
-func (dw *SpectrumDialogWrapper) Content(content app.UI) *SpectrumDialogWrapper {
-	dw.content = append(dw.content, content)
+func (dw *spectrumDialogWrapper) Content(content app.UI) *spectrumDialogWrapper {
+	dw.PropContent = append(dw.PropContent, content)
 	return dw
 }
 
 // ContentList sets all content elements for the dialog
-func (dw *SpectrumDialogWrapper) ContentList(content ...app.UI) *SpectrumDialogWrapper {
-	dw.content = content
+func (dw *spectrumDialogWrapper) ContentList(content ...app.UI) *spectrumDialogWrapper {
+	dw.PropContent = content
 	return dw
 }
 
 // ContentText adds text content to the dialog
-func (dw *SpectrumDialogWrapper) ContentText(text string) *SpectrumDialogWrapper {
-	dw.content = append(dw.content, app.P().Text(text))
+func (dw *spectrumDialogWrapper) ContentText(text string) *spectrumDialogWrapper {
+	dw.PropContent = append(dw.PropContent, app.P().Text(text))
 	return dw
 }
 
 // OnCancel sets the cancel event handler
-func (dw *SpectrumDialogWrapper) OnCancel(handler app.EventHandler) *SpectrumDialogWrapper {
-	dw.onCancel = handler
+func (dw *spectrumDialogWrapper) OnCancel(handler app.EventHandler) *spectrumDialogWrapper {
+	dw.PropOnCancel = handler
 	return dw
 }
 
 // OnClose sets the close event handler
-func (dw *SpectrumDialogWrapper) OnClose(handler app.EventHandler) *SpectrumDialogWrapper {
-	dw.onClose = handler
+func (dw *spectrumDialogWrapper) OnClose(handler app.EventHandler) *spectrumDialogWrapper {
+	dw.PropOnClose = handler
 	return dw
 }
 
 // OnConfirm sets the confirm event handler
-func (dw *SpectrumDialogWrapper) OnConfirm(handler app.EventHandler) *SpectrumDialogWrapper {
-	dw.onConfirm = handler
+func (dw *spectrumDialogWrapper) OnConfirm(handler app.EventHandler) *spectrumDialogWrapper {
+	dw.PropOnConfirm = handler
 	return dw
 }
 
 // OnSecondary sets the secondary event handler
-func (dw *SpectrumDialogWrapper) OnSecondary(handler app.EventHandler) *SpectrumDialogWrapper {
-	dw.onSecondary = handler
+func (dw *spectrumDialogWrapper) OnSecondary(handler app.EventHandler) *spectrumDialogWrapper {
+	dw.PropOnSecondary = handler
 	return dw
 }
 
 // Convenience methods for setting dialog sizes
 
 // Small sets size to small (s)
-func (dw *SpectrumDialogWrapper) Small() *SpectrumDialogWrapper {
+func (dw *spectrumDialogWrapper) Small() *spectrumDialogWrapper {
 	return dw.Size(DialogSizeS)
 }
 
 // Medium sets size to medium (m)
-func (dw *SpectrumDialogWrapper) Medium() *SpectrumDialogWrapper {
+func (dw *spectrumDialogWrapper) Medium() *spectrumDialogWrapper {
 	return dw.Size(DialogSizeM)
 }
 
 // Large sets size to large (l)
-func (dw *SpectrumDialogWrapper) Large() *SpectrumDialogWrapper {
+func (dw *spectrumDialogWrapper) Large() *spectrumDialogWrapper {
 	return dw.Size(DialogSizeL)
 }
 
 // Convenience methods for setting dialog modes
 
 // Fullscreen sets mode to fullscreen
-func (dw *SpectrumDialogWrapper) Fullscreen() *SpectrumDialogWrapper {
+func (dw *spectrumDialogWrapper) Fullscreen() *spectrumDialogWrapper {
 	return dw.Mode(DialogModeFullscreen)
 }
 
 // FullscreenTakeover sets mode to fullscreenTakeover
-func (dw *SpectrumDialogWrapper) FullscreenTakeover() *SpectrumDialogWrapper {
+func (dw *spectrumDialogWrapper) FullscreenTakeover() *spectrumDialogWrapper {
 	return dw.Mode(DialogModeFullscreenTakeover)
 }
 
 // HideHeadline sets headline visibility to 'none'
-func (dw *SpectrumDialogWrapper) HideHeadline() *SpectrumDialogWrapper {
+func (dw *spectrumDialogWrapper) HideHeadline() *spectrumDialogWrapper {
 	return dw.HeadlineVisibility("none")
 }
 
 // Render renders the dialog wrapper component
-func (dw *SpectrumDialogWrapper) Render() app.UI {
+func (dw *spectrumDialogWrapper) Render() app.UI {
 	dialogWrapper := app.Elem("sp-dialog-wrapper")
 
 	// Add properties
-	if dw.open {
+	if dw.PropOpen {
 		dialogWrapper = dialogWrapper.Attr("open", true)
 	}
-	if dw.cancelLabel != "" {
-		dialogWrapper = dialogWrapper.Attr("cancel-label", dw.cancelLabel)
+	if dw.PropCancelLabel != "" {
+		dialogWrapper = dialogWrapper.Attr("cancel-label", dw.PropCancelLabel)
 	}
-	if dw.confirmLabel != "" {
-		dialogWrapper = dialogWrapper.Attr("confirm-label", dw.confirmLabel)
+	if dw.PropConfirmLabel != "" {
+		dialogWrapper = dialogWrapper.Attr("confirm-label", dw.PropConfirmLabel)
 	}
-	if dw.dismissLabel != "" {
-		dialogWrapper = dialogWrapper.Attr("dismiss-label", dw.dismissLabel)
+	if dw.PropDismissLabel != "" {
+		dialogWrapper = dialogWrapper.Attr("dismiss-label", dw.PropDismissLabel)
 	}
-	if dw.dismissable {
+	if dw.PropDismissable {
 		dialogWrapper = dialogWrapper.Attr("dismissable", true)
 	}
-	if dw.error {
+	if dw.PropError {
 		dialogWrapper = dialogWrapper.Attr("error", true)
 	}
-	if dw.footer != "" {
-		dialogWrapper = dialogWrapper.Attr("footer", dw.footer)
+	if dw.PropFooter != "" {
+		dialogWrapper = dialogWrapper.Attr("footer", dw.PropFooter)
 	}
-	if dw.headline != "" {
-		dialogWrapper = dialogWrapper.Attr("headline", dw.headline)
+	if dw.PropHeadline != "" {
+		dialogWrapper = dialogWrapper.Attr("headline", dw.PropHeadline)
 	}
-	if dw.headlineVisibility != "" {
-		dialogWrapper = dialogWrapper.Attr("headline-visibility", dw.headlineVisibility)
+	if dw.PropHeadlineVisibility != "" {
+		dialogWrapper = dialogWrapper.Attr("headline-visibility", dw.PropHeadlineVisibility)
 	}
-	if dw.hero != "" {
-		dialogWrapper = dialogWrapper.Attr("hero", dw.hero)
+	if dw.PropHero != "" {
+		dialogWrapper = dialogWrapper.Attr("hero", dw.PropHero)
 	}
-	if dw.heroLabel != "" {
-		dialogWrapper = dialogWrapper.Attr("hero-label", dw.heroLabel)
+	if dw.PropHeroLabel != "" {
+		dialogWrapper = dialogWrapper.Attr("hero-label", dw.PropHeroLabel)
 	}
-	if dw.mode != "" {
-		dialogWrapper = dialogWrapper.Attr("mode", string(dw.mode))
+	if dw.PropMode != "" {
+		dialogWrapper = dialogWrapper.Attr("mode", string(dw.PropMode))
 	}
-	if dw.noDivider {
+	if dw.PropNoDivider {
 		dialogWrapper = dialogWrapper.Attr("no-divider", true)
 	}
-	if dw.responsive {
+	if dw.PropResponsive {
 		dialogWrapper = dialogWrapper.Attr("responsive", true)
 	}
-	if dw.secondaryLabel != "" {
-		dialogWrapper = dialogWrapper.Attr("secondary-label", dw.secondaryLabel)
+	if dw.PropSecondaryLabel != "" {
+		dialogWrapper = dialogWrapper.Attr("secondary-label", dw.PropSecondaryLabel)
 	}
-	if dw.size != "" {
-		dialogWrapper = dialogWrapper.Attr("size", string(dw.size))
+	if dw.PropSize != "" {
+		dialogWrapper = dialogWrapper.Attr("size", string(dw.PropSize))
 	}
-	if dw.underlay {
+	if dw.PropUnderlay {
 		dialogWrapper = dialogWrapper.Attr("underlay", true)
 	}
 
 	// Add event handlers
-	if dw.onCancel != nil {
-		dialogWrapper = dialogWrapper.On("cancel", dw.onCancel)
+	if dw.PropOnCancel != nil {
+		dialogWrapper = dialogWrapper.On("cancel", dw.PropOnCancel)
 	}
-	if dw.onClose != nil {
-		dialogWrapper = dialogWrapper.On("close", dw.onClose)
+	if dw.PropOnClose != nil {
+		dialogWrapper = dialogWrapper.On("close", dw.PropOnClose)
 	}
-	if dw.onConfirm != nil {
-		dialogWrapper = dialogWrapper.On("confirm", dw.onConfirm)
+	if dw.PropOnConfirm != nil {
+		dialogWrapper = dialogWrapper.On("confirm", dw.PropOnConfirm)
 	}
-	if dw.onSecondary != nil {
-		dialogWrapper = dialogWrapper.On("secondary", dw.onSecondary)
+	if dw.PropOnSecondary != nil {
+		dialogWrapper = dialogWrapper.On("secondary", dw.PropOnSecondary)
 	}
 
 	// Add content if provided
-	if len(dw.content) > 0 {
-		dialogWrapper = dialogWrapper.Body(dw.content...)
+	if len(dw.PropContent) > 0 {
+		dialogWrapper = dialogWrapper.Body(dw.PropContent...)
 	}
 
 	return dialogWrapper

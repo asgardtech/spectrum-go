@@ -4,7 +4,7 @@ import (
 	"github.com/maxence-charriere/go-app/v10/pkg/app"
 )
 
-// CardVariant represents the variant of a SpectrumCard.
+// CardVariant represents the variant of a spectrumCard.
 type CardVariant string
 
 const (
@@ -16,7 +16,7 @@ const (
 	CardQuiet CardVariant = "quiet"
 )
 
-// CardAsset represents the asset type of a SpectrumCard.
+// CardAsset represents the asset type of a spectrumCard.
 type CardAsset string
 
 const (
@@ -26,252 +26,255 @@ const (
 	CardFolder CardAsset = "folder"
 )
 
-// SpectrumCard represents an sp-card component.
-type SpectrumCard struct {
+// spectrumCard represents an sp-card component.
+type spectrumCard struct {
 	app.Compo
 
-	heading     string
-	subheading  string
-	variant     CardVariant
-	horizontal  bool
-	asset       CardAsset
-	href        string
-	target      string
-	rel         string
-	download    string
-	toggles     bool
-	focused     bool
-	label       string
-	value       string
-	content     app.UI
-	coverPhoto  app.UI
-	preview     app.UI
-	description app.UI
-	footer      app.UI
-	actions     app.UI
-	children    []app.UI
+	PropHeading     string
+	PropSubheading  string
+	PropVariant     CardVariant
+	PropHorizontal  bool
+	PropAsset       CardAsset
+	PropHref        string
+	PropTarget      string
+	PropRel         string
+	PropDownload    string
+	PropToggles     bool
+	PropFocused     bool
+	PropLabel       string
+	PropValue       string
+	PropContent     app.UI
+	PropCoverPhoto  app.UI
+	PropPreview     app.UI
+	PropDescription app.UI
+	PropFooter      app.UI
+	PropActions     app.UI
+	PropChildren    []app.UI
 }
 
-// Card creates a new SpectrumCard instance.
-func Card() *SpectrumCard {
-	return &SpectrumCard{
-		variant: CardStandard,
+// Card creates a new spectrumCard instance.
+func Card() *spectrumCard {
+	return &spectrumCard{
+		PropVariant: CardStandard,
 	}
 }
 
 // Heading sets the heading text for the card.
-func (c *SpectrumCard) Heading(heading string) *SpectrumCard {
-	c.heading = heading
+func (c *spectrumCard) Heading(heading string) *spectrumCard {
+	c.PropHeading = heading
 	return c
 }
 
 // Subheading sets the subheading text for the card.
-func (c *SpectrumCard) Subheading(subheading string) *SpectrumCard {
-	c.subheading = subheading
+func (c *spectrumCard) Subheading(subheading string) *spectrumCard {
+	c.PropSubheading = subheading
 	return c
 }
 
 // Variant sets the card variant.
-func (c *SpectrumCard) Variant(variant CardVariant) *SpectrumCard {
-	c.variant = variant
+func (c *spectrumCard) Variant(variant CardVariant) *spectrumCard {
+	c.PropVariant = variant
 	return c
 }
 
 // Horizontal sets the card to horizontal layout.
-func (c *SpectrumCard) Horizontal(horizontal bool) *SpectrumCard {
-	c.horizontal = horizontal
+func (c *spectrumCard) Horizontal(horizontal bool) *spectrumCard {
+	c.PropHorizontal = horizontal
 	return c
 }
 
 // Asset sets the asset type of the card (file or folder).
-func (c *SpectrumCard) Asset(asset CardAsset) *SpectrumCard {
-	c.asset = asset
+func (c *spectrumCard) Asset(asset CardAsset) *spectrumCard {
+	c.PropAsset = asset
 	return c
 }
 
 // Href sets the URL that the card links to.
-func (c *SpectrumCard) Href(href string) *SpectrumCard {
-	c.href = href
+func (c *spectrumCard) Href(href string) *spectrumCard {
+	c.PropHref = href
 	return c
 }
 
 // Target sets where to display the linked URL.
-func (c *SpectrumCard) Target(target string) *SpectrumCard {
-	c.target = target
+func (c *spectrumCard) Target(target string) *spectrumCard {
+	c.PropTarget = target
 	return c
 }
 
 // Rel sets the relationship of the linked URL.
-func (c *SpectrumCard) Rel(rel string) *SpectrumCard {
-	c.rel = rel
+func (c *spectrumCard) Rel(rel string) *spectrumCard {
+	c.PropRel = rel
 	return c
 }
 
 // Download sets the download attribute for the card.
-func (c *SpectrumCard) Download(download string) *SpectrumCard {
-	c.download = download
+func (c *spectrumCard) Download(download string) *spectrumCard {
+	c.PropDownload = download
 	return c
 }
 
 // Toggles sets whether the card can be toggled.
-func (c *SpectrumCard) Toggles(toggles bool) *SpectrumCard {
-	c.toggles = toggles
+func (c *spectrumCard) Toggles(toggles bool) *spectrumCard {
+	c.PropToggles = toggles
 	return c
 }
 
 // Focused sets whether the card is focused.
-func (c *SpectrumCard) Focused(focused bool) *SpectrumCard {
-	c.focused = focused
+func (c *spectrumCard) Focused(focused bool) *spectrumCard {
+	c.PropFocused = focused
 	return c
 }
 
 // Label sets an accessible label for the card.
-func (c *SpectrumCard) Label(label string) *SpectrumCard {
-	c.label = label
+func (c *spectrumCard) Label(label string) *spectrumCard {
+	c.PropLabel = label
 	return c
 }
 
 // Value sets the value of the card.
-func (c *SpectrumCard) Value(value string) *SpectrumCard {
-	c.value = value
+func (c *spectrumCard) Value(value string) *spectrumCard {
+	c.PropValue = value
 	return c
 }
 
 // Content sets the main content of the card.
-func (c *SpectrumCard) Content(content app.UI) *SpectrumCard {
-	c.content = content
+func (c *spectrumCard) Content(content app.UI) *spectrumCard {
+	c.PropContent = content
 	return c
 }
 
 // CoverPhoto sets the cover photo for the card.
-func (c *SpectrumCard) CoverPhoto(img app.UI) *SpectrumCard {
-	c.coverPhoto = img
+func (c *spectrumCard) CoverPhoto(img app.UI) *spectrumCard {
+	c.PropCoverPhoto = img
 	return c
 }
 
 // Preview sets the preview image for the card.
-func (c *SpectrumCard) Preview(img app.UI) *SpectrumCard {
-	c.preview = img
+func (c *spectrumCard) Preview(img app.UI) *spectrumCard {
+	c.PropPreview = img
 	return c
 }
 
 // Description sets the description for the card.
-func (c *SpectrumCard) Description(description app.UI) *SpectrumCard {
-	c.description = description
+func (c *spectrumCard) Description(description app.UI) *spectrumCard {
+	c.PropDescription = description
 	return c
 }
 
 // Footer sets the footer for the card.
-func (c *SpectrumCard) Footer(footer app.UI) *SpectrumCard {
-	c.footer = footer
+func (c *spectrumCard) Footer(footer app.UI) *spectrumCard {
+	c.PropFooter = footer
 	return c
 }
 
 // Actions sets the actions menu for the card.
-func (c *SpectrumCard) Actions(actions app.UI) *SpectrumCard {
-	c.actions = actions
+func (c *spectrumCard) Actions(actions app.UI) *spectrumCard {
+	c.PropActions = actions
 	return c
 }
 
 // Child adds a child element to the card.
-func (c *SpectrumCard) Child(child app.UI) *SpectrumCard {
-	c.children = append(c.children, child)
+func (c *spectrumCard) Child(child app.UI) *spectrumCard {
+	c.PropChildren = append(c.PropChildren, child)
 	return c
 }
 
 // Children adds multiple child elements to the card.
-func (c *SpectrumCard) Children(children ...app.UI) *SpectrumCard {
-	c.children = append(c.children, children...)
+func (c *spectrumCard) Children(children ...app.UI) *spectrumCard {
+	c.PropChildren = append(c.PropChildren, children...)
 	return c
 }
 
 // Render renders the component.
-func (c *SpectrumCard) Render() app.UI {
+func (c *spectrumCard) Render() app.UI {
 	cardElem := app.Elem("sp-card")
 
 	// Set attributes
-	if c.heading != "" {
-		cardElem.Attr("heading", c.heading)
+	if c.PropHeading != "" {
+		cardElem.Attr("heading", c.PropHeading)
 	}
 
-	if c.subheading != "" {
-		cardElem.Attr("subheading", c.subheading)
+	if c.PropSubheading != "" {
+		cardElem.Attr("subheading", c.PropSubheading)
 	}
 
-	if c.variant != CardStandard {
-		cardElem.Attr("variant", string(c.variant))
+	if c.PropVariant != CardStandard {
+		cardElem.Attr("variant", string(c.PropVariant))
 	}
 
-	if c.horizontal {
+	if c.PropHorizontal {
 		cardElem.Attr("horizontal", "")
 	}
 
-	if c.asset != "" {
-		cardElem.Attr("asset", string(c.asset))
+	if c.PropAsset != "" {
+		cardElem.Attr("asset", string(c.PropAsset))
 	}
 
-	if c.href != "" {
-		cardElem.Attr("href", c.href)
+	if c.PropHref != "" {
+		cardElem.Attr("href", c.PropHref)
 	}
 
-	if c.target != "" {
-		cardElem.Attr("target", c.target)
+	if c.PropTarget != "" {
+		cardElem.Attr("target", c.PropTarget)
 	}
 
-	if c.rel != "" {
-		cardElem.Attr("rel", c.rel)
+	if c.PropRel != "" {
+		cardElem.Attr("rel", c.PropRel)
 	}
 
-	if c.download != "" {
-		cardElem.Attr("download", c.download)
+	if c.PropDownload != "" {
+		cardElem.Attr("download", c.PropDownload)
 	}
 
-	if c.toggles {
+	if c.PropToggles {
 		cardElem.Attr("toggles", "")
 	}
 
-	if c.focused {
+	if c.PropFocused {
 		cardElem.Attr("focused", "")
 	}
 
-	if c.label != "" {
-		cardElem.Attr("label", c.label)
+	if c.PropLabel != "" {
+		cardElem.Attr("label", c.PropLabel)
 	}
 
-	if c.value != "" {
-		cardElem.Attr("value", c.value)
+	if c.PropValue != "" {
+		cardElem.Attr("value", c.PropValue)
 	}
 
 	// Prepare children elements
 	elements := []app.UI{}
 
 	// Add slotted elements
-	if c.coverPhoto != nil {
-		elements = append(elements, app.Elem("div").Attr("slot", "cover-photo").Body(c.coverPhoto))
+	if c.PropCoverPhoto != nil {
+		elements = append(elements, app.Elem("div").Attr("slot", "cover-photo").Body(c.PropCoverPhoto))
 	}
 
-	if c.preview != nil {
-		elements = append(elements, app.Elem("div").Attr("slot", "preview").Body(c.preview))
+	if c.PropPreview != nil {
+		elements = append(elements, app.Elem("div").Attr("slot", "preview").Body(c.PropPreview))
 	}
 
-	if c.description != nil {
-		elements = append(elements, app.Elem("div").Attr("slot", "description").Body(c.description))
+	if c.PropDescription != nil {
+		elements = append(elements, app.Elem("div").Attr("slot", "description").Body(c.PropDescription))
 	}
 
-	if c.footer != nil {
-		elements = append(elements, app.Elem("div").Attr("slot", "footer").Body(c.footer))
+	if c.PropFooter != nil {
+		elements = append(elements, app.Elem("div").Attr("slot", "footer").Body(c.PropFooter))
 	}
 
-	if c.actions != nil {
-		elements = append(elements, app.Elem("div").Attr("slot", "actions").Body(c.actions))
+	if c.PropActions != nil {
+		elements = append(elements, app.Elem("div").Attr("slot", "actions").Body(c.PropActions))
 	}
 
-	if c.content != nil {
-		elements = append(elements, c.content)
+	if c.PropContent != nil {
+		elements = append(elements, c.PropContent)
 	}
 
-	// Add regular children
-	elements = append(elements, c.children...)
+	// Add custom children
+	elements = append(elements, c.PropChildren...)
 
-	return cardElem.Body(elements...)
+	// Add all elements to the card
+	cardElem.Body(elements...)
+
+	return cardElem
 }

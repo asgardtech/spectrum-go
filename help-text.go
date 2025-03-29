@@ -23,101 +23,101 @@ const (
 )
 
 // SpectrumHelpText represents an sp-help-text component
-type SpectrumHelpText struct {
+type spectrumHelpText struct {
 	app.Compo
 
 	// Properties
-	variant   HelpTextVariant
-	size      HelpTextSize
-	icon      bool
-	disabled  bool
-	slot      string
-	content   string
-	innerHTML string
-	child     app.UI
+	PropVariant   HelpTextVariant
+	PropSize      HelpTextSize
+	PropIcon      bool
+	PropDisabled  bool
+	PropSlot      string
+	PropContent   string
+	PropInnerHTML string
+	PropChild     app.UI
 }
 
 // HelpText creates a new help text component
-func HelpText() *SpectrumHelpText {
-	return &SpectrumHelpText{
-		variant: HelpTextVariantNeutral,
-		size:    HelpTextSizeM,
+func HelpText() *spectrumHelpText {
+	return &spectrumHelpText{
+		PropVariant: HelpTextVariantNeutral,
+		PropSize:    HelpTextSizeM,
 	}
 }
 
 // Variant sets the visual variant of the help text
-func (h *SpectrumHelpText) Variant(variant HelpTextVariant) *SpectrumHelpText {
-	h.variant = variant
+func (h *spectrumHelpText) Variant(variant HelpTextVariant) *spectrumHelpText {
+	h.PropVariant = variant
 	return h
 }
 
 // Size sets the visual size of the help text
-func (h *SpectrumHelpText) Size(size HelpTextSize) *SpectrumHelpText {
-	h.size = size
+func (h *spectrumHelpText) Size(size HelpTextSize) *spectrumHelpText {
+	h.PropSize = size
 	return h
 }
 
 // Icon enables the icon for negative variant
-func (h *SpectrumHelpText) Icon(icon bool) *SpectrumHelpText {
-	h.icon = icon
+func (h *spectrumHelpText) Icon(icon bool) *spectrumHelpText {
+	h.PropIcon = icon
 	return h
 }
 
 // Disabled sets the disabled state
-func (h *SpectrumHelpText) Disabled(disabled bool) *SpectrumHelpText {
-	h.disabled = disabled
+func (h *spectrumHelpText) Disabled(disabled bool) *spectrumHelpText {
+	h.PropDisabled = disabled
 	return h
 }
 
 // Slot sets the slot attribute
-func (h *SpectrumHelpText) Slot(slot string) *SpectrumHelpText {
-	h.slot = slot
+func (h *spectrumHelpText) Slot(slot string) *spectrumHelpText {
+	h.PropSlot = slot
 	return h
 }
 
 // Content sets the text content of the help text
-func (h *SpectrumHelpText) Content(content string) *SpectrumHelpText {
-	h.content = content
+func (h *spectrumHelpText) Content(content string) *spectrumHelpText {
+	h.PropContent = content
 	return h
 }
 
 // InnerHTML sets the inner HTML of the help text
-func (h *SpectrumHelpText) InnerHTML(html string) *SpectrumHelpText {
-	h.innerHTML = html
+func (h *spectrumHelpText) InnerHTML(html string) *spectrumHelpText {
+	h.PropInnerHTML = html
 	return h
 }
 
 // Child sets a UI element as the child of the help text
-func (h *SpectrumHelpText) Child(child app.UI) *SpectrumHelpText {
-	h.child = child
+func (h *spectrumHelpText) Child(child app.UI) *spectrumHelpText {
+	h.PropChild = child
 	return h
 }
 
 // Negative is a convenience method to set the variant to negative
-func (h *SpectrumHelpText) Negative() *SpectrumHelpText {
-	h.variant = HelpTextVariantNegative
+func (h *spectrumHelpText) Negative() *spectrumHelpText {
+	h.PropVariant = HelpTextVariantNegative
 	return h
 }
 
 // Render renders the help text component
-func (h *SpectrumHelpText) Render() app.UI {
+func (h *spectrumHelpText) Render() app.UI {
 	helpText := app.Elem("sp-help-text").
-		Attr("variant", string(h.variant)).
-		Attr("size", string(h.size)).
-		Attr("icon", h.icon).
-		Attr("disabled", h.disabled)
+		Attr("variant", string(h.PropVariant)).
+		Attr("size", string(h.PropSize)).
+		Attr("icon", h.PropIcon).
+		Attr("disabled", h.PropDisabled)
 
-	if h.slot != "" {
-		helpText = helpText.Attr("slot", h.slot)
+	if h.PropSlot != "" {
+		helpText = helpText.Attr("slot", h.PropSlot)
 	}
 
 	// Handle content in the right order of precedence
-	if h.innerHTML != "" {
-		helpText = helpText.Body(app.Raw(h.innerHTML))
-	} else if h.child != nil {
-		helpText = helpText.Body(h.child)
-	} else if h.content != "" {
-		helpText = helpText.Body(app.Text(h.content))
+	if h.PropInnerHTML != "" {
+		helpText = helpText.Body(app.Raw(h.PropInnerHTML))
+	} else if h.PropChild != nil {
+		helpText = helpText.Body(h.PropChild)
+	} else if h.PropContent != "" {
+		helpText = helpText.Body(app.Text(h.PropContent))
 	}
 
 	return helpText

@@ -16,92 +16,92 @@ const (
 	IconXXL IconSize = "xxl"
 )
 
-// SpectrumIcon represents an icon component that renders an icon through
+// spectrumIcon represents an icon component that renders an icon through
 // various methods: icon sets via name, an image via src, or custom SVG via children.
-type SpectrumIcon struct {
+type spectrumIcon struct {
 	app.Compo
 
 	// Properties
-	label string
-	name  string
-	size  IconSize
-	src   string
-	slot  string
+	PropLabel string
+	PropName  string
+	PropSize  IconSize
+	PropSrc   string
+	PropSlot  string
 
 	// Content
-	children []app.UI
+	PropChildren []app.UI
 }
 
 // Icon creates a new icon component.
-func Icon() *SpectrumIcon {
-	return &SpectrumIcon{}
+func Icon() *spectrumIcon {
+	return &spectrumIcon{}
 }
 
 // Label sets the accessible label for the icon.
 // If provided, removes aria-hidden and sets aria-label.
-func (i *SpectrumIcon) Label(label string) *SpectrumIcon {
-	i.label = label
+func (i *spectrumIcon) Label(label string) *spectrumIcon {
+	i.PropLabel = label
 	return i
 }
 
 // Name sets the name of the icon from a registered icon set.
-func (i *SpectrumIcon) Name(name string) *SpectrumIcon {
-	i.name = name
+func (i *spectrumIcon) Name(name string) *spectrumIcon {
+	i.PropName = name
 	return i
 }
 
 // Size sets the size of the icon.
-func (i *SpectrumIcon) Size(size IconSize) *SpectrumIcon {
-	i.size = size
+func (i *spectrumIcon) Size(size IconSize) *spectrumIcon {
+	i.PropSize = size
 	return i
 }
 
 // Src sets the URL source for an image-based icon.
-func (i *SpectrumIcon) Src(src string) *SpectrumIcon {
-	i.src = src
+func (i *spectrumIcon) Src(src string) *spectrumIcon {
+	i.PropSrc = src
 	return i
 }
 
 // Slot sets the slot attribute on the icon.
 // This allows the icon to be placed in named slots of other components.
-func (i *SpectrumIcon) Slot(slot string) *SpectrumIcon {
-	i.slot = slot
+func (i *spectrumIcon) Slot(slot string) *spectrumIcon {
+	i.PropSlot = slot
 	return i
 }
 
 // Children sets the content of the icon, typically an SVG element.
-func (i *SpectrumIcon) Children(children ...app.UI) *SpectrumIcon {
-	i.children = children
+func (i *spectrumIcon) Children(children ...app.UI) *spectrumIcon {
+	i.PropChildren = children
 	return i
 }
 
 // Render renders the icon component.
-func (i *SpectrumIcon) Render() app.UI {
+func (i *spectrumIcon) Render() app.UI {
 	icon := app.Elem("sp-icon")
 
 	// Set attributes based on properties
-	if i.label != "" {
-		icon.Attr("label", i.label)
+	if i.PropLabel != "" {
+		icon.Attr("label", i.PropLabel)
 	}
 
-	if i.name != "" {
-		icon.Attr("name", i.name)
+	if i.PropName != "" {
+		icon.Attr("name", i.PropName)
 	}
 
-	if i.size != "" {
-		icon.Attr("size", string(i.size))
+	if i.PropSize != "" {
+		icon.Attr("size", string(i.PropSize))
 	}
 
-	if i.src != "" {
-		icon.Attr("src", i.src)
+	if i.PropSrc != "" {
+		icon.Attr("src", i.PropSrc)
 	}
 
-	if i.slot != "" {
-		icon.Attr("slot", i.slot)
+	if i.PropSlot != "" {
+		icon.Attr("slot", i.PropSlot)
 	}
 
 	// Add children content (typically SVG)
-	for _, child := range i.children {
+	for _, child := range i.PropChildren {
 		icon.Body(child)
 	}
 

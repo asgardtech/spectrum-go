@@ -58,220 +58,220 @@ const (
 	ReferrerPolicyUnsafeUrl                   ReferrerPolicy = "unsafe-url"
 )
 
-// SpectrumButton represents an sp-button component
+// spectrumButton represents an sp-button component
 // This struct name is different from the constructor to avoid naming conflicts
-type SpectrumButton struct {
+type spectrumButton struct {
 	app.Compo
 
 	// Properties
-	text           string
-	variant        ButtonVariant
-	disabled       bool
-	quiet          bool
-	href           string
-	target         ButtonTarget
-	active         bool
-	download       string
-	label          string
-	noWrap         bool
-	pending        bool
-	pendingLabel   string
-	referrerPolicy ReferrerPolicy
-	rel            string
-	staticColor    ButtonStaticColor
-	tabIndex       int
-	treatment      string
-	buttonType     ButtonType
-	onClick        app.EventHandler
+	PropText           string
+	PropVariant        ButtonVariant
+	PropDisabled       bool
+	PropQuiet          bool
+	PropHref           string
+	PropTarget         ButtonTarget
+	PropActive         bool
+	PropDownload       string
+	PropLabel          string
+	PropNoWrap         bool
+	PropPending        bool
+	PropPendingLabel   string
+	PropReferrerPolicy ReferrerPolicy
+	PropRel            string
+	PropStaticColor    ButtonStaticColor
+	PropTabIndex       int
+	PropTreatment      string
+	PropButtonType     ButtonType
+	PropOnClick        app.EventHandler
 
 	// Slots
-	icon *SpectrumIcon
+	PropIcon *spectrumIcon
 }
 
 // Button creates a new button component
 // Function name matches the Spectrum component name for intuitive usage
-func Button() *SpectrumButton {
-	return &SpectrumButton{
-		buttonType: ButtonTypeButton, // Default is "button"
-		treatment:  "fill",           // Default treatment
+func Button() *spectrumButton {
+	return &spectrumButton{
+		PropButtonType: ButtonTypeButton, // Default is "button"
+		PropTreatment:  "fill",           // Default treatment
 	}
 }
 
 // Text sets the button text content
 // This text is placed in the default slot of the component
-func (b *SpectrumButton) Text(text string) *SpectrumButton {
-	b.text = text
+func (b *spectrumButton) Text(text string) *spectrumButton {
+	b.PropText = text
 	return b
 }
 
 // Variant sets the button variant
-func (b *SpectrumButton) Variant(variant ButtonVariant) *SpectrumButton {
-	b.variant = variant
+func (b *spectrumButton) Variant(variant ButtonVariant) *spectrumButton {
+	b.PropVariant = variant
 	return b
 }
 
 // Disabled sets the button disabled state
-func (b *SpectrumButton) Disabled(disabled bool) *SpectrumButton {
-	b.disabled = disabled
+func (b *spectrumButton) Disabled(disabled bool) *spectrumButton {
+	b.PropDisabled = disabled
 	return b
 }
 
 // Quiet sets the button quiet mode
 // Makes the button appear less prominent
-func (b *SpectrumButton) Quiet(quiet bool) *SpectrumButton {
-	b.quiet = quiet
+func (b *spectrumButton) Quiet(quiet bool) *spectrumButton {
+	b.PropQuiet = quiet
 	return b
 }
 
 // Href sets the button href for link buttons
 // When set, the button acts as a link
-func (b *SpectrumButton) Href(href string) *SpectrumButton {
-	b.href = href
+func (b *spectrumButton) Href(href string) *spectrumButton {
+	b.PropHref = href
 	return b
 }
 
 // Target sets the target for link buttons
-func (b *SpectrumButton) Target(target ButtonTarget) *SpectrumButton {
-	b.target = target
+func (b *spectrumButton) Target(target ButtonTarget) *spectrumButton {
+	b.PropTarget = target
 	return b
 }
 
 // Active sets the active state
-func (b *SpectrumButton) Active(active bool) *SpectrumButton {
-	b.active = active
+func (b *spectrumButton) Active(active bool) *spectrumButton {
+	b.PropActive = active
 	return b
 }
 
 // Download sets the download attribute
 // Causes the browser to treat the linked URL as a download
-func (b *SpectrumButton) Download(download string) *SpectrumButton {
-	b.download = download
+func (b *spectrumButton) Download(download string) *spectrumButton {
+	b.PropDownload = download
 	return b
 }
 
 // Label sets the accessible label
 // Applied to aria-label but not visually rendered
-func (b *SpectrumButton) Label(label string) *SpectrumButton {
-	b.label = label
+func (b *spectrumButton) Label(label string) *spectrumButton {
+	b.PropLabel = label
 	return b
 }
 
 // NoWrap disables text wrapping
 // Not part of the design spec, use carefully
-func (b *SpectrumButton) NoWrap(noWrap bool) *SpectrumButton {
-	b.noWrap = noWrap
+func (b *spectrumButton) NoWrap(noWrap bool) *spectrumButton {
+	b.PropNoWrap = noWrap
 	return b
 }
 
 // Pending sets the pending state
 // Visually indicates the button is waiting for an action to complete
-func (b *SpectrumButton) Pending(pending bool) *SpectrumButton {
-	b.pending = pending
+func (b *spectrumButton) Pending(pending bool) *spectrumButton {
+	b.PropPending = pending
 	return b
 }
 
 // PendingLabel sets the pending label text
 // Default is 'Pending'
-func (b *SpectrumButton) PendingLabel(pendingLabel string) *SpectrumButton {
-	b.pendingLabel = pendingLabel
+func (b *spectrumButton) PendingLabel(pendingLabel string) *spectrumButton {
+	b.PropPendingLabel = pendingLabel
 	return b
 }
 
 // ReferrerPolicy sets the referrer policy
-func (b *SpectrumButton) ReferrerPolicy(policy ReferrerPolicy) *SpectrumButton {
-	b.referrerPolicy = policy
+func (b *spectrumButton) ReferrerPolicy(policy ReferrerPolicy) *spectrumButton {
+	b.PropReferrerPolicy = policy
 	return b
 }
 
 // Rel sets the rel attribute
 // Describes relationship of linked URL
-func (b *SpectrumButton) Rel(rel string) *SpectrumButton {
-	b.rel = rel
+func (b *spectrumButton) Rel(rel string) *spectrumButton {
+	b.PropRel = rel
 	return b
 }
 
 // StaticColor sets the static color
-func (b *SpectrumButton) StaticColor(color ButtonStaticColor) *SpectrumButton {
-	b.staticColor = color
+func (b *spectrumButton) StaticColor(color ButtonStaticColor) *spectrumButton {
+	b.PropStaticColor = color
 	return b
 }
 
 // TabIndex sets the tab index
 // Controls keyboard navigation order
-func (b *SpectrumButton) TabIndex(index int) *SpectrumButton {
-	b.tabIndex = index
+func (b *spectrumButton) TabIndex(index int) *spectrumButton {
+	b.PropTabIndex = index
 	return b
 }
 
 // Treatment sets the treatment
 // Default is "fill"
-func (b *SpectrumButton) Treatment(treatment string) *SpectrumButton {
-	b.treatment = treatment
+func (b *spectrumButton) Treatment(treatment string) *spectrumButton {
+	b.PropTreatment = treatment
 	return b
 }
 
 // Type sets the button type
-func (b *SpectrumButton) Type(buttonType ButtonType) *SpectrumButton {
-	b.buttonType = buttonType
+func (b *spectrumButton) Type(buttonType ButtonType) *spectrumButton {
+	b.PropButtonType = buttonType
 	return b
 }
 
 // Icon sets the icon in the icon slot
-// Takes a SpectrumIcon component which will be placed in the icon slot
-func (b *SpectrumButton) Icon(icon *SpectrumIcon) *SpectrumButton {
-	b.icon = icon
+// Takes a spectrumIcon component which will be placed in the icon slot
+func (b *spectrumButton) Icon(icon *spectrumIcon) *spectrumButton {
+	b.PropIcon = icon
 	return b
 }
 
 // OnClick sets the click event handler
-func (b *SpectrumButton) OnClick(handler app.EventHandler) *SpectrumButton {
-	b.onClick = handler
+func (b *spectrumButton) OnClick(handler app.EventHandler) *spectrumButton {
+	b.PropOnClick = handler
 	return b
 }
 
 // Render renders the button component
 // Creates the sp-button element with all configured attributes and slots
-func (b *SpectrumButton) Render() app.UI {
+func (b *spectrumButton) Render() app.UI {
 	// Create the base button element using app.Elem with the custom tag name
 	button := app.Elem("sp-button").
-		Attr("variant", string(b.variant)).
-		Attr("disabled", b.disabled).
-		Attr("quiet", b.quiet).
-		Attr("href", b.href).
-		Attr("target", string(b.target)).
-		Attr("active", b.active).
-		Attr("download", b.download).
-		Attr("label", b.label).
-		Attr("no-wrap", b.noWrap).
-		Attr("pending", b.pending).
-		Attr("pending-label", b.pendingLabel).
-		Attr("referrerpolicy", string(b.referrerPolicy)).
-		Attr("rel", b.rel).
-		Attr("static-color", string(b.staticColor)).
-		Attr("tabindex", b.tabIndex).
-		Attr("treatment", b.treatment).
-		Attr("type", string(b.buttonType))
+		Attr("variant", string(b.PropVariant)).
+		Attr("disabled", b.PropDisabled).
+		Attr("quiet", b.PropQuiet).
+		Attr("href", b.PropHref).
+		Attr("target", string(b.PropTarget)).
+		Attr("active", b.PropActive).
+		Attr("download", b.PropDownload).
+		Attr("label", b.PropLabel).
+		Attr("no-wrap", b.PropNoWrap).
+		Attr("pending", b.PropPending).
+		Attr("pending-label", b.PropPendingLabel).
+		Attr("referrerpolicy", string(b.PropReferrerPolicy)).
+		Attr("rel", b.PropRel).
+		Attr("static-color", string(b.PropStaticColor)).
+		Attr("tabindex", b.PropTabIndex).
+		Attr("treatment", b.PropTreatment).
+		Attr("type", string(b.PropButtonType))
 
 	// Add event handler if set
-	if b.onClick != nil {
-		button = button.OnClick(b.onClick)
+	if b.PropOnClick != nil {
+		button = button.OnClick(b.PropOnClick)
 	}
 
 	// Handle body content - text and icon
-	if b.icon != nil {
+	if b.PropIcon != nil {
 		// If there's an icon, we need to explicitly set both the icon and text in the body
-		b.icon.Slot("icon")
+		b.PropIcon.Slot("icon")
 
 		button.Body(
 			// Add the icon with its slot
-			b.icon,
+			b.PropIcon,
 
 			// Add the text content
-			app.Text(b.text),
+			app.Text(b.PropText),
 		)
 	} else {
 		// If there's no icon, just set the text directly
-		button.Text(b.text)
+		button.Text(b.PropText)
 	}
 
 	return button

@@ -75,7 +75,7 @@ func NewSpectrumElement() *SpectrumElement {
 
 // ApplySpectrumAttributes applies common Spectrum component attributes to an HTML element.
 // This is a utility function for use in Render() methods to ensure consistent attribute handling.
-func ApplySpectrumAttributes(element app.HTMLElement, mixin *SpectrumElementMixin) app.HTMLElement {
+func ApplySpectrumAttributes(element app.HTMLElem, mixin *SpectrumElementMixin) app.HTMLElem {
 	// Apply direction attribute if explicitly set
 	if mixin.dirExplicitlySet {
 		element = element.Attr("dir", string(mixin.GetDir()))
