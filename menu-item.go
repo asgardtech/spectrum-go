@@ -286,3 +286,51 @@ func (m *spectrumMenuItem) Render() app.UI {
 
 	return menuItem
 }
+
+// func (m *spectrumMenuItem) Render() app.UI {
+// 	menuItem := app.Elem("sp-menu-item").
+// 		Attr("value", m.PropValue).
+// 		Attr("active", m.PropActive).
+// 		Attr("disabled", m.PropDisabled).
+// 		Attr("download", m.PropDownload).
+// 		Attr("focused", m.PropFocused).
+// 		Attr("has-submenu", m.PropHasSubmenu).
+// 		Attr("href", m.PropHref).
+// 		Attr("label", m.PropLabel).
+// 		Attr("no-wrap", m.PropNoWrap).
+// 		Attr("open", m.PropOpen).
+// 		Attr("selected", m.PropSelected).
+// 		Attr("invalid", m.PropInvalid).
+// 		OnClick(m.PropOnClick).
+// 		OnBlur(m.PropOnBlur).
+// 		OnFocus(m.PropOnFocus).Body(
+// 		app.Text(m.PropText),
+// 		m.PropContent,
+// 		app.If(
+// 			(m.PropDescription != nil) && isSlot(m.PropDescription),
+// 			func() app.UI {
+// 				return toSlot(m.PropDescription).Slot("description")
+// 			},
+// 		),
+// 		app.If(
+// 			(m.PropIcon != nil) && isSlot(m.PropIcon),
+// 			func() app.UI {
+// 				return toSlot(m.PropIcon).Slot("icon")
+// 			},
+// 		),
+// 		app.If(
+// 			(m.PropSubmenu != nil) && isSlot(m.PropSubmenu),
+// 			func() app.UI {
+// 				return toSlot(m.PropSubmenu).Slot("submenu")
+// 			},
+// 		),
+// 		app.If(
+// 			(m.PropValueSlot != nil) && isSlot(m.PropValueSlot),
+// 			func() app.UI {
+// 				return toSlot(m.PropValueSlot).Slot("value")
+// 			},
+// 		),
+// 	)
+
+// 	return menuItem
+// }

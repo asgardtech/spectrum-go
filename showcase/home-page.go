@@ -9,66 +9,64 @@ type homePage struct {
 	app.Compo
 
 	// Theme state
-	currentTheme sp.ThemeColor
+	CurrentTheme sp.ThemeColor
 }
 
 func newHomePage() *homePage {
 	return &homePage{
-		currentTheme: sp.ThemeColorLight, // Default to light theme
+		CurrentTheme: sp.ThemeColorLight, // Default to light theme
 	}
 }
 
 func (p *homePage) Render() app.UI {
 	// Create a main container with theme-aware styling
 	return sp.Theme().
-		Color(p.currentTheme).
+		Color(p.CurrentTheme).
 		Scale(sp.ThemeScaleMedium).
 		Children(
-			app.Elem("sp-icons-medium"),
-			app.H2().Text("Spectrum Go Components"),
-			// Theme toggle button
-			sp.ActionButton().
-				//Icon(p.getThemeIcon()).
-				Quiet(true).
-				Content("Toggle Theme").
-				OnClick(func(ctx app.Context, e app.Event) {
-					app.Log("Toggle Theme", p.currentTheme)
-					p.toggleTheme()
-				}),
 
-			// Using the Button component with OnClick
-			sp.Button().
-				Text("Hello there!").
-				Variant(sp.ButtonVariantSecondary).
-				OnClick(func(ctx app.Context, e app.Event) {
-					app.Log("Button clicked")
-				}),
+			sp.TopNav().
+				Children(
+					sp.TopNavItem().
+						Label("Home").
+						Value("home"),
+					sp.ActionMenu().
+						Placement("bottom-end").
+						Quiet(true).
+						AddItem(sp.MenuItem().
+							Label("Toggle Theme").
+							Text("Toggle Theme").
+							//	Icon(p.getThemeIcon()).
+							OnClick(func(ctx app.Context, e app.Event) {
+								app.Log("Toggle Theme", p.CurrentTheme)
+								p.toggleTheme()
+							}),
+						),
+				),
 
 			// Main content with split view
-			app.Div().
-				Body(
-					sp.SplitView().
-						PrimarySize("250px").
-						PrimaryMin("200px").
-						Resizable(true).
-						PrimaryPanel(p.renderSidenav()).
-						SecondaryPanel(p.renderContent()),
-				),
+			sp.SplitView().
+				Collapsible(true).
+				PrimarySize("250px").
+				PrimaryMin("200px").
+				Resizable(false).
+				PrimaryPanel(p.renderSidenav()).
+				SecondaryPanel(p.renderContent()),
 		)
 }
 
 // Toggle theme between light and dark
 func (p *homePage) toggleTheme() {
-	if p.currentTheme == sp.ThemeColorLight {
-		p.currentTheme = sp.ThemeColorDark
+	if p.CurrentTheme == sp.ThemeColorLight {
+		p.CurrentTheme = sp.ThemeColorDark
 	} else {
-		p.currentTheme = sp.ThemeColorLight
+		p.CurrentTheme = sp.ThemeColorLight
 	}
 }
 
 // Get appropriate theme icon based on current theme
 func (p *homePage) getThemeIcon() app.UI {
-	if p.currentTheme == sp.ThemeColorLight {
+	if p.CurrentTheme == sp.ThemeColorLight {
 		return sp.Icon().Name("ui:Moon100")
 	}
 	return sp.Icon().Name("ui:Sun100")
@@ -78,13 +76,12 @@ func (p *homePage) renderSidenav() app.UI {
 	// Create Sidenav with components
 	return sp.Sidenav().
 		Label("Component Navigation").
-		AddItem(
-			sp.SidenavItem().
-				Label("Button").
-				Value("button").
-				//	Icon(sp.Icon().Name("ui:Button").Slot("icon")).
-				Selected(true),
-		)
+		AddItem(sp.SidenavItem().Label("Button").Value("button")).
+		AddItem(sp.SidenavItem().Label("Accordion").Value("accordion")).
+		AddItem(sp.SidenavItem().Label("Button Group").Value("button-group")).
+		AddItem(sp.SidenavItem().Label("Checkbox").Value("checkbox")).
+		AddItem(sp.SidenavItem().Label("Dropdown").Value("dropdown")).
+		AddItem(sp.SidenavItem().Label("Label").Value("label"))
 }
 
 func (p *homePage) renderContent() app.UI {
