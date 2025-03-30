@@ -1,0 +1,94 @@
+{
+  "name": "FieldLabel",
+  "tagName": "sp-field-label",
+  "description": "A field label provides accessible labelling for form elements. Use the for attribute to outline the id of an element in the same DOM tree to which it should associate itself.",
+  "category": "Form",
+  "attributes": [
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "description": "Whether the field label appears in a disabled state",
+      "default": false
+    },
+    {
+      "name": "for",
+      "type": "string",
+      "description": "The ID of the form element that this label is associated with",
+      "default": ""
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "description": "Unique identifier for the field label element",
+      "default": ""
+    },
+    {
+      "name": "required",
+      "type": "boolean",
+      "description": "Whether the field label indicates a required field",
+      "default": false
+    },
+    {
+      "name": "side-aligned",
+      "type": "enum",
+      "values": ["start", "end"],
+      "description": "Controls the alignment of the label when displayed inline with the form control"
+    },
+    {
+      "name": "size",
+      "type": "enum",
+      "values": ["s", "m", "l", "xl"],
+      "description": "The size of the field label",
+      "default": "m"
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "Text content of the label"
+    }
+  ],
+  "events": [],
+  "accessibility": {
+    "role": "label",
+    "ariaAttributes": [],
+    "keyboardInteractions": []
+  },
+  "examples": [
+    {
+      "title": "Basic Field Label",
+      "description": "A simple field label associated with a form control",
+      "code": "<sp-field-label for=\"textfield\">Life Story</sp-field-label>\n<sp-textfield id=\"textfield\" placeholder=\"Enter your life story\"></sp-textfield>"
+    },
+    {
+      "title": "Required Field Label",
+      "description": "A field label indicating a required field",
+      "code": "<sp-field-label for=\"textfield\" required>Life Story</sp-field-label>\n<sp-textfield id=\"textfield\" placeholder=\"Enter your life story\"></sp-textfield>"
+    },
+    {
+      "title": "Side-Aligned Start Field Label",
+      "description": "A field label displayed inline with start alignment",
+      "code": "<sp-field-label for=\"textfield\" side-aligned=\"start\" style=\"width: 120px\">Life Story</sp-field-label>\n<sp-textfield id=\"textfield\" placeholder=\"Enter your life story\"></sp-textfield>"
+    },
+    {
+      "title": "Side-Aligned End Field Label",
+      "description": "A field label displayed inline with end alignment",
+      "code": "<sp-field-label for=\"textfield\" side-aligned=\"end\" style=\"width: 120px\">Life Story</sp-field-label>\n<sp-textfield id=\"textfield\" placeholder=\"Enter your life story\"></sp-textfield>"
+    },
+    {
+      "title": "Small Field Label",
+      "description": "A field label with small size",
+      "code": "<sp-field-label for=\"textfield\" size=\"s\">Life Story</sp-field-label>\n<sp-textfield id=\"textfield\" placeholder=\"Enter your life story\"></sp-textfield>"
+    },
+    {
+      "title": "Large Field Label",
+      "description": "A field label with large size",
+      "code": "<sp-field-label for=\"textfield\" size=\"l\">Life Story</sp-field-label>\n<sp-textfield id=\"textfield\" placeholder=\"Enter your life story\"></sp-textfield>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumFieldLabel",
+    "constructorName": "FieldLabel",
+    "dependsOn": []
+  }
+}

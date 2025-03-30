@@ -1,0 +1,83 @@
+{
+  "name": "Asset",
+  "tagName": "sp-asset",
+  "description": "Visually represents a file, folder or image in your application. File and folder representations center themselves horizontally and vertically in the space provided, while images are contained to the element, growing to the element's full height while centering within the width.",
+  "category": "Content",
+  "attributes": [
+    {
+      "name": "label",
+      "type": "string",
+      "description": "The label to display for the asset",
+      "default": ""
+    },
+    {
+      "name": "variant",
+      "type": "enum",
+      "values": ["file", "folder"],
+      "description": "The type of asset to represent if not providing an image",
+      "default": "",
+      "valueDescriptions": {
+        "file": "Represents a file with a generic file icon",
+        "folder": "Represents a folder with a folder icon"
+      }
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "Content to be displayed in the asset, typically an image element"
+    }
+  ],
+  "accessibility": {
+    "role": "img",
+    "ariaAttributes": [
+      {
+        "name": "aria-label",
+        "description": "Set from the label attribute when no content provides accessibility"
+      }
+    ],
+    "keyboardInteractions": []
+  },
+  "examples": [
+    {
+      "title": "Image Asset",
+      "description": "Asset containing an image",
+      "code": "<sp-asset style=\"height: 128px\">\n  <img src=\"https://picsum.photos/500/500\" alt=\"Demo Image\" />\n</sp-asset>"
+    },
+    {
+      "title": "File Asset",
+      "description": "Asset representing a generic file",
+      "code": "<sp-asset variant=\"file\"></sp-asset>"
+    },
+    {
+      "title": "Named File Asset",
+      "description": "Asset representing a file with a label",
+      "code": "<sp-asset variant=\"file\" label=\"Named File Asset\"></sp-asset>"
+    },
+    {
+      "title": "Folder Asset",
+      "description": "Asset representing a folder",
+      "code": "<sp-asset variant=\"folder\"></sp-asset>"
+    },
+    {
+      "title": "Named Folder Asset",
+      "description": "Asset representing a folder with a label",
+      "code": "<sp-asset variant=\"folder\" label=\"Named Folder Asset\"></sp-asset>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumAsset",
+    "constructorName": "Asset",
+    "dependsOn": ["Icon"]
+  },
+  "relatedComponents": [
+    {
+      "name": "Thumbnail",
+      "relationship": "Similar component for displaying visual previews of content"
+    },
+    {
+      "name": "Icon",
+      "relationship": "Used internally to represent files and folders"
+    }
+  ]
+}

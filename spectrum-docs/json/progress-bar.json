@@ -1,0 +1,112 @@
+{
+  "name": "ProgressBar",
+  "tagName": "sp-progress-bar",
+  "description": "A progress bar shows the progression of a system operation such as downloading, uploading, processing, etc. in a visual way. It can represent determinate or indeterminate progress.",
+  "category": "Feedback",
+  "attributes": [
+    {
+      "name": "indeterminate",
+      "type": "boolean",
+      "description": "Whether progress is indeterminate (unknown duration)",
+      "default": false
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "description": "Text label to display with the progress bar",
+      "default": ""
+    },
+    {
+      "name": "over-background",
+      "type": "boolean",
+      "description": "Whether the progress bar is displayed over a colored background",
+      "default": false
+    },
+    {
+      "name": "progress",
+      "type": "number",
+      "description": "The progress value from 0-100",
+      "default": 0
+    },
+    {
+      "name": "side-label",
+      "type": "boolean",
+      "description": "Whether to display the label beside the progress bar instead of above it",
+      "default": false
+    },
+    {
+      "name": "size",
+      "type": "enum",
+      "values": ["s", "m", "l", "xl"],
+      "description": "The size of the progress bar",
+      "default": "m"
+    },
+    {
+      "name": "static-color",
+      "type": "enum",
+      "values": ["white"],
+      "description": "A static color variant for the progress bar"
+    }
+  ],
+  "slots": [],
+  "events": [],
+  "accessibility": {
+    "role": "progressbar",
+    "ariaAttributes": [
+      {
+        "name": "aria-label",
+        "description": "Set from the label attribute or must be provided directly when no visible label is desired"
+      },
+      {
+        "name": "aria-valuemin",
+        "description": "Set to 0 by default"
+      },
+      {
+        "name": "aria-valuemax",
+        "description": "Set to 100 by default"
+      },
+      {
+        "name": "aria-valuenow",
+        "description": "Set to the current progress value when determinate"
+      }
+    ],
+    "keyboardInteractions": []
+  },
+  "examples": [
+    {
+      "title": "Basic Progress Bar",
+      "description": "A simple determinate progress bar",
+      "code": "<sp-progress-bar label=\"Loading\" progress=\"50\"></sp-progress-bar>"
+    },
+    {
+      "title": "Indeterminate Progress Bar",
+      "description": "A progress bar showing indeterminate progress",
+      "code": "<sp-progress-bar label=\"Loading\" indeterminate></sp-progress-bar>"
+    },
+    {
+      "title": "Progress Bar with Side Label",
+      "description": "A progress bar with the label positioned beside it",
+      "code": "<sp-progress-bar label=\"Loading\" progress=\"50\" side-label></sp-progress-bar>"
+    },
+    {
+      "title": "Progress Bar over Background",
+      "description": "A progress bar designed to be displayed on a colored background",
+      "code": "<div style=\"background-color: #333; padding: 20px;\">\n  <sp-progress-bar label=\"Loading\" progress=\"50\" over-background></sp-progress-bar>\n</div>"
+    },
+    {
+      "title": "Small Progress Bar",
+      "description": "A progress bar with small size",
+      "code": "<sp-progress-bar label=\"Loading\" progress=\"50\" size=\"s\"></sp-progress-bar>"
+    },
+    {
+      "title": "Large Progress Bar",
+      "description": "A progress bar with large size",
+      "code": "<sp-progress-bar label=\"Loading\" progress=\"50\" size=\"l\"></sp-progress-bar>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumProgressBar",
+    "constructorName": "ProgressBar",
+    "dependsOn": []
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "name": "Tags",
+  "tagName": "sp-tags",
+  "description": "Tags elements contain a collection of sp-tag elements and allow users to categorize content. They can represent keywords or people, and are grouped to describe an item or a search request.",
+  "category": "Content",
+  "attributes": [],
+  "slots": [
+    {
+      "name": "default",
+      "description": "Tag elements to manage as a group",
+      "allowedElements": ["sp-tag"]
+    }
+  ],
+  "events": [],
+  "children": [
+    {
+      "type": "Tag",
+      "description": "Individual tag elements to be managed as a group",
+      "multiple": true
+    }
+  ],
+  "accessibility": {
+    "role": "list",
+    "ariaAttributes": [],
+    "keyboardInteractions": []
+  },
+  "examples": [
+    {
+      "title": "Basic Tags",
+      "description": "A simple group of tags",
+      "code": "<sp-tags>\n  <sp-tag>Tag 1</sp-tag>\n  <sp-tag>Tag 2</sp-tag>\n  <sp-tag>Tag 3</sp-tag>\n</sp-tags>"
+    },
+    {
+      "title": "Tags with Mixed States",
+      "description": "A group of tags with different states",
+      "code": "<sp-tags>\n  <sp-tag>Tag 1</sp-tag>\n  <sp-tag invalid>Tag 2</sp-tag>\n  <sp-tag disabled>Tag 3</sp-tag>\n</sp-tags>"
+    },
+    {
+      "title": "Tags with Avatars",
+      "description": "A group of tags with avatar elements",
+      "code": "<sp-tags>\n  <sp-tag>\n    Tag 1\n    <sp-avatar slot=\"avatar\" label=\"Tag 1\" src=\"https://picsum.photos/500/500\"></sp-avatar>\n  </sp-tag>\n  <sp-tag>\n    Tag 2\n    <sp-avatar slot=\"avatar\" label=\"Tag 2\" src=\"https://picsum.photos/500/500\"></sp-avatar>\n  </sp-tag>\n</sp-tags>"
+    },
+    {
+      "title": "Tags with Icons",
+      "description": "A group of tags with icon elements",
+      "code": "<sp-tags>\n  <sp-tag>\n    Tag 1\n    <sp-icon-magnify slot=\"icon\" size=\"s\"></sp-icon-magnify>\n  </sp-tag>\n  <sp-tag>\n    Tag 2\n    <sp-icon-magnify slot=\"icon\" size=\"s\"></sp-icon-magnify>\n  </sp-tag>\n</sp-tags>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumTags",
+    "constructorName": "Tags",
+    "dependsOn": ["Tag"]
+  }
+}

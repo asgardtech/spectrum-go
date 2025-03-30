@@ -1,0 +1,107 @@
+{
+  "name": "MenuGroup",
+  "tagName": "sp-menu-group",
+  "description": "A menu group gathers a collection of menu-item elements into a group as part of the content delivered in a menu element. It can visually and semantically group related menu items.",
+  "category": "Navigation",
+  "attributes": [
+    {
+      "name": "ignore",
+      "type": "boolean",
+      "description": "Whether menu group should be ignored by roving tabindex controller",
+      "default": false
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "description": "Label of the menu group for accessibility",
+      "default": ""
+    },
+    {
+      "name": "selects",
+      "type": "enum",
+      "values": ["inherit", "single", "multiple"],
+      "description": "How the menu group allows selection of its items: - undefined (default): no selection is allowed - inherit: the selection behavior is managed from an ancestor - single: only one item can be selected at a time - multiple: multiple items can be selected"
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "description": "Value of the selected item(s)",
+      "default": ""
+    },
+    {
+      "name": "value-separator",
+      "type": "string",
+      "description": "Separator for multiple values when selects is multiple",
+      "default": ","
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "Menu items to be listed in the group",
+      "allowedElements": ["sp-menu-item"]
+    },
+    {
+      "name": "header",
+      "description": "Headline of the menu group"
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "description": "Announces that the value of the element has changed",
+      "bubbles": true,
+      "cancelable": false
+    },
+    {
+      "name": "close",
+      "description": "Fired when the menu group should be closed",
+      "bubbles": true,
+      "cancelable": false
+    }
+  ],
+  "children": [
+    {
+      "type": "MenuItem",
+      "description": "Individual menu items within the group",
+      "multiple": true
+    }
+  ],
+  "accessibility": {
+    "role": "group",
+    "ariaAttributes": [
+      {
+        "name": "aria-label",
+        "description": "Set from the label attribute or the header slot content"
+      }
+    ],
+    "keyboardInteractions": []
+  },
+  "examples": [
+    {
+      "title": "Basic Menu Group",
+      "description": "A simple menu group with a header and items",
+      "code": "<sp-menu>\n  <sp-menu-group>\n    <span slot=\"header\">New York</span>\n    <sp-menu-item>Central Park</sp-menu-item>\n    <sp-menu-item>Prospect Park</sp-menu-item>\n  </sp-menu-group>\n</sp-menu>"
+    },
+    {
+      "title": "Menu Group with Single Selection",
+      "description": "A menu group that allows selecting a single item",
+      "code": "<sp-menu>\n  <sp-menu-group selects=\"single\">\n    <span slot=\"header\">New York</span>\n    <sp-menu-item>Central Park</sp-menu-item>\n    <sp-menu-item>Prospect Park</sp-menu-item>\n  </sp-menu-group>\n</sp-menu>"
+    },
+    {
+      "title": "Menu Group with Multiple Selection",
+      "description": "A menu group that allows selecting multiple items",
+      "code": "<sp-menu>\n  <sp-menu-group selects=\"multiple\">\n    <span slot=\"header\">New York</span>\n    <sp-menu-item>Central Park</sp-menu-item>\n    <sp-menu-item>Prospect Park</sp-menu-item>\n  </sp-menu-group>\n</sp-menu>"
+    },
+    {
+      "title": "Menu with Inherited Selection",
+      "description": "Menu groups that inherit selection behavior from parent menu",
+      "code": "<sp-menu selects=\"single\">\n  <sp-menu-group selects=\"inherit\">\n    <span slot=\"header\">New York</span>\n    <sp-menu-item>Central Park</sp-menu-item>\n    <sp-menu-item>Prospect Park</sp-menu-item>\n  </sp-menu-group>\n  <sp-menu-group selects=\"inherit\">\n    <span slot=\"header\">San Francisco</span>\n    <sp-menu-item>Golden Gate Park</sp-menu-item>\n    <sp-menu-item>John McLaren Park</sp-menu-item>\n  </sp-menu-group>\n</sp-menu>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumMenuGroup",
+    "constructorName": "MenuGroup",
+    "dependsOn": ["MenuItem"]
+  }
+}

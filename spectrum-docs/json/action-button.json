@@ -1,0 +1,208 @@
+{
+  "name": "ActionButton",
+  "tagName": "sp-action-button",
+  "description": "An sp-action-button represents an action a user can take.",
+  "category": "Action",
+  "attributes": [
+    {
+      "name": "active",
+      "type": "boolean",
+      "description": "Whether the button appears in an active state",
+      "default": false
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "description": "Disable this control. It will not receive focus or events",
+      "default": false
+    },
+    {
+      "name": "download",
+      "type": "string",
+      "description": "Causes the browser to treat the linked URL as a download."
+    },
+    {
+      "name": "emphasized",
+      "type": "boolean",
+      "description": "Whether to apply the emphasized visual style",
+      "default": false
+    },
+    {
+      "name": "hold-affordance",
+      "type": "boolean",
+      "description": "Whether to display a visual affordance indicating longpress functionality",
+      "default": false
+    },
+    {
+      "name": "href",
+      "type": "string",
+      "description": "The URL that the hyperlink points to."
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "description": "An accessible label that describes the component. It will be applied to aria-label, but not visually rendered."
+    },
+    {
+      "name": "quiet",
+      "type": "boolean",
+      "description": "Whether to apply the quiet visual style",
+      "default": false
+    },
+    {
+      "name": "referrerpolicy",
+      "type": "enum",
+      "values": ["no-referrer", "no-referrer-when-downgrade", "origin", "origin-when-cross-origin", "same-origin", "strict-origin", "strict-origin-when-cross-origin", "unsafe-url"],
+      "description": "How much of the referrer to send when following the link."
+    },
+    {
+      "name": "rel",
+      "type": "string",
+      "description": "The relationship of the linked URL as space-separated link types."
+    },
+    {
+      "name": "role",
+      "type": "string",
+      "description": "The ARIA role for the action button",
+      "default": "button"
+    },
+    {
+      "name": "selected",
+      "type": "boolean",
+      "description": "Whether an Action Button with role='button' should also be aria-pressed='true'",
+      "default": false
+    },
+    {
+      "name": "static-color",
+      "type": "enum",
+      "values": ["white", "black"],
+      "description": "The static color variant to use for the action button."
+    },
+    {
+      "name": "tabindex",
+      "type": "number",
+      "description": "The tab index to apply to this control. See general documentation about the tabindex HTML property"
+    },
+    {
+      "name": "target",
+      "type": "enum",
+      "values": ["_blank", "_parent", "_self", "_top"],
+      "description": "Where to display the linked URL, as the name for a browsing context (a tab, window, or iframe)."
+    },
+    {
+      "name": "toggles",
+      "type": "boolean",
+      "description": "Whether to automatically manage the selected attribute on interaction and whether aria-pressed=\"false\" should be used when selected === false",
+      "default": false
+    },
+    {
+      "name": "type",
+      "type": "enum",
+      "values": ["button", "submit", "reset"],
+      "description": "The default behavior of the button. Possible values are: button (default), submit, and reset.",
+      "default": "button"
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "description": "The value associated with the button"
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "Text label of the Action Button"
+    },
+    {
+      "name": "icon",
+      "description": "The icon to use for Action Button"
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "description": "Announces a change in the selected property of an action button",
+      "bubbles": true,
+      "cancelable": true
+    },
+    {
+      "name": "longpress",
+      "description": "Synthesizes a longpress interaction that signifies a pointerdown event that is >=300ms or a keyboard event where code is Space or code is ArrowDown while altKey===true.",
+      "bubbles": true,
+      "cancelable": false
+    },
+    {
+      "name": "click",
+      "description": "Fired when the button is clicked",
+      "bubbles": true,
+      "cancelable": false
+    }
+  ],
+  "accessibility": {
+    "role": "button",
+    "ariaAttributes": [
+      {
+        "name": "aria-label",
+        "description": "Set from the label attribute if no visible text is provided"
+      },
+      {
+        "name": "aria-disabled",
+        "description": "Set when the button is disabled"
+      },
+      {
+        "name": "aria-pressed",
+        "description": "Set when the button has toggles=true and reflects the selected state"
+      }
+    ],
+    "keyboardInteractions": [
+      {
+        "key": "Enter",
+        "description": "Activates the button"
+      },
+      {
+        "key": "Space",
+        "description": "Activates the button"
+      },
+      {
+        "key": "Alt+Space",
+        "description": "Triggers a longpress event when hold-affordance is true"
+      },
+      {
+        "key": "Alt+ArrowDown",
+        "description": "Triggers a longpress event when hold-affordance is true"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "title": "Basic Action Button",
+      "description": "A simple action button with text",
+      "code": "<sp-action-button>Edit</sp-action-button>"
+    },
+    {
+      "title": "Action Button with Icon",
+      "description": "A button with both icon and text",
+      "code": "<sp-action-button><sp-icon-edit slot=\"icon\"></sp-icon-edit>Edit</sp-action-button>"
+    },
+    {
+      "title": "Icon-only Action Button",
+      "description": "A button with only an icon (requires label for accessibility)",
+      "code": "<sp-action-button label=\"Edit\"><sp-icon-edit slot=\"icon\"></sp-icon-edit></sp-action-button>"
+    },
+    {
+      "title": "Toggle Action Button",
+      "description": "A button that toggles its selected state on click",
+      "code": "<sp-action-button toggles>Toggle button</sp-action-button>"
+    },
+    {
+      "title": "Action Button with Hold Affordance",
+      "description": "A button that shows a visual cue for longpress functionality",
+      "code": "<sp-action-button hold-affordance><sp-icon-edit slot=\"icon\"></sp-icon-edit></sp-action-button>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumActionButton",
+    "constructorName": "ActionButton",
+    "dependsOn": ["Icon"]
+  }
+}

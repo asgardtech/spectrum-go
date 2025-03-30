@@ -1,0 +1,95 @@
+{
+  "name": "ProgressCircle",
+  "tagName": "sp-progress-circle",
+  "description": "A progress circle shows the progression of a system operation such as downloading, uploading, processing, etc. in a visual way. It can represent determinate or indeterminate progress.",
+  "category": "Feedback",
+  "attributes": [
+    {
+      "name": "indeterminate",
+      "type": "boolean",
+      "description": "Whether progress is indeterminate (unknown duration)",
+      "default": false
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "description": "Accessible label for the progress circle (not visually displayed)",
+      "default": ""
+    },
+    {
+      "name": "progress",
+      "type": "number",
+      "description": "The progress value from 0-100",
+      "default": 0
+    },
+    {
+      "name": "size",
+      "type": "enum",
+      "values": ["s", "m", "l"],
+      "description": "The size of the progress circle",
+      "default": "m"
+    },
+    {
+      "name": "static-color",
+      "type": "enum",
+      "values": ["white"],
+      "description": "A static color variant for when the progress circle is displayed over content"
+    }
+  ],
+  "slots": [],
+  "events": [],
+  "accessibility": {
+    "role": "progressbar",
+    "ariaAttributes": [
+      {
+        "name": "aria-label",
+        "description": "Set from the label attribute"
+      },
+      {
+        "name": "aria-valuemin",
+        "description": "Set to 0 by default"
+      },
+      {
+        "name": "aria-valuemax",
+        "description": "Set to 100 by default"
+      },
+      {
+        "name": "aria-valuenow",
+        "description": "Set to the current progress value when determinate"
+      }
+    ],
+    "keyboardInteractions": []
+  },
+  "examples": [
+    {
+      "title": "Basic Progress Circle",
+      "description": "A simple determinate progress circle",
+      "code": "<sp-progress-circle label=\"Loading\" progress=\"50\"></sp-progress-circle>"
+    },
+    {
+      "title": "Indeterminate Progress Circle",
+      "description": "A progress circle showing indeterminate progress",
+      "code": "<sp-progress-circle label=\"Loading\" indeterminate></sp-progress-circle>"
+    },
+    {
+      "title": "Small Progress Circle",
+      "description": "A progress circle with small size",
+      "code": "<sp-progress-circle label=\"Loading\" progress=\"50\" size=\"s\"></sp-progress-circle>"
+    },
+    {
+      "title": "Large Progress Circle",
+      "description": "A progress circle with large size",
+      "code": "<sp-progress-circle label=\"Loading\" progress=\"50\" size=\"l\"></sp-progress-circle>"
+    },
+    {
+      "title": "White Progress Circle",
+      "description": "A progress circle with white static color for use on dark backgrounds",
+      "code": "<div style=\"background-color: #333; padding: 20px;\">\n  <sp-progress-circle label=\"Loading\" progress=\"50\" static-color=\"white\"></sp-progress-circle>\n</div>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumProgressCircle",
+    "constructorName": "ProgressCircle",
+    "dependsOn": []
+  }
+}

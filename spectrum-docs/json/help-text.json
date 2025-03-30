@@ -1,0 +1,83 @@
+{
+  "name": "HelpText",
+  "tagName": "sp-help-text",
+  "description": "Help text provides either an informative description or an error message that gives more context about what a user needs to input. It's commonly used in forms.",
+  "category": "Form",
+  "attributes": [
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "description": "Whether the help text appears in a disabled state",
+      "default": false
+    },
+    {
+      "name": "icon",
+      "type": "boolean",
+      "description": "Whether to display an icon as part of the help text",
+      "default": false
+    },
+    {
+      "name": "size",
+      "type": "enum",
+      "values": ["s", "m", "l", "xl"],
+      "description": "The size of the help text",
+      "default": "m"
+    },
+    {
+      "name": "variant",
+      "type": "enum",
+      "values": ["neutral", "negative"],
+      "description": "The visual variant to apply to this help text.",
+      "default": "neutral"
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "Text content of the help text"
+    }
+  ],
+  "events": [],
+  "accessibility": {
+    "role": "",
+    "ariaAttributes": [],
+    "keyboardInteractions": []
+  },
+  "examples": [
+    {
+      "title": "Basic Help Text",
+      "description": "A simple help text with neutral styling",
+      "code": "<sp-textfield>\n  <sp-help-text slot=\"help-text\">Enter your username.</sp-help-text>\n</sp-textfield>"
+    },
+    {
+      "title": "Negative Help Text",
+      "description": "A help text with negative (error) styling",
+      "code": "<sp-textfield invalid>\n  <sp-help-text variant=\"negative\" slot=\"negative-help-text\">Username is required.</sp-help-text>\n</sp-textfield>"
+    },
+    {
+      "title": "Help Text with Icon",
+      "description": "A help text with an icon",
+      "code": "<sp-textfield invalid>\n  <sp-help-text variant=\"negative\" icon slot=\"negative-help-text\">Username is required.</sp-help-text>\n</sp-textfield>"
+    },
+    {
+      "title": "Disabled Help Text",
+      "description": "A help text in a disabled state",
+      "code": "<sp-textfield disabled>\n  <sp-help-text disabled slot=\"help-text\">Enter your username.</sp-help-text>\n</sp-textfield>"
+    },
+    {
+      "title": "Small Help Text",
+      "description": "A help text with small size",
+      "code": "<sp-textfield size=\"s\">\n  <sp-help-text size=\"s\" slot=\"help-text\">Enter your username.</sp-help-text>\n</sp-textfield>"
+    },
+    {
+      "title": "Large Help Text",
+      "description": "A help text with large size",
+      "code": "<sp-textfield size=\"l\">\n  <sp-help-text size=\"l\" slot=\"help-text\">Enter your username.</sp-help-text>\n</sp-textfield>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumHelpText",
+    "constructorName": "HelpText",
+    "dependsOn": []
+  }
+}

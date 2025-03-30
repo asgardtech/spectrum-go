@@ -1,0 +1,101 @@
+{
+  "name": "FieldGroup",
+  "tagName": "sp-field-group",
+  "description": "A field group is used to layout a group of fields, usually checkbox elements. It can be leveraged for vertical or horizontal organization of the fields that are supplied as its children.",
+  "category": "Form",
+  "attributes": [
+    {
+      "name": "horizontal",
+      "type": "boolean",
+      "description": "Whether the fields should be arranged horizontally",
+      "default": false
+    },
+    {
+      "name": "invalid",
+      "type": "boolean",
+      "description": "Whether the field group is in an invalid state",
+      "default": false
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "description": "An accessible label for the field group",
+      "default": ""
+    },
+    {
+      "name": "vertical",
+      "type": "boolean",
+      "description": "Whether the fields should be arranged vertically",
+      "default": false
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "The form controls that make up the group"
+    },
+    {
+      "name": "help-text",
+      "description": "Default or non-negative help text to associate to your form element"
+    },
+    {
+      "name": "negative-help-text",
+      "description": "Negative help text to associate to your form element when invalid"
+    }
+  ],
+  "events": [],
+  "accessibility": {
+    "role": "group",
+    "ariaAttributes": [
+      {
+        "name": "aria-label",
+        "description": "Set from the label attribute"
+      },
+      {
+        "name": "aria-labelledby",
+        "description": "Set when using a field-label with a for attribute"
+      },
+      {
+        "name": "aria-invalid",
+        "description": "Set to 'true' when the field group is in an invalid state"
+      },
+      {
+        "name": "aria-describedby",
+        "description": "References the help text element"
+      }
+    ],
+    "keyboardInteractions": []
+  },
+  "examples": [
+    {
+      "title": "Basic Field Group",
+      "description": "A simple horizontal field group with checkboxes",
+      "code": "<sp-field-group horizontal label=\"Choose from horizontally placed options\">\n  <sp-checkbox>Checkbox 1</sp-checkbox>\n  <sp-checkbox>Checkbox 2</sp-checkbox>\n  <sp-checkbox checked>Checkbox 3</sp-checkbox>\n</sp-field-group>"
+    },
+    {
+      "title": "Vertical Field Group",
+      "description": "A field group with vertically arranged fields",
+      "code": "<sp-field-group vertical label=\"Choose from vertically placed options\">\n  <sp-checkbox>Checkbox 1</sp-checkbox>\n  <sp-checkbox>Checkbox 2</sp-checkbox>\n  <sp-checkbox checked>Checkbox 3</sp-checkbox>\n</sp-field-group>"
+    },
+    {
+      "title": "Field Group with Field Label",
+      "description": "A field group with an external field label",
+      "code": "<sp-field-label for=\"group\">Choose options</sp-field-label>\n<sp-field-group id=\"group\">\n  <sp-checkbox>Checkbox 1</sp-checkbox>\n  <sp-checkbox>Checkbox 2</sp-checkbox>\n  <sp-checkbox checked>Checkbox 3</sp-checkbox>\n</sp-field-group>"
+    },
+    {
+      "title": "Field Group with Help Text",
+      "description": "A field group with instructional help text",
+      "code": "<sp-field-group label=\"What are your favorite fruits?\">\n  <sp-checkbox>Apple</sp-checkbox>\n  <sp-checkbox>Orange</sp-checkbox>\n  <sp-checkbox>Strawberry</sp-checkbox>\n  <sp-help-text slot=\"help-text\">Select one or more fruits.</sp-help-text>\n</sp-field-group>"
+    },
+    {
+      "title": "Invalid Field Group",
+      "description": "A field group in an invalid state with negative help text",
+      "code": "<sp-field-group invalid label=\"What are your favorite fruits?\">\n  <sp-checkbox>Apple</sp-checkbox>\n  <sp-checkbox checked>Lettuce</sp-checkbox>\n  <sp-checkbox>Strawberry</sp-checkbox>\n  <sp-help-text slot=\"help-text\">Select one or more fruits.</sp-help-text>\n  <sp-help-text slot=\"negative-help-text\" icon>Choose actual fruit(s).</sp-help-text>\n</sp-field-group>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumFieldGroup",
+    "constructorName": "FieldGroup",
+    "dependsOn": ["HelpText"]
+  }
+}

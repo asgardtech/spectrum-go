@@ -1,0 +1,134 @@
+{
+  "name": "Radio",
+  "tagName": "sp-radio",
+  "description": "Radio buttons allow users to select a single option from a list of mutually exclusive options. All possible options are exposed up front for users to compare.",
+  "category": "Form",
+  "attributes": [
+    {
+      "name": "checked",
+      "type": "boolean",
+      "description": "Represents when the input is checked",
+      "default": false
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "description": "Uses the disabled style",
+      "default": false
+    },
+    {
+      "name": "emphasized",
+      "type": "boolean",
+      "description": "Whether to use the emphasized (blue) visual style",
+      "default": false
+    },
+    {
+      "name": "invalid",
+      "type": "boolean",
+      "description": "Uses the invalid style",
+      "default": false
+    },
+    {
+      "name": "readonly",
+      "type": "boolean",
+      "description": "Whether the radio is readonly",
+      "default": false
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "description": "Identifies this radio button within its radio group",
+      "default": ""
+    },
+    {
+      "name": "size",
+      "type": "enum",
+      "values": ["s", "m", "l", "xl"],
+      "description": "The size of the radio button",
+      "default": "m"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "The name of the radio button when used in a form"
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "Text label of the Radio button"
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "description": "When the input is interacted with and its state is changed",
+      "bubbles": true,
+      "cancelable": false
+    }
+  ],
+  "accessibility": {
+    "role": "radio",
+    "ariaAttributes": [
+      {
+        "name": "aria-checked",
+        "description": "Set to 'true' when the radio is checked"
+      },
+      {
+        "name": "aria-disabled",
+        "description": "Set to 'true' when the radio is disabled"
+      },
+      {
+        "name": "aria-invalid",
+        "description": "Set to 'true' when the radio is in an invalid state"
+      }
+    ],
+    "keyboardInteractions": [
+      {
+        "key": "Space",
+        "description": "Selects the radio button"
+      },
+      {
+        "key": "Arrow keys",
+        "description": "When in a radio group, selects the next/previous radio button"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "title": "Basic Radio Button",
+      "description": "A simple radio button with label",
+      "code": "<sp-radio value=\"option\">Option label</sp-radio>"
+    },
+    {
+      "title": "Checked Radio Button",
+      "description": "A radio button in the checked state",
+      "code": "<sp-radio value=\"option\" checked>Option label</sp-radio>"
+    },
+    {
+      "title": "Emphasized Radio Button",
+      "description": "A radio button with emphasized visual style",
+      "code": "<sp-radio value=\"option\" emphasized>Option label</sp-radio>"
+    },
+    {
+      "title": "Invalid Radio Button",
+      "description": "A radio button in an invalid state",
+      "code": "<sp-radio value=\"option\" invalid>Option label</sp-radio>"
+    },
+    {
+      "title": "Disabled Radio Button",
+      "description": "A radio button that cannot be interacted with",
+      "code": "<sp-radio value=\"option\" disabled>Option label</sp-radio>"
+    },
+    {
+      "title": "Radio Button Size Variants",
+      "description": "Radio buttons with different sizes",
+      "code": "<sp-radio value=\"option\" size=\"s\">Small</sp-radio>\n<sp-radio value=\"option\" size=\"m\">Medium</sp-radio>\n<sp-radio value=\"option\" size=\"l\">Large</sp-radio>\n<sp-radio value=\"option\" size=\"xl\">Extra Large</sp-radio>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumRadio",
+    "constructorName": "Radio",
+    "dependsOn": []
+  }
+}

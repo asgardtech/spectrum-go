@@ -1,0 +1,128 @@
+{
+  "name": "Tab",
+  "tagName": "sp-tab",
+  "description": "An sp-tab element represents a tab in a tabbed interface. It can be associated with an sp-tab-panel that represents its content with the value attribute.",
+  "category": "Navigation",
+  "attributes": [
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "description": "Prevents visitors from selecting this tab and its contents",
+      "default": false
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "description": "Text label for the tab, used when no content is provided in the default slot",
+      "default": ""
+    },
+    {
+      "name": "selected",
+      "type": "boolean",
+      "description": "Indicates whether this tab is currently selected",
+      "default": false
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "description": "Value that associates this tab with its corresponding tab panel",
+      "default": ""
+    },
+    {
+      "name": "vertical",
+      "type": "boolean",
+      "description": "Displays the tab's icon and label in a vertical alignment",
+      "default": false
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "Text label of the tab"
+    },
+    {
+      "name": "icon",
+      "description": "The icon that appears on the left of the label"
+    }
+  ],
+  "accessibility": {
+    "role": "tab",
+    "ariaAttributes": [
+      {
+        "name": "aria-selected",
+        "description": "Set to true when the tab is selected"
+      },
+      {
+        "name": "aria-disabled",
+        "description": "Set to true when the tab is disabled"
+      },
+      {
+        "name": "aria-controls",
+        "description": "References the ID of the associated tab panel"
+      }
+    ],
+    "keyboardInteractions": [
+      {
+        "key": "Tab",
+        "description": "Moves focus to the next focusable element"
+      },
+      {
+        "key": "Left Arrow/Right Arrow",
+        "description": "Moves focus to the previous/next tab"
+      },
+      {
+        "key": "Up Arrow/Down Arrow",
+        "description": "Moves focus to the previous/next tab when tabs are vertical"
+      },
+      {
+        "key": "Home",
+        "description": "Moves focus to the first tab"
+      },
+      {
+        "key": "End",
+        "description": "Moves focus to the last tab"
+      },
+      {
+        "key": "Space/Enter",
+        "description": "Activates the tab"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "title": "Basic Tab",
+      "description": "A simple tab with a text label",
+      "code": "<sp-tab label=\"Tab 1\" value=\"1\"></sp-tab>"
+    },
+    {
+      "title": "Tab with Icon",
+      "description": "A tab with both icon and text",
+      "code": "<sp-tab value=\"3\">Tab 3<sp-icon-checkmark slot=\"icon\"></sp-icon-checkmark></sp-tab>"
+    },
+    {
+      "title": "Vertical Tab with Icon",
+      "description": "A tab with vertical alignment of icon and text",
+      "code": "<sp-tab vertical value=\"4\">Tab 4<sp-icon-checkmark slot=\"icon\"></sp-icon-checkmark></sp-tab>"
+    },
+    {
+      "title": "Disabled Tab",
+      "description": "A tab that cannot be selected",
+      "code": "<sp-tab label=\"Tab 3\" value=\"3\" disabled></sp-tab>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumTab",
+    "constructorName": "Tab",
+    "dependsOn": ["Icon"]
+  },
+  "relatedComponents": [
+    {
+      "name": "TabPanel",
+      "relationship": "Tab panels display content associated with a tab"
+    },
+    {
+      "name": "Tabs",
+      "relationship": "Tabs container that manages tab selection"
+    }
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "name": "Tag",
+  "tagName": "sp-tag",
+  "description": "Tags represent a category to which content belongs. They can represent keywords or people, and are grouped to describe an item or a search request.",
+  "category": "Content",
+  "attributes": [
+    {
+      "name": "deletable",
+      "type": "boolean",
+      "description": "Whether the tag can be removed by the user",
+      "default": false
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "description": "Whether the tag is disabled and cannot be interacted with",
+      "default": false
+    },
+    {
+      "name": "invalid",
+      "type": "boolean",
+      "description": "Whether the tag is in an invalid state",
+      "default": false
+    },
+    {
+      "name": "readonly",
+      "type": "boolean",
+      "description": "Whether the tag is in a readonly state",
+      "default": false
+    },
+    {
+      "name": "size",
+      "type": "enum",
+      "values": ["s", "m", "l"],
+      "description": "The size of the tag",
+      "default": "m"
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "Text content for labeling the tag"
+    },
+    {
+      "name": "avatar",
+      "description": "An avatar element to display within the Tag"
+    },
+    {
+      "name": "icon",
+      "description": "An icon element to display within the Tag"
+    }
+  ],
+  "events": [
+    {
+      "name": "delete",
+      "description": "Fired when the delete button is clicked on a deletable tag",
+      "bubbles": true,
+      "cancelable": false
+    }
+  ],
+  "accessibility": {
+    "role": "option",
+    "ariaAttributes": [
+      {
+        "name": "aria-disabled",
+        "description": "Set to 'true' when the tag is disabled"
+      }
+    ],
+    "keyboardInteractions": [
+      {
+        "key": "Enter",
+        "description": "For deletable tags, deletes the tag"
+      },
+      {
+        "key": "Delete",
+        "description": "For deletable tags, deletes the tag"
+      },
+      {
+        "key": "Backspace",
+        "description": "For deletable tags, deletes the tag"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "title": "Basic Tag",
+      "description": "A simple tag",
+      "code": "<sp-tag>Tag 1</sp-tag>"
+    },
+    {
+      "title": "Deletable Tag",
+      "description": "A tag that can be removed by the user",
+      "code": "<sp-tag deletable>Tag 1</sp-tag>"
+    },
+    {
+      "title": "Disabled Tag",
+      "description": "A tag that cannot be interacted with",
+      "code": "<sp-tag disabled>Tag 3</sp-tag>"
+    },
+    {
+      "title": "Invalid Tag",
+      "description": "A tag in an invalid state",
+      "code": "<sp-tag invalid>Tag 2</sp-tag>"
+    },
+    {
+      "title": "Tag with Avatar",
+      "description": "A tag with an avatar element",
+      "code": "<sp-tag deletable>\n  Tag 1\n  <sp-avatar slot=\"avatar\" label=\"Tag 1\" src=\"https://picsum.photos/500/500\"></sp-avatar>\n</sp-tag>"
+    },
+    {
+      "title": "Tag with Icon",
+      "description": "A tag with an icon element",
+      "code": "<sp-tag deletable>\n  Tag 1\n  <sp-icon-magnify slot=\"icon\" size=\"s\"></sp-icon-magnify>\n</sp-tag>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumTag",
+    "constructorName": "Tag",
+    "dependsOn": ["Icon", "Avatar"]
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "name": "Link",
+  "tagName": "sp-link",
+  "description": "Links allow users to navigate to a different location. They can be presented in-line inside a paragraph or as standalone text.",
+  "category": "Navigation",
+  "attributes": [
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "description": "Disable this control. It will not receive focus or events",
+      "default": false
+    },
+    {
+      "name": "download",
+      "type": "string",
+      "description": "Causes the browser to treat the linked URL as a download."
+    },
+    {
+      "name": "href",
+      "type": "string",
+      "description": "The URL that the hyperlink points to."
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "description": "An accessible label that describes the component. It will be applied to aria-label, but not visually rendered."
+    },
+    {
+      "name": "quiet",
+      "type": "boolean",
+      "description": "Whether to display the link without an underline",
+      "default": false
+    },
+    {
+      "name": "referrerpolicy",
+      "type": "enum",
+      "values": ["no-referrer", "no-referrer-when-downgrade", "origin", "origin-when-cross-origin", "same-origin", "strict-origin", "strict-origin-when-cross-origin", "unsafe-url"],
+      "description": "How much of the referrer to send when following the link."
+    },
+    {
+      "name": "rel",
+      "type": "string",
+      "description": "The relationship of the linked URL as space-separated link types."
+    },
+    {
+      "name": "static-color",
+      "type": "enum",
+      "values": ["black", "white"],
+      "description": "A static color variant for the link, useful when placing on colored backgrounds"
+    },
+    {
+      "name": "tabindex",
+      "type": "number",
+      "description": "The tab index to apply to this control. See general documentation about the tabindex HTML property"
+    },
+    {
+      "name": "target",
+      "type": "enum",
+      "values": ["_blank", "_parent", "_self", "_top"],
+      "description": "Where to display the linked URL, as the name for a browsing context (a tab, window, or iframe)."
+    },
+    {
+      "name": "variant",
+      "type": "enum",
+      "values": ["secondary"],
+      "description": "The visual variant of the link"
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "The text content of the link"
+    }
+  ],
+  "events": [
+    {
+      "name": "click",
+      "description": "Fired when the link is clicked",
+      "bubbles": true,
+      "cancelable": true
+    }
+  ],
+  "accessibility": {
+    "role": "link",
+    "ariaAttributes": [
+      {
+        "name": "aria-label",
+        "description": "Set from the label attribute when provided"
+      },
+      {
+        "name": "aria-disabled",
+        "description": "Set to 'true' when the link is disabled"
+      }
+    ],
+    "keyboardInteractions": [
+      {
+        "key": "Enter",
+        "description": "Activates the link"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "title": "Basic Link",
+      "description": "A simple link with default styling",
+      "code": "<sp-link href=\"#\">example link</sp-link>"
+    },
+    {
+      "title": "Secondary Link",
+      "description": "A link with secondary visual style that matches surrounding text",
+      "code": "<sp-link href=\"#\" variant=\"secondary\">secondary link</sp-link>"
+    },
+    {
+      "title": "Quiet Link",
+      "description": "A link without an underline",
+      "code": "<sp-link href=\"#\" quiet>quiet link</sp-link>"
+    },
+    {
+      "title": "Disabled Link",
+      "description": "A link that cannot be interacted with",
+      "code": "<sp-link href=\"#\" disabled>disabled link</sp-link>"
+    },
+    {
+      "title": "White Static Color Link",
+      "description": "A link with white static color for dark backgrounds",
+      "code": "<div style=\"background-color: #0f797d; padding: 15px; color: white;\">\n  This is a <sp-link href=\"#\" static-color=\"white\">white link</sp-link> on a dark background.\n</div>"
+    },
+    {
+      "title": "Black Static Color Link",
+      "description": "A link with black static color for light backgrounds",
+      "code": "<div style=\"background-color: #b5d1d3; padding: 15px; color: black;\">\n  This is a <sp-link href=\"#\" static-color=\"black\">black link</sp-link> on a light background.\n</div>"
+    },
+    {
+      "title": "Download Link",
+      "description": "A link that prompts a file download",
+      "code": "<sp-link href=\"path/to/file.pdf\" download=\"custom-filename.pdf\">download file</sp-link>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumLink",
+    "constructorName": "Link",
+    "dependsOn": []
+  }
+}

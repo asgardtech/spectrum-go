@@ -1,0 +1,117 @@
+{
+  "name": "AlertBanner",
+  "tagName": "sp-alert-banner",
+  "description": "Shows pressing and high-signal messages, such as system alerts. It is meant to be noticed and prompt users to take action.",
+  "category": "Feedback",
+  "attributes": [
+    {
+      "name": "dismissible",
+      "type": "boolean",
+      "description": "Whether to include an icon-only close button to dismiss the alert banner",
+      "default": false
+    },
+    {
+      "name": "open",
+      "type": "boolean",
+      "description": "Controls the display of the alert banner",
+      "default": false
+    },
+    {
+      "name": "variant",
+      "type": "enum",
+      "values": ["info", "negative"],
+      "description": "The variant applies specific styling for different alert types",
+      "default": "",
+      "valueDescriptions": {
+        "info": "Informational message",
+        "negative": "Error or critical message"
+      }
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "The alert banner text content"
+    },
+    {
+      "name": "action",
+      "description": "Slot for the button element that surfaces the contextual action a user can take"
+    }
+  ],
+  "events": [
+    {
+      "name": "close",
+      "description": "Announces the alert banner has been closed",
+      "bubbles": true,
+      "cancelable": true
+    }
+  ],
+  "accessibility": {
+    "role": "alert",
+    "ariaAttributes": [],
+    "keyboardInteractions": [
+      {
+        "key": "Tab",
+        "description": "Places focus on the next interactive element within the alert banner"
+      },
+      {
+        "key": "Tab + Shift",
+        "description": "Places focus on the previous interactive element within the alert banner"
+      },
+      {
+        "key": "Space/Enter",
+        "description": "Triggers the interaction if a button is focused"
+      },
+      {
+        "key": "Esc",
+        "description": "Dismisses a dismissible alert banner"
+      },
+      {
+        "key": "Arrow keys",
+        "description": "Navigates between the close button and action buttons when focus is within the alert banner"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "title": "Basic Alert Banner",
+      "description": "Simple alert banner with text content",
+      "code": "<sp-alert-banner open>All documents in this folder have been archived</sp-alert-banner>"
+    },
+    {
+      "title": "Dismissible Alert Banner",
+      "description": "Alert banner with close button",
+      "code": "<sp-alert-banner open dismissible>All documents in this folder have been archived</sp-alert-banner>"
+    },
+    {
+      "title": "Actionable Alert Banner",
+      "description": "Alert banner with action button",
+      "code": "<sp-alert-banner open dismissible>Your trial has expired<sp-button treatment=\"outline\" static-color=\"white\" slot=\"action\">Buy now</sp-button></sp-alert-banner>"
+    },
+    {
+      "title": "Info Variant",
+      "description": "Informational alert banner",
+      "code": "<sp-alert-banner open variant=\"info\" dismissible>Your trial will expire in 3 days<sp-button treatment=\"outline\" static-color=\"white\" slot=\"action\">Buy now</sp-button></sp-alert-banner>"
+    },
+    {
+      "title": "Negative Variant",
+      "description": "Error or critical alert banner",
+      "code": "<sp-alert-banner open variant=\"negative\" dismissible>Connection interrupted. Check your network to continue</sp-alert-banner>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumAlertBanner",
+    "constructorName": "AlertBanner",
+    "dependsOn": ["Button", "Icon"]
+  },
+  "relatedComponents": [
+    {
+      "name": "Button",
+      "relationship": "Can be used in the action slot of AlertBanner"
+    },
+    {
+      "name": "AlertDialog",
+      "relationship": "More intrusive alternative for critical messages"
+    }
+  ]
+}

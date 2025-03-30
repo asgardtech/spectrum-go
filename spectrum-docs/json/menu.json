@@ -1,0 +1,160 @@
+{
+  "name": "Menu",
+  "tagName": "sp-menu",
+  "description": "A menu is used for creating a menu list. The various elements inside a menu are given as menu-group, menu-item, or menu-divider. Often a menu element will appear in a popover element so that it displays as a toggling menu.",
+  "category": "Navigation",
+  "attributes": [
+    {
+      "name": "ignore",
+      "type": "boolean",
+      "description": "Whether menu should be ignored by roving tabindex controller",
+      "default": false
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "description": "Label of the menu for accessibility",
+      "default": ""
+    },
+    {
+      "name": "selects",
+      "type": "enum",
+      "values": ["inherit", "single", "multiple"],
+      "description": "How the menu allows selection of its items: - undefined (default): no selection is allowed - inherit: the selection behavior is managed from an ancestor - single: only one item can be selected at a time - multiple: multiple items can be selected"
+    },
+    {
+      "name": "size",
+      "type": "enum",
+      "values": ["s", "m", "l", "xl"],
+      "description": "The size of the menu",
+      "default": "m"
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "description": "Value of the selected item(s)",
+      "default": ""
+    },
+    {
+      "name": "value-separator",
+      "type": "string",
+      "description": "Separator for multiple values when selects is multiple",
+      "default": ","
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "Menu items to be listed in the menu",
+      "allowedElements": ["sp-menu-item", "sp-menu-group", "sp-menu-divider", "sp-menu"]
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "description": "Announces that the value of the element has changed",
+      "bubbles": true,
+      "cancelable": false
+    },
+    {
+      "name": "close",
+      "description": "Fired when the menu should be closed, typically after item selection",
+      "bubbles": true,
+      "cancelable": false
+    }
+  ],
+  "children": [
+    {
+      "type": "MenuItem",
+      "description": "Individual items within the menu",
+      "multiple": true
+    },
+    {
+      "type": "MenuGroup",
+      "description": "Groups of menu items",
+      "multiple": true
+    },
+    {
+      "type": "MenuDivider",
+      "description": "Visual dividers between groups of menu items",
+      "multiple": true
+    },
+    {
+      "type": "Menu",
+      "description": "Submenu for hierarchical menu structures",
+      "multiple": true
+    }
+  ],
+  "accessibility": {
+    "role": "menu",
+    "ariaAttributes": [
+      {
+        "name": "aria-label",
+        "description": "Set from the label attribute"
+      }
+    ],
+    "keyboardInteractions": [
+      {
+        "key": "ArrowDown",
+        "description": "Moves focus to the next menu item"
+      },
+      {
+        "key": "ArrowUp",
+        "description": "Moves focus to the previous menu item"
+      },
+      {
+        "key": "Home",
+        "description": "Moves focus to the first menu item"
+      },
+      {
+        "key": "End",
+        "description": "Moves focus to the last menu item"
+      },
+      {
+        "key": "Enter/Space",
+        "description": "Selects the focused menu item"
+      },
+      {
+        "key": "Escape",
+        "description": "Closes the menu"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "title": "Basic Menu",
+      "description": "A simple menu with multiple items",
+      "code": "<sp-menu label=\"Selection type\">\n  <sp-menu-item>Deselect</sp-menu-item>\n  <sp-menu-item>Select inverse</sp-menu-item>\n  <sp-menu-item>Feather...</sp-menu-item>\n  <sp-menu-item disabled>Make work path</sp-menu-item>\n</sp-menu>"
+    },
+    {
+      "title": "Menu with Groups and Dividers",
+      "description": "A menu with grouped items and dividers",
+      "code": "<sp-menu label=\"Edit options\">\n  <sp-menu-group>\n    <sp-menu-item>Cut</sp-menu-item>\n    <sp-menu-item>Copy</sp-menu-item>\n    <sp-menu-item>Paste</sp-menu-item>\n  </sp-menu-group>\n  <sp-menu-divider></sp-menu-divider>\n  <sp-menu-group>\n    <sp-menu-item>Select All</sp-menu-item>\n    <sp-menu-item>Select None</sp-menu-item>\n  </sp-menu-group>\n</sp-menu>"
+    },
+    {
+      "title": "Single Selection Menu",
+      "description": "A menu that allows selecting a single item",
+      "code": "<sp-menu label=\"Choose a shape\" selects=\"single\">\n  <sp-menu-item value=\"square\">Square</sp-menu-item>\n  <sp-menu-item value=\"triangle\" selected>Triangle</sp-menu-item>\n  <sp-menu-item value=\"circle\">Circle</sp-menu-item>\n</sp-menu>"
+    },
+    {
+      "title": "Multiple Selection Menu",
+      "description": "A menu that allows selecting multiple items",
+      "code": "<sp-menu label=\"Choose some fruit\" selects=\"multiple\">\n  <sp-menu-item value=\"apple\">Apple</sp-menu-item>\n  <sp-menu-item value=\"banana\" selected>Banana</sp-menu-item>\n  <sp-menu-item value=\"orange\" selected>Orange</sp-menu-item>\n</sp-menu>"
+    },
+    {
+      "title": "Small Menu",
+      "description": "A menu with small size",
+      "code": "<sp-menu size=\"s\" label=\"Options\">\n  <sp-menu-item>Option 1</sp-menu-item>\n  <sp-menu-item>Option 2</sp-menu-item>\n</sp-menu>"
+    },
+    {
+      "title": "Large Menu",
+      "description": "A menu with large size",
+      "code": "<sp-menu size=\"l\" label=\"Options\">\n  <sp-menu-item>Option 1</sp-menu-item>\n  <sp-menu-item>Option 2</sp-menu-item>\n</sp-menu>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumMenu",
+    "constructorName": "Menu",
+    "dependsOn": ["MenuItem", "MenuGroup", "MenuDivider"]
+  }
+}

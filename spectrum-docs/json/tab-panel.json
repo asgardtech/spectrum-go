@@ -1,0 +1,67 @@
+{
+  "name": "TabPanel",
+  "tagName": "sp-tab-panel",
+  "description": "An sp-tab-panel contains the content that will be displayed when an associated sp-tab becomes selected. It can be associated with an sp-tab by sharing the same value attribute.",
+  "category": "Navigation",
+  "attributes": [
+    {
+      "name": "selected",
+      "type": "boolean",
+      "description": "Indicates whether this panel is currently selected and visible",
+      "default": false
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "description": "Value that associates this panel with its corresponding tab",
+      "default": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "Content of the Tab Panel"
+    }
+  ],
+  "accessibility": {
+    "role": "tabpanel",
+    "ariaAttributes": [
+      {
+        "name": "aria-labelledby",
+        "description": "References the ID of the associated tab"
+      },
+      {
+        "name": "aria-hidden",
+        "description": "Set to true when the panel is not selected"
+      }
+    ],
+    "keyboardInteractions": []
+  },
+  "examples": [
+    {
+      "title": "Basic Tab Panel",
+      "description": "A simple tab panel with content",
+      "code": "<sp-tab-panel value=\"1\">Content for Tab 1</sp-tab-panel>"
+    },
+    {
+      "title": "Tab Panel with Custom Transition",
+      "description": "A tab panel with custom CSS transitions",
+      "code": "<style>\nsp-tab-panel {\n  transition: opacity 0.5s ease-in-out;\n  opacity: 1;\n}\nsp-tab-panel:not([selected]) {\n  opacity: 0;\n  display: none;\n}\n</style>\n<sp-tab-panel value=\"1\">Content with custom transition</sp-tab-panel>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumTabPanel",
+    "constructorName": "TabPanel",
+    "dependsOn": []
+  },
+  "relatedComponents": [
+    {
+      "name": "Tab",
+      "relationship": "Tabs trigger the display of tab panels"
+    },
+    {
+      "name": "Tabs",
+      "relationship": "Tabs container that manages tab selection"
+    }
+  ]
+}

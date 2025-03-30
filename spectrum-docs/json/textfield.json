@@ -1,0 +1,227 @@
+{
+  "name": "Textfield",
+  "tagName": "sp-textfield",
+  "description": "Textfield components are text boxes that allow users to input custom text entries with a keyboard. Various decorations can be displayed around the field to communicate the entry requirements.",
+  "category": "Form",
+  "attributes": [
+    {
+      "name": "autocomplete",
+      "type": "string",
+      "description": "What form of assistance should be provided when attempting to supply a value to the form control"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "description": "Disable this control. It will not receive focus or events",
+      "default": false
+    },
+    {
+      "name": "grows",
+      "type": "boolean",
+      "description": "Whether a form control delivered with the multiline attribute will change size vertically to accommodate longer input",
+      "default": false
+    },
+    {
+      "name": "invalid",
+      "type": "boolean",
+      "description": "Whether the value held by the form control is invalid",
+      "default": false
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "description": "A string applied via aria-label to the form control when a user visible label is not provided",
+      "default": ""
+    },
+    {
+      "name": "maxlength",
+      "type": "number",
+      "description": "Defines the maximum string length that the user can enter",
+      "default": -1
+    },
+    {
+      "name": "minlength",
+      "type": "number",
+      "description": "Defines the minimum string length that the user can enter",
+      "default": -1
+    },
+    {
+      "name": "multiline",
+      "type": "boolean",
+      "description": "Whether the form control should accept a value longer than one line",
+      "default": false
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "Name of the form control"
+    },
+    {
+      "name": "pattern",
+      "type": "string",
+      "description": "Pattern the value must match to be valid"
+    },
+    {
+      "name": "placeholder",
+      "type": "string",
+      "description": "Text that appears in the form control when it has no value set",
+      "default": ""
+    },
+    {
+      "name": "quiet",
+      "type": "boolean",
+      "description": "Whether to display the form control with no visible background",
+      "default": false
+    },
+    {
+      "name": "readonly",
+      "type": "boolean",
+      "description": "Whether a user can interact with the value of the form control",
+      "default": false
+    },
+    {
+      "name": "required",
+      "type": "boolean",
+      "description": "Whether the form control will be found to be invalid when it holds no value",
+      "default": false
+    },
+    {
+      "name": "rows",
+      "type": "number",
+      "description": "The specific number of rows the form control should provide in the user interface",
+      "default": -1
+    },
+    {
+      "name": "size",
+      "type": "enum",
+      "values": ["s", "m", "l", "xl"],
+      "description": "The size of the textfield",
+      "default": "m"
+    },
+    {
+      "name": "tabindex",
+      "type": "number",
+      "description": "The tab index to apply to this control. See general documentation about the tabindex HTML property"
+    },
+    {
+      "name": "type",
+      "type": "enum",
+      "values": ["text", "password", "email", "tel", "url"],
+      "description": "The type of input that the textfield will accept",
+      "default": "text"
+    },
+    {
+      "name": "valid",
+      "type": "boolean",
+      "description": "Whether the value held by the form control is valid",
+      "default": false
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "description": "The value held by the form control",
+      "default": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "help-text",
+      "description": "Default or non-negative help text to associate to your form element"
+    },
+    {
+      "name": "negative-help-text",
+      "description": "Negative help text to associate to your form element when invalid"
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "description": "An alteration to the value of the element has been committed by the user",
+      "bubbles": true,
+      "cancelable": false
+    },
+    {
+      "name": "input",
+      "description": "The value of the element has changed",
+      "bubbles": true,
+      "cancelable": false
+    }
+  ],
+  "accessibility": {
+    "role": "textbox",
+    "ariaAttributes": [
+      {
+        "name": "aria-label",
+        "description": "Applied when a visible label is not provided"
+      },
+      {
+        "name": "aria-invalid",
+        "description": "Set to 'true' when the textfield is in an invalid state"
+      },
+      {
+        "name": "aria-required",
+        "description": "Set to 'true' when the textfield is required"
+      },
+      {
+        "name": "aria-readonly",
+        "description": "Set to 'true' when the textfield is readonly"
+      },
+      {
+        "name": "aria-disabled",
+        "description": "Set to 'true' when the textfield is disabled"
+      }
+    ],
+    "keyboardInteractions": [
+      {
+        "key": "Tab",
+        "description": "Moves focus to the textfield or away from it"
+      },
+      {
+        "key": "Enter",
+        "description": "Submits the form or triggers a change event"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "title": "Basic Textfield",
+      "description": "A simple textfield with a label",
+      "code": "<sp-textfield label=\"Name\"></sp-textfield>"
+    },
+    {
+      "title": "Textfield with Field Label",
+      "description": "A textfield with an external field label",
+      "code": "<sp-field-label for=\"example\">Name</sp-field-label>\n<sp-textfield id=\"example\"></sp-textfield>"
+    },
+    {
+      "title": "Textfield with Placeholder",
+      "description": "A textfield with placeholder text",
+      "code": "<sp-textfield label=\"Name\" placeholder=\"Enter your name\"></sp-textfield>"
+    },
+    {
+      "title": "Required Textfield",
+      "description": "A textfield that requires a value",
+      "code": "<sp-textfield label=\"Name\" required></sp-textfield>"
+    },
+    {
+      "title": "Invalid Textfield",
+      "description": "A textfield in an invalid state",
+      "code": "<sp-textfield label=\"Name\" invalid>\n  <sp-help-text slot=\"negative-help-text\">Please enter a valid name.</sp-help-text>\n</sp-textfield>"
+    },
+    {
+      "title": "Quiet Textfield",
+      "description": "A textfield with quiet visual style",
+      "code": "<sp-textfield label=\"Name\" quiet></sp-textfield>"
+    },
+    {
+      "title": "Password Textfield",
+      "description": "A textfield for password entry",
+      "code": "<sp-textfield label=\"Password\" type=\"password\"></sp-textfield>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumTextfield",
+    "constructorName": "Textfield",
+    "dependsOn": ["HelpText"]
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "name": "Tabs",
+  "tagName": "sp-tabs",
+  "description": "The sp-tabs component displays a list of sp-tab element children as a tablist. It manages tab selection and displays the content of the corresponding sp-tab-panel.",
+  "category": "Navigation",
+  "attributes": [
+    {
+      "name": "auto",
+      "type": "boolean",
+      "description": "Whether to activate a tab on keyboard focus or not",
+      "default": false
+    },
+    {
+      "name": "compact",
+      "type": "boolean",
+      "description": "The tab items are displayed closer together",
+      "default": false
+    },
+    {
+      "name": "direction",
+      "type": "enum",
+      "values": ["horizontal", "vertical", "vertical-right"],
+      "description": "Direction of the tabs layout",
+      "default": "horizontal"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "description": "Disable this control. It will not receive focus or events",
+      "default": false
+    },
+    {
+      "name": "emphasized",
+      "type": "boolean",
+      "description": "Emphasize the selected tab",
+      "default": false
+    },
+    {
+      "name": "enableTabsScroll",
+      "type": "boolean",
+      "description": "Enable scrolling when tabs exceed available space",
+      "default": false
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "description": "Accessible label for the tabs component",
+      "default": ""
+    },
+    {
+      "name": "quiet",
+      "type": "boolean",
+      "description": "The tab list is displayed without a border",
+      "default": false
+    },
+    {
+      "name": "selected",
+      "type": "string",
+      "description": "Value of the currently selected tab",
+      "default": ""
+    },
+    {
+      "name": "size",
+      "type": "enum",
+      "values": ["s", "m", "l", "xl"],
+      "description": "Size of the tabs",
+      "default": "m"
+    },
+    {
+      "name": "tabIndex",
+      "type": "number",
+      "description": "The tab index to apply to this control. See general documentation about the tabindex HTML property"
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "Tab elements to manage as a group"
+    },
+    {
+      "name": "tab-panel",
+      "description": "Tab Panel elements related to the listed Tab elements"
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "description": "The selected Tab child has changed",
+      "bubbles": true,
+      "cancelable": false,
+      "detail": {
+        "value": "The value of the newly selected tab"
+      }
+    }
+  ],
+  "accessibility": {
+    "role": "tablist",
+    "ariaAttributes": [
+      {
+        "name": "aria-orientation",
+        "description": "Set based on the direction attribute"
+      },
+      {
+        "name": "aria-label",
+        "description": "Set from the label attribute"
+      }
+    ],
+    "keyboardInteractions": [
+      {
+        "key": "Tab",
+        "description": "Moves focus to the selected tab"
+      },
+      {
+        "key": "Left Arrow/Right Arrow",
+        "description": "Moves focus to the previous/next tab in horizontal orientation"
+      },
+      {
+        "key": "Up Arrow/Down Arrow",
+        "description": "Moves focus to the previous/next tab in vertical orientation"
+      },
+      {
+        "key": "Home",
+        "description": "Moves focus to the first tab"
+      },
+      {
+        "key": "End",
+        "description": "Moves focus to the last tab"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "title": "Basic Tabs",
+      "description": "Basic horizontal tabs with panels",
+      "code": "<sp-tabs selected=\"1\">\n  <sp-tab label=\"Tab 1\" value=\"1\"></sp-tab>\n  <sp-tab label=\"Tab 2\" value=\"2\"></sp-tab>\n  <sp-tab label=\"Tab 3\" value=\"3\"></sp-tab>\n  <sp-tab-panel value=\"1\">Content for Tab 1</sp-tab-panel>\n  <sp-tab-panel value=\"2\">Content for Tab 2</sp-tab-panel>\n  <sp-tab-panel value=\"3\">Content for Tab 3</sp-tab-panel>\n</sp-tabs>"
+    },
+    {
+      "title": "Vertical Tabs",
+      "description": "Tabs arranged in a vertical orientation",
+      "code": "<sp-tabs selected=\"1\" direction=\"vertical\">\n  <sp-tab label=\"Tab 1\" value=\"1\"></sp-tab>\n  <sp-tab label=\"Tab 2\" value=\"2\"></sp-tab>\n  <sp-tab label=\"Tab 3\" value=\"3\"></sp-tab>\n  <sp-tab-panel value=\"1\">Content for Tab 1</sp-tab-panel>\n  <sp-tab-panel value=\"2\">Content for Tab 2</sp-tab-panel>\n  <sp-tab-panel value=\"3\">Content for Tab 3</sp-tab-panel>\n</sp-tabs>"
+    },
+    {
+      "title": "Quiet Tabs",
+      "description": "Tabs displayed without a border",
+      "code": "<sp-tabs selected=\"1\" quiet>\n  <sp-tab label=\"Tab 1\" value=\"1\"></sp-tab>\n  <sp-tab label=\"Tab 2\" value=\"2\"></sp-tab>\n  <sp-tab label=\"Tab 3\" value=\"3\"></sp-tab>\n  <sp-tab-panel value=\"1\">Content for Tab 1</sp-tab-panel>\n  <sp-tab-panel value=\"2\">Content for Tab 2</sp-tab-panel>\n  <sp-tab-panel value=\"3\">Content for Tab 3</sp-tab-panel>\n</sp-tabs>"
+    },
+    {
+      "title": "Tabs with Icons",
+      "description": "Tabs with icons in addition to labels",
+      "code": "<sp-tabs selected=\"1\">\n  <sp-tab label=\"Tab 1\" value=\"1\">\n    <sp-icon-checkmark slot=\"icon\"></sp-icon-checkmark>\n  </sp-tab>\n  <sp-tab label=\"Tab 2\" value=\"2\">\n    <sp-icon-close slot=\"icon\"></sp-icon-close>\n  </sp-tab>\n  <sp-tab-panel value=\"1\">Content for Tab 1</sp-tab-panel>\n  <sp-tab-panel value=\"2\">Content for Tab 2</sp-tab-panel>\n</sp-tabs>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumTabs",
+    "constructorName": "Tabs",
+    "dependsOn": ["Tab", "TabPanel"]
+  },
+  "relatedComponents": [
+    {
+      "name": "Tab",
+      "relationship": "Child component representing individual tabs"
+    },
+    {
+      "name": "TabPanel",
+      "relationship": "Child component representing content panels for tabs"
+    }
+  ]
+}

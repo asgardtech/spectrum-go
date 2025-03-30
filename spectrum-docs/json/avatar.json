@@ -1,0 +1,127 @@
+{
+  "name": "Avatar",
+  "tagName": "sp-avatar",
+  "description": "An avatar is a great way to feature a visual representation of a user.",
+  "category": "Content",
+  "attributes": [
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "description": "Disable this control. It will not receive focus or events",
+      "default": false
+    },
+    {
+      "name": "download",
+      "type": "string",
+      "description": "Causes the browser to treat the linked URL as a download."
+    },
+    {
+      "name": "href",
+      "type": "string",
+      "description": "The URL that the hyperlink points to."
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "description": "An accessible label that describes the component. It will be applied to aria-label, but not visually rendered."
+    },
+    {
+      "name": "referrerpolicy",
+      "type": "enum",
+      "values": ["no-referrer", "no-referrer-when-downgrade", "origin", "origin-when-cross-origin", "same-origin", "strict-origin", "strict-origin-when-cross-origin", "unsafe-url"],
+      "description": "How much of the referrer to send when following the link."
+    },
+    {
+      "name": "rel",
+      "type": "string",
+      "description": "The relationship of the linked URL as space-separated link types."
+    },
+    {
+      "name": "size",
+      "type": "enum",
+      "values": ["50", "75", "100", "200", "300", "400", "500", "600", "700"],
+      "description": "The size of the avatar",
+      "default": "100"
+    },
+    {
+      "name": "src",
+      "type": "string",
+      "description": "The URL of the image to display for the avatar",
+      "default": ""
+    },
+    {
+      "name": "tabindex",
+      "type": "number",
+      "description": "The tab index to apply to this control. See general documentation about the tabindex HTML property"
+    },
+    {
+      "name": "target",
+      "type": "enum",
+      "values": ["_blank", "_parent", "_self", "_top"],
+      "description": "Where to display the linked URL, as the name for a browsing context (a tab, window, or iframe)."
+    }
+  ],
+  "slots": [],
+  "events": [
+    {
+      "name": "click",
+      "description": "Fired when the avatar is clicked when it has an href attribute",
+      "bubbles": true,
+      "cancelable": false
+    }
+  ],
+  "accessibility": {
+    "ariaAttributes": [
+      {
+        "name": "aria-label",
+        "description": "Set from the label attribute"
+      },
+      {
+        "name": "aria-disabled",
+        "description": "Set to 'true' when the avatar is disabled"
+      }
+    ],
+    "keyboardInteractions": [
+      {
+        "key": "Enter",
+        "description": "Activates the avatar when it has an href"
+      },
+      {
+        "key": "Space",
+        "description": "Activates the avatar when it has an href"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "title": "Basic Avatar",
+      "description": "A simple avatar with an image",
+      "code": "<sp-avatar label=\"Demo User\" src=\"https://picsum.photos/500/500\"></sp-avatar>"
+    },
+    {
+      "title": "Small Avatar",
+      "description": "An avatar with a small size",
+      "code": "<sp-avatar size=\"50\" label=\"Demo User\" src=\"https://picsum.photos/500/500\"></sp-avatar>"
+    },
+    {
+      "title": "Large Avatar",
+      "description": "An avatar with a large size",
+      "code": "<sp-avatar size=\"300\" label=\"Demo User\" src=\"https://picsum.photos/500/500\"></sp-avatar>"
+    },
+    {
+      "title": "Avatar as Link",
+      "description": "An avatar that functions as a link",
+      "code": "<sp-avatar label=\"Demo User\" src=\"https://picsum.photos/500/500\" href=\"#\" target=\"_blank\"></sp-avatar>"
+    },
+    {
+      "title": "Disabled Avatar",
+      "description": "An avatar that cannot be interacted with",
+      "code": "<sp-avatar label=\"Demo User\" src=\"https://picsum.photos/500/500\" disabled></sp-avatar>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumAvatar",
+    "constructorName": "Avatar",
+    "dependsOn": []
+  }
+}

@@ -1,0 +1,189 @@
+{
+  "name": "Card",
+  "tagName": "sp-card",
+  "description": "A card represents a rectangular container that contains a variety of text and image layouts. Cards are typically used to encapsulate units of a data set, such as a gallery of image/caption pairs.",
+  "category": "Container",
+  "attributes": [
+    {
+      "name": "asset",
+      "type": "enum",
+      "values": ["file", "folder"],
+      "description": "Represents the card as a file or folder asset type"
+    },
+    {
+      "name": "download",
+      "type": "string",
+      "description": "Causes the browser to treat the linked URL as a download"
+    },
+    {
+      "name": "focused",
+      "type": "boolean",
+      "description": "Whether the card has focus",
+      "default": false
+    },
+    {
+      "name": "heading",
+      "type": "string",
+      "description": "The card heading text",
+      "default": ""
+    },
+    {
+      "name": "horizontal",
+      "type": "boolean",
+      "description": "Whether the card should use a horizontal layout",
+      "default": false
+    },
+    {
+      "name": "href",
+      "type": "string",
+      "description": "The URL that the card links to when clicked"
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "description": "An accessible label that describes the component. It will be applied to aria-label, but not visually rendered."
+    },
+    {
+      "name": "referrerpolicy",
+      "type": "enum",
+      "values": ["no-referrer", "no-referrer-when-downgrade", "origin", "origin-when-cross-origin", "same-origin", "strict-origin", "strict-origin-when-cross-origin", "unsafe-url"],
+      "description": "How much of the referrer to send when following the link"
+    },
+    {
+      "name": "rel",
+      "type": "string",
+      "description": "The relationship of the linked URL as space-separated link types"
+    },
+    {
+      "name": "subheading",
+      "type": "string",
+      "description": "The card subheading text",
+      "default": ""
+    },
+    {
+      "name": "target",
+      "type": "enum",
+      "values": ["_blank", "_parent", "_self", "_top"],
+      "description": "Where to display the linked URL, as the name for a browsing context (a tab, window, or iframe)"
+    },
+    {
+      "name": "toggles",
+      "type": "boolean",
+      "description": "Whether the card can be toggled between selected and unselected states",
+      "default": false
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "description": "The value associated with the card",
+      "default": ""
+    },
+    {
+      "name": "variant",
+      "type": "enum",
+      "values": ["standard", "gallery", "quiet"],
+      "description": "The visual variant of the card",
+      "default": "standard"
+    }
+  ],
+  "slots": [
+    {
+      "name": "actions",
+      "description": "An sp-action-menu element outlining actions to take on the represented object"
+    },
+    {
+      "name": "cover-photo",
+      "description": "This is the cover photo for Default and Quiet Cards"
+    },
+    {
+      "name": "description",
+      "description": "A description of the card"
+    },
+    {
+      "name": "footer",
+      "description": "Footer text"
+    },
+    {
+      "name": "heading",
+      "description": "HTML content to be listed as the heading"
+    },
+    {
+      "name": "preview",
+      "description": "This is the preview image for Gallery Cards"
+    },
+    {
+      "name": "subheading",
+      "description": "HTML content to be listed as the subheading"
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "description": "Announces a change in the selected property of a card",
+      "bubbles": true,
+      "cancelable": false
+    },
+    {
+      "name": "click",
+      "description": "Fired when the card is clicked",
+      "bubbles": true,
+      "cancelable": false
+    }
+  ],
+  "accessibility": {
+    "role": "article",
+    "ariaAttributes": [
+      {
+        "name": "aria-label",
+        "description": "Set from the label attribute"
+      }
+    ],
+    "keyboardInteractions": [
+      {
+        "key": "Enter",
+        "description": "Activates the card if it has an href"
+      },
+      {
+        "key": "Space",
+        "description": "Toggles the card's selected state if toggles is true"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "title": "Basic Card",
+      "description": "A simple card with heading, subheading, and cover photo",
+      "code": "<sp-card heading=\"Card Heading\" subheading=\"JPG Photo\">\n  <img alt=\"\" slot=\"cover-photo\" src=\"https://picsum.photos/250/300\" />\n  <div slot=\"footer\">Footer</div>\n</sp-card>"
+    },
+    {
+      "title": "Horizontal Card",
+      "description": "A card with horizontal layout",
+      "code": "<sp-card horizontal heading=\"Card Heading\" subheading=\"JPG Photo\">\n  <img alt=\"\" slot=\"cover-photo\" src=\"https://picsum.photos/200/250\" />\n  <div slot=\"description\">10/15/18</div>\n</sp-card>"
+    },
+    {
+      "title": "Card with Actions",
+      "description": "A card with an action menu",
+      "code": "<sp-card heading=\"Card Heading\" subheading=\"JPG Photo\">\n  <img alt=\"\" slot=\"cover-photo\" src=\"https://picsum.photos/200/300\" />\n  <div slot=\"footer\">Footer</div>\n  <sp-action-menu label=\"More Actions\" slot=\"actions\" placement=\"bottom-end\" quiet>\n    <sp-menu-item>Deselect</sp-menu-item>\n    <sp-menu-item>Select Inverse</sp-menu-item>\n  </sp-action-menu>\n</sp-card>"
+    },
+    {
+      "title": "Quiet Card",
+      "description": "A card with quiet visual style",
+      "code": "<sp-card variant=\"quiet\" heading=\"Card Heading\" subheading=\"JPG Photo\">\n  <img alt=\"\" slot=\"preview\" src=\"https://picsum.photos/200/350\" />\n  <div slot=\"description\">10/15/18</div>\n</sp-card>"
+    },
+    {
+      "title": "Gallery Card",
+      "description": "A card with gallery visual style",
+      "code": "<sp-card variant=\"gallery\" heading=\"Card Heading\" subheading=\"JPG Photo\">\n  <img alt=\"\" slot=\"preview\" src=\"https://picsum.photos/532/192\" />\n  <div slot=\"description\">10/15/18</div>\n  <div slot=\"footer\">Footer</div>\n</sp-card>"
+    },
+    {
+      "title": "File Asset Card",
+      "description": "A card representing a file asset",
+      "code": "<sp-card heading=\"File Name\" subheading=\"JPG Photo\" asset=\"file\">\n  <div slot=\"description\">10/15/18</div>\n  <div slot=\"footer\">Footer</div>\n</sp-card>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumCard",
+    "constructorName": "Card",
+    "dependsOn": ["ActionMenu"]
+  }
+}

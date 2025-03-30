@@ -1,0 +1,177 @@
+{
+  "name": "Button",
+  "tagName": "sp-button",
+  "description": "An sp-button represents an action a user can take. Buttons can be clicked or tapped to perform an action or to navigate to another page.",
+  "category": "Action",
+  "attributes": [
+    {
+      "name": "variant",
+      "type": "enum",
+      "values": ["accent", "primary", "secondary", "negative"],
+      "description": "The visual variant to apply to this button.",
+      "default": "accent",
+      "valueDescriptions": {
+        "accent": "Accent emphasis button",
+        "primary": "Primary emphasis button",
+        "secondary": "Secondary emphasis button",
+        "negative": "Negative emphasis button"
+      }
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "description": "Disable this control. It will not receive focus or events",
+      "default": false
+    },
+    {
+      "name": "quiet",
+      "type": "boolean",
+      "description": "Style this button to be less obvious",
+      "default": false
+    },
+    {
+      "name": "href",
+      "type": "string",
+      "description": "The URL that the hyperlink points to."
+    },
+    {
+      "name": "target",
+      "type": "enum",
+      "values": ["_blank", "_parent", "_self", "_top"],
+      "description": "Where to display the linked URL, as the name for a browsing context (a tab, window, or iframe)."
+    },
+    {
+      "name": "active",
+      "type": "boolean",
+      "description": "Whether the button appears in an active state",
+      "default": false
+    },
+    {
+      "name": "download",
+      "type": "string",
+      "description": "Causes the browser to treat the linked URL as a download."
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "description": "An accessible label that describes the component. It will be applied to aria-label, but not visually rendered."
+    },
+    {
+      "name": "no-wrap",
+      "type": "boolean",
+      "description": "Disables text wrapping within the button component's label. Please note that this option is not a part of the design specification and should be used carefully, with consideration of this overflow behavior and the readability of the button's content.",
+      "default": false
+    },
+    {
+      "name": "pending",
+      "type": "boolean",
+      "description": "Whether the button is in a pending state, showing a progress indicator",
+      "default": false
+    },
+    {
+      "name": "pending-label",
+      "type": "string",
+      "description": "Text shown while the button is in pending state",
+      "default": "Pending"
+    },
+    {
+      "name": "referrerpolicy",
+      "type": "enum",
+      "values": ["no-referrer", "no-referrer-when-downgrade", "origin", "origin-when-cross-origin", "same-origin", "strict-origin", "strict-origin-when-cross-origin", "unsafe-url"],
+      "description": "How much of the referrer to send when following the link."
+    },
+    {
+      "name": "rel",
+      "type": "string",
+      "description": "The relationship of the linked URL as space-separated link types."
+    },
+    {
+      "name": "static-color",
+      "type": "enum",
+      "values": ["black", "white"],
+      "description": "The static color variant to use for this button."
+    },
+    {
+      "name": "tabindex",
+      "type": "number",
+      "description": "The tab index to apply to this control. See general documentation about the tabindex HTML property"
+    },
+    {
+      "name": "treatment",
+      "type": "enum",
+      "values": ["fill", "outline"],
+      "description": "The visual treatment to apply to this button.",
+      "default": "fill"
+    },
+    {
+      "name": "type",
+      "type": "enum",
+      "values": ["button", "submit", "reset"],
+      "description": "The default behavior of the button.",
+      "default": "button"
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "Text label of the Button"
+    },
+    {
+      "name": "icon",
+      "description": "The icon to use for Button"
+    }
+  ],
+  "events": [
+    {
+      "name": "click",
+      "description": "Fired when the button is clicked",
+      "bubbles": true,
+      "cancelable": false
+    }
+  ],
+  "accessibility": {
+    "role": "button",
+    "ariaAttributes": [
+      {
+        "name": "aria-label",
+        "description": "Set from the label attribute if no visible text is provided"
+      },
+      {
+        "name": "aria-disabled",
+        "description": "Set when the button is disabled"
+      }
+    ],
+    "keyboardInteractions": [
+      {
+        "key": "Enter",
+        "description": "Activates the button"
+      },
+      {
+        "key": "Space",
+        "description": "Activates the button"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "title": "Basic Button",
+      "description": "A simple button with text",
+      "code": "<sp-button variant=\"primary\">Click me</sp-button>"
+    },
+    {
+      "title": "Button with Icon",
+      "description": "A button with both icon and text",
+      "code": "<sp-button variant=\"primary\"><sp-icon-help slot=\"icon\"></sp-icon-help>Help</sp-button>"
+    },
+    {
+      "title": "Icon-only Button",
+      "description": "A button with only an icon (requires label for accessibility)",
+      "code": "<sp-button variant=\"primary\" label=\"Help\"><sp-icon-help slot=\"icon\"></sp-icon-help></sp-button>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumButton",
+    "constructorName": "Button",
+    "dependsOn": ["Icon"]
+  }
+}

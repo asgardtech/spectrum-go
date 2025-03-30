@@ -1,0 +1,93 @@
+{
+  "name": "AccordionItem",
+  "tagName": "sp-accordion-item",
+  "description": "The sp-accordion-item element represents a single item in an sp-accordion parent element. Its label attribute and default slot content make up the headline and body of the toggleable content item.",
+  "category": "Container",
+  "attributes": [
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "description": "Disable this control. It will not receive focus or events",
+      "default": false
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "description": "The text label for the accordion item header",
+      "default": ""
+    },
+    {
+      "name": "open",
+      "type": "boolean",
+      "description": "Whether the accordion item is open/expanded",
+      "default": false
+    },
+    {
+      "name": "tabindex",
+      "type": "number",
+      "description": "The tab index to apply to this control. See general documentation about the tabindex HTML property"
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "The content of the item that is hidden when the item is not open"
+    }
+  ],
+  "events": [
+    {
+      "name": "sp-accordion-item-toggle",
+      "description": "Fired when an accordion item is toggled open or closed",
+      "detail": {
+        "open": "Boolean indicating whether the item is now open"
+      },
+      "bubbles": true,
+      "cancelable": true
+    }
+  ],
+  "accessibility": {
+    "role": "heading",
+    "ariaAttributes": [
+      {
+        "name": "aria-expanded",
+        "description": "Indicates whether the accordion item is expanded"
+      },
+      {
+        "name": "aria-disabled",
+        "description": "Indicates that the accordion item is disabled when true"
+      }
+    ],
+    "keyboardInteractions": [
+      {
+        "key": "Enter",
+        "description": "Toggles the accordion item open/closed"
+      },
+      {
+        "key": "Space",
+        "description": "Toggles the accordion item open/closed"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "title": "Basic Accordion Item",
+      "description": "A simple accordion item within an accordion",
+      "code": "<sp-accordion>\n  <sp-accordion-item label=\"Heading 1\">\n    <div>The content can be toggled visible.</div>\n  </sp-accordion-item>\n</sp-accordion>"
+    },
+    {
+      "title": "Open Accordion Item",
+      "description": "An accordion item that is open by default",
+      "code": "<sp-accordion allow-multiple>\n  <sp-accordion-item open label=\"Heading 2\">\n    <div>This content is visible by default.</div>\n  </sp-accordion-item>\n</sp-accordion>"
+    },
+    {
+      "title": "Disabled Accordion Item",
+      "description": "An accordion item that cannot be toggled",
+      "code": "<sp-accordion allow-multiple>\n  <sp-accordion-item disabled label=\"Heading 2\">\n    <div>You can not toggle this content visible.</div>\n  </sp-accordion-item>\n</sp-accordion>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumAccordionItem",
+    "constructorName": "AccordionItem",
+    "dependsOn": []
+  }
+}

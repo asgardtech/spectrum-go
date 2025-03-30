@@ -1,0 +1,36 @@
+{
+  "name": "MenuDivider",
+  "tagName": "sp-menu-divider",
+  "description": "A menu divider creates a visual separation between groups of menu items within a menu.",
+  "category": "Navigation",
+  "attributes": [],
+  "slots": [],
+  "events": [],
+  "accessibility": {
+    "role": "separator",
+    "ariaAttributes": [
+      {
+        "name": "aria-orientation",
+        "description": "Set to 'horizontal' by default"
+      }
+    ],
+    "keyboardInteractions": []
+  },
+  "examples": [
+    {
+      "title": "Basic Menu Divider",
+      "description": "A simple menu with a divider between groups of items",
+      "code": "<sp-menu>\n  <sp-menu-item>Cut</sp-menu-item>\n  <sp-menu-item>Copy</sp-menu-item>\n  <sp-menu-item>Paste</sp-menu-item>\n  <sp-menu-divider></sp-menu-divider>\n  <sp-menu-item>Select All</sp-menu-item>\n  <sp-menu-item>Select None</sp-menu-item>\n</sp-menu>"
+    },
+    {
+      "title": "Menu with Groups and Dividers",
+      "description": "A menu with groups separated by dividers",
+      "code": "<sp-menu>\n  <sp-menu-group>\n    <span slot=\"header\">Edit</span>\n    <sp-menu-item>Cut</sp-menu-item>\n    <sp-menu-item>Copy</sp-menu-item>\n    <sp-menu-item>Paste</sp-menu-item>\n  </sp-menu-group>\n  <sp-menu-divider></sp-menu-divider>\n  <sp-menu-group>\n    <span slot=\"header\">Selection</span>\n    <sp-menu-item>Select All</sp-menu-item>\n    <sp-menu-item>Select None</sp-menu-item>\n  </sp-menu-group>\n</sp-menu>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumMenuDivider",
+    "constructorName": "MenuDivider",
+    "dependsOn": []
+  }
+}

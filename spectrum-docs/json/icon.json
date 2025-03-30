@@ -1,0 +1,95 @@
+{
+  "name": "Icon",
+  "tagName": "sp-icon",
+  "description": "Renders an icon to the page. By default the name attribute pairs with separately registered icon sets to deliver icons. Icons can also be provided via src attribute or slotted content.",
+  "category": "Content",
+  "attributes": [
+    {
+      "name": "label",
+      "type": "string",
+      "description": "Accessible label for the icon. When provided, removes aria-hidden and sets aria-label instead",
+      "default": ""
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "Name of the icon in the registered icon set to display"
+    },
+    {
+      "name": "size",
+      "type": "enum",
+      "values": ["xxs", "xs", "s", "m", "l", "xl", "xxl"],
+      "description": "Size of the icon",
+      "default": "m"
+    },
+    {
+      "name": "src",
+      "type": "string",
+      "description": "URL to an image to use as the icon"
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "HTML/SVG content to use as the icon"
+    }
+  ],
+  "events": [
+    {
+      "name": "error",
+      "description": "Fired when there is an error loading the icon",
+      "bubbles": true,
+      "cancelable": false
+    }
+  ],
+  "accessibility": {
+    "ariaAttributes": [
+      {
+        "name": "aria-hidden",
+        "description": "Set to 'true' by default, removed when label is provided"
+      },
+      {
+        "name": "aria-label",
+        "description": "Set to the value of the label attribute when provided"
+      }
+    ],
+    "keyboardInteractions": []
+  },
+  "examples": [
+    {
+      "title": "Basic Icon",
+      "description": "A simple icon using the name attribute",
+      "code": "<sp-icon name=\"ui:Arrow100\"></sp-icon>"
+    },
+    {
+      "title": "Icon with Label",
+      "description": "An accessible icon with a label",
+      "code": "<sp-icon name=\"ui:Arrow100\" label=\"Arrow pointing to the right\"></sp-icon>"
+    },
+    {
+      "title": "Different Size Icons",
+      "description": "Icons in various sizes",
+      "code": "<sp-icon size=\"s\" name=\"ui:Arrow100\"></sp-icon>\n<sp-icon size=\"m\" name=\"ui:Arrow100\"></sp-icon>\n<sp-icon size=\"l\" name=\"ui:Arrow100\"></sp-icon>\n<sp-icon size=\"xl\" name=\"ui:Arrow100\"></sp-icon>\n<sp-icon size=\"xxl\" name=\"ui:Arrow100\"></sp-icon>"
+    },
+    {
+      "title": "Icon with Custom Color",
+      "description": "Icon with a custom color applied",
+      "code": "<sp-icon name=\"ui:Arrow100\" style=\"color: red;\"></sp-icon>"
+    },
+    {
+      "title": "Image Icon",
+      "description": "Using an image URL as an icon",
+      "code": "<sp-icon label=\"Previous\" src=\"data:image/svg+xml;base64,...\"></sp-icon>"
+    },
+    {
+      "title": "HTML/SVG Icon",
+      "description": "Using inline SVG as an icon",
+      "code": "<sp-icon>\n  <svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 22 22\" role=\"img\" fill=\"currentColor\" height=\"18\" width=\"18\" aria-hidden=\"true\">\n    <path d=\"M19.75,10.04h-15l5.97-5.97a.483.483,0,0,0,0-.7l-.35-.36a.513.513,0,0,0-.71,0L2.24,10.44a.513.513,0,0,0,0,.71l7.39,7.84a.513.513,0,0,0,.71,0l.35-.35a.513.513,0,0,0,0-.71L4.76,11.5H19.75a.25.25,0,0,0,.25-.25v-.96A.25.25,0,0,0,19.75,10.04Z\"></path>\n  </svg>\n</sp-icon>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumIcon",
+    "constructorName": "Icon",
+    "dependsOn": []
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "name": "RadioGroup",
+  "tagName": "sp-radio-group",
+  "description": "Radio groups hold a list of radio buttons and are responsible for deselecting radio buttons when a new one is selected, which makes them responsible for tracking which one is selected.",
+  "category": "Form",
+  "attributes": [
+    {
+      "name": "horizontal",
+      "type": "boolean",
+      "description": "Whether the radio buttons should be arranged horizontally",
+      "default": false
+    },
+    {
+      "name": "invalid",
+      "type": "boolean",
+      "description": "Whether the radio group is in an invalid state",
+      "default": false
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "description": "The accessible label for the radio group",
+      "default": ""
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "The name of the radio group when used in a form",
+      "default": ""
+    },
+    {
+      "name": "selected",
+      "type": "string",
+      "description": "The value of the currently selected radio button",
+      "default": ""
+    },
+    {
+      "name": "vertical",
+      "type": "boolean",
+      "description": "Whether the radio buttons should be arranged vertically",
+      "default": false
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "The sp-radio elements to display/manage in the group.",
+      "allowedElements": ["sp-radio"]
+    },
+    {
+      "name": "help-text",
+      "description": "Default or non-negative help text to associate to your form element"
+    },
+    {
+      "name": "negative-help-text",
+      "description": "Negative help text to associate to your form element when invalid"
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "description": "An alteration to the value of the element has been committed by the user.",
+      "bubbles": true,
+      "cancelable": false
+    }
+  ],
+  "children": [
+    {
+      "type": "Radio",
+      "description": "Individual radio buttons that can be selected",
+      "multiple": true
+    }
+  ],
+  "accessibility": {
+    "role": "radiogroup",
+    "ariaAttributes": [
+      {
+        "name": "aria-label",
+        "description": "Set from the label attribute"
+      },
+      {
+        "name": "aria-invalid",
+        "description": "Set to 'true' when the radio group is in an invalid state"
+      },
+      {
+        "name": "aria-errormessage",
+        "description": "References the ID of the negative help text when present"
+      }
+    ],
+    "keyboardInteractions": [
+      {
+        "key": "Tab",
+        "description": "Moves focus to the selected radio button, or to the first radio button if none is selected"
+      },
+      {
+        "key": "Arrow keys",
+        "description": "Moves focus and selection to the previous or next radio button in the group"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "title": "Basic Radio Group",
+      "description": "A simple radio group with multiple options",
+      "code": "<sp-radio-group label=\"Choose an option\" name=\"example\">\n  <sp-radio value=\"first\">Option 1</sp-radio>\n  <sp-radio value=\"second\">Option 2</sp-radio>\n  <sp-radio value=\"third\">Option 3</sp-radio>\n</sp-radio-group>"
+    },
+    {
+      "title": "Vertical Radio Group",
+      "description": "A radio group with vertical layout",
+      "code": "<sp-radio-group label=\"Choose an option\" vertical>\n  <sp-radio value=\"first\">Option 1</sp-radio>\n  <sp-radio value=\"second\">Option 2</sp-radio>\n</sp-radio-group>"
+    },
+    {
+      "title": "Radio Group with Help Text",
+      "description": "A radio group with associated help text",
+      "code": "<sp-radio-group label=\"Choose an option\">\n  <sp-radio value=\"first\">Option 1</sp-radio>\n  <sp-radio value=\"second\">Option 2</sp-radio>\n  <sp-help-text slot=\"help-text\">Please select one of the options.</sp-help-text>\n</sp-radio-group>"
+    },
+    {
+      "title": "Invalid Radio Group",
+      "description": "A radio group in an invalid state with negative help text",
+      "code": "<sp-radio-group label=\"Choose an option\" invalid>\n  <sp-radio value=\"first\" invalid>Option 1</sp-radio>\n  <sp-radio value=\"second\" invalid>Option 2</sp-radio>\n  <sp-help-text slot=\"negative-help-text\" icon>Please make a valid selection.</sp-help-text>\n</sp-radio-group>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumRadioGroup",
+    "constructorName": "RadioGroup",
+    "dependsOn": ["Radio", "HelpText"]
+  }
+}

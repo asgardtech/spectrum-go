@@ -1,0 +1,51 @@
+{
+  "name": "Base",
+  "tagName": "",
+  "description": "The SpectrumElement base class is created by mixing SpectrumMixin onto LitElement. It provides foundational functionality for all Spectrum Web Components, including direction management and shadowRoot typing.",
+  "category": "Foundation",
+  "attributes": [
+    {
+      "name": "dir",
+      "type": "enum",
+      "values": ["ltr", "rtl"],
+      "description": "Sets the text direction. When not specified, inherits from document or containing sp-theme",
+      "default": "ltr"
+    }
+  ],
+  "slots": [],
+  "events": [],
+  "accessibility": {
+    "ariaAttributes": [],
+    "keyboardInteractions": []
+  },
+  "examples": [
+    {
+      "title": "Basic SpectrumElement Extension",
+      "description": "Creating a custom element that extends SpectrumElement",
+      "code": "import { SpectrumElement } from '@spectrum-web-components/base';\n\nexport class MyElement extends SpectrumElement {\n  static get styles() {\n    return css`\n      :host {\n        display: block;\n      }\n    `;\n  }\n\n  render() {\n    return html`<div>My Custom Element</div>`;\n  }\n}"
+    },
+    {
+      "title": "Using SpectrumMixin",
+      "description": "Creating a custom element using SpectrumMixin directly",
+      "code": "import { SpectrumMixin } from '@spectrum-web-components/base';\n\nexport class MyElement extends SpectrumMixin(HTMLElement) {\n  // Element implementation\n}"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumBase",
+    "constructorName": "Base",
+    "dependsOn": []
+  },
+  "relatedComponents": [
+    {
+      "name": "Theme",
+      "relationship": "Theme components can scope direction for Base components"
+    }
+  ],
+  "cssProperties": [
+    {
+      "name": "--spectrum-global-direction",
+      "description": "Controls the text direction for components that inherit direction",
+      "default": "ltr"
+    }
+  ]
+}

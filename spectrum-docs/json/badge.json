@@ -1,0 +1,81 @@
+{
+  "name": "Badge",
+  "tagName": "sp-badge",
+  "description": "Badges display a small amount of color-categorized metadata. They're ideal for getting a user's attention.",
+  "category": "Content",
+  "attributes": [
+    {
+      "name": "fixed",
+      "type": "enum",
+      "values": ["block-start", "inline-end", "block-end", "inline-start"],
+      "description": "Alters the border rounding to make the badge appear fixed to a specific edge"
+    },
+    {
+      "name": "size",
+      "type": "enum",
+      "values": ["s", "m", "l", "xl"],
+      "description": "The size of the badge",
+      "default": "m"
+    },
+    {
+      "name": "variant",
+      "type": "enum",
+      "values": ["accent", "informative", "neutral", "positive", "negative", "notice", "seafoam", "indigo", "purple", "fuchsia", "magenta", "yellow", "gray", "red", "orange", "chartreuse", "celery", "green", "cyan", "blue"],
+      "description": "The visual variant of the badge",
+      "default": "informative"
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "Text label of the badge"
+    },
+    {
+      "name": "icon",
+      "description": "Optional icon that appears to the left of the label"
+    }
+  ],
+  "events": [],
+  "accessibility": {
+    "role": "status",
+    "ariaAttributes": [],
+    "keyboardInteractions": []
+  },
+  "examples": [
+    {
+      "title": "Basic Badge",
+      "description": "A simple badge with default informative styling",
+      "code": "<sp-badge>Label</sp-badge>"
+    },
+    {
+      "title": "Badge with Icon",
+      "description": "A badge with an icon and text",
+      "code": "<sp-badge>\n  <sp-icon-checkmark-circle slot=\"icon\"></sp-icon-checkmark-circle>\n  Icon and label\n</sp-badge>"
+    },
+    {
+      "title": "Semantic Badge Variants",
+      "description": "Badges with semantic color variants",
+      "code": "<sp-badge variant=\"accent\">Accent</sp-badge>\n<sp-badge variant=\"neutral\">Neutral</sp-badge>\n<sp-badge variant=\"informative\">Informative</sp-badge>\n<sp-badge variant=\"positive\">Positive</sp-badge>\n<sp-badge variant=\"negative\">Negative</sp-badge>\n<sp-badge variant=\"notice\">Notice</sp-badge>"
+    },
+    {
+      "title": "Fixed Badge",
+      "description": "A badge fixed to a specific edge",
+      "code": "<div style=\"position: relative; width: 200px; height: 100px; background: #eee;\">\n  <sp-badge fixed=\"block-start\" style=\"position: absolute; top: 0; left: 80px;\">Top</sp-badge>\n</div>"
+    },
+    {
+      "title": "Small Badge",
+      "description": "A badge with small size",
+      "code": "<sp-badge size=\"s\">Small</sp-badge>"
+    },
+    {
+      "title": "Large Badge",
+      "description": "A badge with large size",
+      "code": "<sp-badge size=\"l\">Large</sp-badge>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumBadge",
+    "constructorName": "Badge",
+    "dependsOn": ["Icon"]
+  }
+}

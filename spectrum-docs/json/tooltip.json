@@ -1,0 +1,106 @@
+{
+  "name": "Tooltip",
+  "tagName": "sp-tooltip",
+  "description": "Tooltips allow users to get contextual help or information about specific components when hovering or focusing on them.",
+  "category": "Overlay",
+  "attributes": [
+    {
+      "name": "offset",
+      "type": "number",
+      "description": "Distance between the tooltip and its target element",
+      "default": 0
+    },
+    {
+      "name": "open",
+      "type": "boolean",
+      "description": "Whether the tooltip is currently visible",
+      "default": false
+    },
+    {
+      "name": "placement",
+      "type": "enum",
+      "values": ["top", "top-start", "top-end", "right", "right-start", "right-end", "bottom", "bottom-start", "bottom-end", "left", "left-start", "left-end"],
+      "description": "Position of the tooltip relative to its target",
+      "default": "top"
+    },
+    {
+      "name": "self-managed",
+      "type": "boolean",
+      "description": "Automatically bind to the parent element of the assigned slot or the parent element of the sp-tooltip. Without this, you must provide your own overlay-trigger.",
+      "default": false
+    },
+    {
+      "name": "tip-padding",
+      "type": "number",
+      "description": "Distance from the edge of the tooltip to the tip",
+      "default": 0
+    },
+    {
+      "name": "variant",
+      "type": "enum",
+      "values": ["info", "positive", "negative"],
+      "description": "Visual variant of the tooltip",
+      "default": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "The text label of the Tooltip"
+    },
+    {
+      "name": "icon",
+      "description": "The icon element appearing at the start of the label"
+    }
+  ],
+  "events": [
+    {
+      "name": "transitionend",
+      "description": "Fired when a transition completes",
+      "bubbles": true,
+      "cancelable": false
+    }
+  ],
+  "accessibility": {
+    "role": "tooltip",
+    "ariaAttributes": [],
+    "keyboardInteractions": []
+  },
+  "examples": [
+    {
+      "title": "Basic Tooltip",
+      "description": "A simple tooltip with default placement",
+      "code": "<sp-tooltip open>Label</sp-tooltip>"
+    },
+    {
+      "title": "Tooltip Placement",
+      "description": "Tooltips with different placement options",
+      "code": "<sp-tooltip open placement=\"top\">Top</sp-tooltip>\n<sp-tooltip open placement=\"right\">Right</sp-tooltip>\n<sp-tooltip open placement=\"bottom\">Bottom</sp-tooltip>\n<sp-tooltip open placement=\"left\">Left</sp-tooltip>"
+    },
+    {
+      "title": "Self-managed Tooltip",
+      "description": "A tooltip that manages its own visibility based on parent focus/hover",
+      "code": "<sp-action-button>\n  Trigger\n  <sp-tooltip self-managed>Content</sp-tooltip>\n</sp-action-button>"
+    },
+    {
+      "title": "Informative Tooltip",
+      "description": "Tooltip with informative styling",
+      "code": "<sp-tooltip open variant=\"info\">\n  <sp-icon-info slot=\"icon\" size=\"s\"></sp-icon-info>\n  Informative message\n</sp-tooltip>"
+    },
+    {
+      "title": "Positive Tooltip",
+      "description": "Tooltip with positive/success styling",
+      "code": "<sp-tooltip open variant=\"positive\">\n  <sp-icon-checkmark-circle slot=\"icon\" size=\"s\"></sp-icon-checkmark-circle>\n  Success message\n</sp-tooltip>"
+    },
+    {
+      "title": "Negative Tooltip",
+      "description": "Tooltip with negative/error styling",
+      "code": "<sp-tooltip open variant=\"negative\">\n  <sp-icon-alert slot=\"icon\" size=\"s\"></sp-icon-alert>\n  Error message\n</sp-tooltip>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumTooltip",
+    "constructorName": "Tooltip",
+    "dependsOn": ["Icon"]
+  }
+}

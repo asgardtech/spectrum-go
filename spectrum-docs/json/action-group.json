@@ -1,0 +1,161 @@
+{
+  "name": "ActionGroup",
+  "tagName": "sp-action-group",
+  "description": "Delivers a set of action buttons in horizontal or vertical orientation while ensuring the appropriate spacing between those buttons. The compact attribute merges these buttons so that they are visually joined to clarify their relationship.",
+  "category": "Action",
+  "attributes": [
+    {
+      "name": "compact",
+      "type": "boolean",
+      "description": "Visually joins buttons together to clarify their relationship",
+      "default": false
+    },
+    {
+      "name": "emphasized",
+      "type": "boolean",
+      "description": "Applies visual emphasis to the buttons in the group",
+      "default": false
+    },
+    {
+      "name": "justified",
+      "type": "boolean",
+      "description": "Fills available horizontal space and evenly distributes that space across child buttons",
+      "default": false
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "description": "Accessible label for the action group",
+      "default": ""
+    },
+    {
+      "name": "quiet",
+      "type": "boolean",
+      "description": "Applies a less visually prominent style to the buttons",
+      "default": false
+    },
+    {
+      "name": "selects",
+      "type": "enum",
+      "values": ["", "single", "multiple"],
+      "description": "Determines selection behavior: 'single' for radio-button behavior, 'multiple' for checkbox behavior",
+      "default": ""
+    },
+    {
+      "name": "selected",
+      "type": "string",
+      "description": "JSON string representation of selected button values array",
+      "default": "[]"
+    },
+    {
+      "name": "size",
+      "type": "enum",
+      "values": ["xs", "s", "m", "l", "xl"],
+      "description": "Size of the action buttons in the group",
+      "default": "m"
+    },
+    {
+      "name": "staticColor",
+      "type": "enum",
+      "values": ["white", "black"],
+      "description": "Applies a specific color treatment to the buttons",
+      "default": ""
+    },
+    {
+      "name": "vertical",
+      "type": "boolean",
+      "description": "Arranges buttons vertically instead of horizontally",
+      "default": false
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "The sp-action-button elements that make up the group"
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "description": "Announces that selection state has been changed by user",
+      "bubbles": true,
+      "cancelable": true,
+      "detail": {
+        "selected": "Array of selected button values"
+      }
+    }
+  ],
+  "accessibility": {
+    "role": "toolbar",
+    "ariaAttributes": [
+      {
+        "name": "aria-label",
+        "description": "Set from the label attribute to provide an accessible name"
+      },
+      {
+        "name": "aria-orientation",
+        "description": "Set based on the vertical attribute"
+      }
+    ],
+    "keyboardInteractions": [
+      {
+        "key": "Tab",
+        "description": "Moves focus to the action group or selected item"
+      },
+      {
+        "key": "Left/Right Arrow",
+        "description": "Moves focus between buttons in a horizontal action group"
+      },
+      {
+        "key": "Up/Down Arrow",
+        "description": "Moves focus between buttons in a vertical action group"
+      },
+      {
+        "key": "Space/Enter",
+        "description": "Activates the focused button"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "title": "Basic Action Group",
+      "description": "Standard horizontal action group",
+      "code": "<sp-action-group>\n  <sp-action-button>\n    <sp-icon-magnify slot=\"icon\"></sp-icon-magnify>\n    Button 1\n  </sp-action-button>\n  <sp-action-button>\n    <sp-icon-magnify slot=\"icon\"></sp-icon-magnify>\n    Button 2\n  </sp-action-button>\n</sp-action-group>"
+    },
+    {
+      "title": "Compact Action Group",
+      "description": "Action group with visually joined buttons",
+      "code": "<sp-action-group compact>\n  <sp-action-button>\n    <sp-icon-magnify slot=\"icon\"></sp-icon-magnify>\n    Button 1\n  </sp-action-button>\n  <sp-action-button>\n    <sp-icon-magnify slot=\"icon\"></sp-icon-magnify>\n    Button 2\n  </sp-action-button>\n</sp-action-group>"
+    },
+    {
+      "title": "Vertical Action Group",
+      "description": "Action group with vertically arranged buttons",
+      "code": "<sp-action-group vertical>\n  <sp-action-button>\n    <sp-icon-magnify slot=\"icon\"></sp-icon-magnify>\n    Button 1\n  </sp-action-button>\n  <sp-action-button>\n    <sp-icon-magnify slot=\"icon\"></sp-icon-magnify>\n    Button 2\n  </sp-action-button>\n</sp-action-group>"
+    },
+    {
+      "title": "Single Select Action Group",
+      "description": "Action group with radio-button selection behavior",
+      "code": "<sp-action-group selects=\"single\" label=\"Single Selection Group\">\n  <sp-action-button>\n    <sp-icon-magnify slot=\"icon\"></sp-icon-magnify>\n    Button 1\n  </sp-action-button>\n  <sp-action-button selected>\n    <sp-icon-magnify slot=\"icon\"></sp-icon-magnify>\n    Button 2\n  </sp-action-button>\n</sp-action-group>"
+    },
+    {
+      "title": "Multiple Select Action Group",
+      "description": "Action group with checkbox selection behavior",
+      "code": "<sp-action-group selects=\"multiple\" label=\"Multiple Selection Group\">\n  <sp-action-button selected>\n    <sp-icon-magnify slot=\"icon\"></sp-icon-magnify>\n    Button 1\n  </sp-action-button>\n  <sp-action-button>\n    <sp-icon-magnify slot=\"icon\"></sp-icon-magnify>\n    Button 2\n  </sp-action-button>\n  <sp-action-button selected>\n    <sp-icon-magnify slot=\"icon\"></sp-icon-magnify>\n    Button 3\n  </sp-action-button>\n</sp-action-group>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumActionGroup",
+    "constructorName": "ActionGroup",
+    "dependsOn": ["ActionButton"]
+  },
+  "relatedComponents": [
+    {
+      "name": "ActionButton",
+      "relationship": "ActionButton elements are used as children of ActionGroup"
+    },
+    {
+      "name": "ActionBar",
+      "relationship": "ActionGroup is often used inside ActionBar components"
+    }
+  ]
+}

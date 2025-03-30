@@ -1,0 +1,271 @@
+{
+  "name": "Slider",
+  "tagName": "sp-slider",
+  "description": "Sliders allow users to quickly select a value within a range. They should be used when the upper and lower bounds of the range are invariable.",
+  "category": "Form",
+  "attributes": [
+    {
+      "name": "default-value",
+      "type": "number",
+      "description": "Set the default value of the handle. Setting this property will cause the handle to reset to the default value on double click or pressing the escape key."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "description": "Disable this control. It will not receive focus or events",
+      "default": false
+    },
+    {
+      "name": "dragging",
+      "type": "boolean",
+      "description": "Whether the slider is currently being dragged",
+      "default": false
+    },
+    {
+      "name": "editable",
+      "type": "boolean",
+      "description": "Whether to display a Number Field along side the slider UI"
+    },
+    {
+      "name": "fill-start",
+      "type": "number",
+      "description": "The starting point for filled variant"
+    },
+    {
+      "name": "format-options",
+      "type": "string",
+      "description": "Number formatting options as a JSON string"
+    },
+    {
+      "name": "hide-stepper",
+      "type": "boolean",
+      "description": "Whether the stepper UI of the Number Field is hidden or not",
+      "default": false
+    },
+    {
+      "name": "highlight",
+      "type": "boolean",
+      "description": "Whether the slider track should be highlighted",
+      "default": false
+    },
+    {
+      "name": "indeterminate",
+      "type": "boolean",
+      "description": "Applies indeterminate to the underlying sp-number-field when editable === true. Is removed on the next change event.",
+      "default": false
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "description": "Accessible text label for the slider",
+      "default": ""
+    },
+    {
+      "name": "label-visibility",
+      "type": "enum",
+      "values": ["text", "value", "none"],
+      "description": "Controls which labels are visible: text (just the label text), value (just the value), or none (neither)"
+    },
+    {
+      "name": "max",
+      "type": "number",
+      "description": "Maximum value of the slider",
+      "default": 100
+    },
+    {
+      "name": "min",
+      "type": "number",
+      "description": "Minimum value of the slider",
+      "default": 0
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "Name of the form control for form submission",
+      "default": ""
+    },
+    {
+      "name": "quiet",
+      "type": "boolean",
+      "description": "Applies quiet to the underlying sp-number-field when editable === true.",
+      "default": false
+    },
+    {
+      "name": "size",
+      "type": "enum",
+      "values": ["s", "m", "l", "xl"],
+      "description": "Size of the slider",
+      "default": "m"
+    },
+    {
+      "name": "step",
+      "type": "number",
+      "description": "Step value for increments/decrements",
+      "default": 1
+    },
+    {
+      "name": "tabindex",
+      "type": "number",
+      "description": "The tab index to apply to this control. See general documentation about the tabindex HTML property"
+    },
+    {
+      "name": "tick-labels",
+      "type": "boolean",
+      "description": "Whether to display labels for tick marks",
+      "default": false
+    },
+    {
+      "name": "tick-step",
+      "type": "number",
+      "description": "Interval at which to display tick marks",
+      "default": 0
+    },
+    {
+      "name": "value",
+      "type": "number",
+      "description": "The current value of the slider"
+    },
+    {
+      "name": "variant",
+      "type": "enum",
+      "values": ["filled", "tick", "ramp", "range"],
+      "description": "The visual variant of the slider"
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "Text label for the Slider. Use the label property instead."
+    },
+    {
+      "name": "handle",
+      "description": "Optionally accepts two or more sp-slider-handle elements"
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "description": "An alteration to the value of the element has been committed by the user.",
+      "bubbles": true,
+      "cancelable": false
+    },
+    {
+      "name": "input",
+      "description": "The value of the element has changed.",
+      "bubbles": true,
+      "cancelable": false
+    },
+    {
+      "name": "sp-slider-handle-ready",
+      "description": "Fired when a slider handle has been registered with the slider",
+      "bubbles": true,
+      "cancelable": false
+    }
+  ],
+  "accessibility": {
+    "role": "slider",
+    "ariaAttributes": [
+      {
+        "name": "aria-label",
+        "description": "Set from the label attribute"
+      },
+      {
+        "name": "aria-valuemin",
+        "description": "Set from the min attribute"
+      },
+      {
+        "name": "aria-valuemax",
+        "description": "Set from the max attribute"
+      },
+      {
+        "name": "aria-valuenow",
+        "description": "Set from the value attribute"
+      },
+      {
+        "name": "aria-disabled",
+        "description": "Set to 'true' when the slider is disabled"
+      }
+    ],
+    "keyboardInteractions": [
+      {
+        "key": "Tab",
+        "description": "Moves focus to the slider"
+      },
+      {
+        "key": "Arrow Up/Right",
+        "description": "Increases the slider value"
+      },
+      {
+        "key": "Arrow Down/Left",
+        "description": "Decreases the slider value"
+      },
+      {
+        "key": "Home",
+        "description": "Sets the slider to its minimum value"
+      },
+      {
+        "key": "End",
+        "description": "Sets the slider to its maximum value"
+      },
+      {
+        "key": "Page Up",
+        "description": "Increases the slider value by a larger step"
+      },
+      {
+        "key": "Page Down",
+        "description": "Decreases the slider value by a larger step"
+      },
+      {
+        "key": "Escape",
+        "description": "When default-value is set, resets to that value"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "title": "Basic Slider",
+      "description": "A simple slider with default styling",
+      "code": "<sp-slider label=\"Slider Label\"></sp-slider>"
+    },
+    {
+      "title": "Editable Slider",
+      "description": "A slider with an editable number field",
+      "code": "<sp-slider label=\"Slider Label\" editable></sp-slider>"
+    },
+    {
+      "title": "Filled Slider",
+      "description": "A slider with filled track style",
+      "code": "<sp-slider label=\"Slider Label\" variant=\"filled\" value=\"50\"></sp-slider>"
+    },
+    {
+      "title": "Tick Slider",
+      "description": "A slider with tick marks",
+      "code": "<sp-slider label=\"Slider Label\" variant=\"tick\" tick-step=\"5\"></sp-slider>"
+    },
+    {
+      "title": "Tick Slider with Labels",
+      "description": "A slider with labeled tick marks",
+      "code": "<sp-slider label=\"Slider Label\" variant=\"tick\" tick-step=\"5\" tick-labels></sp-slider>"
+    },
+    {
+      "title": "Ramp Slider",
+      "description": "A slider with a ramped visual style",
+      "code": "<sp-slider label=\"Slider Label\" variant=\"ramp\"></sp-slider>"
+    },
+    {
+      "title": "Range Slider",
+      "description": "A slider with multiple handles defining a range",
+      "code": "<sp-slider variant=\"range\" label=\"Range\">\n  <sp-slider-handle slot=\"handle\" name=\"min\" value=\"25\"></sp-slider-handle>\n  <sp-slider-handle slot=\"handle\" name=\"max\" value=\"75\"></sp-slider-handle>\n</sp-slider>"
+    },
+    {
+      "title": "Disabled Slider",
+      "description": "A slider that cannot be interacted with",
+      "code": "<sp-slider label=\"Slider Label\" disabled></sp-slider>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumSlider",
+    "constructorName": "Slider",
+    "dependsOn": ["SliderHandle", "NumberField"]
+  }
+}

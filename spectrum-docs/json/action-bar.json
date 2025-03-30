@@ -1,0 +1,98 @@
+{
+  "name": "ActionBar",
+  "tagName": "sp-action-bar",
+  "description": "A floating action bar that is a convenient way to deliver stateful actions in cases like selection mode. It can be deployed with fixed or sticky variants.",
+  "category": "Action",
+  "attributes": [
+    {
+      "name": "emphasized",
+      "type": "boolean",
+      "description": "Deliver the Action Bar with additional visual emphasis",
+      "default": false
+    },
+    {
+      "name": "flexible",
+      "type": "boolean",
+      "description": "When 'flexible' the action bar sizes itself to its content rather than a specific width",
+      "default": false
+    },
+    {
+      "name": "open",
+      "type": "boolean",
+      "description": "Whether the action bar is visible",
+      "default": false
+    },
+    {
+      "name": "variant",
+      "type": "enum",
+      "values": ["", "fixed", "sticky"],
+      "description": "The variant applies specific positioning: 'sticky' positions relative to scrolling content, 'fixed' positions relative to the page",
+      "default": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "Content to display with the Action Bar"
+    },
+    {
+      "name": "buttons",
+      "description": "Action buttons to display in the Action Bar"
+    }
+  ],
+  "events": [
+    {
+      "name": "close",
+      "description": "Dispatched when the action bar is closed",
+      "bubbles": true,
+      "cancelable": false
+    }
+  ],
+  "accessibility": {
+    "role": "region",
+    "ariaAttributes": [
+      {
+        "name": "aria-live",
+        "description": "Indicates that the region is updated dynamically"
+      }
+    ],
+    "keyboardInteractions": []
+  },
+  "examples": [
+    {
+      "title": "Basic Action Bar",
+      "description": "A simple action bar with text and buttons",
+      "code": "<sp-action-bar open>\n  2 selected\n  <sp-action-button slot=\"buttons\" label=\"Edit\">\n    <sp-icon-edit slot=\"icon\"></sp-icon-edit>\n  </sp-action-button>\n  <sp-action-button slot=\"buttons\" label=\"More\">\n    <sp-icon-more slot=\"icon\"></sp-icon-more>\n  </sp-action-button>\n</sp-action-bar>"
+    },
+    {
+      "title": "Emphasized Action Bar",
+      "description": "An action bar with additional visual emphasis",
+      "code": "<sp-action-bar emphasized open>\n  2 selected\n  <sp-action-button slot=\"buttons\" label=\"Edit\">\n    <sp-icon-edit slot=\"icon\"></sp-icon-edit>\n  </sp-action-button>\n  <sp-action-button slot=\"buttons\" label=\"More\">\n    <sp-icon-more slot=\"icon\"></sp-icon-more>\n  </sp-action-button>\n</sp-action-bar>"
+    },
+    {
+      "title": "Fixed Action Bar",
+      "description": "An action bar positioned fixed relative to the page",
+      "code": "<sp-action-bar variant=\"fixed\" open>\n  2 selected\n</sp-action-bar>"
+    },
+    {
+      "title": "Sticky Action Bar",
+      "description": "An action bar positioned sticky relative to scrolling content",
+      "code": "<section style=\"position: relative; max-height: 6em; overflow: auto;\">\n  <sp-action-bar variant=\"sticky\" open style=\"inset-block: 0px\">\n    2 selected\n    <sp-action-button slot=\"buttons\" label=\"Edit\">\n      <sp-icon-edit slot=\"icon\"></sp-icon-edit>\n    </sp-action-button>\n  </sp-action-bar>\n</section>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumActionBar",
+    "constructorName": "ActionBar",
+    "dependsOn": ["ActionButton"]
+  },
+  "relatedComponents": [
+    {
+      "name": "ActionButton",
+      "relationship": "Action buttons are commonly placed in the action bar"
+    },
+    {
+      "name": "ActionGroup",
+      "relationship": "Action groups can be used to organize buttons in an action bar"
+    }
+  ]
+}

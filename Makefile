@@ -4,4 +4,5 @@ build-wasm:
 run: build-wasm
 	cd showcase && go run .
 
-# air --build.pre_cmd="GOOS=js GOARCH=wasm go build -o ./web/app.wasm"
+watch:
+	air

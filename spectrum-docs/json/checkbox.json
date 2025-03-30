@@ -1,0 +1,141 @@
+{
+  "name": "Checkbox",
+  "tagName": "sp-checkbox",
+  "description": "Checkboxes allow users to select multiple items from a list of independent options, or to mark an individual option as selected.",
+  "category": "Form",
+  "attributes": [
+    {
+      "name": "checked",
+      "type": "boolean",
+      "description": "Whether the checkbox is checked",
+      "default": false
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "description": "Disable this control. It will not receive focus or events",
+      "default": false
+    },
+    {
+      "name": "emphasized",
+      "type": "boolean",
+      "description": "Whether to use the emphasized (blue) visual style for the checkbox",
+      "default": false
+    },
+    {
+      "name": "indeterminate",
+      "type": "boolean",
+      "description": "Whether the checkbox is in an indeterminate state",
+      "default": false
+    },
+    {
+      "name": "invalid",
+      "type": "boolean",
+      "description": "Whether the checkbox is in an invalid state",
+      "default": false
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "The name of the checkbox when used in a form"
+    },
+    {
+      "name": "readonly",
+      "type": "boolean",
+      "description": "Whether the checkbox is readonly",
+      "default": false
+    },
+    {
+      "name": "size",
+      "type": "enum",
+      "values": ["s", "m", "l", "xl"],
+      "description": "The size of the checkbox",
+      "default": "m"
+    },
+    {
+      "name": "tabindex",
+      "type": "number",
+      "description": "The tab index of the checkbox",
+      "default": 0
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "Content to display as the label for the Checkbox"
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "description": "Announces a change in the checked property of a Checkbox",
+      "bubbles": true,
+      "cancelable": false
+    }
+  ],
+  "accessibility": {
+    "role": "checkbox",
+    "ariaAttributes": [
+      {
+        "name": "aria-checked",
+        "description": "Set to 'true', 'false', or 'mixed' based on checked and indeterminate properties"
+      },
+      {
+        "name": "aria-disabled",
+        "description": "Set to 'true' when the checkbox is disabled"
+      },
+      {
+        "name": "aria-invalid",
+        "description": "Set to 'true' when the checkbox is in an invalid state"
+      }
+    ],
+    "keyboardInteractions": [
+      {
+        "key": "Space",
+        "description": "Toggles the checkbox state"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "title": "Basic Checkbox",
+      "description": "A simple checkbox with label",
+      "code": "<sp-checkbox>Web component</sp-checkbox>"
+    },
+    {
+      "title": "Checked Checkbox",
+      "description": "A checkbox in the checked state",
+      "code": "<sp-checkbox checked>Web component</sp-checkbox>"
+    },
+    {
+      "title": "Indeterminate Checkbox",
+      "description": "A checkbox in the indeterminate state",
+      "code": "<sp-checkbox indeterminate>Web component</sp-checkbox>"
+    },
+    {
+      "title": "Emphasized Checkbox",
+      "description": "A checkbox with emphasized visual style",
+      "code": "<sp-checkbox emphasized>Web component</sp-checkbox>"
+    },
+    {
+      "title": "Invalid Checkbox",
+      "description": "A checkbox in an invalid state",
+      "code": "<sp-checkbox invalid>Web component</sp-checkbox>"
+    },
+    {
+      "title": "Disabled Checkbox",
+      "description": "A checkbox that cannot be interacted with",
+      "code": "<sp-checkbox disabled>Web component</sp-checkbox>"
+    },
+    {
+      "title": "Small Checkbox",
+      "description": "A checkbox with small size",
+      "code": "<sp-checkbox size=\"s\">Small</sp-checkbox>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumCheckbox",
+    "constructorName": "Checkbox",
+    "dependsOn": []
+  }
+}

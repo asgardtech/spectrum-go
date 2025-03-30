@@ -1,0 +1,65 @@
+{
+  "name": "Divider",
+  "tagName": "sp-divider",
+  "description": "Dividers bring clarity to a layout by grouping and dividing content that exists in close proximity. They can also be used to establish rhythm and hierarchy.",
+  "category": "Structure",
+  "attributes": [
+    {
+      "name": "vertical",
+      "type": "boolean",
+      "description": "Whether the divider is vertical instead of horizontal",
+      "default": false
+    },
+    {
+      "name": "size",
+      "type": "enum",
+      "values": ["s", "m", "l"],
+      "description": "The thickness of the divider",
+      "default": "m"
+    }
+  ],
+  "slots": [],
+  "events": [],
+  "accessibility": {
+    "role": "separator",
+    "ariaAttributes": [
+      {
+        "name": "aria-orientation",
+        "description": "Set based on the vertical attribute"
+      }
+    ],
+    "keyboardInteractions": []
+  },
+  "examples": [
+    {
+      "title": "Horizontal Divider",
+      "description": "A basic horizontal divider",
+      "code": "<sp-divider></sp-divider>"
+    },
+    {
+      "title": "Vertical Divider",
+      "description": "A divider with vertical orientation",
+      "code": "<div style=\"height: 32px; display: flex;\">\n  <span>Content before</span>\n  <sp-divider vertical style=\"align-self: stretch; height: auto;\"></sp-divider>\n  <span>Content after</span>\n</div>"
+    },
+    {
+      "title": "Small Divider",
+      "description": "A divider with small size, used to divide like-elements",
+      "code": "<sp-divider size=\"s\"></sp-divider>"
+    },
+    {
+      "title": "Medium Divider",
+      "description": "A divider with medium size, used to divide subsections",
+      "code": "<sp-divider size=\"m\"></sp-divider>"
+    },
+    {
+      "title": "Large Divider",
+      "description": "A divider with large size, used to divide major sections",
+      "code": "<sp-divider size=\"l\"></sp-divider>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumDivider",
+    "constructorName": "Divider",
+    "dependsOn": []
+  }
+}

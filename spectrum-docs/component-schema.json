@@ -1,0 +1,320 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SpectrumComponent",
+  "description": "Schema for Adobe Spectrum component template",
+  "type": "object",
+  "required": [
+    "name",
+    "tagName"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Internal Go component name (used in constructors)"
+    },
+    "tagName": {
+      "type": "string",
+      "description": "HTML custom element tag name (e.g., 'sp-button')"
+    },
+    "description": {
+      "type": "string",
+      "description": "Brief description of the component"
+    },
+    "category": {
+      "type": "string",
+      "description": "Component category (e.g., 'Form', 'Navigation', 'Container')"
+    },
+    "extends": {
+      "type": "string",
+      "description": "If this component extends another component"
+    },
+    "attributes": {
+      "type": "array",
+      "description": "Component attributes",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "type"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Attribute name"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "string",
+              "number",
+              "boolean",
+              "enum",
+              "object",
+              "array"
+            ],
+            "description": "Attribute data type"
+          },
+          "required": {
+            "type": "boolean",
+            "description": "Whether the attribute is required",
+            "default": false
+          },
+          "default": {
+            "description": "Default value for the attribute"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the attribute's purpose"
+          },
+          "values": {
+            "type": "array",
+            "description": "For enum types, possible values",
+            "items": {
+              "type": "string"
+            }
+          },
+          "valueDescriptions": {
+            "type": "object",
+            "description": "Descriptions of enum values",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "deprecated": {
+            "type": "boolean",
+            "description": "Whether the attribute is deprecated",
+            "default": false
+          },
+          "deprecationMessage": {
+            "type": "string",
+            "description": "Message explaining deprecation and alternative"
+          }
+        }
+      }
+    },
+    "slots": {
+      "type": "array",
+      "description": "Available slots for content insertion",
+      "items": {
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Slot name ('default' for unnamed slot)"
+          },
+          "description": {
+            "type": "string",
+            "description": "Purpose of the slot"
+          },
+          "required": {
+            "type": "boolean",
+            "description": "Whether content in this slot is required",
+            "default": false
+          },
+          "allowedElements": {
+            "type": "array",
+            "description": "Elements allowed in this slot",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "children": {
+      "type": "array",
+      "description": "Valid child components",
+      "items": {
+        "type": "object",
+        "required": [
+          "type"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Component type that can be a child"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the child's purpose"
+          },
+          "required": {
+            "type": "boolean",
+            "description": "Whether this child is required",
+            "default": false
+          },
+          "multiple": {
+            "type": "boolean",
+            "description": "Whether multiple children of this type are allowed",
+            "default": false
+          }
+        }
+      }
+    },
+    "events": {
+      "type": "array",
+      "description": "Events emitted by the component",
+      "items": {
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Event name"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of when event is fired"
+          },
+          "detail": {
+            "type": "object",
+            "description": "Structure of the event detail object",
+            "additionalProperties": true
+          },
+          "bubbles": {
+            "type": "boolean",
+            "description": "Whether the event bubbles",
+            "default": true
+          },
+          "cancelable": {
+            "type": "boolean",
+            "description": "Whether the event is cancelable",
+            "default": false
+          }
+        }
+      }
+    },
+    "cssProperties": {
+      "type": "array",
+      "description": "CSS custom properties that affect this component",
+      "items": {
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "CSS property name"
+          },
+          "description": {
+            "type": "string",
+            "description": "What the property affects"
+          },
+          "default": {
+            "type": "string",
+            "description": "Default value"
+          }
+        }
+      }
+    },
+    "accessibility": {
+      "type": "object",
+      "description": "Accessibility information",
+      "properties": {
+        "role": {
+          "type": "string",
+          "description": "ARIA role"
+        },
+        "ariaAttributes": {
+          "type": "array",
+          "description": "ARIA attributes set by the component",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Attribute name"
+              },
+              "description": {
+                "type": "string",
+                "description": "How the attribute is used"
+              }
+            }
+          }
+        },
+        "keyboardInteractions": {
+          "type": "array",
+          "description": "Keyboard interactions",
+          "items": {
+            "type": "object",
+            "properties": {
+              "key": {
+                "type": "string",
+                "description": "Key or key combination"
+              },
+              "description": {
+                "type": "string",
+                "description": "Action triggered by key"
+              }
+            }
+          }
+        }
+      }
+    },
+    "examples": {
+      "type": "array",
+      "description": "Usage examples",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Example title"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the example"
+          },
+          "code": {
+            "type": "string",
+            "description": "Code example"
+          }
+        }
+      }
+    },
+    "relatedComponents": {
+      "type": "array",
+      "description": "Related components",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Component name"
+          },
+          "relationship": {
+            "type": "string",
+            "description": "How components are related"
+          }
+        }
+      }
+    },
+    "implementation": {
+      "type": "object",
+      "description": "Implementation details",
+      "properties": {
+        "goStructName": {
+          "type": "string",
+          "description": "Go struct name"
+        },
+        "constructorName": {
+          "type": "string",
+          "description": "Constructor function name"
+        },
+        "dependsOn": {
+          "type": "array",
+          "description": "Dependencies on other components",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

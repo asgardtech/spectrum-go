@@ -1,0 +1,170 @@
+{
+  "name": "SliderHandle",
+  "tagName": "sp-slider-handle",
+  "description": "Slider handles are used for advanced slider uses that require more than one handle. One example of this is the range slider. Slider supports multiple handles via the slider-handle sub-component.",
+  "category": "Form",
+  "attributes": [
+    {
+      "name": "default-value",
+      "type": "number",
+      "description": "Set the default value of the handle. Setting this property will cause the handle to reset to the default value on double click or pressing the escape key."
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "description": "Disable this control. It will not receive focus or events",
+      "default": false
+    },
+    {
+      "name": "dragging",
+      "type": "boolean",
+      "description": "Whether the handle is currently being dragged",
+      "default": false
+    },
+    {
+      "name": "format-options",
+      "type": "string",
+      "description": "Number formatting options as a JSON string"
+    },
+    {
+      "name": "highlight",
+      "type": "boolean",
+      "description": "Whether the handle should be highlighted",
+      "default": false
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "description": "Accessible text label for the handle",
+      "default": ""
+    },
+    {
+      "name": "max",
+      "type": "string",
+      "description": "Maximum value of the handle. Can be a number or 'next' to constrain by the next handle's value"
+    },
+    {
+      "name": "min",
+      "type": "string",
+      "description": "Minimum value of the handle. Can be a number or 'previous' to constrain by the previous handle's value"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "Name of the handle for form submission",
+      "default": ""
+    },
+    {
+      "name": "step",
+      "type": "number",
+      "description": "Step value for increments/decrements"
+    },
+    {
+      "name": "tabindex",
+      "type": "number",
+      "description": "The tab index to apply to this control. See general documentation about the tabindex HTML property"
+    },
+    {
+      "name": "value",
+      "type": "number",
+      "description": "The current value of the handle. By default, the value will be halfway between min and max values, or the min value when max is less than min."
+    }
+  ],
+  "slots": [],
+  "events": [
+    {
+      "name": "change",
+      "description": "An alteration to the value of the element has been committed by the user.",
+      "bubbles": true,
+      "cancelable": false
+    },
+    {
+      "name": "input",
+      "description": "The value of the element has changed.",
+      "bubbles": true,
+      "cancelable": false
+    },
+    {
+      "name": "sp-slider-handle-ready",
+      "description": "Fired when a slider handle has been initialized",
+      "bubbles": true,
+      "cancelable": false
+    }
+  ],
+  "accessibility": {
+    "role": "slider",
+    "ariaAttributes": [
+      {
+        "name": "aria-label",
+        "description": "Set from the label attribute"
+      },
+      {
+        "name": "aria-valuemin",
+        "description": "Set from the min attribute"
+      },
+      {
+        "name": "aria-valuemax",
+        "description": "Set from the max attribute"
+      },
+      {
+        "name": "aria-valuenow",
+        "description": "Set from the value attribute"
+      },
+      {
+        "name": "aria-disabled",
+        "description": "Set to 'true' when the handle is disabled"
+      }
+    ],
+    "keyboardInteractions": [
+      {
+        "key": "Tab",
+        "description": "Moves focus to the handle"
+      },
+      {
+        "key": "Arrow Up/Right",
+        "description": "Increases the handle value"
+      },
+      {
+        "key": "Arrow Down/Left",
+        "description": "Decreases the handle value"
+      },
+      {
+        "key": "Home",
+        "description": "Sets the handle to its minimum value"
+      },
+      {
+        "key": "End",
+        "description": "Sets the handle to its maximum value"
+      },
+      {
+        "key": "Page Up",
+        "description": "Increases the handle value by a larger step"
+      },
+      {
+        "key": "Page Down",
+        "description": "Decreases the handle value by a larger step"
+      },
+      {
+        "key": "Escape",
+        "description": "When default-value is set, resets to that value"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "title": "Range Slider with Two Handles",
+      "description": "A range slider with min and max handles",
+      "code": "<sp-slider variant=\"range\">\n  <sp-slider-handle slot=\"handle\" name=\"min\" label=\"Minimum\" value=\"25\"></sp-slider-handle>\n  <sp-slider-handle slot=\"handle\" name=\"max\" label=\"Maximum\" value=\"75\"></sp-slider-handle>\n</sp-slider>"
+    },
+    {
+      "title": "Slider with Constrained Handles",
+      "description": "A slider with handles constrained by adjacent handles",
+      "code": "<sp-slider min=\"0\" max=\"100\">\n  <sp-slider-handle slot=\"handle\" name=\"low\" label=\"Low\" value=\"25\" max=\"next\"></sp-slider-handle>\n  <sp-slider-handle slot=\"handle\" name=\"mid\" label=\"Mid\" value=\"50\" min=\"previous\" max=\"next\"></sp-slider-handle>\n  <sp-slider-handle slot=\"handle\" name=\"high\" label=\"High\" value=\"75\" min=\"previous\"></sp-slider-handle>\n</sp-slider>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumSliderHandle",
+    "constructorName": "SliderHandle",
+    "dependsOn": []
+  }
+}

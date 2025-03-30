@@ -1,0 +1,215 @@
+{
+  "name": "MenuItem",
+  "tagName": "sp-menu-item",
+  "description": "For use within an sp-menu element, a menu-item represents a single item in a menu.",
+  "category": "Navigation",
+  "attributes": [
+    {
+      "name": "active",
+      "type": "boolean",
+      "description": "Whether the menu item is active or has an active descendant",
+      "default": false
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "description": "Disable this control. It will not receive focus or events",
+      "default": false
+    },
+    {
+      "name": "download",
+      "type": "string",
+      "description": "Causes the browser to treat the linked URL as a download."
+    },
+    {
+      "name": "focused",
+      "type": "boolean",
+      "description": "Whether the menu item has keyboard focus",
+      "default": false
+    },
+    {
+      "name": "has-submenu",
+      "type": "boolean",
+      "description": "Whether the menu item has a submenu",
+      "default": false
+    },
+    {
+      "name": "href",
+      "type": "string",
+      "description": "The URL that the hyperlink points to."
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "description": "An accessible label that describes the component. It will be applied to aria-label, but not visually rendered."
+    },
+    {
+      "name": "no-wrap",
+      "type": "boolean",
+      "description": "Whether menu item text content should not wrap",
+      "default": false
+    },
+    {
+      "name": "open",
+      "type": "boolean",
+      "description": "Whether submenu is open",
+      "default": false
+    },
+    {
+      "name": "referrerpolicy",
+      "type": "enum",
+      "values": ["no-referrer", "no-referrer-when-downgrade", "origin", "origin-when-cross-origin", "same-origin", "strict-origin", "strict-origin-when-cross-origin", "unsafe-url"],
+      "description": "How much of the referrer to send when following the link."
+    },
+    {
+      "name": "rel",
+      "type": "string",
+      "description": "The relationship of the linked URL as space-separated link types."
+    },
+    {
+      "name": "selected",
+      "type": "boolean",
+      "description": "Whether the menu item is selected",
+      "default": false
+    },
+    {
+      "name": "tabindex",
+      "type": "number",
+      "description": "The tab index to apply to this control. See general documentation about the tabindex HTML property"
+    },
+    {
+      "name": "target",
+      "type": "enum",
+      "values": ["_blank", "_parent", "_self", "_top"],
+      "description": "Where to display the linked URL, as the name for a browsing context (a tab, window, or iframe)."
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "description": "Value of the menu item which is used for selection"
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "Text content to display within the Menu Item"
+    },
+    {
+      "name": "description",
+      "description": "Description to be placed below the label of the Menu Item"
+    },
+    {
+      "name": "icon",
+      "description": "Icon element to be placed at the start of the Menu Item"
+    },
+    {
+      "name": "submenu",
+      "description": "Content placed in a submenu"
+    },
+    {
+      "name": "value",
+      "description": "Content placed at the end of the Menu Item like values, keyboard shortcuts, etc."
+    }
+  ],
+  "events": [
+    {
+      "name": "blur",
+      "description": "Fired when the menu item loses focus",
+      "bubbles": true,
+      "cancelable": false
+    },
+    {
+      "name": "focus",
+      "description": "Fired when the menu item receives focus",
+      "bubbles": true,
+      "cancelable": false
+    },
+    {
+      "name": "sp-menu-item-added",
+      "description": "Announces the item has been added so a parent menu can take ownership",
+      "bubbles": true,
+      "cancelable": false
+    }
+  ],
+  "accessibility": {
+    "role": "menuitem",
+    "ariaAttributes": [
+      {
+        "name": "aria-disabled",
+        "description": "Set to 'true' when the menu item is disabled"
+      },
+      {
+        "name": "aria-selected",
+        "description": "Set to 'true' when the menu item is selected"
+      },
+      {
+        "name": "aria-label",
+        "description": "Set from the label attribute when provided"
+      },
+      {
+        "name": "aria-haspopup",
+        "description": "Set to 'true' when the menu item has a submenu"
+      },
+      {
+        "name": "aria-expanded",
+        "description": "Set to 'true' when the submenu is open"
+      }
+    ],
+    "keyboardInteractions": [
+      {
+        "key": "Enter",
+        "description": "Activates the menu item"
+      },
+      {
+        "key": "Space",
+        "description": "Activates the menu item"
+      },
+      {
+        "key": "ArrowRight",
+        "description": "Opens the submenu if present"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "title": "Basic Menu Item",
+      "description": "A simple menu item",
+      "code": "<sp-menu>\n  <sp-menu-item>Save</sp-menu-item>\n</sp-menu>"
+    },
+    {
+      "title": "Selected Menu Item",
+      "description": "A menu item in selected state",
+      "code": "<sp-menu>\n  <sp-menu-item selected>Save</sp-menu-item>\n</sp-menu>"
+    },
+    {
+      "title": "Disabled Menu Item",
+      "description": "A menu item that cannot be interacted with",
+      "code": "<sp-menu>\n  <sp-menu-item disabled>Save</sp-menu-item>\n</sp-menu>"
+    },
+    {
+      "title": "Menu Item with Icon",
+      "description": "A menu item with an icon",
+      "code": "<sp-menu>\n  <sp-menu-item>\n    <sp-icon-save-floppy slot=\"icon\"></sp-icon-save-floppy>\n    Save\n  </sp-menu-item>\n</sp-menu>"
+    },
+    {
+      "title": "Menu Item with Description",
+      "description": "A menu item with additional descriptive text",
+      "code": "<sp-menu>\n  <sp-menu-item>\n    Quick export\n    <span slot=\"description\">Share a snapshot</span>\n  </sp-menu-item>\n</sp-menu>"
+    },
+    {
+      "title": "Menu Item with Value",
+      "description": "A menu item with a value displayed at the end",
+      "code": "<sp-menu>\n  <sp-menu-item>\n    Save\n    <kbd slot=\"value\">⌘S</kbd>\n  </sp-menu-item>\n</sp-menu>"
+    },
+    {
+      "title": "Menu Item with Submenu",
+      "description": "A menu item that opens a submenu",
+      "code": "<sp-menu>\n  <sp-menu-item>\n    New York\n    <sp-menu slot=\"submenu\">\n      <sp-menu-item>Central Park</sp-menu-item>\n      <sp-menu-item>Prospect Park</sp-menu-item>\n    </sp-menu>\n  </sp-menu-item>\n</sp-menu>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumMenuItem",
+    "constructorName": "MenuItem",
+    "dependsOn": ["Icon"]
+  }
+}

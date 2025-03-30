@@ -1,0 +1,118 @@
+{
+  "name": "Switch",
+  "tagName": "sp-switch",
+  "description": "A switch is used to turn an option on or off. Switches allow users to select the state of a single option at a time. Use a switch rather than a checkbox when activating (or deactivating) an option, instead of selecting.",
+  "category": "Form",
+  "attributes": [
+    {
+      "name": "checked",
+      "type": "boolean",
+      "description": "Whether the switch is checked (on)",
+      "default": false
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "description": "Disable this control. It will not receive focus or events",
+      "default": false
+    },
+    {
+      "name": "emphasized",
+      "type": "boolean",
+      "description": "Whether to use the emphasized (blue) visual style",
+      "default": false
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "The name of the switch when used in a form"
+    },
+    {
+      "name": "readonly",
+      "type": "boolean",
+      "description": "Whether the switch is readonly",
+      "default": false
+    },
+    {
+      "name": "size",
+      "type": "enum",
+      "values": ["s", "m", "l", "xl"],
+      "description": "The size of the switch",
+      "default": "m"
+    },
+    {
+      "name": "tabindex",
+      "type": "number",
+      "description": "The tab index to apply to this control. See general documentation about the tabindex HTML property"
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "Text label of the Switch"
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "description": "Announces a change in the checked property of a Switch",
+      "bubbles": true,
+      "cancelable": false
+    }
+  ],
+  "accessibility": {
+    "role": "switch",
+    "ariaAttributes": [
+      {
+        "name": "aria-checked",
+        "description": "Set to 'true' when the switch is checked (on)"
+      },
+      {
+        "name": "aria-disabled",
+        "description": "Set to 'true' when the switch is disabled"
+      }
+    ],
+    "keyboardInteractions": [
+      {
+        "key": "Space",
+        "description": "Toggles the switch state"
+      },
+      {
+        "key": "Enter",
+        "description": "Toggles the switch state"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "title": "Basic Switch",
+      "description": "A simple switch with label",
+      "code": "<sp-switch>Email notifications</sp-switch>"
+    },
+    {
+      "title": "Checked Switch",
+      "description": "A switch in the checked (on) state",
+      "code": "<sp-switch checked>Email notifications</sp-switch>"
+    },
+    {
+      "title": "Emphasized Switch",
+      "description": "A switch with emphasized visual style",
+      "code": "<sp-switch emphasized>Email notifications</sp-switch>"
+    },
+    {
+      "title": "Disabled Switch",
+      "description": "A switch that cannot be interacted with",
+      "code": "<sp-switch disabled>Email notifications</sp-switch>"
+    },
+    {
+      "title": "Switch Size Variants",
+      "description": "Switches with different sizes",
+      "code": "<sp-switch size=\"s\">Small</sp-switch>\n<sp-switch size=\"m\">Medium</sp-switch>\n<sp-switch size=\"l\">Large</sp-switch>\n<sp-switch size=\"xl\">Extra Large</sp-switch>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumSwitch",
+    "constructorName": "Switch",
+    "dependsOn": []
+  }
+}

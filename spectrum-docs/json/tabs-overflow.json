@@ -1,0 +1,68 @@
+{
+  "name": "TabsOverflow",
+  "tagName": "sp-tabs-overflow",
+  "description": "The sp-tabs-overflow is a decorative component that works in conjunction with the sp-tabs component. It enables horizontal tab scrolling in cases where the available width is insufficient to display all tabs.",
+  "category": "Navigation",
+  "attributes": [
+    {
+      "name": "compact",
+      "type": "boolean",
+      "description": "Whether the tabs overflow should use a compact style",
+      "default": false
+    },
+    {
+      "name": "labelNext",
+      "type": "string",
+      "description": "Accessible label for the next button",
+      "default": "Scroll to next tabs"
+    },
+    {
+      "name": "labelPrevious",
+      "type": "string",
+      "description": "Accessible label for the previous button",
+      "default": "Scroll to previous tabs"
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "Content to be managed with scroll buttons, typically sp-tabs"
+    }
+  ],
+  "accessibility": {
+    "ariaAttributes": [
+      {
+        "name": "aria-label",
+        "description": "Set on the navigation buttons to provide accessible labels"
+      }
+    ],
+    "keyboardInteractions": [
+      {
+        "key": "Tab",
+        "description": "The tabs overflow component itself is not focusable via keyboard navigation"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "title": "Basic Tabs Overflow",
+      "description": "Tabs overflow with many tabs in a constrained width container",
+      "code": "<div style=\"max-width: 250px\">\n  <sp-tabs-overflow>\n    <sp-tabs selected=\"1\">\n      <sp-tab label=\"Tab 1\" value=\"1\"></sp-tab>\n      <sp-tab label=\"Tab 2\" value=\"2\"></sp-tab>\n      <sp-tab label=\"Tab 3\" value=\"3\"></sp-tab>\n      <sp-tab label=\"Tab 4\" value=\"4\"></sp-tab>\n      <sp-tab label=\"Tab 5\" value=\"5\"></sp-tab>\n      <sp-tab-panel value=\"1\">Content for Tab 1</sp-tab-panel>\n      <sp-tab-panel value=\"2\">Content for Tab 2</sp-tab-panel>\n      <sp-tab-panel value=\"3\">Content for Tab 3</sp-tab-panel>\n      <sp-tab-panel value=\"4\">Content for Tab 4</sp-tab-panel>\n      <sp-tab-panel value=\"5\">Content for Tab 5</sp-tab-panel>\n    </sp-tabs>\n  </sp-tabs-overflow>\n</div>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumTabsOverflow",
+    "constructorName": "TabsOverflow",
+    "dependsOn": ["Tabs", "Icon"]
+  },
+  "relatedComponents": [
+    {
+      "name": "Tabs",
+      "relationship": "Child component that TabsOverflow wraps to provide scrolling"
+    },
+    {
+      "name": "Tab",
+      "relationship": "Individual tabs that may need overflow handling"
+    }
+  ]
+}

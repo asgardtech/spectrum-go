@@ -1,0 +1,233 @@
+{
+  "name": "ActionMenu",
+  "tagName": "sp-action-menu",
+  "description": "An action button that triggers an overlay with menu items for activation. It can optionally manage selection of a single item.",
+  "category": "Action",
+  "attributes": [
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "description": "Disables the action menu",
+      "default": false
+    },
+    {
+      "name": "focused",
+      "type": "boolean",
+      "description": "Whether the action menu has focus",
+      "default": false
+    },
+    {
+      "name": "forcePopover",
+      "type": "boolean",
+      "description": "Forces the action menu to render as a popover on mobile instead of a tray",
+      "default": false
+    },
+    {
+      "name": "icons",
+      "type": "enum",
+      "values": ["only", "none"],
+      "description": "Controls icon display mode: 'only' shows only icons, 'none' shows no icons"
+    },
+    {
+      "name": "invalid",
+      "type": "boolean",
+      "description": "Marks the action menu as invalid",
+      "default": false
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "description": "Accessible label for the action menu, particularly important when no visible label is provided"
+    },
+    {
+      "name": "open",
+      "type": "boolean",
+      "description": "Whether the action menu overlay is open",
+      "default": false
+    },
+    {
+      "name": "pending",
+      "type": "boolean",
+      "description": "Whether the items are currently loading",
+      "default": false
+    },
+    {
+      "name": "pendingLabel",
+      "type": "string",
+      "description": "Defines a string value that labels the action menu while it is in pending state",
+      "default": "Pending"
+    },
+    {
+      "name": "placement",
+      "type": "enum",
+      "values": ["top", "top-start", "top-end", "right", "right-start", "right-end", "bottom", "bottom-start", "bottom-end", "left", "left-start", "left-end"],
+      "description": "Position of the overlay relative to the action button",
+      "default": "bottom-start"
+    },
+    {
+      "name": "quiet",
+      "type": "boolean",
+      "description": "Applies a less visually prominent style",
+      "default": false
+    },
+    {
+      "name": "readonly",
+      "type": "boolean",
+      "description": "Makes the action menu read-only",
+      "default": false
+    },
+    {
+      "name": "selects",
+      "type": "enum",
+      "values": ["", "single"],
+      "description": "By default, action menu does not manage selection. Use 'single' to activate selection management.",
+      "default": ""
+    },
+    {
+      "name": "size",
+      "type": "enum",
+      "values": ["s", "m", "l", "xl"],
+      "description": "Size of the action menu button",
+      "default": "m"
+    },
+    {
+      "name": "staticColor",
+      "type": "enum",
+      "values": ["white", "black"],
+      "description": "Applies a specific color treatment to the button"
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "description": "The current value of the action menu when selection is enabled",
+      "default": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "Menu items to be listed in the Action Menu"
+    },
+    {
+      "name": "description",
+      "description": "The description content for the action menu"
+    },
+    {
+      "name": "icon",
+      "description": "The icon to use for the Action Menu instead of the default"
+    },
+    {
+      "name": "label",
+      "description": "The label to use for the Action Menu (with icon space reserved)"
+    },
+    {
+      "name": "label-only",
+      "description": "The label to use for the Action Menu (no icon space reserved)"
+    },
+    {
+      "name": "tooltip",
+      "description": "Tooltip to be applied to the Action Button"
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "description": "Announces that the value of the element has changed",
+      "bubbles": true,
+      "cancelable": false
+    },
+    {
+      "name": "scroll",
+      "description": "Fired when the menu content is scrolled",
+      "bubbles": true,
+      "cancelable": false
+    },
+    {
+      "name": "sp-opened",
+      "description": "Announces that the overlay has been opened",
+      "bubbles": true,
+      "cancelable": false
+    }
+  ],
+  "accessibility": {
+    "role": "button",
+    "ariaAttributes": [
+      {
+        "name": "aria-haspopup",
+        "description": "Indicates the button opens a menu"
+      },
+      {
+        "name": "aria-expanded",
+        "description": "Indicates whether the menu is currently expanded or collapsed"
+      },
+      {
+        "name": "aria-label",
+        "description": "Set from the label attribute when no visible text is provided"
+      }
+    ],
+    "keyboardInteractions": [
+      {
+        "key": "Enter/Space",
+        "description": "Opens or closes the menu"
+      },
+      {
+        "key": "ArrowDown",
+        "description": "When closed, opens the menu and focuses the first item; when open, moves focus to the next item"
+      },
+      {
+        "key": "ArrowUp",
+        "description": "When open, moves focus to the previous item"
+      },
+      {
+        "key": "Escape",
+        "description": "Closes the menu and returns focus to the trigger button"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "title": "Basic Action Menu",
+      "description": "Action menu with text label and default icon",
+      "code": "<sp-action-menu>\n  <span slot=\"label\">More Actions</span>\n  <sp-menu-item>Deselect</sp-menu-item>\n  <sp-menu-item>Select inverse</sp-menu-item>\n  <sp-menu-item>Feather...</sp-menu-item>\n  <sp-menu-divider></sp-menu-divider>\n  <sp-menu-item>Save selection</sp-menu-item>\n  <sp-menu-item disabled>Make work path</sp-menu-item>\n</sp-action-menu>"
+    },
+    {
+      "title": "Action Menu without Icon",
+      "description": "Action menu with text label and no icon",
+      "code": "<sp-action-menu>\n  <span slot=\"label-only\">More Actions</span>\n  <sp-menu-item>Deselect</sp-menu-item>\n  <sp-menu-item>Select inverse</sp-menu-item>\n  <sp-menu-item>Feather...</sp-menu-item>\n</sp-action-menu>"
+    },
+    {
+      "title": "Icon-only Action Menu",
+      "description": "Action menu with only an icon and accessible label",
+      "code": "<sp-action-menu label=\"More Actions\">\n  <sp-menu-item>Deselect</sp-menu-item>\n  <sp-menu-item>Select inverse</sp-menu-item>\n  <sp-menu-item>Feather...</sp-menu-item>\n</sp-action-menu>"
+    },
+    {
+      "title": "Action Menu with Custom Icon",
+      "description": "Action menu with a custom icon",
+      "code": "<sp-action-menu>\n  <sp-icon-settings slot=\"icon\"></sp-icon-settings>\n  <span slot=\"label\">Actions under the gear</span>\n  <sp-menu-item>Deselect</sp-menu-item>\n  <sp-menu-item>Select inverse</sp-menu-item>\n</sp-action-menu>"
+    },
+    {
+      "title": "Selectable Action Menu",
+      "description": "Action menu that maintains a selection",
+      "code": "<sp-action-menu selects=\"single\">\n  <span slot=\"label\">Available shapes</span>\n  <sp-menu-item value=\"shape-1-square\">Square</sp-menu-item>\n  <sp-menu-item value=\"shape-2-triangle\">Triangle</sp-menu-item>\n  <sp-menu-item value=\"shape-3-parallelogram\">Parallelogram</sp-menu-item>\n</sp-action-menu>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumActionMenu",
+    "constructorName": "ActionMenu",
+    "dependsOn": ["Menu", "MenuItem", "MenuDivider", "Overlay", "Icon"]
+  },
+  "relatedComponents": [
+    {
+      "name": "Menu",
+      "relationship": "Menu is the container for items in ActionMenu"
+    },
+    {
+      "name": "MenuItem",
+      "relationship": "MenuItems are the selectable options in ActionMenu"
+    },
+    {
+      "name": "ActionButton",
+      "relationship": "ActionButton provides similar functionality without a menu"
+    }
+  ]
+}
