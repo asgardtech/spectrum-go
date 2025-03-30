@@ -22,9 +22,9 @@ type localOptions struct {
 }
 
 func main() {
-	app.Route("/", func() app.Composer {
-		return newHomePage()
-	})
+	app.Route("/", app.NewZeroComponentFactory(newButtonPage()))
+	app.Route("/checkbox", app.NewZeroComponentFactory(newCheckboxPage()))
+	app.Route("/button", app.NewZeroComponentFactory(newButtonPage()))
 
 	app.RunWhenOnBrowser()
 
@@ -96,7 +96,7 @@ func runLocal(ctx context.Context, h *app.Handler, opts localOptions) {
 		// use a logging middleware
 		http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			app.Log(logs.New("serving web directory").WithTag("path", r.URL.Path))
-			http.StripPrefix("/web/", http.FileServer(http.Dir("./web"))).ServeHTTP(w, r)
+			http.StripPrefix("/web/", http.FileServer(http.Dir("./showcase/web"))).ServeHTTP(w, r)
 		}),
 	)
 	http.Handle("/", h)

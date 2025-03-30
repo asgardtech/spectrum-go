@@ -17,12 +17,6 @@
       "default": ""
     },
     {
-      "name": "id",
-      "type": "string",
-      "description": "Unique identifier for the field label element",
-      "default": ""
-    },
-    {
       "name": "required",
       "type": "boolean",
       "description": "Whether the field label indicates a required field",

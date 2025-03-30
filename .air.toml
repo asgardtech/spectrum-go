@@ -1,4 +1,4 @@
-root = "./showcase"
+root = "."
 tmp_dir = "tmp"
 
 [build]
@@ -7,9 +7,8 @@ pre_cmd = ["GOOS=js GOARCH=wasm go build -o ./showcase/web/app.wasm ./showcase/"
 # Command to build and run the showcase app
 cmd = "go build -o ./showcase/tmp/main ./showcase/"
 bin = "./showcase/tmp/main"
-include_ext = ["go"]
+include_ext = ["go", "css"]
 exclude_dir = ["tmp"]
-include_dir = ["./", "./../"]
 exclude_file = []
 delay = 1000
 stop_on_error = true

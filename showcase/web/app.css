@@ -11,14 +11,12 @@ sp-theme {
   background-color: var(--spectrum-global-color-gray-50);
   color: var(--spectrum-global-color-gray-900);
   height: 100vh;
-  display: block;
   margin: 0;
   padding: 10px;
   overflow: hidden;
 }
 
 sp-split-view {
-  display: block;
   margin: 0;
   padding: 0;
 }

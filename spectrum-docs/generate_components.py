@@ -2,6 +2,7 @@
 
 import json
 import os
+import subprocess
 from jinja2 import Environment, FileSystemLoader
 import re
 
@@ -80,6 +81,11 @@ def process_component(component):
     """Process component data for template rendering."""
     # Enhance the component data with additional information for templates
     processed = component.copy()
+    
+    # Make sure component has all expected keys
+    processed.setdefault('attributes', [])
+    processed.setdefault('slots', [])
+    processed.setdefault('events', [])
     
     # Track slot/attribute names to detect duplicates
     method_names = set()
@@ -274,12 +280,9 @@ def process_component(component):
             slot['has_name_conflict'] = False
             method_names.add(slot['go_name'])
     
-    # Add special Text property for default slot without allowedElements
-    if has_default_slot and not default_slot_allowed_elements:
-        processed['has_text_prop'] = True
-    else:
-        processed['has_text_prop'] = False
-        
+    # Add default slot flag rather than special Text property
+    processed['has_default_slot'] = has_default_slot
+    
     # Add default slot allowed elements info
     processed['default_slot_allowed_elements'] = default_slot_allowed_elements
     
@@ -335,6 +338,7 @@ def main():
     template = env.get_template("component.go.j2")
     
     # Process each JSON file
+    generated_files = []
     for filename in os.listdir(input_dir):
         if not filename.endswith(".json"):
             continue
@@ -359,7 +363,19 @@ def main():
         with open(output_path, 'w') as f:
             f.write(go_code)
         
+        generated_files.append(output_path)
         print(f"Generated {output_path}")
+    
+    # Run gofmt on all generated files
+    if generated_files:
+        print("Running gofmt on generated files...")
+        try:
+            subprocess.run(["gofmt", "-w"] + generated_files, check=True)
+            print("Successfully formatted all files with gofmt")
+        except subprocess.CalledProcessError as e:
+            print(f"Error running gofmt: {e}")
+        except FileNotFoundError:
+            print("gofmt command not found. Make sure Go is installed and in your PATH.")
 
 if __name__ == "__main__":
     main() 

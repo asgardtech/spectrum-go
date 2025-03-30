@@ -129,6 +129,12 @@
       "description": "Announces the item has been added so a parent menu can take ownership",
       "bubbles": true,
       "cancelable": false
+    },
+    {
+      "name": "click",
+      "description": "Fired when the menu item is clicked",
+      "bubbles": true,
+      "cancelable": false
     }
   ],
   "accessibility": {
