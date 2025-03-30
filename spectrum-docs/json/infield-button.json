@@ -1,0 +1,169 @@
+{
+  "name": "InfieldButton",
+  "tagName": "sp-infield-button",
+  "description": "When composing complex form fields, an infield-button can visually associate button functionality with other form fields to delivery enhanced capabilities to your visitors.",
+  "category": "Form",
+  "attributes": [
+    {
+      "name": "active",
+      "type": "boolean",
+      "description": "Whether the button appears in an active state",
+      "default": false
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "description": "Disable this control. It will not receive focus or events",
+      "default": false
+    },
+    {
+      "name": "download",
+      "type": "string",
+      "description": "Causes the browser to treat the linked URL as a download.",
+      "default": ""
+    },
+    {
+      "name": "href",
+      "type": "string",
+      "description": "The URL that the hyperlink points to.",
+      "default": ""
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "description": "An accessible label that describes the component. It will be applied to aria-label, but not visually rendered.",
+      "default": ""
+    },
+    {
+      "name": "referrerpolicy",
+      "type": "string",
+      "description": "How much of the referrer to send when following the link.",
+      "default": ""
+    },
+    {
+      "name": "rel",
+      "type": "string",
+      "description": "The relationship of the linked URL as space-separated link types.",
+      "default": ""
+    },
+    {
+      "name": "tabIndex",
+      "type": "number",
+      "description": "The tab index to apply to this control. See general documentation about the tabindex HTML property",
+      "default": 0
+    },
+    {
+      "name": "target",
+      "type": "string",
+      "description": "Where to display the linked URL, as the name for a browsing context (a tab, window, or iframe).",
+      "default": ""
+    },
+    {
+      "name": "type",
+      "type": "enum",
+      "values": ["button", "submit", "reset"],
+      "description": "The default behavior of the button. Possible values are: 'button' (default), 'submit', and 'reset'.",
+      "default": "button"
+    },
+    {
+      "name": "size",
+      "type": "enum",
+      "values": ["s", "m", "l", "xl"],
+      "description": "Size of the button: 's', 'm', 'l', 'xl'",
+      "default": "m"
+    },
+    {
+      "name": "inline",
+      "type": "enum",
+      "values": ["start", "end"],
+      "description": "Position of the button relative to the field: 'start' or 'end'",
+      "default": ""
+    },
+    {
+      "name": "block",
+      "type": "enum",
+      "values": ["start", "end"],
+      "description": "Position of the button in a vertical stack: 'start' or 'end'",
+      "default": ""
+    },
+    {
+      "name": "quiet",
+      "type": "boolean",
+      "description": "Whether the button has a diminished visual presence",
+      "default": false
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "text content to be displayed in the Button element"
+    },
+    {
+      "name": "icon",
+      "description": "icon element(s) to display at the start of the button"
+    }
+  ],
+  "events": [
+    {
+      "name": "click",
+      "description": "Fired when the button is clicked",
+      "bubbles": true,
+      "cancelable": false
+    }
+  ],
+  "accessibility": {
+    "role": "button",
+    "ariaAttributes": [
+      {
+        "name": "aria-label",
+        "description": "Set from the label attribute"
+      },
+      {
+        "name": "aria-disabled",
+        "description": "Set when the button is disabled"
+      }
+    ],
+    "keyboardInteractions": [
+      {
+        "key": "Enter",
+        "description": "Activates the button"
+      },
+      {
+        "key": "Space",
+        "description": "Activates the button"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "title": "Basic Infield Button",
+      "description": "A simple infield button with an icon",
+      "code": "<sp-infield-button label=\"Add\" size=\"m\"><sp-icon-add></sp-icon-add></sp-infield-button>"
+    },
+    {
+      "title": "Infield Button at Start",
+      "description": "An infield button positioned at the start of a field",
+      "code": "<sp-infield-button inline=\"start\" label=\"Add\"><sp-icon-add></sp-icon-add></sp-infield-button>"
+    },
+    {
+      "title": "Block Infield Button",
+      "description": "An infield button in a vertical layout",
+      "code": "<sp-infield-button block=\"start\" label=\"Increment\"><sp-icon-add size=\"xxs\"></sp-icon-add></sp-infield-button>"
+    },
+    {
+      "title": "Disabled Infield Button",
+      "description": "A disabled infield button",
+      "code": "<sp-infield-button disabled inline=\"start\" label=\"Add\"><sp-icon-add></sp-icon-add></sp-infield-button>"
+    },
+    {
+      "title": "Quiet Infield Button",
+      "description": "An infield button with less visual presence",
+      "code": "<sp-infield-button inline=\"start\" label=\"Add\" quiet><sp-icon-add></sp-icon-add></sp-infield-button>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumInfieldButton",
+    "constructorName": "InfieldButton",
+    "dependsOn": ["Button"]
+  }
+}

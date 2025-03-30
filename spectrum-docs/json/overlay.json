@@ -1,0 +1,107 @@
+{
+  "name": "Overlay",
+  "tagName": "sp-overlay",
+  "description": "An sp-overlay element is used to decorate content that you would like to present to your visitors as 'overlaid' on the rest of the application, such as dialogs, pickers, tooltips, and context menus.",
+  "category": "Container",
+  "attributes": [
+    {
+      "name": "open",
+      "type": "boolean",
+      "description": "Whether the overlay is currently open",
+      "default": false
+    },
+    {
+      "name": "delayed",
+      "type": "boolean",
+      "description": "Whether the opening of the overlay should be delayed",
+      "default": false
+    },
+    {
+      "name": "offset",
+      "type": "number",
+      "description": "Distance from the trigger element, can be a single number or an array of two numbers [x, y]"
+    },
+    {
+      "name": "placement",
+      "type": "string",
+      "description": "Where the overlay should be positioned relative to its trigger element (e.g., 'top', 'bottom', 'right-start')"
+    },
+    {
+      "name": "receives-focus",
+      "type": "string",
+      "description": "How the overlay should receive focus",
+      "values": ["true", "false", "auto"],
+      "default": "auto"
+    },
+    {
+      "name": "trigger",
+      "type": "string",
+      "description": "ID of the element that triggers the overlay, can include interaction type (e.g., 'trigger-id@click')"
+    },
+    {
+      "name": "type",
+      "type": "enum",
+      "values": ["auto", "hint", "manual", "modal", "page"],
+      "description": "The type of overlay which determines its behavior",
+      "default": "auto"
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "The content to be displayed in the overlay"
+    }
+  ],
+  "events": [
+    {
+      "name": "slottable-request",
+      "description": "Requests to add or remove slottable content",
+      "bubbles": true,
+      "cancelable": false
+    },
+    {
+      "name": "sp-closed",
+      "description": "Announces that an overlay has completed any exit animations",
+      "bubbles": true,
+      "cancelable": false
+    },
+    {
+      "name": "sp-opened",
+      "description": "Announces that an overlay has completed any entry animations",
+      "bubbles": true,
+      "cancelable": false
+    }
+  ],
+  "accessibility": {
+    "role": "dialog",
+    "ariaAttributes": [],
+    "keyboardInteractions": [
+      {
+        "key": "Escape",
+        "description": "Closes the overlay (for auto, hint, and manual types)"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "title": "Click Trigger Overlay",
+      "description": "Opening an overlay via a click interaction",
+      "code": "<sp-button id=\"trigger\">Overlay Trigger</sp-button>\n<sp-overlay trigger=\"trigger@click\" placement=\"bottom\">\n    <sp-popover>\n        <sp-dialog>\n            <h2 slot=\"heading\">Clicking opens this popover...</h2>\n            <p>But, it really could be anything. Really.</p>\n        </sp-dialog>\n    </sp-popover>\n</sp-overlay>"
+    },
+    {
+      "title": "Hover Trigger Overlay",
+      "description": "Opening an overlay via a hover interaction",
+      "code": "<sp-button id=\"trigger\">Overlay Trigger</sp-button>\n<sp-overlay trigger=\"trigger@hover\" placement=\"bottom\">\n    <sp-tooltip>\n        I'm a tooltip and I'm triggered by hovering over the button!\n    </sp-tooltip>\n</sp-overlay>"
+    },
+    {
+      "title": "Modal Overlay",
+      "description": "A modal overlay that requires user interaction before dismissal",
+      "code": "<sp-button id=\"trigger\">open modal</sp-button>\n<sp-overlay trigger=\"trigger@click\" type=\"modal\">\n    <sp-dialog-wrapper headline=\"Signin form\" dismissable underlay>\n        <p>I am a modal type overlay.</p>\n        <sp-field-label>Enter your email</sp-field-label>\n        <sp-textfield placeholder=\"test@gmail.com\"></sp-textfield>\n        <sp-action-button\n            onClick=\"\n                this.dispatchEvent(\n                    new Event('close', {\n                        bubbles: true,\n                        composed: true,\n                    })\n                );\n            \"\n        >\n            Sign in\n        </sp-action-button>\n    </sp-dialog-wrapper>\n</sp-overlay>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumOverlay",
+    "constructorName": "Overlay",
+    "dependsOn": []
+  }
+}

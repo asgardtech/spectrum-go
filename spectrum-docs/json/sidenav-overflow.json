@@ -1,0 +1,56 @@
+{
+  "name": "SidenavOverflow",
+  "tagName": "sp-sidenav-overflow",
+  "description": "A component used to handle overflow of navigation items in a sidenav component. It displays additional items in a submenu when there are too many to display in the main navigation.",
+  "category": "Navigation",
+  "attributes": [
+    {
+      "name": "label",
+      "type": "string",
+      "description": "The text label for the overflow menu",
+      "default": "More"
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "The sp-sidenav-item elements to be displayed in the overflow menu"
+    },
+    {
+      "name": "icon",
+      "description": "Icon to display for the overflow menu"
+    }
+  ],
+  "events": [],
+  "accessibility": {
+    "role": "menu",
+    "ariaAttributes": [
+      {
+        "name": "aria-expanded",
+        "description": "Indicates whether the overflow menu is expanded"
+      }
+    ],
+    "keyboardInteractions": [
+      {
+        "key": "Enter/Space",
+        "description": "Toggle the overflow menu"
+      },
+      {
+        "key": "Arrow keys",
+        "description": "Navigate between items when menu is expanded"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "title": "Sidenav with Overflow",
+      "description": "Using sidenav overflow to handle too many navigation items",
+      "code": "<sp-sidenav>\n    <sp-sidenav-item value=\"Item 1\" label=\"Item 1\"></sp-sidenav-item>\n    <sp-sidenav-item value=\"Item 2\" label=\"Item 2\"></sp-sidenav-item>\n    <sp-sidenav-overflow label=\"More\">\n        <sp-sidenav-item value=\"Item 3\" label=\"Item 3\"></sp-sidenav-item>\n        <sp-sidenav-item value=\"Item 4\" label=\"Item 4\"></sp-sidenav-item>\n        <sp-sidenav-item value=\"Item 5\" label=\"Item 5\"></sp-sidenav-item>\n    </sp-sidenav-overflow>\n</sp-sidenav>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumSidenavOverflow",
+    "constructorName": "SidenavOverflow",
+    "dependsOn": ["Sidenav", "SidenavItem"]
+  }
+}

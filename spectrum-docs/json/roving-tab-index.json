@@ -1,0 +1,68 @@
+{
+  "name": "RovingTabIndex",
+  "tagName": "",
+  "description": "Roving tabindex is a pattern whereby multiple focusable elements are represented by a single tabindex=0 element, while the individual elements maintain tabindex=-1 and are accessed via arrow keys. This helps keyboard users tab through a page without stopping on every element in a large collection.",
+  "category": "Utility",
+  "attributes": [
+    {
+      "name": "direction",
+      "type": "string",
+      "description": "Customizes which arrow keys manage element focus",
+      "values": ["both", "vertical", "horizontal", "grid"],
+      "default": "both"
+    },
+    {
+      "name": "focusInIndex",
+      "type": "function",
+      "description": "Controls which element receives tabindex=0 while focus is outside the container"
+    },
+    {
+      "name": "elements",
+      "type": "function",
+      "description": "Provides the elements that will have their tabindex managed"
+    },
+    {
+      "name": "isFocusableElement",
+      "type": "function",
+      "description": "Describes the state an element must be in to receive focus"
+    },
+    {
+      "name": "listenerScope",
+      "type": "object",
+      "description": "Outlines which parts of a container's DOM to listen for arrow key presses"
+    }
+  ],
+  "slots": [],
+  "events": [],
+  "accessibility": {
+    "role": "",
+    "ariaAttributes": [],
+    "keyboardInteractions": [
+      {
+        "key": "ArrowLeft/ArrowRight",
+        "description": "Navigate horizontally between elements (when direction is 'horizontal' or 'both')"
+      },
+      {
+        "key": "ArrowUp/ArrowDown",
+        "description": "Navigate vertically between elements (when direction is 'vertical' or 'both')"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "title": "Basic RovingTabindexController",
+      "description": "Managing a collection of buttons with roving tabindex",
+      "code": "import { html, LitElement } from 'lit';\nimport { RovingTabindexController } from '@spectrum-web-components/reactive-controllers/RovingTabindex.js';\nimport type { Button } from '@spectrum-web-components/button';\n\nclass Container extends LitElement {\n    rovingTabindexController = new RovingTabindexController<Button>(this, {\n        elements: () => [...this.querySelectorAll('sp-button')],\n    });\n\n    render() {\n        return html`\n            <slot></slot>\n        `;\n    }\n}"
+    },
+    {
+      "title": "Advanced RovingTabindexController",
+      "description": "Customizing roving tabindex behavior with options",
+      "code": "import { html, LitElement } from 'lit';\nimport { RovingTabindexController } from '@spectrum-web-components/reactive-controllers/RovingTabindex.js';\nimport type { Button } from '@spectrum-web-components/button';\n\nclass Container extends LitElement {\n    rovingTabindexController = new RovingTabindexController<Button>(this, {\n        focusInIndex: (buttons) => this.selected\n            ? buttons.indexOf(this.selected)\n            : 0,\n        direction: 'horizontal',\n        elementEnterAction: (button) => this.selected = button,\n        elements: () => [...this.querySelectorAll('sp-button')],\n        isFocusableElement: (button) => !button.disabled,\n    });\n\n    selected!: Button;\n\n    render() {\n        return html`<slot></slot>`;\n    }\n}"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumRovingTabIndex",
+    "constructorName": "RovingTabIndex",
+    "dependsOn": []
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "name": "Breadcrumbs",
+  "tagName": "sp-breadcrumbs",
+  "description": "A sp-breadcrumbs component displays a hierarchy of links to the current page or resource in an application.",
+  "category": "Navigation",
+  "attributes": [
+    {
+      "name": "compact",
+      "type": "boolean",
+      "description": "Compact option is useful for reducing the height of the breadcrumbs",
+      "default": false
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "description": "Accessible name for the Breadcrumbs component",
+      "default": ""
+    },
+    {
+      "name": "max-visible-items",
+      "type": "number",
+      "description": "Override the maximum number of visible items",
+      "default": 4
+    },
+    {
+      "name": "menu-label",
+      "type": "string",
+      "description": "Change the default label of the action menu",
+      "default": "More items"
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "Breadcrumb items"
+    },
+    {
+      "name": "icon",
+      "description": "Change the default icon of the action menu"
+    },
+    {
+      "name": "root",
+      "description": "Breadcrumb item to always display"
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "description": "Announces the selected breadcrumb item",
+      "bubbles": true,
+      "cancelable": false
+    }
+  ],
+  "accessibility": {
+    "role": "navigation",
+    "ariaAttributes": [
+      {
+        "name": "aria-label",
+        "description": "Set from the label attribute to provide an accessible name"
+      }
+    ],
+    "keyboardInteractions": []
+  },
+  "examples": [
+    {
+      "title": "Basic Breadcrumbs",
+      "description": "A simple breadcrumb navigation",
+      "code": "<sp-breadcrumbs>\n  <sp-breadcrumb-item value=\"1\">Home</sp-breadcrumb-item>\n  <sp-breadcrumb-item value=\"2\">Trend</sp-breadcrumb-item>\n  <sp-breadcrumb-item value=\"3\">March 2019 Assets</sp-breadcrumb-item>\n</sp-breadcrumbs>"
+    },
+    {
+      "title": "Compact Breadcrumbs",
+      "description": "Reduced height breadcrumbs",
+      "code": "<sp-breadcrumbs compact>\n  <sp-breadcrumb-item value=\"1\">Home</sp-breadcrumb-item>\n  <sp-breadcrumb-item value=\"2\">Trend</sp-breadcrumb-item>\n  <sp-breadcrumb-item value=\"3\">March 2019 Assets</sp-breadcrumb-item>\n</sp-breadcrumbs>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumBreadcrumbs",
+    "constructorName": "Breadcrumbs",
+    "dependsOn": ["BreadcrumbItem"]
+  }
+}

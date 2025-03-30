@@ -1,0 +1,110 @@
+{
+  "name": "Swatch",
+  "tagName": "sp-swatch",
+  "description": "An sp-swatch shows a small sample of a fill — such as a color, gradient, texture, or material — that is intended to be applied to an object.",
+  "category": "Color",
+  "attributes": [
+    {
+      "name": "border",
+      "type": "enum",
+      "values": ["none", "light"],
+      "description": "Controls the border style of the swatch"
+    },
+    {
+      "name": "color",
+      "type": "string",
+      "description": "The color value that the swatch will display",
+      "default": ""
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "description": "Disable this control. It will not receive focus or events",
+      "default": false
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "description": "An accessible label for the swatch",
+      "default": ""
+    },
+    {
+      "name": "mixed-value",
+      "type": "boolean",
+      "description": "Indicates the swatch represents more than one color",
+      "default": false
+    },
+    {
+      "name": "nothing",
+      "type": "boolean",
+      "description": "Indicates the swatch represents no color or transparent",
+      "default": false
+    },
+    {
+      "name": "rounding",
+      "type": "enum",
+      "values": ["none", "full"],
+      "description": "Controls the corner rounding of the swatch"
+    },
+    {
+      "name": "selected",
+      "type": "boolean",
+      "description": "Whether the swatch is selected",
+      "default": false
+    },
+    {
+      "name": "shape",
+      "type": "enum",
+      "values": ["rectangle"],
+      "description": "The shape of the swatch (default is square)"
+    },
+    {
+      "name": "size",
+      "type": "enum",
+      "values": ["xs", "s", "m", "l"],
+      "description": "The size of the swatch",
+      "default": "m"
+    }
+  ],
+  "slots": [],
+  "events": [
+    {
+      "name": "change",
+      "description": "Fired when the swatch is selected",
+      "bubbles": true,
+      "cancelable": false
+    }
+  ],
+  "accessibility": {
+    "role": "button",
+    "ariaAttributes": [
+      {
+        "name": "aria-checked",
+        "description": "Set to 'true' when selected, 'mixed' when representing multiple values"
+      }
+    ],
+    "keyboardInteractions": [
+      {
+        "key": "Enter/Space",
+        "description": "Select the swatch"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "title": "Basic Swatch",
+      "description": "A standard color swatch",
+      "code": "<sp-swatch color=\"rgb(255 0 0 / 0.7)\"></sp-swatch>"
+    },
+    {
+      "title": "Swatch Variants",
+      "description": "Different swatch variants with various attributes",
+      "code": "<div style=\"display: flex; gap: 5px;\">\n    <sp-swatch color=\"rgb(255 0 0 / 0.7)\"></sp-swatch>\n    <sp-swatch rounding=\"none\" color=\"rgb(255 0 0 / 0.7)\"></sp-swatch>\n    <sp-swatch rounding=\"full\" color=\"rgb(255 0 0 / 0.7)\"></sp-swatch>\n    <sp-swatch border=\"light\" color=\"rgb(255 0 0 / 0.7)\"></sp-swatch>\n    <sp-swatch border=\"none\" color=\"rgb(255 0 0 / 0.7)\"></sp-swatch>\n    <sp-swatch nothing></sp-swatch>\n    <sp-swatch shape=\"rectangle\" color=\"rgb(255 0 0 / 0.7)\"></sp-swatch>\n    <sp-swatch disabled color=\"rgb(255 0 0 / 0.7)\"></sp-swatch>\n    <sp-swatch mixed-value></sp-swatch>\n</div>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumSwatch",
+    "constructorName": "Swatch",
+    "dependsOn": []
+  }
+}

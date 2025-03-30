@@ -1,0 +1,26 @@
+{
+  "name": "ReactiveControllers",
+  "tagName": "",
+  "description": "Reactive controllers are a tool for code reuse and composition within Lit, a core dependency of Spectrum Web Components. They can be reused across components to reduce both code complexity and size, and to deliver a consistent user experience.",
+  "category": "Utility",
+  "attributes": [],
+  "slots": [],
+  "events": [],
+  "accessibility": {
+    "role": "",
+    "ariaAttributes": [],
+    "keyboardInteractions": []
+  },
+  "examples": [
+    {
+      "title": "Available Controllers",
+      "description": "The collection of reactive controllers provided by Spectrum Web Components",
+      "code": "// Import examples for various controllers:\n\n// ColorController\nimport { ColorController } from '@spectrum-web-components/reactive-controllers/src/ColorController.js';\n\n// ElementResolutionController\nimport { ElementResolutionController } from '@spectrum-web-components/reactive-controllers/ElementResolution.js';\n\n// MatchMediaController\nimport { MatchMediaController } from '@spectrum-web-components/reactive-controllers/MatchMedia.js';\n\n// RovingTabindexController\nimport { RovingTabindexController } from '@spectrum-web-components/reactive-controllers/src/RovingTabindex.js';\n\n// PendingStateController\nimport { PendingStateController } from '@spectrum-web-components/reactive-controllers/src/PendingState.js';\n\n// And more..."
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumReactiveControllers",
+    "constructorName": "ReactiveControllers",
+    "dependsOn": []
+  }
+}

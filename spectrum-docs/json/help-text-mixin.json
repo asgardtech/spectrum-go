@@ -1,0 +1,61 @@
+{
+  "name": "HelpTextMixin",
+  "tagName": "",
+  "description": "A mixin that allows associating slotted sp-help-text elements with the elements they describe, providing accessible ARIA references between elements in different shadow roots.",
+  "category": "Utility",
+  "attributes": [
+    {
+      "name": "helpTextId",
+      "type": "string",
+      "description": "The id attribute of the associated sp-help-text"
+    },
+    {
+      "name": "renderHelpText",
+      "type": "function",
+      "description": "A method that returns a TemplateResult with the help-text and negative-help-text slots"
+    }
+  ],
+  "slots": [
+    {
+      "name": "help-text",
+      "description": "Default or non-negative help text to associate to your form element"
+    },
+    {
+      "name": "negative-help-text",
+      "description": "Negative help text to associate to your form element when invalid"
+    }
+  ],
+  "events": [],
+  "accessibility": {
+    "role": "",
+    "ariaAttributes": [
+      {
+        "name": "aria-describedby",
+        "description": "Automatically managed to reference the help text elements"
+      }
+    ],
+    "keyboardInteractions": []
+  },
+  "examples": [
+    {
+      "title": "Internal Mode Usage",
+      "description": "Using ManageHelpText to describe an element within the custom element's shadow root",
+      "code": "import { SpectrumElement, html } from '@spectrum-web-components/base';\nimport { ManageHelpText } from '@spectrum-web-components/help-text/src/manage-help-text.js';\n\nexport class MyElement extends ManageHelpText(SpectrumElement) {\n    invalid = false;\n\n    render() {\n        return html`\n            <input aria-describedby=${this.helpTextId} />\n            ${this.renderHelpText(this.invalid)}\n        `;\n    }\n}"
+    },
+    {
+      "title": "External Mode Usage",
+      "description": "Using ManageHelpText to describe the custom element itself",
+      "code": "import { SpectrumElement, html } from '@spectrum-web-components/base';\nimport { ManageHelpText } from '@spectrum-web-components/help-text/src/manage-help-text.js';\n\nexport class MyElement extends ManageHelpText(SpectrumElement, {\n    mode: 'external',\n}) {\n    invalid = false;\n\n    render() {\n        return html`\n            ${this.renderHelpText(this.invalid)}\n        `;\n    }\n}"
+    },
+    {
+      "title": "Using with Self-managed Validity",
+      "description": "Using help-text with a component that manages its own validity",
+      "code": "<sp-field-label for=\"textfield\">Stay \"Positive\"</sp-field-label>\n<sp-textfield\n    id=\"textfield\"\n    pattern=\"[P][o][s][i][t][i][v][e]\"\n    value=\"Positive\"\n>\n    <sp-help-text slot=\"help-text\">\n        Tell us how you are feeling today.\n    </sp-help-text>\n    <sp-help-text slot=\"negative-help-text\">Please be \"Positive\".</sp-help-text>\n</sp-textfield>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumHelpTextMixin",
+    "constructorName": "HelpTextMixin",
+    "dependsOn": ["HelpText"]
+  }
+}

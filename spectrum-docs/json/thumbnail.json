@@ -1,0 +1,93 @@
+{
+  "name": "Thumbnail",
+  "tagName": "sp-thumbnail",
+  "description": "An sp-thumbnail can be used to display a preview of an image, layer, or effect. Thumbnails are not keyboard-focusable since they're intended to be used inside components that a user sets focus to.",
+  "category": "Media",
+  "attributes": [
+    {
+      "name": "background",
+      "type": "string",
+      "description": "CSS background property value to customize the letterboxing background"
+    },
+    {
+      "name": "cover",
+      "type": "boolean",
+      "description": "Causes the content to fill the space provided by the thumbnail element",
+      "default": false
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "description": "Disables the thumbnail",
+      "default": false
+    },
+    {
+      "name": "focused",
+      "type": "boolean",
+      "description": "Displays the thumbnail with a focus indicator",
+      "default": false
+    },
+    {
+      "name": "layer",
+      "type": "boolean",
+      "description": "Shows the thumbnail with a layer style, for use in layer management interfaces",
+      "default": false
+    },
+    {
+      "name": "selected",
+      "type": "boolean",
+      "description": "Shows the thumbnail in a selected state",
+      "default": false
+    },
+    {
+      "name": "size",
+      "type": "enum",
+      "values": ["50", "75", "100", "200", "300", "400", "500", "600", "700", "800", "900", "1000"],
+      "description": "The size of the thumbnail in pixels",
+      "default": "100"
+    }
+  ],
+  "slots": [
+    {
+      "name": "image",
+      "description": "Image element to present in the thumbnail"
+    },
+    {
+      "name": "default",
+      "description": "Default slot for the content to be displayed in the thumbnail"
+    }
+  ],
+  "events": [],
+  "accessibility": {
+    "role": "img",
+    "ariaAttributes": [],
+    "keyboardInteractions": []
+  },
+  "examples": [
+    {
+      "title": "Basic Thumbnail",
+      "description": "A simple thumbnail with an image",
+      "code": "<sp-thumbnail>\n    <img src=\"https://picsum.photos/100/100\" alt=\"Demo Image\" />\n</sp-thumbnail>"
+    },
+    {
+      "title": "Different Sizes",
+      "description": "Thumbnails with different size values",
+      "code": "<sp-thumbnail size=\"50\">\n    <img src=\"https://picsum.photos/100/100\" alt=\"Demo Image\" />\n</sp-thumbnail>\n\n<sp-thumbnail size=\"200\">\n    <img src=\"https://picsum.photos/100/100\" alt=\"Demo Image\" />\n</sp-thumbnail>"
+    },
+    {
+      "title": "Layer Thumbnails",
+      "description": "Thumbnails for use in layer management interfaces",
+      "code": "<sp-thumbnail layer>\n    <img src=\"https://picsum.photos/400/400\" alt=\"Demo Image\" />\n</sp-thumbnail>\n\n<sp-thumbnail layer selected>\n    <img src=\"https://picsum.photos/500/100\" alt=\"Demo Image\" />\n</sp-thumbnail>"
+    },
+    {
+      "title": "Non-square Content",
+      "description": "Thumbnails handling non-square content with letterboxing",
+      "code": "<sp-thumbnail>\n    <img src=\"https://picsum.photos/300/400\" alt=\"Demo Image\" />\n</sp-thumbnail>\n\n<sp-thumbnail cover>\n    <img src=\"https://picsum.photos/300/400\" alt=\"Demo Image\" />\n</sp-thumbnail>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumThumbnail",
+    "constructorName": "Thumbnail",
+    "dependsOn": []
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "name": "TopNav",
+  "tagName": "sp-top-nav",
+  "description": "An sp-top-nav delivers site navigation, particularly for when that navigation will change the majority of the page's content and/or the page's URL when selected. All primary elements are directly accessible in the tab order.",
+  "category": "Navigation",
+  "attributes": [
+    {
+      "name": "ignore-url-parts",
+      "type": "string",
+      "description": "A space separated list of parts of the URL to ignore when matching for the selected Top Nav Item. Supported values: 'hash', 'search'",
+      "default": ""
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "description": "Accessible label for the navigation",
+      "default": ""
+    },
+    {
+      "name": "quiet",
+      "type": "boolean",
+      "description": "The Top Nav is displayed without a border",
+      "default": false
+    },
+    {
+      "name": "selected",
+      "type": "string",
+      "description": "The currently selected navigation item"
+    },
+    {
+      "name": "selection-indicator-style",
+      "type": "string",
+      "description": "Style to apply to the selection indicator"
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "Navigation items to display as a group"
+    }
+  ],
+  "events": [],
+  "accessibility": {
+    "role": "navigation",
+    "ariaAttributes": [
+      {
+        "name": "aria-label",
+        "description": "Label for the navigation region"
+      }
+    ],
+    "keyboardInteractions": []
+  },
+  "examples": [
+    {
+      "title": "Basic Top Navigation",
+      "description": "A standard top navigation bar with items",
+      "code": "<sp-top-nav>\n    <sp-top-nav-item href=\"#\">Site Name</sp-top-nav-item>\n    <sp-top-nav-item href=\"#page-1\" style=\"margin-inline-start: auto;\">\n        Page 1\n    </sp-top-nav-item>\n    <sp-top-nav-item href=\"#page-2\">Page 2</sp-top-nav-item>\n    <sp-top-nav-item href=\"#page-3\">Page 3</sp-top-nav-item>\n</sp-top-nav>"
+    },
+    {
+      "title": "Top Navigation with Action Menu",
+      "description": "Top navigation with navigation items and an action menu",
+      "code": "<sp-top-nav>\n    <sp-top-nav-item href=\"#\">Site Name</sp-top-nav-item>\n    <sp-top-nav-item href=\"#page-1\">Page 1</sp-top-nav-item>\n    <sp-top-nav-item href=\"#page-2\">Page 2</sp-top-nav-item>\n    <sp-action-menu\n        label=\"Account\"\n        placement=\"bottom-end\"\n        style=\"margin-inline-start: auto;\"\n        quiet\n    >\n        <sp-menu-item>Account Settings</sp-menu-item>\n        <sp-menu-item>My Profile</sp-menu-item>\n        <sp-menu-divider></sp-menu-divider>\n        <sp-menu-item>Sign Out</sp-menu-item>\n    </sp-action-menu>\n</sp-top-nav>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumTopNav",
+    "constructorName": "TopNav",
+    "dependsOn": ["TopNavItem"]
+  }
+}

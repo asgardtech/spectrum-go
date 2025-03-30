@@ -1,0 +1,116 @@
+{
+  "name": "ColorWheel",
+  "tagName": "sp-color-wheel",
+  "description": "An sp-color-wheel lets users visually change an individual channel of a color on a circular track.",
+  "category": "Color",
+  "attributes": [
+    {
+      "name": "color",
+      "type": "string",
+      "description": "The current color value in various supported formats (Hex, HSV, HSL, RGB, color strings)"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "description": "Disable this control. It will not receive focus or events",
+      "default": false
+    },
+    {
+      "name": "focused",
+      "type": "boolean",
+      "description": "Indicates whether the wheel has focus",
+      "default": false
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "description": "Accessible label for the wheel",
+      "default": "hue"
+    },
+    {
+      "name": "step",
+      "type": "number",
+      "description": "The increment amount for keyboard navigation",
+      "default": 1
+    },
+    {
+      "name": "tabindex",
+      "type": "number",
+      "description": "The tab index to apply to this control"
+    },
+    {
+      "name": "value",
+      "type": "number",
+      "description": "The current value of the wheel (hue)"
+    }
+  ],
+  "slots": [
+    {
+      "name": "gradient",
+      "description": "A custom gradient visually outlining the available color values"
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "description": "An alteration to the value of the Color Wheel has been committed by the user",
+      "bubbles": true,
+      "cancelable": false
+    },
+    {
+      "name": "input",
+      "description": "The value of the Color Wheel has changed",
+      "bubbles": true,
+      "cancelable": false
+    }
+  ],
+  "accessibility": {
+    "role": "slider",
+    "ariaAttributes": [
+      {
+        "name": "aria-valuetext",
+        "description": "Provides a text representation of the selected color"
+      },
+      {
+        "name": "aria-valuemin",
+        "description": "Minimum value of the wheel (0)"
+      },
+      {
+        "name": "aria-valuemax",
+        "description": "Maximum value of the wheel (360 for hue)"
+      }
+    ],
+    "keyboardInteractions": [
+      {
+        "key": "Arrow keys",
+        "description": "Move the wheel handle in the corresponding direction"
+      },
+      {
+        "key": "Home/End",
+        "description": "Navigate to the minimum/maximum values"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "title": "Basic Color Wheel",
+      "description": "A standard color wheel",
+      "code": "<sp-color-wheel></sp-color-wheel>"
+    },
+    {
+      "title": "Disabled Color Wheel",
+      "description": "A color wheel in a disabled state",
+      "code": "<sp-color-wheel disabled></sp-color-wheel>"
+    },
+    {
+      "title": "Sized Color Wheel",
+      "description": "A color wheel with custom dimensions",
+      "code": "<sp-color-wheel style=\"width: 300px; height: 300px;\"></sp-color-wheel>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumColorWheel",
+    "constructorName": "ColorWheel",
+    "dependsOn": ["ColorHandle"]
+  }
+}

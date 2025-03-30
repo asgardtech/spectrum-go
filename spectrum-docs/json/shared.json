@@ -1,0 +1,36 @@
+{
+  "name": "Shared",
+  "tagName": "",
+  "description": "A collection of shared mixins, tools, and utilities that support developing Spectrum Web Components.",
+  "category": "Utility",
+  "attributes": [],
+  "slots": [],
+  "events": [],
+  "accessibility": {
+    "role": "",
+    "ariaAttributes": [],
+    "keyboardInteractions": []
+  },
+  "examples": [
+    {
+      "title": "Focusable Base Class",
+      "description": "Using the Focusable base class to manage focus",
+      "code": "import { Focusable } from '@spectrum-web-components/shared';\nimport { html } from 'lit-element';\n\nclass FocusableButton extends Focusable {\n    public static override get styles() {\n        return [...super.styles];\n    }\n    \n    public get focusElement(): HTMLElement {\n        return this.shadowRoot.querySelector('#button') as HTMLElement;\n    }\n\n    protected override render() {\n        return html`\n            <button id=\"button\">\n                Focus for this button is being managed by the focusable base class.\n            </button>\n        `;\n    }\n}"
+    },
+    {
+      "title": "ObserveSlotPresence Mixin",
+      "description": "Tracking the presence of slotted content",
+      "code": "import { ObserveSlotPresence } from '@spectrum-web-components/shared';\nimport { LitElement, html } from 'lit-element';\n\nclass ObserveSlotPresenceElement extends ObserveSlotPresence(LitElement, '[slot=\"conditional-slot\"]') {\n    // translate the mixin properties into locally understandable language\n    protected get hasConditionalSlotContent() {\n        return this.slotContentIsPresent;\n    }\n    \n    protected override render() {\n        return html`\n            <button id=\"button\">\n                ${this.hasConditionalSlotContent\n                    ? html`<slot name=\"conditional-slot\"></slot>`\n                    : html``\n                }\n            </button>\n        `;\n    }\n    \n    protected updated() {\n        console.log(this.slotContentIsPresent); // => true when content is present\n    }\n}"
+    },
+    {
+      "title": "ObserveSlotText Mixin",
+      "description": "Observing text changes in slots",
+      "code": "import { ObserveSlotText } from '@spectrum-web-components/shared';\nimport { LitElement, html } from 'lit-element';\n\nclass ObserveSlotTextElement extends ObserveSlotText(LitElement, '#observing-slot') {\n    protected override render() {\n        return html`\n            <button id=\"button\">\n                <slot\n                    id=\"observing-slot\"\n                    @slotchange=${this.manageObservedSlot}\n                ></slot>\n            </button>\n        `;\n    }\n    \n    protected updated() {\n        console.log(this.slotHasContent); // => true when text content is present\n    }\n}"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumShared",
+    "constructorName": "Shared",
+    "dependsOn": []
+  }
+}

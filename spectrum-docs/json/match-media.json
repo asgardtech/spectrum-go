@@ -1,0 +1,33 @@
+{
+  "name": "MatchMedia",
+  "tagName": "",
+  "description": "The MatchMediaController allows for querying the state of a CSS media query from JavaScript while providing an event-based API to listen for changes to whether that query is currently matched or not.",
+  "category": "Utility",
+  "attributes": [
+    {
+      "name": "matches",
+      "type": "boolean",
+      "description": "Indicates whether the media query currently matches",
+      "default": false
+    }
+  ],
+  "slots": [],
+  "events": [],
+  "accessibility": {
+    "role": "",
+    "ariaAttributes": [],
+    "keyboardInteractions": []
+  },
+  "examples": [
+    {
+      "title": "Orientation Detection",
+      "description": "Using MatchMediaController to render different content based on screen orientation",
+      "code": "import { html, LitElement } from 'lit';\nimport { MatchMediaController } from '@spectrum-web-components/reactive-controllers/MatchMedia.js';\n\nclass Host extends LitElement {\n    orientationLandscape = new MatchMediaController(\n        this,\n        '(orientation: landscape)'\n    );\n\n    render() {\n        if (this.orientationLandscape.matches) {\n            return html`\n                The orientation is landscape.\n            `;\n        }\n        return html`\n            The orientation is portrait.\n        `;\n    }\n}"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumMatchMedia",
+    "constructorName": "MatchMedia",
+    "dependsOn": []
+  }
+}

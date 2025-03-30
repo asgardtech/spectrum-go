@@ -1,0 +1,89 @@
+{
+  "name": "Dropzone",
+  "tagName": "sp-dropzone",
+  "description": "A dropzone is an area on the screen into which an object can be dragged and dropped to accomplish a task. For example, a DropZone might be used in an upload workflow to enable the user to drop a file from their operating system into the DropZone, which is a more efficient and intuitive action, rather than utilize the standard \"Choose File\" dialog.",
+  "category": "Interaction",
+  "attributes": [
+    {
+      "name": "isDragged",
+      "type": "boolean",
+      "description": "Indicates that files are currently being dragged over the dropzone.",
+      "default": false
+    },
+    {
+      "name": "dropEffect",
+      "type": "enum",
+      "values": ["copy", "move", "link", "none"],
+      "description": "Controls the feedback (typically visual) the user is given during a drag and drop operation",
+      "default": "copy"
+    },
+    {
+      "name": "isFilled",
+      "type": "boolean",
+      "description": "Set this property to indicate that the component is in a filled state.",
+      "default": false
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "The default slot on an sp-dropzone is a great place to place upload instructions built with an sp-illustrated-message or other information, possibly even built from data provided by the upload, to support users successfully interacting with the drag and drop based features of your application"
+    }
+  ],
+  "events": [
+    {
+      "name": "sp-dropzone-dragleave",
+      "description": "Announces when dragged files have been moved out of the UI without having been dropped.",
+      "bubbles": true,
+      "cancelable": false
+    },
+    {
+      "name": "sp-dropzone-dragover",
+      "description": "Announces when files have been dragged over the UI, but not yet dropped.",
+      "bubbles": true,
+      "cancelable": false
+    },
+    {
+      "name": "sp-dropzone-drop",
+      "description": "Announces when dragged files have been dropped on the UI.",
+      "bubbles": true,
+      "cancelable": false
+    },
+    {
+      "name": "sp-dropzone-should-accept",
+      "description": "A cancellable event that confirms whether or not a file dropped on the UI should be accepted.",
+      "bubbles": true,
+      "cancelable": true
+    }
+  ],
+  "accessibility": {
+    "ariaAttributes": [
+      {
+        "name": "role",
+        "description": "Consider providing an appropriate role attribute (e.g., 'region') to the dropzone"
+      },
+      {
+        "name": "aria-label",
+        "description": "Should be provided to describe the purpose of the dropzone"
+      }
+    ],
+    "description": "When actions can be enacted directly on the dropzone element itself, supply a tabindex so keyboard users can find this interaction in the tab order. For screen readers, announce what the actions are, how to complete them, and when they are completed by supplying the appropriate role and aria-label attributes."
+  },
+  "examples": [
+    {
+      "title": "Basic Dropzone",
+      "description": "A simple dropzone with illustrated message",
+      "code": "<sp-dropzone tabindex=\"0\" aria-label=\"Drop files here to upload\">\n  <sp-illustrated-message heading=\"Drag and Drop Your File\" description=\"Or click to browse your files\">\n    <svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 150 103\" width=\"150\" height=\"103\">\n      <!-- SVG content -->\n    </svg>\n  </sp-illustrated-message>\n</sp-dropzone>"
+    },
+    {
+      "title": "Filled Dropzone",
+      "description": "A dropzone in the filled state",
+      "code": "<sp-dropzone is-filled tabindex=\"0\" aria-label=\"Your file has been uploaded\">\n  <div>\n    <h3>File uploaded successfully</h3>\n    <p>example.pdf (2.4 MB)</p>\n    <sp-button>Remove</sp-button>\n  </div>\n</sp-dropzone>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumDropzone",
+    "constructorName": "Dropzone",
+    "dependsOn": ["IllustratedMessage"]
+  }
+}

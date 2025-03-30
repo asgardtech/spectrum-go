@@ -1,0 +1,221 @@
+{
+  "name": "Search",
+  "tagName": "sp-search",
+  "description": "Delivers a single input field with a \"reset\" button as well as a magnifying glass icon with which to power search interactions.",
+  "category": "Form",
+  "attributes": [
+    {
+      "name": "action",
+      "type": "string",
+      "description": "The action URL for the search form",
+      "default": ""
+    },
+    {
+      "name": "autocomplete",
+      "type": "string",
+      "description": "What form of assistance should be provided when attempting to supply a value to the form control",
+      "default": ""
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "description": "Disable this control. It will not receive focus or events",
+      "default": false
+    },
+    {
+      "name": "grows",
+      "type": "boolean",
+      "description": "Whether a form control delivered with the `multiline` attribute will change size vertically to accommodate longer input",
+      "default": false
+    },
+    {
+      "name": "holdValueOnEscape",
+      "type": "boolean",
+      "description": "Controls whether the typed value should be held when the Escape key is pressed",
+      "default": false
+    },
+    {
+      "name": "invalid",
+      "type": "boolean",
+      "description": "Whether the `value` held by the form control is invalid",
+      "default": false
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "description": "A string applied via `aria-label` to the form control when a user visible label is not provided",
+      "default": "Search"
+    },
+    {
+      "name": "maxlength",
+      "type": "number",
+      "description": "Defines the maximum string length that the user can enter",
+      "default": -1
+    },
+    {
+      "name": "method",
+      "type": "string",
+      "description": "HTTP method to use for the form submission",
+      "default": ""
+    },
+    {
+      "name": "minlength",
+      "type": "number",
+      "description": "Defines the minimum string length that the user can enter",
+      "default": -1
+    },
+    {
+      "name": "multiline",
+      "type": "boolean",
+      "description": "Whether the form control should accept a value longer than one line",
+      "default": false
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "Name of the form control",
+      "default": ""
+    },
+    {
+      "name": "pattern",
+      "type": "string",
+      "description": "Pattern the `value` must match to be valid",
+      "default": ""
+    },
+    {
+      "name": "placeholder",
+      "type": "string",
+      "description": "Text that appears in the form control when it has no value set",
+      "default": "Search"
+    },
+    {
+      "name": "quiet",
+      "type": "boolean",
+      "description": "Whether to display the form control with no visible background",
+      "default": false
+    },
+    {
+      "name": "readonly",
+      "type": "boolean",
+      "description": "Whether a user can interact with the value of the form control",
+      "default": false
+    },
+    {
+      "name": "required",
+      "type": "boolean",
+      "description": "Whether the form control will be found to be invalid when it holds no `value`",
+      "default": false
+    },
+    {
+      "name": "rows",
+      "type": "number",
+      "description": "The specific number of rows the form control should provide in the user interface",
+      "default": -1
+    },
+    {
+      "name": "size",
+      "type": "enum",
+      "values": ["s", "m", "l", "xl"],
+      "description": "Size variant of the search field",
+      "default": "m"
+    },
+    {
+      "name": "tabIndex",
+      "type": "number",
+      "description": "The tab index to apply to this control",
+      "default": 0
+    },
+    {
+      "name": "valid",
+      "type": "boolean",
+      "description": "Whether the `value` held by the form control is valid",
+      "default": false
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "description": "The value held by the form control",
+      "default": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "help-text",
+      "description": "Default or non-negative help text to associate to your form element"
+    },
+    {
+      "name": "negative-help-text",
+      "description": "Negative help text to associate to your form element when `invalid`"
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "description": "An alteration to the value of the element has been committed by the user",
+      "bubbles": true,
+      "cancelable": false
+    },
+    {
+      "name": "input",
+      "description": "The value of the element has changed",
+      "bubbles": true,
+      "cancelable": false
+    },
+    {
+      "name": "submit",
+      "description": "The search form has been submitted",
+      "bubbles": true,
+      "cancelable": true
+    }
+  ],
+  "accessibility": {
+    "role": "search",
+    "ariaAttributes": [
+      {
+        "name": "aria-label",
+        "description": "Set from the label attribute"
+      },
+      {
+        "name": "aria-invalid",
+        "description": "Set when the control is invalid"
+      }
+    ],
+    "keyboardInteractions": [
+      {
+        "key": "Enter",
+        "description": "Submits the search form"
+      },
+      {
+        "key": "Escape",
+        "description": "Clears the search input unless holdValueOnEscape is true"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "title": "Basic Search",
+      "description": "A simple search field",
+      "code": "<sp-search></sp-search>"
+    },
+    {
+      "title": "Small Search",
+      "description": "A search field with small size",
+      "code": "<sp-search size=\"s\"></sp-search>"
+    },
+    {
+      "title": "Large Search",
+      "description": "A search field with large size",
+      "code": "<sp-search size=\"l\"></sp-search>"
+    },
+    {
+      "title": "Quiet Search",
+      "description": "A search field with less visual presence",
+      "code": "<sp-search quiet></sp-search>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumSearch",
+    "constructorName": "Search",
+    "dependsOn": ["Textfield", "Icon"]
+  }
+}

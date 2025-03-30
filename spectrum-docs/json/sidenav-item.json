@@ -1,0 +1,162 @@
+{
+  "name": "SidenavItem",
+  "tagName": "sp-sidenav-item",
+  "description": "Child item of a sidenav element that can also be a parent for further subdivisions of navigation. Can toggle visibility of child items.",
+  "category": "Navigation",
+  "attributes": [
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "description": "Disable this control. It will not receive focus or events",
+      "default": false
+    },
+    {
+      "name": "download",
+      "type": "string",
+      "description": "Causes the browser to treat the linked URL as a download",
+      "default": ""
+    },
+    {
+      "name": "expanded",
+      "type": "boolean",
+      "description": "Whether the child items are visible",
+      "default": false
+    },
+    {
+      "name": "href",
+      "type": "string",
+      "description": "The URL that the hyperlink points to",
+      "default": ""
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "description": "An accessible label describing the component. Applied to aria-label but not visually rendered",
+      "default": ""
+    },
+    {
+      "name": "referrerpolicy",
+      "type": "string",
+      "description": "How much of the referrer to send when following the link",
+      "default": ""
+    },
+    {
+      "name": "rel",
+      "type": "string",
+      "description": "The relationship of the linked URL as space-separated link types",
+      "default": ""
+    },
+    {
+      "name": "selected",
+      "type": "boolean",
+      "description": "Whether this item is currently selected",
+      "default": false
+    },
+    {
+      "name": "tabIndex",
+      "type": "number",
+      "description": "The tab index to apply to this control",
+      "default": 0
+    },
+    {
+      "name": "target",
+      "type": "string",
+      "description": "Where to display the linked URL (e.g., '_blank', '_self')",
+      "default": ""
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "description": "The value of this item when selected",
+      "default": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "The Sidenav Items to display as children of this item"
+    },
+    {
+      "name": "icon",
+      "description": "Optional icon to display with the item"
+    }
+  ],
+  "events": [
+    {
+      "name": "click",
+      "description": "Fired when the item is clicked",
+      "bubbles": true,
+      "cancelable": false
+    }
+  ],
+  "accessibility": {
+    "ariaAttributes": [
+      {
+        "name": "aria-label",
+        "description": "Set from the label attribute if provided"
+      },
+      {
+        "name": "aria-selected",
+        "description": "Set when the item is selected"
+      },
+      {
+        "name": "aria-expanded",
+        "description": "Set when the item has children and can be expanded/collapsed"
+      },
+      {
+        "name": "aria-disabled",
+        "description": "Set when the item is disabled"
+      }
+    ],
+    "keyboardInteractions": [
+      {
+        "key": "Enter",
+        "description": "Selects the item or follows the link if href is provided"
+      },
+      {
+        "key": "Space",
+        "description": "Selects the item or follows the link if href is provided"
+      },
+      {
+        "key": "Right Arrow",
+        "description": "When item has children, expands the item to show child items"
+      },
+      {
+        "key": "Left Arrow",
+        "description": "When item has children and is expanded, collapses the item"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "title": "Basic Sidenav Item",
+      "description": "A simple sidenav item",
+      "code": "<sp-sidenav-item>Dashboard</sp-sidenav-item>"
+    },
+    {
+      "title": "Selected Sidenav Item",
+      "description": "A selected sidenav item",
+      "code": "<sp-sidenav-item selected>Selected Item</sp-sidenav-item>"
+    },
+    {
+      "title": "Sidenav Item with Link",
+      "description": "A sidenav item with an href",
+      "code": "<sp-sidenav-item href=\"https://example.com\">External Link</sp-sidenav-item>"
+    },
+    {
+      "title": "Sidenav Item with Children",
+      "description": "A sidenav item with child items",
+      "code": "<sp-sidenav-item expanded>\n  Parent Item\n  <sp-sidenav-item>Child 1</sp-sidenav-item>\n  <sp-sidenav-item>Child 2</sp-sidenav-item>\n</sp-sidenav-item>"
+    },
+    {
+      "title": "Sidenav Item with Icon",
+      "description": "A sidenav item with an icon",
+      "code": "<sp-sidenav-item>\n  <sp-icon-home slot=\"icon\"></sp-icon-home>\n  Home\n</sp-sidenav-item>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumSideNavItem",
+    "constructorName": "SideNavItem",
+    "dependsOn": []
+  }
+}

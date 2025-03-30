@@ -1,0 +1,76 @@
+{
+  "name": "Theme",
+  "tagName": "sp-theme",
+  "description": "sp-theme applies a Spectrum theme by using CSS custom properties to set default sizes & colors for all of the components in its scope. The Spectrum design system provides four color themes (lightest, light, dark, and darkest) and two different scales (medium and large) to support desktop & mobile UI.",
+  "category": "Theming",
+  "attributes": [
+    {
+      "name": "color",
+      "type": "enum",
+      "values": ["lightest", "light", "dark", "darkest"],
+      "description": "The color theme to apply",
+      "default": "light"
+    },
+    {
+      "name": "scale",
+      "type": "enum",
+      "values": ["medium", "large"],
+      "description": "The scale to apply (medium for desktop, large for mobile)",
+      "default": "medium"
+    },
+    {
+      "name": "system",
+      "type": "enum",
+      "values": ["spectrum", "express", "spectrum-two"],
+      "description": "The design system variant to apply",
+      "default": "spectrum"
+    },
+    {
+      "name": "dir",
+      "type": "enum",
+      "values": ["ltr", "rtl"],
+      "description": "The text direction to apply",
+      "default": "ltr"
+    },
+    {
+      "name": "lang",
+      "type": "string",
+      "description": "The language code to apply for localization",
+      "default": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "Content on which to apply the CSS Custom Properties defined by the current theme configuration"
+    }
+  ],
+  "events": [],
+  "accessibility": {
+    "role": "",
+    "ariaAttributes": [],
+    "keyboardInteractions": []
+  },
+  "examples": [
+    {
+      "title": "Basic Theme",
+      "description": "Basic theme configuration with light color and medium scale",
+      "code": "<sp-theme color=\"light\" scale=\"medium\" style=\"background-color: var(--spectrum-gray-100)\">\n    <sp-button>Click me!</sp-button>\n</sp-theme>"
+    },
+    {
+      "title": "Dark Theme",
+      "description": "Dark theme with large scale",
+      "code": "<sp-theme color=\"dark\" scale=\"large\" style=\"background-color: var(--spectrum-gray-800); padding: 20px;\">\n    <sp-slider value=\"5\" step=\"1\" min=\"1\" max=\"11\" label=\"Volume\"></sp-slider>\n    <sp-switch>Overdrive</sp-switch>\n    <sp-button-group>\n        <sp-button variant=\"primary\">Cancel</sp-button>\n        <sp-button variant=\"accent\">Continue</sp-button>\n    </sp-button-group>\n</sp-theme>"
+    },
+    {
+      "title": "Nested Themes",
+      "description": "Theme embedded within another theme",
+      "code": "<sp-theme color=\"dark\" dir=\"ltr\" style=\"background-color: var(--spectrum-gray-800); padding: 20px;\">\n    <div>\n        <sp-button>Outer Theme Button</sp-button>\n        <sp-theme color=\"light\" dir=\"rtl\" style=\"background-color: var(--spectrum-gray-100); padding: 20px; margin-top: 20px;\">\n            <sp-button>Inner Theme Button</sp-button>\n        </sp-theme>\n    </div>\n</sp-theme>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumTheme",
+    "constructorName": "Theme",
+    "dependsOn": []
+  }
+}

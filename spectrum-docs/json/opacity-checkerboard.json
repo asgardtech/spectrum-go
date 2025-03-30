@@ -1,0 +1,26 @@
+{
+  "name": "OpacityCheckerboard",
+  "tagName": "",
+  "description": "The opacity-checkerboard class is used to highlight opacity in components. It provides a checkerboard pattern as a background to visualize transparency.",
+  "category": "Utility",
+  "attributes": [],
+  "slots": [],
+  "events": [],
+  "accessibility": {
+    "role": "",
+    "ariaAttributes": [],
+    "keyboardInteractions": []
+  },
+  "examples": [
+    {
+      "title": "Adding Opacity Checkerboard to a Component",
+      "description": "How to import and use opacity checkerboard styles in a component",
+      "code": "import { LitElement, html } from 'lit';\nimport opacityCheckerBoardStyles from '@spectrum-web-components/opacity-checkerboard/src/opacity-checkerboard.css.js';\n\nclass MyComponent extends LitElement {\n    public static override get styles() {\n        return [opacityCheckerBoardStyles, componentStyles];\n    }\n\n    render() {\n        return html`\n            <div\n                class=\"opacity-checkerboard\"\n                style=\"inline-size: 100px; block-size: 100px;\"\n            ></div>\n        `;\n    }\n}"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumOpacityCheckerboard",
+    "constructorName": "OpacityCheckerboard",
+    "dependsOn": []
+  }
+}

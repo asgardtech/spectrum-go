@@ -1,0 +1,119 @@
+{
+  "name": "SplitView",
+  "tagName": "sp-split-view",
+  "description": "An sp-split-view element delivers its first two direct child elements in a horizontal or vertical orientation that distributes the available page real estate. When resizable, it provides a pointer and keyboard accessible affordance for users to customize distribution.",
+  "category": "Layout",
+  "attributes": [
+    {
+      "name": "collapsible",
+      "type": "boolean",
+      "description": "Whether panels can be collapsed completely",
+      "default": false
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "description": "Accessible label for the resizable divider",
+      "default": "Resize the panels"
+    },
+    {
+      "name": "primary-max",
+      "type": "number",
+      "description": "The maximum size of the primary pane (in pixels)"
+    },
+    {
+      "name": "primary-min",
+      "type": "number",
+      "description": "The minimum size of the primary pane (in pixels)",
+      "default": 0
+    },
+    {
+      "name": "primary-size",
+      "type": "string",
+      "description": "The initial size of the primary pane (in pixels or percentage)"
+    },
+    {
+      "name": "resizable",
+      "type": "boolean",
+      "description": "Whether the split view can be resized by the user",
+      "default": false
+    },
+    {
+      "name": "secondary-max",
+      "type": "number",
+      "description": "The maximum size of the secondary pane (in pixels)"
+    },
+    {
+      "name": "secondary-min",
+      "type": "number",
+      "description": "The minimum size of the secondary pane (in pixels)",
+      "default": 0
+    },
+    {
+      "name": "splitter-pos",
+      "type": "number",
+      "description": "The current splitter position (in pixels)"
+    },
+    {
+      "name": "vertical",
+      "type": "boolean",
+      "description": "Whether the split view is arranged vertically",
+      "default": false
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "Two sibling elements to be sized by the element attributes"
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "description": "Announces the new position of the splitter",
+      "bubbles": true,
+      "cancelable": false
+    }
+  ],
+  "accessibility": {
+    "role": "",
+    "ariaAttributes": [
+      {
+        "name": "aria-label",
+        "description": "Label for the resize handle"
+      }
+    ],
+    "keyboardInteractions": [
+      {
+        "key": "Arrow keys",
+        "description": "Resize the panels when the splitter has focus"
+      },
+      {
+        "key": "Home/End",
+        "description": "Move to minimum or maximum size"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "title": "Horizontal Split View",
+      "description": "Default horizontal layout",
+      "code": "<sp-split-view>\n    <div>Left panel</div>\n    <div>Right panel</div>\n</sp-split-view>"
+    },
+    {
+      "title": "Horizontal Resizable Split View",
+      "description": "Resizable horizontal layout with constraints",
+      "code": "<sp-split-view\n    resizable\n    primary-min=\"50\"\n    secondary-min=\"50\"\n    primary-size=\"100\"\n    label=\"Resize the horizontal panels\"\n>\n    <div>Left panel</div>\n    <div>Right panel</div>\n</sp-split-view>"
+    },
+    {
+      "title": "Vertical Split View",
+      "description": "Vertical layout with top and bottom panels",
+      "code": "<sp-split-view vertical>\n    <div>Top panel</div>\n    <div>Bottom panel</div>\n</sp-split-view>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumSplitView",
+    "constructorName": "SplitView",
+    "dependsOn": []
+  }
+}

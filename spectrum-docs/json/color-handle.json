@@ -1,0 +1,66 @@
+{
+  "name": "ColorHandle",
+  "tagName": "sp-color-handle",
+  "description": "The sp-color-handle is used to select a colour on an sp-color-area, sp-color-slider, or sp-color-wheel. It functions similarly to the handle on an sp-slider.",
+  "category": "Color",
+  "attributes": [
+    {
+      "name": "color",
+      "type": "string",
+      "description": "The color to display in the handle",
+      "default": "rgba(255, 0, 0, 0.5)"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "description": "Disables interaction with the handle",
+      "default": false
+    },
+    {
+      "name": "focused",
+      "type": "boolean",
+      "description": "Indicates whether the handle has focus",
+      "default": false
+    },
+    {
+      "name": "open",
+      "type": "boolean",
+      "description": "When true, displays a color loupe above the handle to show the selected color",
+      "default": false
+    }
+  ],
+  "slots": [],
+  "events": [],
+  "accessibility": {
+    "role": "slider",
+    "ariaAttributes": [
+      {
+        "name": "aria-valuetext",
+        "description": "Provides a text representation of the selected color"
+      }
+    ],
+    "keyboardInteractions": []
+  },
+  "examples": [
+    {
+      "title": "Basic Color Handle",
+      "description": "A standard color handle",
+      "code": "<sp-color-handle></sp-color-handle>"
+    },
+    {
+      "title": "Disabled Color Handle",
+      "description": "A color handle in a disabled state",
+      "code": "<sp-color-handle disabled></sp-color-handle>"
+    },
+    {
+      "title": "Open Color Handle",
+      "description": "A color handle with a loupe displayed",
+      "code": "<sp-color-handle open></sp-color-handle>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumColorHandle",
+    "constructorName": "ColorHandle",
+    "dependsOn": ["ColorLoupe"]
+  }
+}

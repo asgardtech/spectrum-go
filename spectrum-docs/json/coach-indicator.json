@@ -1,0 +1,71 @@
+{
+  "name": "CoachIndicator",
+  "tagName": "sp-coach-indicator",
+  "description": "Shows the connection between an object and its explanation in a touring mode — for example, the source of information in an onboarding tour.",
+  "category": "Feedback",
+  "attributes": [
+    {
+      "name": "quiet",
+      "type": "boolean",
+      "description": "Applies a less visually prominent style",
+      "default": false
+    },
+    {
+      "name": "staticColor",
+      "type": "enum",
+      "values": ["white", "black", "light", "dark"],
+      "description": "Applies a specific color treatment to the indicator",
+      "default": "",
+      "valueDescriptions": {
+        "white": "White indicator for dark backgrounds",
+        "black": "Black indicator for light backgrounds",
+        "light": "Light indicator for dark backgrounds",
+        "dark": "Dark indicator for light backgrounds"
+      }
+    }
+  ],
+  "slots": [],
+  "accessibility": {
+    "role": "presentation",
+    "ariaAttributes": [],
+    "keyboardInteractions": []
+  },
+  "examples": [
+    {
+      "title": "Standard Coach Indicator",
+      "description": "Basic coach indicator with default styling",
+      "code": "<sp-coach-indicator></sp-coach-indicator>"
+    },
+    {
+      "title": "Dark Coach Indicator",
+      "description": "Coach indicator with dark color treatment for light backgrounds",
+      "code": "<sp-coach-indicator static-color=\"dark\"></sp-coach-indicator>"
+    },
+    {
+      "title": "Light Coach Indicator",
+      "description": "Coach indicator with light color treatment for dark backgrounds",
+      "code": "<sp-coach-indicator static-color=\"light\"></sp-coach-indicator>"
+    },
+    {
+      "title": "Quiet Coach Indicator",
+      "description": "Coach indicator with less visual prominence",
+      "code": "<sp-coach-indicator quiet></sp-coach-indicator>"
+    },
+    {
+      "title": "Quiet Dark Coach Indicator",
+      "description": "Quiet coach indicator with dark color treatment",
+      "code": "<sp-coach-indicator quiet static-color=\"dark\"></sp-coach-indicator>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumCoachIndicator",
+    "constructorName": "CoachIndicator",
+    "dependsOn": []
+  },
+  "relatedComponents": [
+    {
+      "name": "Coachmark",
+      "relationship": "CoachIndicator is used by the Coachmark component"
+    }
+  ]
+}

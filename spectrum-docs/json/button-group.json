@@ -1,0 +1,43 @@
+{
+  "name": "ButtonGroup",
+  "tagName": "sp-button-group",
+  "description": "A sp-button-group delivers a set of buttons in horizontal or vertical orientation while ensuring the appropriate spacing between those buttons.",
+  "category": "Action",
+  "attributes": [
+    {
+      "name": "vertical",
+      "type": "boolean",
+      "description": "Use vertical orientation when horizontal space is limited",
+      "default": false
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "The sp-button elements that make up the group"
+    }
+  ],
+  "events": [],
+  "accessibility": {
+    "role": "group",
+    "ariaAttributes": [],
+    "keyboardInteractions": []
+  },
+  "examples": [
+    {
+      "title": "Horizontal Button Group",
+      "description": "A default button group with horizontal orientation",
+      "code": "<sp-button-group>\n  <sp-button>Button 1</sp-button>\n  <sp-button>Longer Button 2</sp-button>\n  <sp-button>Short 3</sp-button>\n</sp-button-group>"
+    },
+    {
+      "title": "Vertical Button Group",
+      "description": "A button group with vertical orientation",
+      "code": "<sp-button-group vertical>\n  <sp-button>Button 1</sp-button>\n  <sp-button>Longer Button 2</sp-button>\n  <sp-button>Short 3</sp-button>\n</sp-button-group>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumButtonGroup",
+    "constructorName": "ButtonGroup",
+    "dependsOn": ["Button"]
+  }
+}

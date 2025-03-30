@@ -1,0 +1,39 @@
+{
+  "name": "ColorLoupe",
+  "tagName": "sp-color-loupe",
+  "description": "An sp-color-loupe shows the output color that would otherwise be covered by a cursor, stylus, or finger during color selection.",
+  "category": "Color",
+  "attributes": [
+    {
+      "name": "color",
+      "type": "string",
+      "description": "The color to display in the loupe",
+      "default": "rgba(255, 0, 0, 0.5)"
+    },
+    {
+      "name": "open",
+      "type": "boolean",
+      "description": "Controls whether the loupe is visible",
+      "default": false
+    }
+  ],
+  "slots": [],
+  "events": [],
+  "accessibility": {
+    "role": "",
+    "ariaAttributes": [],
+    "keyboardInteractions": []
+  },
+  "examples": [
+    {
+      "title": "Basic Color Loupe",
+      "description": "A standard color loupe positioned above a color selection area",
+      "code": "<div style=\"padding: 100px 0 0;\">\n  <div style=\"position:relative\">\n    <sp-color-loupe open dir=\"ltr\"></sp-color-loupe>\n  </div>\n</div>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumColorLoupe",
+    "constructorName": "ColorLoupe",
+    "dependsOn": []
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "name": "IconsWorkflow",
+  "tagName": "sp-icon-workflow",
+  "description": "Deliver Spectrum Workflow Icons as registered custom elements, unregistered class definitions, or functions with customizable template tags to be used across various frameworks.",
+  "category": "Icons",
+  "attributes": [
+    {
+      "name": "label",
+      "type": "string",
+      "description": "Accessibility label for the icon",
+      "default": ""
+    },
+    {
+      "name": "size",
+      "type": "enum",
+      "values": ["xxs", "xs", "s", "m", "l", "xl", "xxl"],
+      "description": "Size of the icon",
+      "default": ""
+    }
+  ],
+  "properties": [
+    {
+      "name": "width",
+      "type": "number",
+      "description": "Width to deliver the SVG element with",
+      "default": 24
+    },
+    {
+      "name": "height",
+      "type": "number",
+      "description": "Height to deliver the SVG element with",
+      "default": 24
+    },
+    {
+      "name": "hidden",
+      "type": "boolean",
+      "description": "Whether to apply the aria-hidden attribute",
+      "default": false
+    },
+    {
+      "name": "title",
+      "type": "string",
+      "description": "Title to deliver the icon with",
+      "default": ""
+    }
+  ],
+  "accessibility": {
+    "description": "Icons should either have a label (for standalone icons that convey meaning) or be marked as hidden (for decorative icons). When used inside a button or similar control, the parent control should have an accessible label."
+  },
+  "examples": [
+    {
+      "title": "Basic Workflow Icon",
+      "description": "Using a workflow icon as a custom element",
+      "code": "import '@spectrum-web-components/icons-workflow/icons/sp-icon-abc.js';\n\n<sp-icon-abc></sp-icon-abc>"
+    },
+    {
+      "title": "Workflow Icon with Label",
+      "description": "An icon with an accessibility label",
+      "code": "<sp-icon-abc label=\"Text editing\"></sp-icon-abc>"
+    },
+    {
+      "title": "Workflow Icon with Size",
+      "description": "An icon with a specific size",
+      "code": "<sp-icon-abc size=\"xl\"></sp-icon-abc>"
+    },
+    {
+      "title": "Using with Icon Base Class",
+      "description": "Using a workflow icon with the icon base class",
+      "code": "import { IconAbc } from '@spectrum-web-components/icons-workflow/src/elements/IconAbc.js';\n\n// Use in JavaScript"
+    },
+    {
+      "title": "Using Raw Icons",
+      "description": "Using workflow icons with a template tag",
+      "code": "import { LitElement, html } from 'lit-element';\nimport '@spectrum-web-components/icon';\nimport { AbcIcon } from '@spectrum-web-components/icons-workflow';\n\nclass ElementWithIcon extends LitElement {\n    protected override render(): TemplateResult {\n        return html`\n            <sp-icon>\n                ${AbcIcon()}\n            </sp-icon>\n        `\n    }\n}\n\ncustomElements.define('element-with-icon', ElementWithIcon);"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumIconsWorkflow",
+    "constructorName": "IconsWorkflow",
+    "dependsOn": ["Icon"]
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "name": "ContextualHelp",
+  "tagName": "sp-contextual-help",
+  "description": "A contextual-help shows a user extra information about the state of either an adjacent component or an entire view. It explains a high-level topic about an experience and can point users to more information elsewhere.",
+  "category": "Feedback",
+  "attributes": [
+    {
+      "name": "label",
+      "type": "string",
+      "description": "Provides an accessible name for the action button trigger.",
+      "default": ""
+    },
+    {
+      "name": "offset",
+      "type": "string",
+      "description": "The offset property accepts either a single number, to define the offset of the Popover along the main axis from the action button, or 2-tuple, to define the offset along the main axis and the cross axis.",
+      "default": "0"
+    },
+    {
+      "name": "placement",
+      "type": "enum",
+      "values": ["top", "top-start", "top-end", "right", "right-start", "right-end", "bottom", "bottom-start", "bottom-end", "left", "left-start", "left-end"],
+      "description": "The placement of the popover relative to the trigger.",
+      "default": "bottom-start"
+    },
+    {
+      "name": "variant",
+      "type": "enum",
+      "values": ["info", "help"],
+      "description": "The variant property applies specific styling on the action button trigger. Values: 'info', 'help'",
+      "default": "info"
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "content to display in the popover"
+    },
+    {
+      "name": "heading",
+      "description": "content to display as the heading of the popover"
+    },
+    {
+      "name": "link",
+      "description": "link to additional informations"
+    }
+  ],
+  "events": [
+    {
+      "name": "sp-open",
+      "description": "Fired when the popover opens",
+      "bubbles": true,
+      "cancelable": false
+    },
+    {
+      "name": "sp-closed",
+      "description": "Fired when the popover closes",
+      "bubbles": true,
+      "cancelable": false
+    }
+  ],
+  "accessibility": {
+    "ariaAttributes": [
+      {
+        "name": "aria-label",
+        "description": "Set based on variant ('Informations' for 'info' variant, 'Help' for 'help' variant), can be customized with the label property"
+      }
+    ],
+    "keyboardInteractions": [
+      {
+        "key": "Enter",
+        "description": "Opens/closes the contextual help popover"
+      },
+      {
+        "key": "Space",
+        "description": "Opens/closes the contextual help popover"
+      },
+      {
+        "key": "Escape",
+        "description": "Closes the contextual help popover when open"
+      }
+    ],
+    "description": "When providing headings, use actual heading elements (h1-h6) or role='heading'."
+  },
+  "examples": [
+    {
+      "title": "Basic Contextual Help",
+      "description": "A simple info contextual help with heading and link",
+      "code": "<sp-contextual-help>\n  <h2 slot=\"heading\">Permission required</h2>\n  Your admin must grant you permission before you can create a segment.\n  <sp-link slot=\"link\" href=\"https://example.com\">Request permission</sp-link>\n</sp-contextual-help>"
+    },
+    {
+      "title": "Help Variant",
+      "description": "A contextual help with help variant",
+      "code": "<sp-contextual-help variant=\"help\">\n  <h2 slot=\"heading\">What is a segment?</h2>\n  Segments identify who your visitors are, what devices and services they use, where they navigate from, and much more.\n  <sp-link slot=\"link\" href=\"https://example.com\">Learn more about segments</sp-link>\n</sp-contextual-help>"
+    },
+    {
+      "title": "Custom Placement",
+      "description": "A contextual help with custom placement",
+      "code": "<sp-contextual-help placement=\"top-start\">\n  <h2 slot=\"heading\">Permission required</h2>\n  Your admin must grant you permission before you can create a segment.\n</sp-contextual-help>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumContextualHelp",
+    "constructorName": "ContextualHelp",
+    "dependsOn": ["Button", "Icon", "Popover", "Dialog"]
+  }
+}

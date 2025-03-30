@@ -1,0 +1,170 @@
+{
+  "name": "Picker",
+  "tagName": "sp-picker",
+  "description": "An alternative to HTML's select element using menu items for available options.",
+  "category": "Form",
+  "attributes": [
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "description": "Disable this control",
+      "default": false
+    },
+    {
+      "name": "forcePopover",
+      "type": "boolean",
+      "description": "Forces rendering as popover on mobile instead of tray",
+      "default": false
+    },
+    {
+      "name": "icons",
+      "type": "enum",
+      "values": ["only", "none"],
+      "description": "How icons are displayed",
+      "default": ""
+    },
+    {
+      "name": "invalid",
+      "type": "boolean",
+      "description": "Whether the picker is invalid",
+      "default": false
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "description": "Accessible label when visible label not provided",
+      "default": ""
+    },
+    {
+      "name": "open",
+      "type": "boolean",
+      "description": "Whether the menu is open",
+      "default": false
+    },
+    {
+      "name": "pending",
+      "type": "boolean",
+      "description": "Whether items are currently loading",
+      "default": false
+    },
+    {
+      "name": "pendingLabel",
+      "type": "string",
+      "description": "Label for the picker in pending state",
+      "default": "Pending"
+    },
+    {
+      "name": "placement",
+      "type": "enum",
+      "values": ["top", "top-start", "top-end", "right", "right-start", "right-end", "bottom", "bottom-start", "bottom-end", "left", "left-start", "left-end"],
+      "description": "Positioning of the dropdown menu",
+      "default": "bottom-start"
+    },
+    {
+      "name": "quiet",
+      "type": "boolean",
+      "description": "Display without visible background",
+      "default": false
+    },
+    {
+      "name": "readonly",
+      "type": "boolean",
+      "description": "Whether user can interact with the value",
+      "default": false
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "description": "The value of the selected option",
+      "default": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "Menu items to be listed in the picker"
+    },
+    {
+      "name": "description",
+      "description": "Description content for the picker"
+    },
+    {
+      "name": "label",
+      "description": "Label content for the picker"
+    },
+    {
+      "name": "tooltip",
+      "description": "Tooltip for the picker button"
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "description": "Value of the element has changed",
+      "bubbles": true,
+      "cancelable": false
+    },
+    {
+      "name": "sp-opened",
+      "description": "Announces that the overlay has been opened",
+      "bubbles": true,
+      "cancelable": false
+    }
+  ],
+  "accessibility": {
+    "role": "combobox",
+    "ariaAttributes": [
+      {
+        "name": "aria-label",
+        "description": "Set from the label attribute if no visible label is provided"
+      },
+      {
+        "name": "aria-expanded",
+        "description": "Indicates whether the menu is expanded"
+      },
+      {
+        "name": "aria-invalid",
+        "description": "Set when the picker is invalid"
+      }
+    ],
+    "keyboardInteractions": [
+      {
+        "key": "Enter",
+        "description": "Opens the menu or selects the focused item"
+      },
+      {
+        "key": "Space",
+        "description": "Opens the menu or selects the focused item"
+      },
+      {
+        "key": "Down Arrow",
+        "description": "Opens the menu or moves focus to the next item"
+      },
+      {
+        "key": "Up Arrow",
+        "description": "Opens the menu or moves focus to the previous item"
+      },
+      {
+        "key": "Escape",
+        "description": "Closes the menu"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "title": "Basic Picker",
+      "description": "A simple picker with options",
+      "code": "<sp-field-label for=\"color\">Color</sp-field-label>\n<sp-picker id=\"color\">\n  <sp-menu-item value=\"red\">Red</sp-menu-item>\n  <sp-menu-item value=\"green\">Green</sp-menu-item>\n  <sp-menu-item value=\"blue\">Blue</sp-menu-item>\n</sp-picker>"
+    },
+    {
+      "title": "Picker with Icons",
+      "description": "A picker with icon items",
+      "code": "<sp-picker label=\"Format\">\n  <sp-menu-item value=\"text\">\n    <sp-icon-text slot=\"icon\"></sp-icon-text>\n    Text\n  </sp-menu-item>\n  <sp-menu-item value=\"image\">\n    <sp-icon-image slot=\"icon\"></sp-icon-image>\n    Image\n  </sp-menu-item>\n</sp-picker>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumPicker",
+    "constructorName": "Picker",
+    "dependsOn": ["Menu", "MenuItem", "PickerButton", "Overlay"]
+  }
+}

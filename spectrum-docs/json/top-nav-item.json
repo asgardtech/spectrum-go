@@ -1,0 +1,76 @@
+{
+  "name": "TopNavItem",
+  "tagName": "sp-top-nav-item",
+  "description": "A navigation item used within sp-top-nav to represent a destination in site navigation.",
+  "category": "Navigation",
+  "attributes": [
+    {
+      "name": "href",
+      "type": "string",
+      "description": "URL that the navigation item points to"
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "description": "Accessible label for the navigation item",
+      "default": ""
+    },
+    {
+      "name": "selected",
+      "type": "boolean",
+      "description": "Whether the navigation item is currently selected",
+      "default": false
+    },
+    {
+      "name": "target",
+      "type": "string",
+      "description": "Specifies where to open the linked document",
+      "values": ["_blank", "_self", "_parent", "_top"]
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "Text content of the navigation item"
+    },
+    {
+      "name": "icon",
+      "description": "Icon to display with the navigation item"
+    }
+  ],
+  "events": [
+    {
+      "name": "click",
+      "description": "Triggered when the navigation item is clicked",
+      "bubbles": true,
+      "cancelable": false
+    }
+  ],
+  "accessibility": {
+    "role": "link",
+    "ariaAttributes": [
+      {
+        "name": "aria-current",
+        "description": "Set to 'page' when the item is selected"
+      }
+    ],
+    "keyboardInteractions": [
+      {
+        "key": "Enter/Space",
+        "description": "Activates the navigation item"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "title": "Basic Top Nav Item",
+      "description": "A simple navigation item",
+      "code": "<sp-top-nav-item href=\"#page-1\">Page 1</sp-top-nav-item>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumTopNavItem",
+    "constructorName": "TopNavItem",
+    "dependsOn": ["TopNav"]
+  }
+}

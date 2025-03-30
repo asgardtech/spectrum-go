@@ -1,0 +1,108 @@
+{
+  "name": "OverlayTrigger",
+  "tagName": "sp-overlay-trigger",
+  "description": "Supports the delivery of temporary overlay content based on interaction with a persistent trigger element.",
+  "category": "Overlay",
+  "attributes": [
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "description": "Whether the overlay trigger is disabled",
+      "default": false
+    },
+    {
+      "name": "offset",
+      "type": "number",
+      "description": "The distance between the overlay and the trigger",
+      "default": 6
+    },
+    {
+      "name": "open",
+      "type": "string",
+      "description": "The type of overlay that is currently open",
+      "default": ""
+    },
+    {
+      "name": "placement",
+      "type": "enum",
+      "values": ["top", "top-start", "top-end", "right", "right-start", "right-end", "bottom", "bottom-start", "bottom-end", "left", "left-start", "left-end"],
+      "description": "The placement of the overlay relative to the trigger",
+      "default": ""
+    },
+    {
+      "name": "receivesFocus",
+      "type": "enum",
+      "values": ["true", "false", "auto"],
+      "description": "How focus should be handled when the overlay opens",
+      "default": "auto"
+    },
+    {
+      "name": "triggeredBy",
+      "type": "string",
+      "description": "Explicitly declares which types of overlays will be used (space-separated: 'click hover longpress')",
+      "default": ""
+    },
+    {
+      "name": "type",
+      "type": "string",
+      "description": "How the overlay appears in the tab order",
+      "default": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "trigger",
+      "description": "The content that will trigger the various overlays"
+    },
+    {
+      "name": "click-content",
+      "description": "The content that will be displayed on click"
+    },
+    {
+      "name": "hover-content",
+      "description": "The content that will be displayed on hover"
+    },
+    {
+      "name": "longpress-content",
+      "description": "The content that will be displayed on longpress"
+    },
+    {
+      "name": "longpress-describedby-descriptor",
+      "description": "Description for longpress content"
+    }
+  ],
+  "events": [
+    {
+      "name": "sp-opened",
+      "description": "Announces that the overlay has been opened",
+      "bubbles": true,
+      "cancelable": false
+    },
+    {
+      "name": "sp-closed",
+      "description": "Announces that the overlay has been closed",
+      "bubbles": true,
+      "cancelable": false
+    }
+  ],
+  "accessibility": {
+    "description": "The content projected into the trigger slot should be interactive - able to receive focus and convert keyboard interactions to click events."
+  },
+  "examples": [
+    {
+      "title": "Default overlay trigger with multiple interaction types",
+      "description": "An overlay trigger with both click and hover content",
+      "code": "<sp-overlay-trigger placement=\"bottom\" offset=\"6\">\n    <sp-button variant=\"primary\" slot=\"trigger\">Button popover</sp-button>\n    <sp-popover slot=\"click-content\" placement=\"bottom\" tip>\n        <sp-dialog no-divider>\n            <sp-slider value=\"5\" step=\"0.5\" min=\"0\" max=\"20\" label=\"Awesomeness\"></sp-slider>\n            <sp-button>Press me</sp-button>\n        </sp-dialog>\n    </sp-popover>\n    <sp-tooltip slot=\"hover-content\" delayed>Tooltip</sp-tooltip>\n</sp-overlay-trigger>"
+    },
+    {
+      "title": "Click content only overlay trigger",
+      "description": "An overlay trigger with only click content",
+      "code": "<sp-overlay-trigger placement=\"top\" type=\"replace\">\n    <sp-button slot=\"trigger\">Overlay Trigger</sp-button>\n    <sp-popover slot=\"click-content\">\n        <sp-dialog size=\"s\">\n            <h2 slot=\"heading\">Click content</h2>\n            Content only addressed to slot=\"click-content\"\n            <sp-button slot=\"button\">I understand</sp-button>\n        </sp-dialog>\n    </sp-popover>\n</sp-overlay-trigger>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumOverlayTrigger",
+    "constructorName": "OverlayTrigger",
+    "dependsOn": ["Overlay"]
+  }
+}

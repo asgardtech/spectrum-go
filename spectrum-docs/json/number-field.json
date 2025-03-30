@@ -1,0 +1,183 @@
+{
+  "name": "NumberField",
+  "tagName": "sp-number-field",
+  "description": "Elements used for numeric inputs with increment/decrement capabilities.",
+  "category": "Form",
+  "attributes": [
+    {
+      "name": "autocomplete",
+      "type": "string",
+      "description": "Form of assistance provided when supplying a value",
+      "default": ""
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "description": "Disable this control",
+      "default": false
+    },
+    {
+      "name": "formatOptions",
+      "type": "object",
+      "description": "Intl.NumberFormatOptions object for value formatting",
+      "default": "{}"
+    },
+    {
+      "name": "hideStepper",
+      "type": "boolean",
+      "description": "Whether the stepper UI is hidden",
+      "default": false
+    },
+    {
+      "name": "invalid",
+      "type": "boolean",
+      "description": "Whether the value is invalid",
+      "default": false
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "description": "Accessible label when visible label not provided",
+      "default": ""
+    },
+    {
+      "name": "max",
+      "type": "number",
+      "description": "Maximum allowed value",
+      "default": null
+    },
+    {
+      "name": "min",
+      "type": "number",
+      "description": "Minimum allowed value",
+      "default": null
+    },
+    {
+      "name": "placeholder",
+      "type": "string",
+      "description": "Text shown when no value is set",
+      "default": ""
+    },
+    {
+      "name": "quiet",
+      "type": "boolean",
+      "description": "Display without visible background",
+      "default": false
+    },
+    {
+      "name": "readonly",
+      "type": "boolean",
+      "description": "Whether user can interact with the value",
+      "default": false
+    },
+    {
+      "name": "required",
+      "type": "boolean",
+      "description": "Whether field is required",
+      "default": false
+    },
+    {
+      "name": "step",
+      "type": "number",
+      "description": "Increment/decrement step value",
+      "default": 1
+    },
+    {
+      "name": "stepModifier",
+      "type": "number",
+      "description": "Multiplier for step when using shift key",
+      "default": 10
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "description": "The value held by the control",
+      "default": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "help-text",
+      "description": "Default or non-negative help text"
+    },
+    {
+      "name": "negative-help-text",
+      "description": "Negative help text shown when invalid"
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "description": "Value has been committed by the user",
+      "bubbles": true,
+      "cancelable": false
+    },
+    {
+      "name": "input",
+      "description": "Value of the element has changed",
+      "bubbles": true,
+      "cancelable": false
+    }
+  ],
+  "accessibility": {
+    "role": "spinbutton",
+    "ariaAttributes": [
+      {
+        "name": "aria-valuemin",
+        "description": "Minimum value from min attribute"
+      },
+      {
+        "name": "aria-valuemax",
+        "description": "Maximum value from max attribute"
+      },
+      {
+        "name": "aria-valuenow",
+        "description": "Current value"
+      },
+      {
+        "name": "aria-invalid",
+        "description": "Set when the field is invalid"
+      }
+    ],
+    "keyboardInteractions": [
+      {
+        "key": "Up Arrow",
+        "description": "Increments the value by step"
+      },
+      {
+        "key": "Down Arrow",
+        "description": "Decrements the value by step"
+      },
+      {
+        "key": "Shift + Up Arrow",
+        "description": "Increments the value by step × stepModifier"
+      },
+      {
+        "key": "Shift + Down Arrow",
+        "description": "Decrements the value by step × stepModifier"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "title": "Basic Number Field",
+      "description": "A simple number field with min and max values",
+      "code": "<sp-number-field label=\"Size\" value=\"1024\" min=\"0\" max=\"2048\" step=\"1\"></sp-number-field>"
+    },
+    {
+      "title": "Number Field with Hidden Stepper",
+      "description": "A number field with hidden increment/decrement UI",
+      "code": "<sp-number-field label=\"Opacity\" value=\"0.5\" min=\"0\" max=\"1\" step=\"0.01\" hide-stepper></sp-number-field>"
+    },
+    {
+      "title": "Quiet Number Field",
+      "description": "A number field with less visual presence",
+      "code": "<sp-number-field label=\"Width\" value=\"300\" quiet></sp-number-field>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumNumberField",
+    "constructorName": "NumberField",
+    "dependsOn": ["Textfield"]
+  }
+}

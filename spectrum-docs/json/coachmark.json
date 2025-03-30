@@ -1,0 +1,185 @@
+{
+  "name": "Coachmark",
+  "tagName": "sp-coachmark",
+  "description": "A temporary message that educates users through new or unfamiliar product experiences. Coachmarks can be chained into a sequence to form a tour.",
+  "category": "Feedback",
+  "attributes": [
+    {
+      "name": "asset",
+      "type": "enum",
+      "values": ["file", "folder"],
+      "description": "The type of asset to represent"
+    },
+    {
+      "name": "currentStep",
+      "type": "number",
+      "description": "Current step in a multi-step tour"
+    },
+    {
+      "name": "hasAsset",
+      "type": "boolean",
+      "description": "Whether the coachmark has an asset",
+      "default": false
+    },
+    {
+      "name": "mediaType",
+      "type": "enum",
+      "values": ["image", "gif"],
+      "description": "Type of media to display"
+    },
+    {
+      "name": "modifierKeys",
+      "type": "array",
+      "description": "Array of modifier key labels (e.g., 'Shift', 'Alt', 'Cmd') that can be used with the shortcut key",
+      "default": "[]"
+    },
+    {
+      "name": "open",
+      "type": "boolean",
+      "description": "Whether the coachmark is visible or not",
+      "default": false
+    },
+    {
+      "name": "placement",
+      "type": "enum",
+      "values": ["top", "top-start", "top-end", "right", "right-start", "right-end", "bottom", "bottom-start", "bottom-end", "left", "left-start", "left-end"],
+      "description": "Position of the coachmark relative to its target",
+      "default": "right"
+    },
+    {
+      "name": "primaryCta",
+      "type": "string",
+      "description": "Text for the primary call-to-action button"
+    },
+    {
+      "name": "secondaryCta",
+      "type": "string",
+      "description": "Text for the secondary call-to-action button"
+    },
+    {
+      "name": "shortcutKey",
+      "type": "string",
+      "description": "The primary key used to trigger an interaction"
+    },
+    {
+      "name": "src",
+      "type": "string",
+      "description": "URL for the image or media to display"
+    },
+    {
+      "name": "tip",
+      "type": "boolean",
+      "description": "Whether to show the tip/arrow pointing to the target",
+      "default": false
+    },
+    {
+      "name": "totalSteps",
+      "type": "number",
+      "description": "Total number of steps in a multi-step tour"
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "Content to display within the coachmark"
+    },
+    {
+      "name": "actions",
+      "description": "An sp-action-menu element outlining actions related to the tour (e.g., 'Skip tour', 'Restart tour')"
+    },
+    {
+      "name": "asset",
+      "description": "Custom media content to display in the coachmark"
+    },
+    {
+      "name": "content",
+      "description": "The main content of the coachmark"
+    },
+    {
+      "name": "title",
+      "description": "The title or heading of the coachmark"
+    },
+    {
+      "name": "step-count",
+      "description": "Override the default pagination display with custom content"
+    }
+  ],
+  "events": [
+    {
+      "name": "primary",
+      "description": "Announces that the primary button has been clicked",
+      "bubbles": true,
+      "cancelable": false
+    },
+    {
+      "name": "secondary",
+      "description": "Announces that the secondary button has been clicked",
+      "bubbles": true,
+      "cancelable": false
+    }
+  ],
+  "accessibility": {
+    "role": "dialog",
+    "ariaAttributes": [
+      {
+        "name": "aria-labelledby",
+        "description": "References the title element for screen readers"
+      },
+      {
+        "name": "aria-describedby",
+        "description": "References the content element for screen readers"
+      }
+    ],
+    "keyboardInteractions": [
+      {
+        "key": "Escape",
+        "description": "Closes the coachmark"
+      },
+      {
+        "key": "Tab",
+        "description": "Moves focus between interactive elements within the coachmark"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "title": "Basic Coachmark",
+      "description": "Simple coachmark with title and content",
+      "code": "<sp-coachmark open>\n  <div slot=\"title\">Coachmark with Text Only</div>\n  <div slot=\"content\">This is a Coachmark with nothing but text in it. Kind of lonely in here.</div>\n</sp-coachmark>"
+    },
+    {
+      "title": "Tour Step Coachmark",
+      "description": "Coachmark as part of a multi-step tour with navigation buttons",
+      "code": "<sp-coachmark open current-step=\"2\" total-steps=\"8\" primary-cta=\"Next\" secondary-cta=\"Previous\">\n  <div slot=\"title\">Coachmark with Text Only</div>\n  <div slot=\"content\">This is a Coachmark with nothing but text in it.</div>\n  <sp-action-menu label=\"More Actions\" placement=\"bottom-end\" quiet slot=\"actions\">\n    <sp-menu-item>Skip tour</sp-menu-item>\n    <sp-menu-item>Restart tour</sp-menu-item>\n  </sp-action-menu>\n</sp-coachmark>"
+    },
+    {
+      "title": "Coachmark with Image",
+      "description": "Coachmark that includes an image",
+      "code": "<sp-coachmark open current-step=\"2\" total-steps=\"8\" primary-cta=\"Next\" secondary-cta=\"Previous\" src=\"https://picsum.photos/id/237/200/300\" media-type=\"image\">\n  <div slot=\"title\">Coachmark with Image</div>\n  <div slot=\"content\">This is a Coachmark with an image.</div>\n</sp-coachmark>"
+    },
+    {
+      "title": "Coachmark with Shortcut Keys",
+      "description": "Coachmark displaying keyboard shortcuts",
+      "code": "<sp-coachmark open shortcut-key=\"S\">\n  <div slot=\"title\">Keyboard Shortcut</div>\n  <div slot=\"content\">Press the shortcut key to activate.</div>\n</sp-coachmark>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumCoachmark",
+    "constructorName": "Coachmark",
+    "dependsOn": ["CoachIndicator", "ActionMenu", "Button"]
+  },
+  "relatedComponents": [
+    {
+      "name": "CoachIndicator",
+      "relationship": "Used by Coachmark to show the connection between an object and its explanation"
+    },
+    {
+      "name": "ActionMenu",
+      "relationship": "Can be used in the actions slot for tour controls"
+    },
+    {
+      "name": "Tooltip",
+      "relationship": "Similar component for showing brief information on hover"
+    }
+  ]
+}

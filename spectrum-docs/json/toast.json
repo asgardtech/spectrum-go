@@ -1,0 +1,82 @@
+{
+  "name": "Toast",
+  "tagName": "sp-toast",
+  "description": "An sp-toast element displays brief, temporary notifications. Toasts are noticeable but do not disrupt the user experience and do not require an action to be taken.",
+  "category": "Feedback",
+  "attributes": [
+    {
+      "name": "icon-label",
+      "type": "string",
+      "description": "Sets the label attribute on the icon element, providing a text alternative for accessibility"
+    },
+    {
+      "name": "open",
+      "type": "boolean",
+      "description": "Indicates whether the toast is visible or hidden",
+      "default": false
+    },
+    {
+      "name": "timeout",
+      "type": "number",
+      "description": "The number of milliseconds before the toast automatically dismisses itself",
+      "default": null
+    },
+    {
+      "name": "variant",
+      "type": "enum",
+      "values": ["negative", "positive", "info", "error", "warning"],
+      "description": "Applies specific styling to the toast",
+      "default": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "The toast content"
+    },
+    {
+      "name": "action",
+      "description": "Button element surfacing an action in the toast"
+    }
+  ],
+  "events": [
+    {
+      "name": "close",
+      "description": "Announces that the toast has been closed by the user or by its timeout",
+      "bubbles": true,
+      "cancelable": false
+    }
+  ],
+  "accessibility": {
+    "role": "alert",
+    "ariaAttributes": [],
+    "keyboardInteractions": []
+  },
+  "examples": [
+    {
+      "title": "Basic Toast",
+      "description": "A simple toast notification",
+      "code": "<sp-toast open>\n    This is important information that you should read, soon.\n</sp-toast>"
+    },
+    {
+      "title": "Toast with Action",
+      "description": "A toast with an action button",
+      "code": "<sp-toast open>\n    This is important information that you should read, soon.\n    <sp-button\n        slot=\"action\"\n        static-color=\"white\"\n        variant=\"secondary\"\n        treatment=\"outline\"\n    >\n        Do something\n    </sp-button>\n</sp-toast>"
+    },
+    {
+      "title": "Negative Toast",
+      "description": "A toast with negative styling",
+      "code": "<sp-toast open variant=\"negative\">\n    This is negative information that you should read, soon.\n</sp-toast>"
+    },
+    {
+      "title": "Positive Toast",
+      "description": "A toast with positive styling",
+      "code": "<sp-toast open variant=\"positive\">\n    This is positive information that you should read, soon.\n</sp-toast>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumToast",
+    "constructorName": "Toast",
+    "dependsOn": ["Button"]
+  }
+}

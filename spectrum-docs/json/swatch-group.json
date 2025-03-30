@@ -1,0 +1,111 @@
+{
+  "name": "SwatchGroup",
+  "tagName": "sp-swatch-group",
+  "description": "A grouping of swatch elements that are related to each other.",
+  "category": "Color",
+  "attributes": [
+    {
+      "name": "border",
+      "type": "enum",
+      "values": ["none", "light"],
+      "description": "Border style for all child swatches",
+      "default": ""
+    },
+    {
+      "name": "density",
+      "type": "enum",
+      "values": ["compact", "spacious"],
+      "description": "Spacing density between swatches",
+      "default": ""
+    },
+    {
+      "name": "rounding",
+      "type": "enum",
+      "values": ["none", "full"],
+      "description": "Rounding style for all child swatches",
+      "default": ""
+    },
+    {
+      "name": "selects",
+      "type": "enum",
+      "values": ["single", "multiple"],
+      "description": "Selection mode for the swatch group",
+      "default": ""
+    },
+    {
+      "name": "shape",
+      "type": "enum",
+      "values": ["rectangle"],
+      "description": "Shape of all child swatches",
+      "default": ""
+    },
+    {
+      "name": "size",
+      "type": "enum",
+      "values": ["xs", "s", "m", "l"],
+      "description": "Size of all child swatches",
+      "default": "m"
+    }
+  ],
+  "properties": [
+    {
+      "name": "selected",
+      "type": "array",
+      "description": "Array of selected swatch values",
+      "default": "[]"
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "Swatch elements to manage as a group"
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "description": "Fired when the selection within the group changes",
+      "bubbles": true,
+      "cancelable": false
+    }
+  ],
+  "accessibility": {
+    "ariaAttributes": [
+      {
+        "name": "role",
+        "description": "Set to 'radiogroup' when selects='single', or 'group' when selects='multiple'"
+      },
+      {
+        "name": "aria-label",
+        "description": "Should be set to describe the group of swatches"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "title": "Basic Swatch Group",
+      "description": "A simple group of swatches",
+      "code": "<sp-swatch-group>\n  <sp-swatch color=\"var(--spectrum-blue-500)\"></sp-swatch>\n  <sp-swatch color=\"var(--spectrum-red-500)\"></sp-swatch>\n</sp-swatch-group>"
+    },
+    {
+      "title": "Single Selection Group",
+      "description": "A swatch group with single selection mode",
+      "code": "<sp-swatch-group selects=\"single\">\n  <sp-swatch color=\"var(--spectrum-blue-500)\"></sp-swatch>\n  <sp-swatch color=\"var(--spectrum-red-500)\" selected></sp-swatch>\n</sp-swatch-group>"
+    },
+    {
+      "title": "Multiple Selection Group",
+      "description": "A swatch group with multiple selection mode",
+      "code": "<sp-swatch-group selects=\"multiple\">\n  <sp-swatch color=\"var(--spectrum-blue-500)\" selected></sp-swatch>\n  <sp-swatch color=\"var(--spectrum-red-500)\" selected></sp-swatch>\n</sp-swatch-group>"
+    },
+    {
+      "title": "Compact Density Group",
+      "description": "A swatch group with compact spacing",
+      "code": "<sp-swatch-group density=\"compact\">\n  <sp-swatch color=\"var(--spectrum-blue-500)\"></sp-swatch>\n  <sp-swatch color=\"var(--spectrum-red-500)\"></sp-swatch>\n</sp-swatch-group>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumSwatchGroup",
+    "constructorName": "SwatchGroup",
+    "dependsOn": ["Swatch"]
+  }
+}

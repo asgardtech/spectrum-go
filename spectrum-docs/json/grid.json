@@ -1,0 +1,77 @@
+{
+  "name": "Grid",
+  "tagName": "sp-grid",
+  "description": "An sp-grid element displays a virtualized grid of elements built from its items array, applied to a supplied renderItem method. It extends lit-virtualizer and provides roving tabindex for keyboard navigation.",
+  "category": "Container",
+  "attributes": [
+    {
+      "name": "focusableSelector",
+      "type": "string",
+      "description": "CSS selector that identifies which part of each item can receive focus"
+    },
+    {
+      "name": "gap",
+      "type": "string",
+      "description": "Space between grid items (e.g. '10px')",
+      "default": "0"
+    },
+    {
+      "name": "itemSize",
+      "type": "object",
+      "description": "Size of each grid item as {width: number, height: number}",
+      "default": "{ width: 200, height: 200 }"
+    },
+    {
+      "name": "items",
+      "type": "array",
+      "description": "Array of data objects to render in the grid",
+      "default": "[]"
+    },
+    {
+      "name": "padding",
+      "type": "string",
+      "description": "Padding around the grid (e.g. '10px')"
+    },
+    {
+      "name": "selected",
+      "type": "array",
+      "description": "Array of currently selected items",
+      "default": "[]"
+    }
+  ],
+  "slots": [],
+  "events": [
+    {
+      "name": "change",
+      "description": "Announces that the value of selected has changed",
+      "bubbles": true,
+      "cancelable": false
+    }
+  ],
+  "accessibility": {
+    "role": "grid",
+    "ariaAttributes": [],
+    "keyboardInteractions": [
+      {
+        "key": "Tab",
+        "description": "Enters the grid, focusing the first item"
+      },
+      {
+        "key": "Arrow keys",
+        "description": "Navigates between grid items"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "title": "Basic Grid",
+      "description": "A grid displaying cards with images",
+      "code": "<sp-grid id=\"grid-demo\"></sp-grid>\n<script>\n  const grid = document.querySelector('#grid-demo');\n  grid.items = Array.from({ length: 100 }, (_, i) => ({\n    name: String(i + 1),\n    date: i\n  }));\n  grid.focusableSelector = 'sp-card';\n  grid.gap = '10px';\n  grid.itemSize = { width: 200, height: 300 };\n\n  grid.renderItem = (item, index, selected) => {\n    const card = document.createElement('sp-card');\n    card.toggles = true;\n    card.variant = 'quiet';\n    card.heading = `Card Heading ${index}`;\n    card.subheading = 'JPG Photo';\n    card.selected = selected;\n    // Add content to card\n    return card;\n  };\n</script>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumGrid",
+    "constructorName": "Grid",
+    "dependsOn": []
+  }
+}

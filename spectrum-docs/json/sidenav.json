@@ -1,0 +1,95 @@
+{
+  "name": "Sidenav",
+  "tagName": "sp-sidenav",
+  "description": "Allows users to locate information and features within the UI. Can be used for hierarchical or flat navigation, and groups navigable items categorically.",
+  "category": "Navigation",
+  "attributes": [
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "description": "Disable this control. It will not receive focus or events",
+      "default": false
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "description": "An accessible label describing the component to distinguish it from other navigation for screen reader users",
+      "default": ""
+    },
+    {
+      "name": "manageTabIndex",
+      "type": "boolean",
+      "description": "When true, presents child items with a single tab-stop navigable with arrow keys",
+      "default": false
+    },
+    {
+      "name": "tabIndex",
+      "type": "number",
+      "description": "The tab index to apply to this control",
+      "default": 0
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "description": "The value of the currently selected item",
+      "default": ""
+    },
+    {
+      "name": "variant",
+      "type": "enum",
+      "values": ["multilevel"],
+      "description": "When 'multilevel', supports multiple layers of hierarchical navigation items",
+      "default": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "The Sidenav Items to display"
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "description": "Announces a change in the value property of the navigation element. Can be canceled via event.preventDefault()",
+      "bubbles": true,
+      "cancelable": true
+    }
+  ],
+  "accessibility": {
+    "role": "navigation",
+    "ariaAttributes": [
+      {
+        "name": "aria-label",
+        "description": "Set from the label attribute"
+      }
+    ],
+    "keyboardInteractions": [
+      {
+        "key": "Up/Down Arrow",
+        "description": "When manage-tab-index is true, moves focus through items"
+      },
+      {
+        "key": "Left/Right Arrow",
+        "description": "When variant is 'multilevel', collapses/expands items with children"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "title": "Basic Sidenav",
+      "description": "A simple sidenav with items",
+      "code": "<sp-sidenav label=\"Main Navigation\">\n  <sp-sidenav-item>Home</sp-sidenav-item>\n  <sp-sidenav-item>About</sp-sidenav-item>\n  <sp-sidenav-item>Contact</sp-sidenav-item>\n</sp-sidenav>"
+    },
+    {
+      "title": "Multilevel Sidenav",
+      "description": "A sidenav with hierarchical levels",
+      "code": "<sp-sidenav variant=\"multilevel\" label=\"Main Navigation\">\n  <sp-sidenav-item>Home</sp-sidenav-item>\n  <sp-sidenav-item expanded>\n    Products\n    <sp-sidenav-item>Hardware</sp-sidenav-item>\n    <sp-sidenav-item>Software</sp-sidenav-item>\n  </sp-sidenav-item>\n  <sp-sidenav-item>Support</sp-sidenav-item>\n</sp-sidenav>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumSideNav",
+    "constructorName": "SideNav",
+    "dependsOn": ["SideNavItem", "SideNavHeading"]
+  }
+}

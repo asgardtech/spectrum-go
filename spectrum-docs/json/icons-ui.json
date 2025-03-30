@@ -1,0 +1,82 @@
+{
+  "name": "IconsUI",
+  "tagName": "sp-icon-ui",
+  "description": "Deliver Spectrum UI Icons as registered custom elements, unregistered class definitions, or functions with customizable template tags to be used across various frameworks.",
+  "category": "Icons",
+  "attributes": [
+    {
+      "name": "label",
+      "type": "string",
+      "description": "Accessibility label for the icon",
+      "default": ""
+    },
+    {
+      "name": "size",
+      "type": "enum",
+      "values": ["xxs", "xs", "s", "m", "l", "xl", "xxl"],
+      "description": "Size of the icon",
+      "default": ""
+    }
+  ],
+  "properties": [
+    {
+      "name": "width",
+      "type": "number",
+      "description": "Width to deliver the SVG element with",
+      "default": 24
+    },
+    {
+      "name": "height",
+      "type": "number",
+      "description": "Height to deliver the SVG element with",
+      "default": 24
+    },
+    {
+      "name": "hidden",
+      "type": "boolean",
+      "description": "Whether to apply the aria-hidden attribute",
+      "default": false
+    },
+    {
+      "name": "title",
+      "type": "string",
+      "description": "Title to deliver the icon with",
+      "default": ""
+    }
+  ],
+  "accessibility": {
+    "description": "Icons should either have a label (for standalone icons that convey meaning) or be marked as hidden (for decorative icons). When used inside a button or similar control, the parent control should have an accessible label."
+  },
+  "examples": [
+    {
+      "title": "Basic UI Icon",
+      "description": "Using a UI icon as a custom element",
+      "code": "import '@spectrum-web-components/icons-ui/icons/sp-icon-arrow75.js';\n\n<sp-icon-arrow75></sp-icon-arrow75>"
+    },
+    {
+      "title": "UI Icon with Label",
+      "description": "An icon with an accessibility label",
+      "code": "<sp-icon-arrow75 label=\"Navigate forward\"></sp-icon-arrow75>"
+    },
+    {
+      "title": "UI Icon with Size",
+      "description": "An icon with a specific size",
+      "code": "<sp-icon-arrow75 size=\"l\"></sp-icon-arrow75>"
+    },
+    {
+      "title": "Using with Icon Base Class",
+      "description": "Using a UI icon with the icon base class",
+      "code": "import { IconArrow75 } from '@spectrum-web-components/icons-ui/src/elements/IconArrow75.js';\n\n// Use in JavaScript"
+    },
+    {
+      "title": "Using Raw Icons",
+      "description": "Using UI icons with a template tag",
+      "code": "import { LitElement, html } from 'lit-element';\nimport '@spectrum-web-components/icon';\nimport { Arrow75Icon } from '@spectrum-web-components/icons-ui';\n\nclass ElementWithIcon extends LitElement {\n    protected override render(): TemplateResult {\n        return html`\n            <sp-icon>\n                ${Arrow75Icon()}\n            </sp-icon>\n        `\n    }\n}\n\ncustomElements.define('element-with-icon', ElementWithIcon);"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumIconsUI",
+    "constructorName": "IconsUI",
+    "dependsOn": ["Icon"]
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "name": "Tray",
+  "tagName": "sp-tray",
+  "description": "An sp-tray element is typically used to portray information on mobile devices or smaller screens. It slides in from the bottom of the viewport.",
+  "category": "Container",
+  "attributes": [
+    {
+      "name": "open",
+      "type": "boolean",
+      "description": "Whether the tray is currently open and visible",
+      "default": false
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "Content to display within the tray"
+    }
+  ],
+  "events": [
+    {
+      "name": "close",
+      "description": "Announces that the tray has been closed",
+      "bubbles": true,
+      "cancelable": false
+    }
+  ],
+  "accessibility": {
+    "role": "dialog",
+    "ariaAttributes": [],
+    "keyboardInteractions": [
+      {
+        "key": "Escape",
+        "description": "Closes the tray"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "title": "Tray with Dialog",
+      "description": "A tray containing a dialog",
+      "code": "<overlay-trigger type=\"modal\">\n    <sp-button slot=\"trigger\" variant=\"secondary\">Toggle tray</sp-button>\n    <sp-tray slot=\"click-content\">\n        <sp-dialog size=\"s\" dismissable>\n            <h2 slot=\"heading\">New Messages</h2>\n            You have 5 new messages.\n        </sp-dialog>\n    </sp-tray>\n</overlay-trigger>"
+    },
+    {
+      "title": "Tray with Menu",
+      "description": "A tray containing a menu",
+      "code": "<overlay-trigger type=\"modal\">\n    <sp-button slot=\"trigger\" variant=\"secondary\">Toggle menu</sp-button>\n    <sp-tray slot=\"click-content\">\n        <sp-menu style=\"width: 100%\">\n            <sp-menu-item selected>Deselect</sp-menu-item>\n            <sp-menu-item>Select Inverse</sp-menu-item>\n            <sp-menu-item focused>Feather...</sp-menu-item>\n            <sp-menu-item>Select and Mask...</sp-menu-item>\n            <sp-menu-divider></sp-menu-divider>\n            <sp-menu-item>Save Selection</sp-menu-item>\n            <sp-menu-item disabled>Make Work Path</sp-menu-item>\n        </sp-menu>\n    </sp-tray>\n</overlay-trigger>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumTray",
+    "constructorName": "Tray",
+    "dependsOn": []
+  }
+}

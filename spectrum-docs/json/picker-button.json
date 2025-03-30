@@ -1,0 +1,148 @@
+{
+  "name": "PickerButton",
+  "tagName": "sp-picker-button",
+  "description": "A sub-component used in patterns like combobox to pair a button interface with a text input.",
+  "category": "Form",
+  "attributes": [
+    {
+      "name": "active",
+      "type": "boolean",
+      "description": "Whether the button is in active state",
+      "default": false
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "description": "Disable this control",
+      "default": false
+    },
+    {
+      "name": "download",
+      "type": "string",
+      "description": "Causes browser to treat linked URL as download",
+      "default": ""
+    },
+    {
+      "name": "href",
+      "type": "string",
+      "description": "URL the button links to",
+      "default": ""
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "description": "Accessible label for the component",
+      "default": ""
+    },
+    {
+      "name": "position",
+      "type": "enum",
+      "values": ["left", "right"],
+      "description": "Position relative to textfield",
+      "default": "right"
+    },
+    {
+      "name": "quiet",
+      "type": "boolean",
+      "description": "Less pronounced visual delivery",
+      "default": false
+    },
+    {
+      "name": "rounded",
+      "type": "boolean",
+      "description": "Deeply rounded corners in express system",
+      "default": false
+    },
+    {
+      "name": "tabIndex",
+      "type": "number",
+      "description": "Tab index for the control",
+      "default": 0
+    },
+    {
+      "name": "type",
+      "type": "enum",
+      "values": ["button", "submit", "reset"],
+      "description": "Button type",
+      "default": "button"
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "Text content for the button"
+    },
+    {
+      "name": "icon",
+      "description": "Icon element to display"
+    },
+    {
+      "name": "label",
+      "description": "Content for the button label"
+    }
+  ],
+  "events": [
+    {
+      "name": "click",
+      "description": "Fired when the button is clicked",
+      "bubbles": true,
+      "cancelable": false
+    }
+  ],
+  "accessibility": {
+    "ariaAttributes": [
+      {
+        "name": "aria-label",
+        "description": "Set from the label attribute if no visible text is provided"
+      },
+      {
+        "name": "aria-disabled",
+        "description": "Set when the button is disabled"
+      },
+      {
+        "name": "aria-controls",
+        "description": "Should be set when used as a menu button"
+      },
+      {
+        "name": "aria-haspopup",
+        "description": "Should be set when used as a menu button"
+      },
+      {
+        "name": "aria-expanded",
+        "description": "Should be set when used as a menu button"
+      }
+    ],
+    "keyboardInteractions": [
+      {
+        "key": "Enter",
+        "description": "Activates the button"
+      },
+      {
+        "key": "Space",
+        "description": "Activates the button"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "title": "Basic Picker Button",
+      "description": "A simple picker button",
+      "code": "<sp-picker-button><span slot=\"label\">All</span></sp-picker-button>"
+    },
+    {
+      "title": "Picker Button with Icon",
+      "description": "A picker button with an icon",
+      "code": "<sp-picker-button><span slot=\"label\">Select</span><sp-icon-chevron-down slot=\"icon\"></sp-icon-chevron-down></sp-picker-button>"
+    },
+    {
+      "title": "Quiet Picker Button",
+      "description": "A picker button with less visual presence",
+      "code": "<sp-picker-button quiet><span slot=\"label\">Filter</span></sp-picker-button>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumPickerButton",
+    "constructorName": "PickerButton",
+    "dependsOn": ["Button"]
+  }
+}

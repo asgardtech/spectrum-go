@@ -1,0 +1,47 @@
+{
+  "name": "ColorController",
+  "tagName": "",
+  "description": "A comprehensive utility for managing and validating color values in various color spaces, including RGB, HSL, HSV, and Hex.",
+  "category": "Utility",
+  "attributes": [
+    {
+      "name": "color",
+      "type": "string",
+      "description": "Gets or sets the current color value in various formats (strings, objects, or instances of the Color class)"
+    },
+    {
+      "name": "colorValue",
+      "type": "string",
+      "description": "Gets the color value in various formats based on the original color input"
+    },
+    {
+      "name": "hue",
+      "type": "number",
+      "description": "Gets or sets the hue value of the current color"
+    }
+  ],
+  "slots": [],
+  "events": [],
+  "accessibility": {
+    "role": "",
+    "ariaAttributes": [],
+    "keyboardInteractions": []
+  },
+  "examples": [
+    {
+      "title": "Basic ColorController Usage",
+      "description": "Using ColorController in a LitElement",
+      "code": "import { LitElement } from 'lit';\nimport {ColorController} from '@spectrum-web-components/reactive-controllers/src/ColorController.js';\n\nclass Host extends LitElement {\n    @property({ type: String })\n    public get color(): ColorTypes {\n        return this.colorController.colorValue;\n    }\n\n    public set color(color: ColorTypes) {\n        this.colorController.color = color;\n    }\n\n    private colorController = new ColorController(this, { manageAs: 'hsv' });\n}"
+    },
+    {
+      "title": "Constructor Initialization",
+      "description": "Initializing ColorController in the constructor",
+      "code": "import { LitElement } from 'lit';\nimport {ColorController} from '@spectrum-web-components/reactive-controllers/src/ColorController.js';\n\nclass Host extends LitElement {\n    @property({ type: String })\n    public get color(): ColorTypes {\n        return this.colorController.colorValue;\n    }\n\n    public set color(color: ColorTypes) {\n        this.colorController.color = color;\n    }\n\n    private colorController: ColorController;\n\n    constructor() {\n        super();\n        this.colorController = new ColorController(this, { manageAs: 'hsv' });\n    }\n}"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumColorController",
+    "constructorName": "ColorController",
+    "dependsOn": []
+  }
+}

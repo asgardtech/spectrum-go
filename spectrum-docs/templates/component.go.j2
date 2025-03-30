@@ -1,0 +1,196 @@
+package sp
+
+import "github.com/maxence-charriere/go-app/v10/pkg/app"
+
+{% if component.attributes %}
+{# Generate enum types #}
+{% for attr in component.attributes %}
+{% if attr.type == "enum" and attr.values %}
+// {{ attr.go_type }} represents the {{ attr.description|default(attr.name) }}
+type {{ attr.go_type }} string
+
+// {{ attr.go_type }} values
+const (
+{% for value in attr.values %}
+    {{ attr.go_type }}{{ value|replace("-", " ")|title|replace(" ", "") }} {{ attr.go_type }} = "{{ value }}"
+{% endfor %}
+)
+{% endif %}
+{% endfor %}
+{% endif %}
+
+// {{ component.struct_name }} represents an {{ component.tagName }} component
+type {{ component.struct_name }} struct {
+    app.Compo
+    *styler[*{{ component.struct_name }}]
+
+    // Properties
+{% for attr in component.attributes %}
+    {% if attr.description %}// {{ attr.description }}{% endif %}
+    {{ attr.prop_name }} {{ attr.go_type }}
+{% endfor %}
+
+{% if component.slots %}
+    // Content slots
+{% for slot in component.slots %}
+{% if slot.name != "default" %}
+    {{ slot.prop_name }} app.UI
+{% endif %}
+{% endfor %}
+{% endif %}
+
+{% if component.children %}
+    // Child components
+    PropChildren []app.UI
+{% endif %}
+
+{% if component.events %}
+    // Event handlers
+{% for event in component.events %}
+    {{ event.prop_name }} app.EventHandler
+{% endfor %}
+{% endif %}
+}
+
+// {{ component.name }} creates a new {{ component.tagName }} component
+func {{ component.name }}() *{{ component.struct_name }} {
+    element := &{{ component.struct_name }}{
+{% for attr in component.attributes %}
+{% if attr.default is defined and attr.default is not none %}
+        {{ attr.prop_name }}: {% if attr.type == "string" %}"{{ attr.default }}"{% elif attr.type == "boolean" %}{{ "true" if attr.default else "false" }}{% else %}{{ attr.default }}{% endif %},
+{% endif %}
+{% endfor %}
+    }
+
+    element.styler = newStyler(element)
+
+    return element
+}
+
+{% for attr in component.attributes %}
+{% if attr.description %}// {{ attr.description }}{% endif %}
+func (c *{{ component.struct_name }}) {{ attr.go_name }}({{ attr.name|lower }} {{ attr.go_type }}) *{{ component.struct_name }} {
+    c.{{ attr.prop_name }} = {{ attr.name|lower }}
+    return c
+}
+
+{% if attr.type == "boolean" %}
+func (c *{{ component.struct_name }}) Set{{ attr.go_name }}() *{{ component.struct_name }} {
+    return c.{{ attr.go_name }}(true)
+}
+
+{% endif %}
+{% if attr.type == "enum" and attr.values %}
+{% for value in attr.values %}
+func (c *{{ component.struct_name }}) {{ attr.go_name }}{{ value|replace("-", " ")|title|replace(" ", "") }}() *{{ component.struct_name }} {
+    return c.{{ attr.go_name }}({{ attr.go_type }}{{ value|replace("-", " ")|title|replace(" ", "") }})
+}
+{% endfor %}
+{% endif %}
+{% endfor %}
+
+{% for slot in component.slots %}
+{% if slot.name != "default" %}
+{% if slot.description %}// {{ slot.description }}{% endif %}
+func (c *{{ component.struct_name }}) {{ slot.go_name }}(content app.UI) *{{ component.struct_name }} {
+    c.{{ slot.prop_name }} = content
+    return c
+}
+
+{% endif %}
+{% endfor %}
+
+{% if component.children %}
+// Children sets the child components
+func (c *{{ component.struct_name }}) Children(children ...app.UI) *{{ component.struct_name }} {
+    c.PropChildren = children
+    return c
+}
+
+// AddChild adds a child component
+func (c *{{ component.struct_name }}) AddChild(child app.UI) *{{ component.struct_name }} {
+    c.PropChildren = append(c.PropChildren, child)
+    return c
+}
+
+{% endif %}
+
+{% for event in component.events %}
+{% if event.description %}// {{ event.description }}{% endif %}
+func (c *{{ component.struct_name }}) On{{ event.go_name }}(handler app.EventHandler) *{{ component.struct_name }} {
+    c.{{ event.prop_name }} = handler
+    return c
+}
+
+{% endfor %}
+
+// Render renders the {{ component.tagName }} component
+func (c *{{ component.struct_name }}) Render() app.UI {
+    element := app.Elem("{{ component.tagName }}")
+
+    // Set attributes
+{% for attr in component.attributes %}
+{% if attr.type == "boolean" %}
+    if c.{{ attr.prop_name }} {
+        element = element.Attr("{{ attr.name }}", true)
+    }
+{% elif attr.type == "enum" %}
+    if c.{{ attr.prop_name }} != "" {
+        element = element.Attr("{{ attr.name }}", string(c.{{ attr.prop_name }}))
+    }
+{% else %}
+    if c.{{ attr.prop_name }} != {{ attr.zero_value }} {
+        element = element.Attr("{{ attr.name }}", c.{{ attr.prop_name }})
+    }
+{% endif %}
+{% endfor %}
+
+{% if component.events %}
+    // Add event handlers
+{% for event in component.events %}
+    if c.{{ event.prop_name }} != nil {
+        element = element.On("{{ event.name }}", c.{{ event.prop_name }})
+    }
+{% endfor %}
+{% endif %}
+
+{% if component.slots or component.children %}
+    // Add slots and children
+    slotElements := []app.UI{}
+
+{% for slot in component.slots %}
+{% if slot.name != "default" %}
+    // Add {{ slot.name }} slot
+    if c.{{ slot.prop_name }} != nil {
+        slotElem := c.{{ slot.prop_name }}
+        if slotWithAttr, ok := slotElem.(interface{ Slot(string) app.UI }); ok {
+            slotElem = slotWithAttr.Slot("{{ slot.name }}")
+        } else {
+            slotElem = app.Elem("div").
+                Attr("slot", "{{ slot.name }}").
+                Body(slotElem)
+        }
+        slotElements = append(slotElements, slotElem)
+    }
+{% endif %}
+{% endfor %}
+
+{% if component.children %}
+    // Add children
+    if len(c.PropChildren) > 0 {
+        for _, child := range c.PropChildren {
+            slotElements = append(slotElements, child)
+        }
+    }
+{% endif %}
+
+    // Add all elements to the component
+    if len(slotElements) > 0 {
+        element = element.Body(slotElements...)
+    }
+{% endif %}
+
+    element = element.Styles(c.styler.styles)
+
+    return element
+} 

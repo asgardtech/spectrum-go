@@ -1,0 +1,165 @@
+{
+  "name": "DialogWrapper",
+  "tagName": "sp-dialog-wrapper",
+  "description": "Supplies an attribute based interface for the managed customization of an sp-dialog element and the light DOM supplied to it.",
+  "category": "Overlay",
+  "attributes": [
+    {
+      "name": "cancelLabel",
+      "type": "string",
+      "description": "Label for the cancel button",
+      "default": ""
+    },
+    {
+      "name": "confirmLabel",
+      "type": "string",
+      "description": "Label for the confirm button",
+      "default": ""
+    },
+    {
+      "name": "dismissLabel",
+      "type": "string",
+      "description": "Label for the dismiss button",
+      "default": "Close"
+    },
+    {
+      "name": "dismissable",
+      "type": "boolean",
+      "description": "Whether the dialog has a close button",
+      "default": false
+    },
+    {
+      "name": "error",
+      "type": "boolean",
+      "description": "Whether the dialog represents an error state",
+      "default": false
+    },
+    {
+      "name": "footer",
+      "type": "string",
+      "description": "Text content for the footer",
+      "default": ""
+    },
+    {
+      "name": "headline",
+      "type": "string",
+      "description": "Text for the dialog heading",
+      "default": ""
+    },
+    {
+      "name": "headlineVisibility",
+      "type": "enum",
+      "values": ["none"],
+      "description": "Controls visibility of the headline",
+      "default": ""
+    },
+    {
+      "name": "hero",
+      "type": "string",
+      "description": "URL or content for hero image",
+      "default": ""
+    },
+    {
+      "name": "heroLabel",
+      "type": "string",
+      "description": "Accessible label for the hero content",
+      "default": ""
+    },
+    {
+      "name": "mode",
+      "type": "enum",
+      "values": ["fullscreen", "fullscreenTakeover"],
+      "description": "The display mode of the dialog",
+      "default": ""
+    },
+    {
+      "name": "noDivider",
+      "type": "boolean",
+      "description": "Whether to hide the divider between header and content",
+      "default": false
+    },
+    {
+      "name": "open",
+      "type": "boolean",
+      "description": "Whether the dialog is open",
+      "default": false
+    },
+    {
+      "name": "responsive",
+      "type": "boolean",
+      "description": "When set to true, fills screens smaller than 350px high and 400px wide with the full dialog",
+      "default": false
+    },
+    {
+      "name": "secondaryLabel",
+      "type": "string",
+      "description": "Label for the secondary button",
+      "default": ""
+    },
+    {
+      "name": "size",
+      "type": "enum",
+      "values": ["s", "m", "l"],
+      "description": "Size of the dialog",
+      "default": ""
+    },
+    {
+      "name": "underlay",
+      "type": "boolean",
+      "description": "Whether to show an underlay beneath the dialog",
+      "default": false
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "Content for the dialog"
+    }
+  ],
+  "events": [
+    {
+      "name": "cancel",
+      "description": "Announces that the cancel button has been clicked",
+      "bubbles": true,
+      "cancelable": false
+    },
+    {
+      "name": "close",
+      "description": "Announces that the dialog has been closed",
+      "bubbles": true,
+      "cancelable": false
+    },
+    {
+      "name": "confirm",
+      "description": "Announces that the confirm button has been clicked",
+      "bubbles": true,
+      "cancelable": false
+    },
+    {
+      "name": "secondary",
+      "description": "Announces that the secondary button has been clicked",
+      "bubbles": true,
+      "cancelable": false
+    }
+  ],
+  "accessibility": {
+    "description": "Uses the headline attribute/property to label the dialog content for screen readers. The headline-visibility attribute will accept a value of 'none' to suppress the headline visually."
+  },
+  "examples": [
+    {
+      "title": "Basic Dialog Wrapper",
+      "description": "A dialog wrapper with title and content",
+      "code": "<sp-dialog-wrapper headline=\"Dialog Title\" open confirmLabel=\"OK\" cancelLabel=\"Cancel\">\n  <p>This is the dialog content created from a wrapper.</p>\n</sp-dialog-wrapper>"
+    },
+    {
+      "title": "Error Dialog Wrapper",
+      "description": "A dialog wrapper showing an error",
+      "code": "<sp-dialog-wrapper headline=\"Error\" error open dismissable dismissLabel=\"Close\">\n  <p>An error has occurred during the operation.</p>\n</sp-dialog-wrapper>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumDialogWrapper",
+    "constructorName": "DialogWrapper",
+    "dependsOn": ["Dialog", "DialogBase"]
+  }
+}

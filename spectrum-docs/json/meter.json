@@ -1,0 +1,145 @@
+{
+  "name": "Meter",
+  "tagName": "sp-meter",
+  "description": "Used to display a value in a range utilizing a colored bar displaying progress towards a target.",
+  "category": "Feedback",
+  "attributes": [
+    {
+      "name": "label",
+      "type": "string",
+      "description": "The accessible label for this meter",
+      "default": ""
+    },
+    {
+      "name": "max",
+      "type": "number",
+      "description": "The maximum value for this meter",
+      "default": 100
+    },
+    {
+      "name": "min",
+      "type": "number",
+      "description": "The minimum value for this meter",
+      "default": 0
+    },
+    {
+      "name": "neutral",
+      "type": "boolean",
+      "description": "Whether to display the meter with a neutral color instead of the default positive color",
+      "default": false
+    },
+    {
+      "name": "notice",
+      "type": "boolean",
+      "description": "Whether to display the meter with the notice color",
+      "default": false
+    },
+    {
+      "name": "overBackground",
+      "type": "boolean",
+      "description": "Whether the meter is to be displayed over a background",
+      "default": false
+    },
+    {
+      "name": "percentage",
+      "type": "number",
+      "description": "A percentage value (0-100) for the meter; calculated from value, min, and max if not provided",
+      "default": null
+    },
+    {
+      "name": "positive",
+      "type": "boolean",
+      "description": "Whether to display the meter with the positive color",
+      "default": true
+    },
+    {
+      "name": "side-label",
+      "type": "string",
+      "description": "Optional side label to display next to the meter value",
+      "default": ""
+    },
+    {
+      "name": "size",
+      "type": "enum",
+      "values": ["s", "m", "l"],
+      "description": "Size variant for the meter",
+      "default": "m"
+    },
+    {
+      "name": "value",
+      "type": "number",
+      "description": "The current value for this meter",
+      "default": 0
+    },
+    {
+      "name": "variant",
+      "type": "enum",
+      "values": ["positive", "negative", "notice", "neutral"],
+      "description": "The visual style to apply to this meter",
+      "default": "positive"
+    }
+  ],
+  "slots": [
+    {
+      "name": "label",
+      "description": "Content for the meter label"
+    },
+    {
+      "name": "value",
+      "description": "Content to display as the meter value"
+    }
+  ],
+  "accessibility": {
+    "role": "meter",
+    "ariaAttributes": [
+      {
+        "name": "aria-label",
+        "description": "Set from the label attribute if no visible label is provided"
+      },
+      {
+        "name": "aria-valuemin",
+        "description": "Set from the min attribute"
+      },
+      {
+        "name": "aria-valuemax",
+        "description": "Set from the max attribute"
+      },
+      {
+        "name": "aria-valuenow",
+        "description": "Set from the value attribute"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "title": "Basic Meter",
+      "description": "A simple meter with label and value",
+      "code": "<sp-meter label=\"Progress\" value=\"75\"></sp-meter>"
+    },
+    {
+      "title": "Meter with Side Label",
+      "description": "A meter with a side label",
+      "code": "<sp-meter label=\"Usage\" value=\"50\" side-label=\"5/10 GB\"></sp-meter>"
+    },
+    {
+      "title": "Notice Variant Meter",
+      "description": "A meter with the notice variant",
+      "code": "<sp-meter label=\"CPU Usage\" value=\"90\" variant=\"notice\"></sp-meter>"
+    },
+    {
+      "title": "Negative Variant Meter",
+      "description": "A meter with the negative variant",
+      "code": "<sp-meter label=\"Disk Space\" value=\"95\" variant=\"negative\"></sp-meter>"
+    },
+    {
+      "title": "Small Meter",
+      "description": "A meter with the small size variant",
+      "code": "<sp-meter label=\"Memory\" value=\"60\" size=\"s\"></sp-meter>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumMeter",
+    "constructorName": "Meter",
+    "dependsOn": []
+  }
+}

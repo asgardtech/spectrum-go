@@ -1,0 +1,33 @@
+{
+  "name": "DependencyManager",
+  "tagName": "",
+  "description": "A utility for managing custom element dependencies, allowing functionality to be delayed until required custom element definitions are registered.",
+  "category": "Utility",
+  "attributes": [
+    {
+      "name": "loaded",
+      "type": "boolean",
+      "description": "Indicates whether all managed dependencies have been loaded",
+      "default": false
+    }
+  ],
+  "slots": [],
+  "events": [],
+  "accessibility": {
+    "role": "",
+    "ariaAttributes": [],
+    "keyboardInteractions": []
+  },
+  "examples": [
+    {
+      "title": "Using DependencyManagerController",
+      "description": "A component that conditionally renders content based on dependency loading status",
+      "code": "import { html, LitElement } from 'lit';\nimport { DependencyManagerController } from '@spectrum-web-components/reactive-controllers/DependencyManager.js';\nimport '@spectrum-web-components/button/sp-button.js';\n\nclass Host extends LitElement {\n    dependencyManager = new DependencyManagerController(this);\n\n    state = 'initial';\n\n    forwardState() {\n        this.state = 'heavy';\n    }\n\n    render() {\n        const isInitialState = this.state === 'initial';\n        if (isInitialState || !this.dependencyManager.loaded) {\n            if (!isInitialState) {\n                // When not in the initial state, this element depends on <some-heavy-element>\n                this.dependencyManager.add('some-heavy-element');\n                // Lazily load that element\n                import('path/to/register/some-heavy-element.js');\n            }\n            return html`\n                <sp-button\n                    @click=${this.forwardState}\n                    ?pending=${!isInitialState &&\n                    !this.dependencyManager.loaded}\n                >\n                    Go to next state\n                </sp-button>\n            `;\n        } else {\n            // <some-heavy-element> has now been loaded and can be rendered\n            return html`\n                <some-heavy-element></some-heavy-element>\n            `;\n        }\n    }\n}"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumDependencyManager",
+    "constructorName": "DependencyManager",
+    "dependsOn": []
+  }
+}

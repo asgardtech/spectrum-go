@@ -1,0 +1,31 @@
+{
+  "name": "Bundle",
+  "tagName": "sp-bundle",
+  "description": "A master dependency that allows a project to import any and all of the Spectrum Web Components.",
+  "category": "Utility",
+  "attributes": [],
+  "slots": [],
+  "events": [],
+  "accessibility": {
+    "role": "",
+    "ariaAttributes": [],
+    "keyboardInteractions": []
+  },
+  "examples": [
+    {
+      "title": "Using Bundle for imports",
+      "description": "Import the side effectful registrations of the bundled components",
+      "code": "import '@spectrum-web-components/bundle/elements.js';"
+    },
+    {
+      "title": "Using icons from Bundle",
+      "description": "Accessing UI and Workflow icons through the bundle",
+      "code": "import { UIIcons } from '@spectrum-web-components/bundle/icons.js';\nimport { IconsWorkflow } from '@spectrum-web-components/bundle/icons.js';\n\nconsole.log(UIIcons.AsteriskIcon());\nconsole.log(IconsWorkflow.CircleIcon());"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumBundle",
+    "constructorName": "Bundle",
+    "dependsOn": []
+  }
+}

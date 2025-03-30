@@ -1,0 +1,81 @@
+{
+  "name": "Table",
+  "tagName": "sp-table",
+  "description": "Tables display information in a grid-like format of rows and columns. They organize information in a way that's easy to scan, so that users can look for patterns and insights.",
+  "category": "Data",
+  "attributes": [
+    {
+      "name": "size",
+      "type": "enum",
+      "values": ["s", "m", "l"],
+      "description": "Size variant for the table",
+      "default": "m"
+    },
+    {
+      "name": "quiet",
+      "type": "boolean",
+      "description": "Whether the table has a reduced visual style",
+      "default": false
+    },
+    {
+      "name": "densely",
+      "type": "boolean",
+      "description": "Whether the table has reduced spacing between rows",
+      "default": false
+    },
+    {
+      "name": "striped",
+      "type": "boolean",
+      "description": "Whether the table has alternating row backgrounds",
+      "default": false
+    },
+    {
+      "name": "emphasized",
+      "type": "boolean",
+      "description": "Whether the table header has enhanced visual prominence",
+      "default": false
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "Content of the table, typically includes thead, tbody, and tfoot"
+    }
+  ],
+  "accessibility": {
+    "role": "table",
+    "ariaAttributes": [
+      {
+        "name": "aria-colcount",
+        "description": "Total number of columns"
+      },
+      {
+        "name": "aria-rowcount",
+        "description": "Total number of rows"
+      }
+    ],
+    "description": "Tables should include proper heading cells using <th> elements with scope attributes. For complex tables with multi-level headers or when headers don't appear at the beginning of a row or column, use id and headers attributes."
+  },
+  "examples": [
+    {
+      "title": "Basic Table",
+      "description": "A simple table with headers and data",
+      "code": "<sp-table>\n  <thead>\n    <tr>\n      <th>Name</th>\n      <th>Type</th>\n      <th>Date Modified</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>Documents</td>\n      <td>Folder</td>\n      <td>Apr 21, 2023</td>\n    </tr>\n    <tr>\n      <td>Photos</td>\n      <td>Folder</td>\n      <td>Apr 20, 2023</td>\n    </tr>\n    <tr>\n      <td>report.pdf</td>\n      <td>PDF Document</td>\n      <td>Apr 18, 2023</td>\n    </tr>\n  </tbody>\n</sp-table>"
+    },
+    {
+      "title": "Striped Table",
+      "description": "A table with alternating row backgrounds",
+      "code": "<sp-table striped>\n  <thead>\n    <tr>\n      <th>Name</th>\n      <th>Position</th>\n      <th>Office</th>\n      <th>Age</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>Alice Johnson</td>\n      <td>Software Engineer</td>\n      <td>San Francisco</td>\n      <td>28</td>\n    </tr>\n    <tr>\n      <td>Bob Smith</td>\n      <td>UX Designer</td>\n      <td>New York</td>\n      <td>32</td>\n    </tr>\n    <tr>\n      <td>Carol Williams</td>\n      <td>Product Manager</td>\n      <td>Seattle</td>\n      <td>35</td>\n    </tr>\n  </tbody>\n</sp-table>"
+    },
+    {
+      "title": "Compact Table",
+      "description": "A densely packed table for showing more data in less space",
+      "code": "<sp-table densely size=\"s\">\n  <thead>\n    <tr>\n      <th>ID</th>\n      <th>First Name</th>\n      <th>Last Name</th>\n      <th>Email</th>\n      <th>Status</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>1001</td>\n      <td>John</td>\n      <td>Doe</td>\n      <td>john.doe@example.com</td>\n      <td>Active</td>\n    </tr>\n    <tr>\n      <td>1002</td>\n      <td>Jane</td>\n      <td>Smith</td>\n      <td>jane.smith@example.com</td>\n      <td>Active</td>\n    </tr>\n    <tr>\n      <td>1003</td>\n      <td>Bob</td>\n      <td>Johnson</td>\n      <td>bob.johnson@example.com</td>\n      <td>Inactive</td>\n    </tr>\n  </tbody>\n</sp-table>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumTable",
+    "constructorName": "Table",
+    "dependsOn": []
+  }
+}

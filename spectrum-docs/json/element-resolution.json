@@ -1,0 +1,42 @@
+{
+  "name": "ElementResolution",
+  "tagName": "",
+  "description": "An ElementResolutionController keeps an active reference to another element in the same DOM tree. It manages observing the DOM tree to ensure the reference is always the first matched element or null.",
+  "category": "Utility",
+  "attributes": [
+    {
+      "name": "selector",
+      "type": "string",
+      "description": "The CSS selector to query for matching elements"
+    },
+    {
+      "name": "element",
+      "type": "object",
+      "description": "Reference to the first element matching the selector"
+    }
+  ],
+  "slots": [],
+  "events": [],
+  "accessibility": {
+    "role": "",
+    "ariaAttributes": [],
+    "keyboardInteractions": []
+  },
+  "examples": [
+    {
+      "title": "Basic Element Resolution",
+      "description": "Using ElementResolutionController to maintain a reference to another element",
+      "code": "import { html, LitElement } from 'lit';\nimport { ElementResolutionController } from '@spectrum-web-components/reactive-controllers/ElementResolution.js';\n\nclass RootEl extends LitElement {\n    resolvedElement = new ElementResolutionController(this);\n\n    constructor() {\n        super();\n        this.resolvedElement.selector = '.other-element';\n    }\n}\n\ncustomElements.define('root-el', RootEl);"
+    },
+    {
+      "title": "Reacting to Element Reference Changes",
+      "description": "Using elementResolverUpdatedSymbol to detect changes to the resolved element",
+      "code": "import { html, LitElement } from 'lit';\nimport {\n    ElementResolutionController,\n    elementResolverUpdatedSymbol,\n} from '@spectrum-web-components/reactive-controllers/ElementResolution.js';\n\nclass RootEl extends LitElement {\n    resolvedElement = new ElementResolutionController(this);\n\n    constructor() {\n        super();\n        this.resolvedElement.selector = '.other-element';\n    }\n\n    protected override willUpdate(changes: PropertyValues): void {\n        if (changes.has(elementResolverUpdatedSymbol)) {\n            // work to be done only when the element reference has been updated\n        }\n    }\n}"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumElementResolution",
+    "constructorName": "ElementResolution",
+    "dependsOn": []
+  }
+}

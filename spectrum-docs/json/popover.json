@@ -1,0 +1,58 @@
+{
+  "name": "Popover",
+  "tagName": "sp-popover",
+  "description": "Used to display transient content (menus, options, additional actions) that appears when clicking/tapping on a source. Stands out via its visual style and floats on top of the interface.",
+  "category": "Overlay",
+  "attributes": [
+    {
+      "name": "open",
+      "type": "boolean",
+      "description": "Whether the popover is visible or not",
+      "default": false
+    },
+    {
+      "name": "placement",
+      "type": "enum",
+      "values": ["top", "top-start", "top-end", "right", "right-start", "right-end", "bottom", "bottom-start", "bottom-end", "left", "left-start", "left-end"],
+      "description": "The placement of the popover and its tip relative to its trigger element",
+      "default": ""
+    },
+    {
+      "name": "tip",
+      "type": "boolean",
+      "description": "Whether to display the popover with a directional tip",
+      "default": false
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "Content to display within the Popover"
+    }
+  ],
+  "accessibility": {
+    "description": "For components used with a popover, see the accessibility guidelines of the particular component."
+  },
+  "examples": [
+    {
+      "title": "Default popover with no tip",
+      "description": "A basic popover without a tip",
+      "code": "<sp-popover open>\n    <h2>Popover title</h2>\n    <p>Popover content goes here. The default popover has no padding.</p>\n</sp-popover>"
+    },
+    {
+      "title": "Dialog popover with padding",
+      "description": "A popover containing a dialog for managed padding",
+      "code": "<sp-popover open>\n    <sp-dialog>\n        <h3 slot=\"heading\">Popover title</h3>\n        Content with managed padding within the popover.\n    </sp-dialog>\n</sp-popover>"
+    },
+    {
+      "title": "Popover with tip",
+      "description": "A popover with a directional tip",
+      "code": "<sp-popover placement=\"bottom\" tip open>\n    <sp-dialog>\n        <h3 slot=\"heading\">Popover title</h3>\n        Popover content with a tip pointing toward the trigger.\n    </sp-dialog>\n</sp-popover>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumPopover",
+    "constructorName": "Popover",
+    "dependsOn": []
+  }
+}

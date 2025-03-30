@@ -1,0 +1,117 @@
+{
+  "name": "BreadcrumbItem",
+  "tagName": "sp-breadcrumb-item",
+  "description": "Represents a single item in a breadcrumbs navigation list. It can function as a link or a selectable item.",
+  "category": "Navigation",
+  "attributes": [
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "description": "Disable this control. It will not receive focus or events",
+      "default": false
+    },
+    {
+      "name": "download",
+      "type": "string",
+      "description": "Causes the browser to treat the linked URL as a download"
+    },
+    {
+      "name": "href",
+      "type": "string",
+      "description": "The URL that the hyperlink points to. When present, the item functions as a link."
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "description": "An accessible label that describes the component. Applied to aria-label but not visually rendered."
+    },
+    {
+      "name": "referrerpolicy",
+      "type": "enum",
+      "values": ["no-referrer", "no-referrer-when-downgrade", "origin", "origin-when-cross-origin", "same-origin", "strict-origin", "strict-origin-when-cross-origin", "unsafe-url"],
+      "description": "How much of the referrer to send when following the link"
+    },
+    {
+      "name": "rel",
+      "type": "string",
+      "description": "The relationship of the linked URL as space-separated link types"
+    },
+    {
+      "name": "tabIndex",
+      "type": "number",
+      "description": "The tab index to apply to this control"
+    },
+    {
+      "name": "target",
+      "type": "enum",
+      "values": ["_blank", "_parent", "_self", "_top"],
+      "description": "Where to display the linked URL, as the name for a browsing context"
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "description": "The value associated with this breadcrumb item, used for selection events"
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "Content of the breadcrumb item"
+    }
+  ],
+  "accessibility": {
+    "role": "listitem",
+    "ariaAttributes": [
+      {
+        "name": "aria-current",
+        "description": "Set to 'page' when this breadcrumb is the current page"
+      },
+      {
+        "name": "aria-disabled",
+        "description": "Set to true when the breadcrumb item is disabled"
+      },
+      {
+        "name": "aria-label",
+        "description": "Set from the label attribute when provided"
+      }
+    ],
+    "keyboardInteractions": [
+      {
+        "key": "Enter/Space",
+        "description": "Activates the breadcrumb item (if not disabled)"
+      },
+      {
+        "key": "Tab",
+        "description": "Moves focus to the next focusable element"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "title": "Basic Breadcrumb Item",
+      "description": "Standard breadcrumb item with a value",
+      "code": "<sp-breadcrumb-item value=\"home\">Home</sp-breadcrumb-item>"
+    },
+    {
+      "title": "Link Breadcrumb Item",
+      "description": "Breadcrumb item that functions as a link",
+      "code": "<sp-breadcrumb-item href=\"/home\">Home</sp-breadcrumb-item>"
+    },
+    {
+      "title": "Disabled Breadcrumb Item",
+      "description": "Breadcrumb item that cannot be interacted with",
+      "code": "<sp-breadcrumb-item disabled value=\"home\">Home</sp-breadcrumb-item>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumBreadcrumbItem",
+    "constructorName": "BreadcrumbItem",
+    "dependsOn": ["Icon"]
+  },
+  "relatedComponents": [
+    {
+      "name": "Breadcrumbs",
+      "relationship": "Parent container for BreadcrumbItem elements"
+    }
+  ]
+}

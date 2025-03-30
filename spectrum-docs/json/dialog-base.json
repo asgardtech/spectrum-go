@@ -1,0 +1,73 @@
+{
+  "name": "DialogBase",
+  "tagName": "sp-dialog-base",
+  "description": "Accepts slotted dialog content and presents that content in a container that is animated into place when toggling the open attribute.",
+  "category": "Overlay",
+  "attributes": [
+    {
+      "name": "dismissable",
+      "type": "boolean",
+      "description": "Whether the dialog is dismissable",
+      "default": false
+    },
+    {
+      "name": "mode",
+      "type": "enum",
+      "values": ["fullscreen", "fullscreenTakeover"],
+      "description": "The display mode of the dialog",
+      "default": ""
+    },
+    {
+      "name": "open",
+      "type": "boolean",
+      "description": "Whether the dialog is open",
+      "default": false
+    },
+    {
+      "name": "responsive",
+      "type": "boolean",
+      "description": "When set to true, fills screens smaller than 350px high and 400px wide with the full dialog",
+      "default": false
+    },
+    {
+      "name": "underlay",
+      "type": "boolean",
+      "description": "Whether to show an underlay beneath the dialog",
+      "default": false
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "A Dialog element to display"
+    }
+  ],
+  "events": [
+    {
+      "name": "close",
+      "description": "Announces that the dialog has been closed",
+      "bubbles": true,
+      "cancelable": false
+    }
+  ],
+  "accessibility": {
+    "keyboardInteractions": [
+      {
+        "key": "Escape",
+        "description": "Closes the dialog when dismissable=true"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "title": "Basic Dialog Base",
+      "description": "A dialog base with a dialog inside",
+      "code": "<sp-dialog-base open>\n  <sp-dialog>\n    <h2 slot=\"heading\">Dialog Title</h2>\n    <p>This is the dialog content</p>\n    <sp-button slot=\"button\" variant=\"primary\">Confirm</sp-button>\n    <sp-button slot=\"button\" variant=\"secondary\">Cancel</sp-button>\n  </sp-dialog>\n</sp-dialog-base>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumDialogBase",
+    "constructorName": "DialogBase",
+    "dependsOn": ["Dialog"]
+  }
+}

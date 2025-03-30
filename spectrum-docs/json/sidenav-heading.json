@@ -1,0 +1,43 @@
+{
+  "name": "SidenavHeading",
+  "tagName": "sp-sidenav-heading",
+  "description": "A non-interactive heading element that groups sp-sidenav-item children under a visible structure in a sidenav component.",
+  "category": "Navigation",
+  "attributes": [
+    {
+      "name": "label",
+      "type": "string",
+      "description": "The text label for the heading",
+      "default": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "The sp-sidenav-item elements to group under this heading"
+    }
+  ],
+  "events": [],
+  "accessibility": {
+    "role": "heading",
+    "ariaAttributes": [
+      {
+        "name": "aria-level",
+        "description": "Defines the heading level"
+      }
+    ],
+    "keyboardInteractions": []
+  },
+  "examples": [
+    {
+      "title": "Basic Sidenav Heading",
+      "description": "Using sidenav headings to create categories in navigation",
+      "code": "<sp-sidenav variant=\"multilevel\">\n    <sp-sidenav-item value=\"Section 1\" label=\"Section 1\"></sp-sidenav-item>\n    <sp-sidenav-item value=\"Section 2\" label=\"Section 2\"></sp-sidenav-item>\n    <sp-sidenav-heading label=\"Category 1\">\n        <sp-sidenav-item value=\"Section 3\" label=\"Section 3\"></sp-sidenav-item>\n        <sp-sidenav-item value=\"Section 4\" label=\"Section 4\"></sp-sidenav-item>\n    </sp-sidenav-heading>\n    <sp-sidenav-heading label=\"Category 2\">\n        <sp-sidenav-item value=\"Section 5\" label=\"Section 5\"></sp-sidenav-item>\n        <sp-sidenav-item value=\"Section 6\" label=\"Section 6\"></sp-sidenav-item>\n    </sp-sidenav-heading>\n</sp-sidenav>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumSidenavHeading",
+    "constructorName": "SidenavHeading",
+    "dependsOn": ["Sidenav", "SidenavItem"]
+  }
+}

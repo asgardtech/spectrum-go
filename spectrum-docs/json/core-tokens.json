@@ -1,0 +1,48 @@
+{
+  "name": "CoreTokens",
+  "tagName": "",
+  "description": "Design token collections that support both the Spectrum Vars and Spectrum Core Tokens design systems. Used to facilitate migration from the older Spectrum Vars ecosystem to the Core Tokens ecosystem.",
+  "category": "Theming",
+  "attributes": [
+    {
+      "name": "swc-scale-factor",
+      "type": "string",
+      "description": "Custom property used to support calculating the difference between delivery in medium and large scales",
+      "default": "1"
+    }
+  ],
+  "slots": [],
+  "events": [],
+  "accessibility": {
+    "role": "",
+    "ariaAttributes": [],
+    "keyboardInteractions": []
+  },
+  "examples": [
+    {
+      "title": "Importing Core Tokens",
+      "description": "Importing all theme files",
+      "code": "import '@spectrum-web-components/theme/src/themes-core-tokens.js';"
+    },
+    {
+      "title": "Targeted Imports",
+      "description": "Importing specific color and scale data",
+      "code": "import '@spectrum-web-components/theme/theme-dark-core-tokens.js';\nimport '@spectrum-web-components/theme/theme-light-core-tokens.js';\nimport '@spectrum-web-components/theme/scale-medium-core-tokens.js';"
+    },
+    {
+      "title": "Migrating Color Tokens",
+      "description": "Converting Spectrum Vars colors to Core Tokens",
+      "code": "/* Before */\nborder-color: var(--spectrum-global-color-seafoam-600);\n\n/* After */\nborder-color: var(--spectrum-seafoam-900);"
+    },
+    {
+      "title": "Migrating Size Tokens",
+      "description": "Converting size dimensions using scale factor",
+      "code": "/* Before */\npadding: var(--spectrum-global-dimension-size-175) var(--spectrum-global-dimension-size-250);\n\n/* After */\npadding: calc(var(--swc-scale-factor) * 14px) calc(var(--swc-scale-factor) * 20px);"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumCoreTokens",
+    "constructorName": "CoreTokens",
+    "dependsOn": []
+  }
+}

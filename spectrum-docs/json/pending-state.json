@@ -1,0 +1,50 @@
+{
+  "name": "PendingState",
+  "tagName": "",
+  "description": "The PendingStateController helps manage the pending state of a reactive element. It provides a standardized way to indicate when an element is in a pending state, such as during an asynchronous operation.",
+  "category": "Utility",
+  "attributes": [
+    {
+      "name": "pending",
+      "type": "boolean",
+      "description": "Whether the items are currently loading",
+      "default": false
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "description": "Whether the host is disabled",
+      "default": false
+    },
+    {
+      "name": "pending-label",
+      "type": "string",
+      "description": "Defines a string value that labels the element while it is in pending state",
+      "default": "Pending"
+    }
+  ],
+  "slots": [],
+  "events": [],
+  "accessibility": {
+    "role": "",
+    "ariaAttributes": [
+      {
+        "name": "aria-label",
+        "description": "Updates to the pending-label value when in pending state"
+      }
+    ],
+    "keyboardInteractions": []
+  },
+  "examples": [
+    {
+      "title": "Using PendingStateController",
+      "description": "Implementing PendingStateController in a component",
+      "code": "import { LitElement, html } from 'lit';\nimport { property } from 'lit/decorators.js';\nimport { when } from 'lit/directives/when.js';\nimport { PendingStateController, HostWithPendingState } from '@spectrum-web-components/reactive-controllers/src/PendingState.js';\n\nclass Host extends LitElement implements HostWithPendingState {\n    /** Whether the items are currently loading. */\n    @property({ type: Boolean, reflect: true })\n    public pending = false;\n\n    /** Whether the host is disabled. */\n    @property({ type: Boolean })\n    public disabled = false;\n\n    /** Defines a string value that labels the while it is in pending state. */\n    @property({ type: String, attribute: 'pending-label' })\n    public pendingLabel = 'Pending';\n    \n    public pendingStateController: PendingStateController<this>;\n\n    /**\n     * Initializes the `PendingStateController` for the component.\n     * The `PendingStateController` manages the pending state of the Component.\n     */\n    constructor() {\n        super();\n        this.pendingStateController = new PendingStateController(this);\n    }\n    \n    render() {\n        return html`\n            <host-element></host-element>\n            ${when(\n                this.pending,\n                () => {\n                    return this.pendingStateController.renderPendingState();\n                }\n            )}\n        `;\n    }\n}"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumPendingState",
+    "constructorName": "PendingState",
+    "dependsOn": ["ProgressCircle"]
+  }
+}

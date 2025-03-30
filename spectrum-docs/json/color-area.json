@@ -1,0 +1,124 @@
+{
+  "name": "ColorArea",
+  "tagName": "sp-color-area",
+  "description": "An sp-color-area allows users to visually select two properties of a color simultaneously. It's commonly used together with a color slider or color wheel.",
+  "category": "Color",
+  "attributes": [
+    {
+      "name": "color",
+      "type": "string",
+      "description": "The current color value in various supported formats (Hex, HSV, HSL, RGB, color strings)"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "description": "Disables the color area interaction",
+      "default": false
+    },
+    {
+      "name": "focused",
+      "type": "boolean",
+      "description": "Indicates whether the color area has focus",
+      "default": false
+    },
+    {
+      "name": "hue",
+      "type": "number",
+      "description": "The hue value to use for the color area's gradient"
+    },
+    {
+      "name": "label-x",
+      "type": "string",
+      "description": "Accessible label for the x-axis of the color area",
+      "default": "saturation"
+    },
+    {
+      "name": "label-y",
+      "type": "string",
+      "description": "Accessible label for the y-axis of the color area",
+      "default": "luminosity"
+    },
+    {
+      "name": "step",
+      "type": "number",
+      "description": "The increment amount for keyboard navigation",
+      "default": 0.01
+    },
+    {
+      "name": "x",
+      "type": "number",
+      "description": "The x-coordinate value (typically represents saturation)"
+    },
+    {
+      "name": "y",
+      "type": "number",
+      "description": "The y-coordinate value (typically represents luminosity)"
+    }
+  ],
+  "slots": [
+    {
+      "name": "gradient",
+      "description": "A custom gradient visually outlining the available color values"
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "description": "An alteration to the value of the Color Area has been committed by the user",
+      "bubbles": true,
+      "cancelable": false
+    },
+    {
+      "name": "input",
+      "description": "The value of the Color Area has changed",
+      "bubbles": true,
+      "cancelable": false
+    }
+  ],
+  "accessibility": {
+    "role": "application",
+    "ariaAttributes": [
+      {
+        "name": "aria-valuetext",
+        "description": "Provides a text representation of the selected color"
+      }
+    ],
+    "keyboardInteractions": [
+      {
+        "key": "Arrow keys",
+        "description": "Move the selection in the corresponding direction"
+      },
+      {
+        "key": "Home/End",
+        "description": "Navigate to the minimum/maximum values"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "title": "Basic Color Area",
+      "description": "A standard color area selector",
+      "code": "<sp-color-area></sp-color-area>"
+    },
+    {
+      "title": "Disabled Color Area",
+      "description": "A color area in a disabled state",
+      "code": "<sp-color-area disabled></sp-color-area>"
+    },
+    {
+      "title": "Custom Size Color Area",
+      "description": "A color area with custom dimensions",
+      "code": "<sp-color-area style=\"width: 72px; height: 72px\"></sp-color-area>"
+    },
+    {
+      "title": "Custom Labels",
+      "description": "A color area with custom axis labels",
+      "code": "<sp-color-area label-x=\"Color intensity\" label-y=\"Color brightness\"></sp-color-area>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumColorArea",
+    "constructorName": "ColorArea",
+    "dependsOn": ["ColorHandle"]
+  }
+}

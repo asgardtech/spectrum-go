@@ -1,0 +1,40 @@
+{
+  "name": "Underlay",
+  "tagName": "sp-underlay",
+  "description": "An sp-underlay is used primarily in concert with elements similar to sp-dialog that lay over the rest of your page to deliver a blocking layer between those two contexts.",
+  "category": "Container",
+  "attributes": [
+    {
+      "name": "open",
+      "type": "boolean",
+      "description": "Whether the underlay is currently visible",
+      "default": false
+    }
+  ],
+  "slots": [],
+  "events": [
+    {
+      "name": "close",
+      "description": "When the underlay is clicked and the consuming pattern should choose whether to close based on that interaction",
+      "bubbles": true,
+      "cancelable": false
+    }
+  ],
+  "accessibility": {
+    "role": "",
+    "ariaAttributes": [],
+    "keyboardInteractions": []
+  },
+  "examples": [
+    {
+      "title": "Basic Underlay with Dialog",
+      "description": "Using an underlay with a dialog overlay",
+      "code": "<style>\n    sp-underlay:not([open]) + sp-dialog {\n        display: none;\n    }\n    sp-underlay + sp-dialog {\n        position: fixed;\n        top: 50%;\n        left: 50%;\n        transform: translate(-50%, -50%);\n        z-index: 1;\n        background: var(--spectrum-gray-100);\n    }\n</style>\n\n<sp-button\n    onclick=\"\n        this.nextElementSibling.open = true;\n    \"\n>\n    Open dialog with underlay element\n</sp-button>\n\n<sp-underlay></sp-underlay>\n<sp-dialog size=\"s\">\n    <h1 slot=\"heading\">Hello, I'm an overlay!</h1>\n    <p>Enjoy your day...</p>\n    <sp-button\n        slot=\"button\"\n        onclick=\"\n            this.parentElement.previousElementSibling.open = false;\n        \"\n    >\n        Close\n    </sp-button>\n</sp-dialog>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumUnderlay",
+    "constructorName": "Underlay",
+    "dependsOn": []
+  }
+}

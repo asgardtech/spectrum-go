@@ -1,0 +1,47 @@
+{
+  "name": "Truncated",
+  "tagName": "sp-truncated",
+  "description": "An sp-truncated element renders a line of text, truncating it if it overflows its container. When overflowing, a tooltip is automatically created that renders the entire non-truncated content.",
+  "category": "Content",
+  "attributes": [
+    {
+      "name": "placement",
+      "type": "string",
+      "description": "Where the tooltip should be positioned relative to the truncated content",
+      "default": "bottom"
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "The text content that will be truncated if necessary"
+    },
+    {
+      "name": "overflow",
+      "description": "Custom content to display in the tooltip when truncated"
+    }
+  ],
+  "events": [],
+  "accessibility": {
+    "role": "",
+    "ariaAttributes": [],
+    "keyboardInteractions": []
+  },
+  "examples": [
+    {
+      "title": "Basic Truncated Text",
+      "description": "Text that will truncate and show a tooltip when there isn't enough space",
+      "code": "<sp-truncated>\n    This will truncate into a tooltip if there isn't enough space for it.\n</sp-truncated>"
+    },
+    {
+      "title": "Custom Overflow Content",
+      "description": "Truncated text with specific content for the overflow tooltip",
+      "code": "<sp-truncated placement=\"right\">\n    This is the inline content\n    <span slot=\"overflow\">\n        And this overflow content will go into the tooltip, on the right\n    </span>\n</sp-truncated>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumTruncated",
+    "constructorName": "Truncated",
+    "dependsOn": ["Tooltip"]
+  }
+}

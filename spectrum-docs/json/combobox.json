@@ -1,0 +1,158 @@
+{
+  "name": "Combobox",
+  "tagName": "sp-combobox",
+  "description": "Allows users to filter lists to only options matching a query, combining a textfield, picker button, and menu items.",
+  "category": "Form",
+  "attributes": [
+    {
+      "name": "autocomplete",
+      "type": "enum",
+      "values": ["list", "none"],
+      "description": "Type of assistance when supplying values",
+      "default": "none"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "description": "Disable this control",
+      "default": false
+    },
+    {
+      "name": "invalid",
+      "type": "boolean",
+      "description": "Whether the value is invalid",
+      "default": false
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "description": "Accessible label when visible label not provided",
+      "default": ""
+    },
+    {
+      "name": "open",
+      "type": "boolean",
+      "description": "Whether the listbox is visible",
+      "default": false
+    },
+    {
+      "name": "pending",
+      "type": "boolean",
+      "description": "Whether items are currently loading",
+      "default": false
+    },
+    {
+      "name": "pendingLabel",
+      "type": "string",
+      "description": "Label for the combobox in pending state",
+      "default": "Pending"
+    },
+    {
+      "name": "placeholder",
+      "type": "string",
+      "description": "Text shown when no value is set",
+      "default": ""
+    },
+    {
+      "name": "quiet",
+      "type": "boolean",
+      "description": "Display without visible background",
+      "default": false
+    },
+    {
+      "name": "required",
+      "type": "boolean",
+      "description": "Whether field is required",
+      "default": false
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "description": "The value held by the control",
+      "default": ""
+    }
+  ],
+  "slots": [
+    {
+      "name": "default",
+      "description": "Menu item elements for available options"
+    },
+    {
+      "name": "help-text",
+      "description": "Default or non-negative help text"
+    },
+    {
+      "name": "negative-help-text",
+      "description": "Negative help text shown when invalid"
+    },
+    {
+      "name": "tooltip",
+      "description": "Tooltip for the picker button"
+    }
+  ],
+  "events": [
+    {
+      "name": "change",
+      "description": "Value has been committed by the user",
+      "bubbles": true,
+      "cancelable": false
+    },
+    {
+      "name": "input",
+      "description": "Value of the element has changed",
+      "bubbles": true,
+      "cancelable": false
+    }
+  ],
+  "accessibility": {
+    "ariaAttributes": [
+      {
+        "name": "aria-label",
+        "description": "Set from the label attribute if no visible label is provided"
+      },
+      {
+        "name": "aria-expanded",
+        "description": "Indicates whether the listbox is expanded"
+      },
+      {
+        "name": "aria-autocomplete",
+        "description": "Indicates the autocomplete behavior"
+      }
+    ],
+    "keyboardInteractions": [
+      {
+        "key": "Down Arrow",
+        "description": "Moves focus to first menu item"
+      },
+      {
+        "key": "Up/Down Arrow",
+        "description": "Navigate between menu items"
+      },
+      {
+        "key": "Escape",
+        "description": "Dismisses menu or clears textfield"
+      },
+      {
+        "key": "Enter",
+        "description": "Sets the value"
+      }
+    ]
+  },
+  "examples": [
+    {
+      "title": "Basic Combobox",
+      "description": "A simple combobox with options",
+      "code": "<sp-combobox label=\"Color\">\n  <sp-menu-item value=\"red\">Red</sp-menu-item>\n  <sp-menu-item value=\"green\">Green</sp-menu-item>\n  <sp-menu-item value=\"blue\">Blue</sp-menu-item>\n</sp-combobox>"
+    },
+    {
+      "title": "Invalid Combobox",
+      "description": "A combobox in an invalid state with help text",
+      "code": "<sp-combobox label=\"Color\" invalid>\n  <sp-menu-item value=\"red\">Red</sp-menu-item>\n  <sp-menu-item value=\"green\">Green</sp-menu-item>\n  <sp-menu-item value=\"blue\">Blue</sp-menu-item>\n  <sp-help-text slot=\"negative-help-text\">A valid color must be selected</sp-help-text>\n</sp-combobox>"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumCombobox",
+    "constructorName": "Combobox",
+    "dependsOn": ["Menu", "MenuItem", "PickerButton", "Textfield"]
+  }
+}

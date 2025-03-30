@@ -1,0 +1,41 @@
+{
+  "name": "Styles",
+  "tagName": "",
+  "description": "CSS Custom Properties that Power the various color and size themes defined by Spectrum CSS. These properties can be accessed directly or through THE sp-theme element.",
+  "category": "Theming",
+  "attributes": [],
+  "slots": [],
+  "events": [],
+  "accessibility": {
+    "role": "",
+    "ariaAttributes": [],
+    "keyboardInteractions": []
+  },
+  "examples": [
+    {
+      "title": "Using Theme Packages",
+      "description": "Importing complete theme packages with color and scale",
+      "code": "/* Darkest theme with medium scale */\n@import '@spectrum-web-components/styles/all-medium-darkest.css';\n\n/* Light theme with large scale */\n@import '@spectrum-web-components/styles/all-large-light.css';"
+    },
+    {
+      "title": "Using Color Sets",
+      "description": "Importing only color theme variables",
+      "code": "/* Dark theme colors */\n@import '@spectrum-web-components/styles/theme-dark.css';\n\n/* Light theme colors */\n@import '@spectrum-web-components/styles/theme-light.css';"
+    },
+    {
+      "title": "Using Scale Systems",
+      "description": "Importing only scale system variables",
+      "code": "/* Medium scale system */\n@import '@spectrum-web-components/styles/scale-medium.css';\n\n/* Large scale system */\n@import '@spectrum-web-components/styles/scale-large.css';"
+    },
+    {
+      "title": "Using Typography",
+      "description": "Importing LitHTML-compliant Spectrum typography classes",
+      "code": "/* Typography classes */\n@import '@spectrum-web-components/styles/typography.css';"
+    }
+  ],
+  "implementation": {
+    "goStructName": "spectrumStyles",
+    "constructorName": "Styles",
+    "dependsOn": []
+  }
+}
