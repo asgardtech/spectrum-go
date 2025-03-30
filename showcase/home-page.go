@@ -50,7 +50,7 @@ func (p *homePage) Render() app.UI {
 			sp.SplitView().
 				Collapsible(true).
 				PrimarySize("250px").
-				PrimaryMin("200px").
+				PrimaryMin(200).
 				Resizable(false).
 				PrimaryPanel(p.renderSidenav()).
 				SecondaryPanel(p.renderContent()),

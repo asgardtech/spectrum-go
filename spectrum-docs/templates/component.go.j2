@@ -5,14 +5,16 @@ import "github.com/maxence-charriere/go-app/v10/pkg/app"
 {% if component.attributes %}
 {# Generate enum types #}
 {% for attr in component.attributes %}
-{% if attr.type == "enum" and attr.values %}
+{% if attr.type == "enum" and attr.values_list %}
 // {{ attr.go_type }} represents the {{ attr.description|default(attr.name) }}
 type {{ attr.go_type }} string
 
 // {{ attr.go_type }} values
 const (
-{% for value in attr.values %}
+{% for value in attr.values_list %}
+{% if value != "" %}
     {{ attr.go_type }}{{ value|replace("-", " ")|title|replace(" ", "") }} {{ attr.go_type }} = "{{ value }}"
+{% endif %}
 {% endfor %}
 )
 {% endif %}
@@ -26,9 +28,16 @@ type {{ component.struct_name }} struct {
 
     // Properties
 {% for attr in component.attributes %}
-    {% if attr.description %}// {{ attr.description }}{% endif %}
+    {% if attr.description %}
+    // {{ attr.description }}
+    {% endif %}
     {{ attr.prop_name }} {{ attr.go_type }}
 {% endfor %}
+
+{% if component.has_text_prop %}
+    // Text content for the default slot
+    PropText string
+{% endif %}
 
 {% if component.slots %}
     // Content slots
@@ -57,7 +66,11 @@ func {{ component.name }}() *{{ component.struct_name }} {
     element := &{{ component.struct_name }}{
 {% for attr in component.attributes %}
 {% if attr.default is defined and attr.default is not none %}
-        {{ attr.prop_name }}: {% if attr.type == "string" %}"{{ attr.default }}"{% elif attr.type == "boolean" %}{{ "true" if attr.default else "false" }}{% else %}{{ attr.default }}{% endif %},
+        {{ attr.prop_name }}: {% if attr.type == "string" %}"{{ attr.default }}"{% elif attr.type == "boolean" %}{{ "true" if attr.default else "false" }}{% elif attr.type == "enum" %}{% if attr.default %}{{ attr.go_type }}{{ attr.default|replace("-", " ")|title|replace(" ", "") }}{% else %}""{% endif %}{% elif attr.type == "object" %}map[string]interface{}{}{% else %}{{ attr.default }}{% endif %},
+{% elif attr.type == "array" %}
+        {{ attr.prop_name }}: {{ attr.init_value }},
+{% elif attr.type == "object" %}
+        {{ attr.prop_name }}: map[string]interface{}{},
 {% endif %}
 {% endfor %}
     }
@@ -68,9 +81,12 @@ func {{ component.name }}() *{{ component.struct_name }} {
 }
 
 {% for attr in component.attributes %}
-{% if attr.description %}// {{ attr.description }}{% endif %}
-func (c *{{ component.struct_name }}) {{ attr.go_name }}({{ attr.name|lower }} {{ attr.go_type }}) *{{ component.struct_name }} {
-    c.{{ attr.prop_name }} = {{ attr.name|lower }}
+{% if attr.description %}
+// {{ attr.description }}
+{% endif %}
+func (c *{{ component.struct_name }}) {{ attr.go_name }}({% if attr.parameter_name == "type" %}typeValue{% elif attr.parameter_name == "for" %}forValue{% elif attr.parameter_name == "range" %}rangeValue{% elif attr.parameter_name == "select" %}selectValue{% elif attr.parameter_name == "map" %}mapValue{% elif attr.parameter_name == "interface" %}interfaceValue{% elif attr.parameter_name == "switch" %}switchValue{% elif attr.parameter_name == "case" %}caseValue{% elif attr.parameter_name == "default" %}defaultValue{% elif attr.parameter_name == "func" %}funcValue{% elif attr.parameter_name == "defer" %}deferValue{% elif attr.parameter_name == "package" %}packageValue{% elif attr.parameter_name == "import" %}importValue{% elif attr.parameter_name == "go" %}goValue{% else %}{{ attr.parameter_name }}{% endif %} {{ attr.go_type }}) *{{ component.struct_name }} {
+    c.{{ attr.prop_name }} = {% if attr.parameter_name == "type" %}typeValue{% elif attr.parameter_name == "for" %}forValue{% elif attr.parameter_name == "range" %}rangeValue{% elif attr.parameter_name == "select" %}selectValue{% elif attr.parameter_name == "map" %}mapValue{% elif attr.parameter_name == "interface" %}interfaceValue{% elif attr.parameter_name == "switch" %}switchValue{% elif attr.parameter_name == "case" %}caseValue{% elif attr.parameter_name == "default" %}defaultValue{% elif attr.parameter_name == "func" %}funcValue{% elif attr.parameter_name == "defer" %}deferValue{% elif attr.parameter_name == "package" %}packageValue{% elif attr.parameter_name == "import" %}importValue{% elif attr.parameter_name == "go" %}goValue{% else %}{{ attr.parameter_name }}{% endif %}
+
     return c
 }
 
@@ -80,20 +96,34 @@ func (c *{{ component.struct_name }}) Set{{ attr.go_name }}() *{{ component.stru
 }
 
 {% endif %}
-{% if attr.type == "enum" and attr.values %}
-{% for value in attr.values %}
+{% if attr.type == "enum" and attr.values_list %}
+{% for value in attr.values_list %}
+{% if value != "" %}
 func (c *{{ component.struct_name }}) {{ attr.go_name }}{{ value|replace("-", " ")|title|replace(" ", "") }}() *{{ component.struct_name }} {
     return c.{{ attr.go_name }}({{ attr.go_type }}{{ value|replace("-", " ")|title|replace(" ", "") }})
 }
+{% endif %}
 {% endfor %}
 {% endif %}
 {% endfor %}
 
+{% if component.has_text_prop %}
+// Text sets the text content for the default slot
+func (c *{{ component.struct_name }}) Text(text string) *{{ component.struct_name }} {
+    c.PropText = text
+    return c
+}
+
+{% endif %}
+
 {% for slot in component.slots %}
 {% if slot.name != "default" %}
-{% if slot.description %}// {{ slot.description }}{% endif %}
+{% if slot.description %}
+// {{ slot.description }}
+{% endif %}
 func (c *{{ component.struct_name }}) {{ slot.go_name }}(content app.UI) *{{ component.struct_name }} {
     c.{{ slot.prop_name }} = content
+
     return c
 }
 
@@ -104,21 +134,26 @@ func (c *{{ component.struct_name }}) {{ slot.go_name }}(content app.UI) *{{ com
 // Children sets the child components
 func (c *{{ component.struct_name }}) Children(children ...app.UI) *{{ component.struct_name }} {
     c.PropChildren = children
+
     return c
 }
 
 // AddChild adds a child component
 func (c *{{ component.struct_name }}) AddChild(child app.UI) *{{ component.struct_name }} {
     c.PropChildren = append(c.PropChildren, child)
+
     return c
 }
 
 {% endif %}
 
 {% for event in component.events %}
-{% if event.description %}// {{ event.description }}{% endif %}
+{% if event.description %}
+// {{ event.description }}
+{% endif %}
 func (c *{{ component.struct_name }}) On{{ event.go_name }}(handler app.EventHandler) *{{ component.struct_name }} {
     c.{{ event.prop_name }} = handler
+
     return c
 }
 
@@ -134,12 +169,28 @@ func (c *{{ component.struct_name }}) Render() app.UI {
     if c.{{ attr.prop_name }} {
         element = element.Attr("{{ attr.name }}", true)
     }
+{% elif attr.type == "string" or attr.go_type == "string" %}
+    if c.{{ attr.prop_name }} != "" {
+        element = element.Attr("{{ attr.name }}", c.{{ attr.prop_name }})
+    }
 {% elif attr.type == "enum" %}
     if c.{{ attr.prop_name }} != "" {
         element = element.Attr("{{ attr.name }}", string(c.{{ attr.prop_name }}))
     }
+{% elif attr.type == "array" %}
+    if len(c.{{ attr.prop_name }}) > 0 {
+        element = element.Attr("{{ attr.name }}", c.{{ attr.prop_name }})
+    }
+{% elif attr.type == "number" or attr.type == "integer" %}
+    if c.{{ attr.prop_name }} != 0 {
+        element = element.Attr("{{ attr.name }}", c.{{ attr.prop_name }})
+    }
+{% elif attr.type == "object" %}
+    if c.{{ attr.prop_name }} != nil {
+        element = element.Attr("{{ attr.name }}", c.{{ attr.prop_name }})
+    }
 {% else %}
-    if c.{{ attr.prop_name }} != {{ attr.zero_value }} {
+    if c.{{ attr.prop_name }} != nil {
         element = element.Attr("{{ attr.name }}", c.{{ attr.prop_name }})
     }
 {% endif %}
@@ -154,9 +205,16 @@ func (c *{{ component.struct_name }}) Render() app.UI {
 {% endfor %}
 {% endif %}
 
-{% if component.slots or component.children %}
+{% if component.slots or component.children or component.has_text_prop %}
     // Add slots and children
     slotElements := []app.UI{}
+
+{% if component.has_text_prop %}
+    // Add text content for default slot if specified
+    if c.PropText != "" {
+        slotElements = append(slotElements, app.Text(c.PropText))
+    }
+{% endif %}
 
 {% for slot in component.slots %}
 {% if slot.name != "default" %}

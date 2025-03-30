@@ -63,7 +63,11 @@
   ],
   "slots": [
     {
-      "name": "default",
+      "name": "primary-panel",
+      "description": "Two sibling elements to be sized by the element attributes"
+    },
+    {
+      "name": "secondary-panel",
       "description": "Two sibling elements to be sized by the element attributes"
     }
   ],
