@@ -3,7 +3,11 @@ package main
 import (
 	"context"
 	"fmt"
+	"log"
 	"net/http"
+	"os"
+	"os/signal"
+	"syscall"
 
 	"github.com/maxence-charriere/go-app/v10/pkg/app"
 	"github.com/maxence-charriere/go-app/v10/pkg/cli"
@@ -22,9 +26,54 @@ type localOptions struct {
 }
 
 func main() {
-	app.Route("/", app.NewZeroComponentFactory(newButtonPage()))
+	app.Route("/", app.NewZeroComponentFactory(newPage()))
 	app.Route("/checkbox", app.NewZeroComponentFactory(newCheckboxPage()))
 	app.Route("/button", app.NewZeroComponentFactory(newButtonPage()))
+	app.Route("/badge", app.NewZeroComponentFactory(newBadgePage()))
+	app.Route("/switch", app.NewZeroComponentFactory(newSwitchPage()))
+	app.Route("/radio", app.NewZeroComponentFactory(newRadioPage()))
+	app.Route("/progress-bar", app.NewZeroComponentFactory(newProgressBarPage()))
+	app.Route("/progress-circle", app.NewZeroComponentFactory(newProgressCirclePage()))
+	app.Route("/link", app.NewZeroComponentFactory(newLinkPage()))
+	app.Route("/icon", app.NewZeroComponentFactory(newIconPage()))
+	app.Route("/avatar", app.NewZeroComponentFactory(newAvatarPage()))
+	app.Route("/status-light", app.NewZeroComponentFactory(newStatusLightPage()))
+	app.Route("/accordion", app.NewZeroComponentFactory(newAccordionPage()))
+	app.Route("/coachmark", app.NewZeroComponentFactory(newCoachmarkPage()))
+	app.Route("/alert-banner", app.NewZeroComponentFactory(newAlertBannerPage()))
+	app.Route("/alert-dialog", app.NewZeroComponentFactory(newAlertDialogPage()))
+	app.Route("/asset", app.NewZeroComponentFactory(newAssetPage()))
+	app.Route("/button-group", app.NewZeroComponentFactory(newButtonGroupPage()))
+	app.Route("/card", app.NewZeroComponentFactory(newCardPage()))
+	app.Route("/toast", app.NewZeroComponentFactory(newToastPage()))
+	app.Route("/tooltip", app.NewZeroComponentFactory(newTooltipPage()))
+	app.Route("/breadcrumbs", app.NewZeroComponentFactory(newBreadcrumbsPage()))
+	app.Route("/tabs", app.NewZeroComponentFactory(newTabsPage()))
+	app.Route("/tags", app.NewZeroComponentFactory(newTagsPage()))
+	app.Route("/action-button", app.NewZeroComponentFactory(newActionButtonPage()))
+	app.Route("/divider", app.NewZeroComponentFactory(newDividerPage()))
+	app.Route("/textfield", app.NewZeroComponentFactory(newTextfieldPage()))
+	app.Route("/textarea", app.NewZeroComponentFactory(newTextareaPage()))
+	app.Route("/popover", app.NewZeroComponentFactory(newPopoverPage()))
+	app.Route("/menu", app.NewZeroComponentFactory(newMenuPage()))
+	app.Route("/meter", app.NewZeroComponentFactory(newMeterPage()))
+	app.Route("/search", app.NewZeroComponentFactory(newSearchPage()))
+	app.Route("/field-label", app.NewZeroComponentFactory(newFieldLabelPage()))
+	app.Route("/help-text", app.NewZeroComponentFactory(newHelpTextPage()))
+	app.Route("/slider", app.NewZeroComponentFactory(newSliderPage()))
+	app.Route("/sidenav", app.NewZeroComponentFactory(newSidenavPage()))
+	app.Route("/number-field", app.NewZeroComponentFactory(newNumberFieldPage()))
+	app.Route("/combobox", app.NewZeroComponentFactory(newComboboxPage()))
+	app.Route("/split-view", app.NewZeroComponentFactory(newSplitViewPage()))
+	app.Route("/dialog", app.NewZeroComponentFactory(newDialogPage()))
+	app.Route("/contextual-help", app.NewZeroComponentFactory(newContextualHelpPage()))
+	app.Route("/field-group", app.NewZeroComponentFactory(newFieldGroupPage()))
+	app.Route("/illustrated-message", app.NewZeroComponentFactory(newIllustratedMessagePage()))
+	app.Route("/thumbnail", app.NewZeroComponentFactory(newThumbnailPage()))
+	app.Route("/picker", app.NewZeroComponentFactory(newPickerPage()))
+	app.Route("/picker-button", app.NewZeroComponentFactory(newPickerButtonPage()))
+	app.Route("/swatch", app.NewZeroComponentFactory(newSwatchPage()))
+	app.Route("/swatch-group", app.NewZeroComponentFactory(newSwatchGroupPage()))
 
 	app.RunWhenOnBrowser()
 
@@ -82,7 +131,6 @@ func main() {
 	}
 
 	runLocal(ctx, &h, localOpts)
-
 }
 
 func runLocal(ctx context.Context, h *app.Handler, opts localOptions) {
@@ -105,12 +153,26 @@ func runLocal(ctx context.Context, h *app.Handler, opts localOptions) {
 		Addr: fmt.Sprintf(":%v", opts.Port),
 	}
 
+	// Create a channel to listen for signals
+	sigChan := make(chan os.Signal, 1)
+	signal.Notify(sigChan, os.Interrupt, syscall.SIGTERM)
+
 	go func() {
 		<-ctx.Done()
 		s.Shutdown(context.Background())
 	}()
 
-	if err := s.ListenAndServe(); err != nil {
-		fmt.Println("server stopped:", err)
-	}
+	// Start the server
+	go func() {
+		log.Println("Starting server on http://localhost:8080")
+		if err := s.ListenAndServe(); err != nil {
+			log.Fatal(err)
+		}
+	}()
+
+	// Wait for a signal
+	<-sigChan
+
+	// Cleanup
+	log.Println("Shutting down...")
 }

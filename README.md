@@ -204,3 +204,21 @@ Currently implemented components:
 72. **Icons Workflow**: Implemented as a wrapper for Adobe Spectrum Workflow icons, providing access to application-specific icons for various workflows and operations. Features include convenience functions for commonly used icons like document, folder, user, edit, as well as customizable size and accessible labeling.
 
 All components follow the same design patterns and use a fluent interface for configuration.
+
+## Showcase Implementation
+
+A live showcase application has been created to demonstrate the usage of various components. The showcase allows developers to see components in action and explore their different features and configurations.
+
+Currently showcased components:
+
+1. **Button** - Demonstrates variants (primary, secondary, CTA), sizes, icons, and states
+2. **Checkbox** - Shows size variants, emphasized mode, indeterminate state, and disabled state
+3. **Badge** - Displays semantic and static variants, positioning options, and sizes
+4. **Radio/RadioGroup** - Shows orientation options, sizes, and states with form integration
+5. **Switch** - Demonstrates size variants, emphasized style, and states
+6. **Progress Bar** - Shows basic progress, indeterminate state, labels, and sizes
+7. **Progress Circle** - Displays basic circular progress, indeterminate state, and sizes
+8. **Link** - Shows variants (primary, secondary, quiet), disabled state, static colors, and targets
+9. **Icon** - Demonstrates various icons, sizes, custom colors, and usage in components
+
+The showcase is built using Go-App and serves as a practical reference for developers using the Spectrum Go library.
