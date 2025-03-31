@@ -93,13 +93,13 @@ func (p *page) toggleTheme() {
 func (p *page) renderSidenav() app.UI {
 	// Create Sidenav with components
 	return app.Div().
-		Class("spectrum-Sidenav").
+		Class("spectrum-sidenav").
 		Body(
 			app.Div().
-				Class("spectrum-Sidenav-heading").
+				Class("spectrum-sidenav-heading").
 				Text("Components"),
 			app.Div().
-				Class("spectrum-Sidenav-body").
+				Class("spectrum-sidenav-body").
 				Body(
 					sp.Sidenav().
 						Label("Component Navigation").

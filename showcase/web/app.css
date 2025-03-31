@@ -14,11 +14,20 @@ sp-theme {
   margin: 0;
   padding: 10px;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 sp-split-view {
   margin: 0;
   padding: 0;
+  flex: 1;
+  overflow: hidden;
+}
+
+spectrum-sidenav-body {
+  height: 100%;
+  overflow-y: auto;
 }
 
 /* Showcase styling */
