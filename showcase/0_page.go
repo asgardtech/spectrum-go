@@ -340,9 +340,28 @@ func (p *page) renderSidenav() app.UI {
 							Value("swatch-group").
 							Href("/swatch-group"),
 						).
+						AddToBody(sp.SidenavItem().
+							Label("Tray").
+							Value("tray").
+							Href("/tray"),
+						).
+						AddToBody(sp.SidenavItem().
+							Label("Overlay").
+							Value("overlay").
+							Href("/overlay"),
+						).
+						AddToBody(sp.SidenavItem().
+							Label("Overlay Trigger").
+							Value("overlay-trigger").
+							Href("/overlay-trigger"),
+						).
 						// Not yet implemented components
 						AddToBody(sp.SidenavItem().Label("Accordion Item").Value("accordion-item").Disabled(true)).
-						AddToBody(sp.SidenavItem().Label("Action Bar").Value("action-bar").Disabled(true)).
+						AddToBody(sp.SidenavItem().
+							Label("Action Bar").
+							Value("action-bar").
+							Href("/action-bar"),
+						).
 						AddToBody(sp.SidenavItem().
 							Label("Action Button").
 							Value("action-button").
@@ -353,6 +372,11 @@ func (p *page) renderSidenav() app.UI {
 							Label("Action Menu").
 							Value("action-menu").
 							Href("/action-menu"),
+						).
+						AddToBody(sp.SidenavItem().
+							Label("Top Nav").
+							Value("top-nav").
+							Href("/top-nav"),
 						),
 				),
 		)

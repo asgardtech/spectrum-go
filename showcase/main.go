@@ -74,6 +74,10 @@ func main() {
 	app.Route("/picker-button", app.NewZeroComponentFactory(newPickerButtonPage()))
 	app.Route("/swatch", app.NewZeroComponentFactory(newSwatchPage()))
 	app.Route("/swatch-group", app.NewZeroComponentFactory(newSwatchGroupPage()))
+	app.Route("/action-bar", app.NewZeroComponentFactory(newActionBarPage()))
+	app.Route("/top-nav", app.NewZeroComponentFactory(newTopNavPage()))
+	app.Route("/overlay", app.NewZeroComponentFactory(newOverlayPage()))
+	app.Route("/overlay-trigger", app.NewZeroComponentFactory(newOverlayTriggerPage()))
 
 	app.RunWhenOnBrowser()
 
