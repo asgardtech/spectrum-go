@@ -1,6 +1,199 @@
 # Spectrum Go
 
-Go implementation of Adobe Spectrum Web Components.
+Spectrum-Go is a **strongly-typed Go wrapper** around the official [Adobe Spectrum Web Components](https://opensource.adobe.com/spectrum-web-components/) that runs on top of the [go-app](https://github.com/maxence-charriere/go-app) WebAssembly framework.
+
+With Spectrum-Go you can:
+
+* Author web front-ends **entirely in Go** – no JavaScript, TypeScript or CSS build-pipelines required.
+* Compose production-ready UI primitives that follow the Adobe Spectrum design system and accessibility contract.
+* Retain **static typing & IDE assistance** when declaring UI (every component, attribute, slot and event is represented by a Go method).
+* Ship the same binary to desktop, mobile and server without sacrificing fast, incremental development loops.
+
+> This README explains **what** the project does, **how** it is built and **how to contribute**. The original exhaustive component checklist is preserved further down and is referred to by the navigation links below.
+
+---
+
+## Table of contents
+
+- [Spectrum Go](#spectrum-go)
+  - [Table of contents](#table-of-contents)
+  - [Why does this project exist?](#why-does-this-project-exist)
+  - [High-level architecture](#high-level-architecture)
+  - [Getting started](#getting-started)
+    - [Installation](#installation)
+    - [Minimal example](#minimal-example)
+    - [Running the showcase locally](#running-the-showcase-locally)
+  - [Project layout](#project-layout)
+  - [Development workflow](#development-workflow)
+  - [Code-generation pipeline](#code-generation-pipeline)
+  - [Contributing](#contributing)
+  - [License](#license)
+  - [Components TODO](#components-todo)
+  - [Tools and Utilities](#tools-and-utilities)
+  - [Design Principles](#design-principles)
+  - [Implementation Status](#implementation-status)
+  - [Showcase Implementation](#showcase-implementation)
+
+---
+
+## Why does this project exist?
+
+JavaScript frameworks evolve rapidly whereas the Go ecosystem values long-term stability.  When building PWAs in Go with `go-app` developers had to re-implement UI primitives themselves or embed large JS bundles.  Spectrum-Go bridges that gap by providing **first-class Go bindings** for every [Spectrum Web Component](https://opensource.adobe.com/spectrum-web-components/components) while preserving the original HTML semantics.
+
+Key goals:
+
+* **1-to-1 parity** with Spectrum Web Components (attributes, slots, events and enum values).
+* **Ergonomic, chainable API** – every call returns the component so you can configure fluently.
+* **Zero-runtime cost** – Render functions just emit `<sp-*>` tags, the browser downloads Adobe's already-optimised bundle from a CDN.
+* **Generated, not handwritten** – bindings stay in sync with upstream docs, vastly reducing maintenance burden.
+
+---
+
+## High-level architecture
+
+```mermaid
+flowchart TD
+  subgraph Go[Go (compile-time)]
+    A[JSON definitions ↲\n(spectrum-docs/json)] --> B[Python ‑> Jinja template\n`generate_components.py`]
+    B --> C[Generated `sp_*.go` files]
+  end
+  subgraph Runtime
+    D[Your Go code] -->|imports| C
+    D -->|compiles to WASM| browser[🖥️ Browser]
+    browser -->|lazy-loads| cdn[(jspm.dev/@spectrum-web-components/bundle/elements.js)]
+  end
+```
+
+* **Component bindings (`sp_*.go`)** – each file defines a Go struct embedding `app.Compo`, plus helper generics for CSS classes, inline styles and IDs.  The `Render()` method merely instantiates the corresponding `<sp-foo>` custom element with the configured attributes.
+* **Utility mix-ins (`0_*.go`)** – small generic builders (`classer`, `styler`, `ider`) shared by every component keep the public API consistent while minimising code generation size.
+* **System component (`0_system.go`)** – optional bootstrap that hooks into the DOM to turn plain `<a href="/page">` links into client-side navigation using `go-app`'s router.
+* **Showcase** – full featured demo application living under `showcase/`, compiled to WASM and served by a small Go HTTP server.
+
+---
+
+## Getting started
+
+### Installation
+
+```bash
+go get github.com/asgardtech/spectrum-go
+```
+
+### Minimal example
+
+```go
+package main
+
+import (
+    "github.com/maxence-charriere/go-app/v10/pkg/app"
+    sp "github.com/asgardtech/spectrum-go"
+)
+
+func main() {
+    app.Route("/", func() app.UI {
+        return sp.Button().Variant(sp.ButtonPrimary).Label("Hello Spectrum-Go 🪄")
+    })
+
+    // optional: intercept <a> clicks and keep SPA routing
+    app.Route("/", sp.System())
+
+    app.Run()
+}
+```
+
+Build & run it as usual with `go-app`:
+
+```bash
+GOOS=js GOARCH=wasm go run .
+```
+
+### Running the showcase locally
+
+```bash
+# Build the WebAssembly once
+make build-wasm
+
+# Start the http server + auto-refresh (requires air)
+make run
+# or, if you have air installed
+make watch
+```
+
+Then navigate to http://localhost:7777 and explore every component live.
+
+---
+
+## Project layout
+
+```text
+spectrum-go/
+├─ sp_*.go                 // generated component bindings
+├─ 0_*.go                  // shared generic helpers / system bootstrap
+├─ showcase/               // live demo application (WASM)
+│   ├─ *.go                // individual demo pages
+│   └─ web/                // compiled artefacts (app.wasm, app.css)
+└─ spectrum-docs/          // doc scraping + code-gen pipeline
+    ├─ download-docs.py    // pulls upstream HTML into spectrum-docs/html
+    ├─ process-docs.py     // sanitises HTML -> markdown
+    ├─ json/               // machine-readable component API (generated)
+    ├─ generate_components.py // JSON -> Go bindings
+    └─ templates/component.go.j2
+```
+
+---
+
+## Development workflow
+
+1. Hack on Go code as usual ‑ `go run ./showcase` will hot-reload thanks to [air](https://github.com/cosmtrek/air) if you use `make watch`.
+2. When Adobe publishes a new component *or* changes an API:
+   1. `cd spectrum-docs`
+   2. `python3 download-docs.py` – downloads the fresh HTML docs.
+   3. `python3 process-docs.py` – converts HTML ➜ markdown + extracts machine-readable data.
+   4. `python3 generate_components.py` – re-creates/updates every `sp_*.go` file.
+   5. Run `go vet ./... && go test ./...` and commit.
+
+All generator scripts are deterministic; their output should always be checked-in so consumers don't need Python.
+
+---
+
+## Code-generation pipeline
+
+*The following is only required when adding/updating bindings – most users can skip this section.*
+
+1. Upstream HTML is saved under `spectrum-docs/html/` (step 1 above).
+2. `process-docs.py` strips marketing content, converts tables to Markdown, and writes to `spectrum-docs/md/`.
+3. During the same pass it emits canonical **JSON** describing attributes, slots and events to `spectrum-docs/json/`.
+4. `generate_components.py` loads those JSON files and streams them through a Jinja2 template which produces idiomatic Go source files.
+5. A final `gofmt -w` run guarantees consistent formatting.
+
+Because everything is declarative, supporting a *new* Spectrum component typically means:
+
+```bash
+# inside spectrum-docs
+python3 download-docs.py --only new-component
+python3 process-docs.py
+python3 generate_components.py
+```
+
+No hand-written Go is necessary 🚀
+
+---
+
+## Contributing
+
+Pull requests are very welcome!  Please open an issue first if you plan to introduce a larger change (new generator features, architectural refactors, …) so we can coordinate.
+
+* The codebase targets **Go ≥1.22**.
+* `go vet ./...`, `go test ./...` and `gofmt` must pass ‑ CI will enforce this.
+* Newly generated files belong in the same commit as the generator update so the repo stays buildable at every revision.
+
+---
+
+## License
+
+Apache-2.0
+
+---
 
 ## Components TODO
 

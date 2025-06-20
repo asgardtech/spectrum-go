@@ -377,7 +377,18 @@ func (p *page) renderSidenav() app.UI {
 							Label("Top Nav").
 							Value("top-nav").
 							Href("/top-nav"),
-						),
+						).
+						AddToBody(sp.SidenavItem().Label("Action Group").Value("action-group").Href("/action-group")).
+						AddToBody(sp.SidenavItem().Label("Action Menu").Value("action-menu").Href("/action-menu")).
+						AddToBody(sp.SidenavItem().Label("Color").Value("color").Href("/color")).
+						AddToBody(sp.SidenavItem().Label("Dropzone").Value("dropzone").Href("/dropzone")).
+						AddToBody(sp.SidenavItem().Label("Infield Button").Value("infield-button").Href("/infield-button")).
+						AddToBody(sp.SidenavItem().Label("Opacity Checkerboard").Value("opacity-checkerboard").Href("/opacity-checkerboard")).
+						AddToBody(sp.SidenavItem().Label("Table").Value("table").Href("/table")).
+						AddToBody(sp.SidenavItem().Label("Theme").Value("theme").Href("/theme")).
+						AddToBody(sp.SidenavItem().Label("Tray").Value("tray").Href("/tray")).
+						AddToBody(sp.SidenavItem().Label("Truncated").Value("truncated").Href("/truncated")).
+						AddToBody(sp.SidenavItem().Label("Underlay").Value("underlay").Href("/underlay")),
 				),
 		)
 }

@@ -78,6 +78,17 @@ func main() {
 	app.Route("/top-nav", app.NewZeroComponentFactory(newTopNavPage()))
 	app.Route("/overlay", app.NewZeroComponentFactory(newOverlayPage()))
 	app.Route("/overlay-trigger", app.NewZeroComponentFactory(newOverlayTriggerPage()))
+	app.Route("/action-group", app.NewZeroComponentFactory(newActionGroupPage()))
+	app.Route("/action-menu", app.NewZeroComponentFactory(newActionMenuPage()))
+	app.Route("/color", app.NewZeroComponentFactory(newColorPage()))
+	app.Route("/dropzone", app.NewZeroComponentFactory(newDropzonePage()))
+	app.Route("/infield-button", app.NewZeroComponentFactory(newInfieldButtonPage()))
+	app.Route("/opacity-checkerboard", app.NewZeroComponentFactory(newOpacityCheckerboardPage()))
+	app.Route("/table", app.NewZeroComponentFactory(newTablePage()))
+	app.Route("/theme", app.NewZeroComponentFactory(newThemePage()))
+	app.Route("/tray", app.NewZeroComponentFactory(newTrayPage()))
+	app.Route("/truncated", app.NewZeroComponentFactory(newTruncatedPage()))
+	app.Route("/underlay", app.NewZeroComponentFactory(newUnderlayPage()))
 
 	app.RunWhenOnBrowser()
 
@@ -168,7 +179,7 @@ func runLocal(ctx context.Context, h *app.Handler, opts localOptions) {
 
 	// Start the server
 	go func() {
-		log.Println("Starting server on http://localhost:8080")
+		log.Printf("Starting server on http://localhost:%v", opts.Port)
 		if err := s.ListenAndServe(); err != nil {
 			log.Fatal(err)
 		}
