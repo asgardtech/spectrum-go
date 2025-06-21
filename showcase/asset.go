@@ -2,6 +2,7 @@ package main
 
 import (
 	sp "github.com/asgardtech/spectrum-go"
+	"github.com/asgardtech/spectrum-go/prism"
 	"github.com/maxence-charriere/go-app/v10/pkg/app"
 )
 
@@ -23,7 +24,7 @@ func (p *assetPage) initPage(ctx app.Context) {
 }
 
 func (p *assetPage) Render() app.UI {
-	return newPage().Content(
+	return prism.NewLayout().Content(
 		app.H1().Text("Asset Component"),
 		app.P().Text("The Asset component is used to visually represent files, folders, or images in your application. It provides consistent styling and layout for different types of media content."),
 

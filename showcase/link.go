@@ -2,6 +2,7 @@ package main
 
 import (
 	sp "github.com/asgardtech/spectrum-go"
+	"github.com/asgardtech/spectrum-go/prism"
 	"github.com/maxence-charriere/go-app/v10/pkg/app"
 )
 
@@ -23,7 +24,7 @@ func (p *linkPage) initPage(ctx app.Context) {
 }
 
 func (p *linkPage) Render() app.UI {
-	return newPage().Content(
+	return prism.NewLayout().Content(
 		app.H1().Text("Link Component"),
 		app.P().Text("Links allow users to navigate to a different location. They can be presented in-line inside a paragraph or as standalone text."),
 

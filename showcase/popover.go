@@ -2,6 +2,7 @@ package main
 
 import (
 	sp "github.com/asgardtech/spectrum-go"
+	"github.com/asgardtech/spectrum-go/prism"
 	"github.com/maxence-charriere/go-app/v10/pkg/app"
 )
 
@@ -14,7 +15,7 @@ func newPopoverPage() *popoverPage {
 }
 
 func (p *popoverPage) Render() app.UI {
-	return newPage().Content(
+	return prism.NewLayout().Content(
 		app.H1().Text("Popover Component"),
 		app.P().Text("Popovers display content or interactive elements that are layered over other content. They generally appear on hover, focus, or click of a trigger element."),
 

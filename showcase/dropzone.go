@@ -2,6 +2,7 @@ package main
 
 import (
 	sp "github.com/asgardtech/spectrum-go"
+	"github.com/asgardtech/spectrum-go/prism"
 	"github.com/maxence-charriere/go-app/v10/pkg/app"
 )
 
@@ -36,7 +37,7 @@ func (p *dropzonePage) onDragOver(ctx app.Context, e app.Event) {
 }
 
 func (p *dropzonePage) Render() app.UI {
-	return newPage().
+	return prism.NewLayout().
 		Content(
 			app.H1().Text("Dropzone"),
 			app.P().Text("A dropzone is an area into which objects can be dragged and dropped."),

@@ -2,6 +2,7 @@ package main
 
 import (
 	sp "github.com/asgardtech/spectrum-go"
+	"github.com/asgardtech/spectrum-go/prism"
 	"github.com/maxence-charriere/go-app/v10/pkg/app"
 )
 
@@ -28,7 +29,7 @@ func (p *actionButtonPage) initPage(ctx app.Context) {
 
 // Render renders the Action Button component showcase
 func (p *actionButtonPage) Render() app.UI {
-	return newPage().Content(
+	return prism.NewLayout().Content(
 		app.H1().Text("Action Button Component"),
 		app.P().Text("An Action Button represents an action a user can take. It can be combined with icons, text, and various visual styles."),
 

@@ -2,6 +2,7 @@ package main
 
 import (
 	sp "github.com/asgardtech/spectrum-go"
+	"github.com/asgardtech/spectrum-go/prism"
 	"github.com/maxence-charriere/go-app/v10/pkg/app"
 )
 
@@ -23,7 +24,7 @@ func (p *accordionPage) initPage(ctx app.Context) {
 }
 
 func (p *accordionPage) Render() app.UI {
-	return newPage().Content(
+	return prism.NewLayout().Content(
 		app.H1().Text("Accordion Component"),
 		app.P().Text("The Accordion component contains a list of items that can be expanded or collapsed to reveal additional content."),
 

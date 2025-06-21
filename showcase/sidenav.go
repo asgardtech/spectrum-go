@@ -2,6 +2,7 @@ package main
 
 import (
 	sp "github.com/asgardtech/spectrum-go"
+	"github.com/asgardtech/spectrum-go/prism"
 	"github.com/maxence-charriere/go-app/v10/pkg/app"
 )
 
@@ -14,7 +15,7 @@ func newSidenavPage() *sidenavPage {
 }
 
 func (p *sidenavPage) Render() app.UI {
-	return newPage().Content(
+	return prism.NewLayout().Content(
 		app.H1().Text("Sidenav Component"),
 		app.P().Text("Sidenav provides hierarchical navigation to different pages of your application."),
 

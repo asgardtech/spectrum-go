@@ -2,6 +2,7 @@ package main
 
 import (
 	sp "github.com/asgardtech/spectrum-go"
+	"github.com/asgardtech/spectrum-go/prism"
 	"github.com/maxence-charriere/go-app/v10/pkg/app"
 )
 
@@ -23,7 +24,7 @@ func (p *tooltipPage) initPage(ctx app.Context) {
 }
 
 func (p *tooltipPage) Render() app.UI {
-	return newPage().Content(
+	return prism.NewLayout().Content(
 		app.H1().Text("Tooltip Component"),
 		app.P().Text("Tooltips allow users to get contextual help or information about specific components when hovering or focusing on them."),
 

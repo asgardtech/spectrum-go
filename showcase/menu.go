@@ -2,6 +2,7 @@ package main
 
 import (
 	sp "github.com/asgardtech/spectrum-go"
+	"github.com/asgardtech/spectrum-go/prism"
 	"github.com/maxence-charriere/go-app/v10/pkg/app"
 )
 
@@ -14,7 +15,7 @@ func newMenuPage() *menuPage {
 }
 
 func (p *menuPage) Render() app.UI {
-	return newPage().Content(
+	return prism.NewLayout().Content(
 		app.H1().Text("Menu Component"),
 		app.P().Text("Menus display a list of options or commands, typically triggered from a button."),
 

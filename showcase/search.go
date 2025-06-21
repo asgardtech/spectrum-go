@@ -2,6 +2,7 @@ package main
 
 import (
 	sp "github.com/asgardtech/spectrum-go"
+	"github.com/asgardtech/spectrum-go/prism"
 	"github.com/maxence-charriere/go-app/v10/pkg/app"
 )
 
@@ -14,7 +15,7 @@ func newSearchPage() *searchPage {
 }
 
 func (p *searchPage) Render() app.UI {
-	return newPage().Content(
+	return prism.NewLayout().Content(
 		app.H1().Text("Search Component"),
 		app.P().Text("The Search component is a text field with built-in clear and search buttons to help users find content quickly."),
 

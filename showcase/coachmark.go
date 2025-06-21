@@ -2,6 +2,7 @@ package main
 
 import (
 	sp "github.com/asgardtech/spectrum-go"
+	"github.com/asgardtech/spectrum-go/prism"
 	"github.com/maxence-charriere/go-app/v10/pkg/app"
 )
 
@@ -23,7 +24,7 @@ func (p *coachmarkPage) initPage(ctx app.Context) {
 }
 
 func (p *coachmarkPage) Render() app.UI {
-	return newPage().Content(
+	return prism.NewLayout().Content(
 		app.H1().Text("Coachmark Component"),
 		app.P().Text("Coachmark is a temporary message that educates users through new or unfamiliar product experiences. They can be chained into a sequence to form a tour."),
 

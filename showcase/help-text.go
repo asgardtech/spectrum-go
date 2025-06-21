@@ -2,6 +2,7 @@ package main
 
 import (
 	sp "github.com/asgardtech/spectrum-go"
+	"github.com/asgardtech/spectrum-go/prism"
 	"github.com/maxence-charriere/go-app/v10/pkg/app"
 )
 
@@ -14,7 +15,7 @@ func newHelpTextPage() *helpTextPage {
 }
 
 func (p *helpTextPage) Render() app.UI {
-	return newPage().Content(
+	return prism.NewLayout().Content(
 		app.H1().Text("Help Text Component"),
 		app.P().Text("Help Text provides context and assistance to the user about a particular field or component."),
 

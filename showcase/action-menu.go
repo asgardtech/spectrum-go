@@ -2,6 +2,7 @@ package main
 
 import (
 	sp "github.com/asgardtech/spectrum-go"
+	"github.com/asgardtech/spectrum-go/prism"
 	"github.com/maxence-charriere/go-app/v10/pkg/app"
 )
 
@@ -26,7 +27,7 @@ func (p *actionMenuPage) onClick(ctx app.Context, e app.Event) {
 }
 
 func (p *actionMenuPage) Render() app.UI {
-	return newPage().
+	return prism.NewLayout().
 		Content(
 			app.H1().Text("Action Menu"),
 			app.P().Text("An action menu offers a list of actions in a popover."),

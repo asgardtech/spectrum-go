@@ -2,6 +2,7 @@ package main
 
 import (
 	sp "github.com/asgardtech/spectrum-go"
+	"github.com/asgardtech/spectrum-go/prism"
 	"github.com/maxence-charriere/go-app/v10/pkg/app"
 )
 
@@ -38,7 +39,7 @@ func (p *overlayTriggerPage) handleOverlayClosed(ctx app.Context, e app.Event) {
 
 // Render renders the Overlay Trigger component showcase
 func (p *overlayTriggerPage) Render() app.UI {
-	return newPage().Content(
+	return prism.NewLayout().Content(
 		app.H1().Text("Overlay Trigger Component"),
 		app.P().Text("The Overlay Trigger component supports the delivery of temporary overlay content based on interaction with a persistent trigger element."),
 

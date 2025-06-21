@@ -2,6 +2,7 @@ package main
 
 import (
 	sp "github.com/asgardtech/spectrum-go"
+	"github.com/asgardtech/spectrum-go/prism"
 	"github.com/maxence-charriere/go-app/v10/pkg/app"
 )
 
@@ -23,7 +24,7 @@ func (p *radioPage) initPage(ctx app.Context) {
 }
 
 func (p *radioPage) Render() app.UI {
-	return newPage().Content(
+	return prism.NewLayout().Content(
 		app.H1().Text("Radio Components"),
 		app.P().Text("Radio buttons allow users to select a single option from a list of mutually exclusive options."),
 

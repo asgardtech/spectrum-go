@@ -2,6 +2,7 @@ package main
 
 import (
 	sp "github.com/asgardtech/spectrum-go"
+	"github.com/asgardtech/spectrum-go/prism"
 	"github.com/maxence-charriere/go-app/v10/pkg/app"
 )
 
@@ -28,7 +29,7 @@ func (p *tagsPage) initPage(ctx app.Context) {
 
 // Render renders the Tags component showcase
 func (p *tagsPage) Render() app.UI {
-	return newPage().Content(
+	return prism.NewLayout().Content(
 		app.H1().Text("Tags Component"),
 		app.P().Text("Tags represent categories to which content belongs. They can be used for keywords, labels, or people, and are often grouped to describe an item or search request."),
 

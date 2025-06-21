@@ -2,6 +2,7 @@ package main
 
 import (
 	sp "github.com/asgardtech/spectrum-go"
+	"github.com/asgardtech/spectrum-go/prism"
 	"github.com/maxence-charriere/go-app/v10/pkg/app"
 )
 
@@ -23,7 +24,7 @@ func (p *cardPage) initPage(ctx app.Context) {
 }
 
 func (p *cardPage) Render() app.UI {
-	return newPage().Content(
+	return prism.NewLayout().Content(
 		app.H1().Text("Card Component"),
 		app.P().Text("The Card component is a versatile container that organizes content into distinct sections. Cards are typically used to encapsulate units of a data set, such as a gallery of image/caption pairs."),
 

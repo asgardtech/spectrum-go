@@ -2,6 +2,7 @@ package main
 
 import (
 	sp "github.com/asgardtech/spectrum-go"
+	"github.com/asgardtech/spectrum-go/prism"
 	"github.com/maxence-charriere/go-app/v10/pkg/app"
 )
 
@@ -14,7 +15,7 @@ func newFieldGroupPage() *fieldGroupPage {
 }
 
 func (p *fieldGroupPage) Render() app.UI {
-	return newPage().Content(
+	return prism.NewLayout().Content(
 		app.H1().Text("Field Group Component"),
 		app.P().Text("A field group is used to layout a group of fields, usually checkbox elements. It can be leveraged for vertical or horizontal organization of the fields that are supplied as its children."),
 

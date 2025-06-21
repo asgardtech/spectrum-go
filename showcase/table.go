@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	sp "github.com/asgardtech/spectrum-go"
+	"github.com/asgardtech/spectrum-go/prism"
 	"github.com/maxence-charriere/go-app/v10/pkg/app"
 )
 
@@ -62,7 +63,7 @@ func (p *tablePage) Render() app.UI {
 			AddCell(sp.TableCell().Text(data.Col2))
 	}
 
-	return newPage().
+	return prism.NewLayout().
 		Content(
 			app.H1().Text("Table"),
 			app.P().Text("A component for displaying tabular data."),

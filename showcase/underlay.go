@@ -2,6 +2,7 @@ package main
 
 import (
 	sp "github.com/asgardtech/spectrum-go"
+	"github.com/asgardtech/spectrum-go/prism"
 	"github.com/maxence-charriere/go-app/v10/pkg/app"
 )
 
@@ -14,7 +15,7 @@ func newUnderlayPage() *underlayPage {
 }
 
 func (p *underlayPage) Render() app.UI {
-	return newPage().
+	return prism.NewLayout().
 		Content(
 			app.H1().Text("Underlay"),
 			app.P().Text("A component that provides a backdrop for modal dialogs."),

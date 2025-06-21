@@ -2,6 +2,7 @@ package main
 
 import (
 	sp "github.com/asgardtech/spectrum-go"
+	"github.com/asgardtech/spectrum-go/prism"
 	"github.com/maxence-charriere/go-app/v10/pkg/app"
 )
 
@@ -14,7 +15,7 @@ func newThumbnailPage() *thumbnailPage {
 }
 
 func (p *thumbnailPage) Render() app.UI {
-	return newPage().Content(
+	return prism.NewLayout().Content(
 		app.H1().Text("Thumbnail Component"),
 		app.P().Text("Thumbnails can be used to display a preview of an image, layer, or effect."),
 

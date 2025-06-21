@@ -2,6 +2,7 @@ package main
 
 import (
 	sp "github.com/asgardtech/spectrum-go"
+	"github.com/asgardtech/spectrum-go/prism"
 	"github.com/maxence-charriere/go-app/v10/pkg/app"
 )
 
@@ -23,7 +24,7 @@ func (p *alertBannerPage) initPage(ctx app.Context) {
 }
 
 func (p *alertBannerPage) Render() app.UI {
-	return newPage().Content(
+	return prism.NewLayout().Content(
 		app.H1().Text("Alert Banner Component"),
 		app.P().Text("Alert Banner shows pressing and high-signal messages, such as system alerts. It is meant to be noticed and prompt users to take action."),
 

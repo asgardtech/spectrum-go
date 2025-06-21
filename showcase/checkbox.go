@@ -2,6 +2,7 @@ package main
 
 import (
 	sp "github.com/asgardtech/spectrum-go"
+	"github.com/asgardtech/spectrum-go/prism"
 	"github.com/maxence-charriere/go-app/v10/pkg/app"
 )
 
@@ -23,7 +24,7 @@ func (p *checkboxPage) initPage(ctx app.Context) {
 }
 
 func (p *checkboxPage) Render() app.UI {
-	return newPage().Content(
+	return prism.NewLayout().Content(
 		app.H1().Text("Checkbox Component"),
 		app.P().Text("Checkboxes allow users to select multiple items from a list of independent options, or to mark an individual option as selected."),
 

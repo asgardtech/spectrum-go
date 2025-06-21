@@ -2,6 +2,7 @@ package main
 
 import (
 	sp "github.com/asgardtech/spectrum-go"
+	"github.com/asgardtech/spectrum-go/prism"
 	"github.com/maxence-charriere/go-app/v10/pkg/app"
 )
 
@@ -14,7 +15,7 @@ func newDividerPage() *dividerPage {
 }
 
 func (p *dividerPage) Render() app.UI {
-	return newPage().Content(
+	return prism.NewLayout().Content(
 		app.H1().Text("Divider Component"),
 		app.P().Text("Dividers bring clarity to a layout by grouping and dividing content that exists in close proximity. They can also be used to establish rhythm and hierarchy."),
 

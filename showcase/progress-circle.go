@@ -2,6 +2,7 @@ package main
 
 import (
 	sp "github.com/asgardtech/spectrum-go"
+	"github.com/asgardtech/spectrum-go/prism"
 	"github.com/maxence-charriere/go-app/v10/pkg/app"
 )
 
@@ -23,7 +24,7 @@ func (p *progressCirclePage) initPage(ctx app.Context) {
 }
 
 func (p *progressCirclePage) Render() app.UI {
-	return newPage().Content(
+	return prism.NewLayout().Content(
 		app.H1().Text("Progress Circle Component"),
 		app.P().Text("A progress circle shows the progression of a system operation in a circular visual representation."),
 

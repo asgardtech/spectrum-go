@@ -2,6 +2,7 @@ package main
 
 import (
 	sp "github.com/asgardtech/spectrum-go"
+	"github.com/asgardtech/spectrum-go/prism"
 	"github.com/maxence-charriere/go-app/v10/pkg/app"
 )
 
@@ -14,7 +15,7 @@ func newOpacityCheckerboardPage() *opacityCheckerboardPage {
 }
 
 func (p *opacityCheckerboardPage) Render() app.UI {
-	return newPage().
+	return prism.NewLayout().
 		Content(
 			app.H1().Text("Opacity Checkerboard"),
 			app.P().Text("A checkerboard pattern to display behind transparent images."),

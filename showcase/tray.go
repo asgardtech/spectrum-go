@@ -2,6 +2,7 @@ package main
 
 import (
 	sp "github.com/asgardtech/spectrum-go"
+	"github.com/asgardtech/spectrum-go/prism"
 	"github.com/maxence-charriere/go-app/v10/pkg/app"
 )
 
@@ -57,7 +58,7 @@ func (p *trayPage) handleTrayClose(ctx app.Context, e app.Event) {
 
 // Render renders the Tray component showcase
 func (p *trayPage) Render() app.UI {
-	return newPage().
+	return prism.NewLayout().
 		Content(
 			app.H1().Text("Tray"),
 			app.P().Text("A container that slides up from the bottom of the screen."),

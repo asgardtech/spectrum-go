@@ -9,6 +9,7 @@ import (
 	"os/signal"
 	"syscall"
 
+	"github.com/asgardtech/spectrum-go/prism"
 	"github.com/maxence-charriere/go-app/v10/pkg/app"
 	"github.com/maxence-charriere/go-app/v10/pkg/cli"
 	"github.com/maxence-charriere/go-app/v10/pkg/logs"
@@ -26,7 +27,20 @@ type localOptions struct {
 }
 
 func main() {
-	app.Route("/", app.NewZeroComponentFactory(newPage()))
+	app.Route("/", app.NewZeroComponentFactory(prism.NewHomePage()))
+
+	app.Route("/login",
+		func() app.Composer {
+			return prism.NewLoginPage().
+				WithProviders("Google", "Microsoft").
+				WithWelcomeMessage("Welcome to Prism").
+				WithLoginButtonText("Login").
+				WithRegisterButtonText("Register").
+				WithForgotPasswordButtonText("Forgot Password").
+				WithLogo("https://www.adobe.com/favicon.ico")
+		},
+	)
+
 	app.Route("/checkbox", app.NewZeroComponentFactory(newCheckboxPage()))
 	app.Route("/button", app.NewZeroComponentFactory(newButtonPage()))
 	app.Route("/badge", app.NewZeroComponentFactory(newBadgePage()))
@@ -100,7 +114,7 @@ func main() {
 		Options(&localOpts)
 
 	h := app.Handler{
-		Name:        "Documentation for go-app",
+		Name:        "Documentation for Adobe Spectrum Components for Go-App",
 		Title:       defaultTitle,
 		Description: defaultDescription,
 		Author:      "Vlad Iovanov",

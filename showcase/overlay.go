@@ -2,6 +2,7 @@ package main
 
 import (
 	sp "github.com/asgardtech/spectrum-go"
+	"github.com/asgardtech/spectrum-go/prism"
 	"github.com/maxence-charriere/go-app/v10/pkg/app"
 )
 
@@ -65,7 +66,7 @@ func (p *overlayPage) handleOverlayClosed(ctx app.Context, e app.Event) {
 
 // Render renders the Overlay component showcase
 func (p *overlayPage) Render() app.UI {
-	return newPage().Content(
+	return prism.NewLayout().Content(
 		app.H1().Text("Overlay Component"),
 		app.P().Text("The Overlay component is used to decorate content that you would like to present to your visitors as 'overlaid' on the rest of the application, such as dialogs, pickers, tooltips, and context menus."),
 

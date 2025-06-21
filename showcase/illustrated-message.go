@@ -2,6 +2,7 @@ package main
 
 import (
 	sp "github.com/asgardtech/spectrum-go"
+	"github.com/asgardtech/spectrum-go/prism"
 	"github.com/maxence-charriere/go-app/v10/pkg/app"
 )
 
@@ -14,7 +15,7 @@ func newIllustratedMessagePage() *illustratedMessagePage {
 }
 
 func (p *illustratedMessagePage) Render() app.UI {
-	return newPage().Content(
+	return prism.NewLayout().Content(
 		app.H1().Text("Illustrated Message Component"),
 		app.P().Text("An illustrated message displays an illustration icon and a message, usually in an empty state or on an error page."),
 

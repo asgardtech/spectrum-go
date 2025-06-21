@@ -2,6 +2,7 @@ package main
 
 import (
 	sp "github.com/asgardtech/spectrum-go"
+	"github.com/asgardtech/spectrum-go/prism"
 	"github.com/maxence-charriere/go-app/v10/pkg/app"
 )
 
@@ -23,7 +24,7 @@ func (p *buttonGroupPage) initPage(ctx app.Context) {
 }
 
 func (p *buttonGroupPage) Render() app.UI {
-	return newPage().Content(
+	return prism.NewLayout().Content(
 		app.H1().Text("Button Group Component"),
 		app.P().Text("The Button Group component organizes related buttons together with consistent spacing. It supports both horizontal and vertical layouts."),
 

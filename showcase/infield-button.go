@@ -2,6 +2,7 @@ package main
 
 import (
 	sp "github.com/asgardtech/spectrum-go"
+	"github.com/asgardtech/spectrum-go/prism"
 	"github.com/maxence-charriere/go-app/v10/pkg/app"
 )
 
@@ -25,7 +26,7 @@ func (p *infieldButtonPage) onClick(ctx app.Context, e app.Event) {
 }
 
 func (p *infieldButtonPage) Render() app.UI {
-	return newPage().
+	return prism.NewLayout().
 		Content(
 			app.H1().Text("Infield Button"),
 			app.P().Text("A button intended for use inside a text field or search component."),

@@ -2,6 +2,7 @@ package main
 
 import (
 	sp "github.com/asgardtech/spectrum-go"
+	"github.com/asgardtech/spectrum-go/prism"
 	"github.com/maxence-charriere/go-app/v10/pkg/app"
 )
 
@@ -28,7 +29,7 @@ func (p *colorPage) onColorChange(ctx app.Context, e app.Event) {
 }
 
 func (p *colorPage) Render() app.UI {
-	return newPage().
+	return prism.NewLayout().
 		Content(
 			app.H1().Text("Color Components"),
 			app.P().Text("Components for color selection."),
