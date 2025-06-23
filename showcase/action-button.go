@@ -29,7 +29,7 @@ func (p *actionButtonPage) initPage(ctx app.Context) {
 
 // Render renders the Action Button component showcase
 func (p *actionButtonPage) Render() app.UI {
-	return prism.NewLayout().Content(
+	return prism.NewPage().Content(
 		app.H1().Text("Action Button Component"),
 		app.P().Text("An Action Button represents an action a user can take. It can be combined with icons, text, and various visual styles."),
 

@@ -24,7 +24,7 @@ func (p *statusLightPage) initPage(ctx app.Context) {
 }
 
 func (p *statusLightPage) Render() app.UI {
-	return prism.NewLayout().Content(
+	return prism.NewPage().Content(
 		app.H1().Text("Status Light Component"),
 		app.P().Text("Status Light is a great way to convey semantic meaning, such as statuses and categories."),
 

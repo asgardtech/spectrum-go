@@ -24,7 +24,7 @@ func (p *switchPage) initPage(ctx app.Context) {
 }
 
 func (p *switchPage) Render() app.UI {
-	return prism.NewLayout().Content(
+	return prism.NewPage().Content(
 		app.H1().Text("Switch Component"),
 		app.P().Text("A switch is used to turn an option on or off. Switches allow users to select the state of a single option at a time."),
 

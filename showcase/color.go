@@ -29,7 +29,7 @@ func (p *colorPage) onColorChange(ctx app.Context, e app.Event) {
 }
 
 func (p *colorPage) Render() app.UI {
-	return prism.NewLayout().
+	return prism.NewPage().
 		Content(
 			app.H1().Text("Color Components"),
 			app.P().Text("Components for color selection."),

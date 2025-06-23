@@ -63,7 +63,7 @@ func (p *tablePage) Render() app.UI {
 			AddCell(sp.TableCell().Text(data.Col2))
 	}
 
-	return prism.NewLayout().
+	return prism.NewPage().
 		Content(
 			app.H1().Text("Table"),
 			app.P().Text("A component for displaying tabular data."),

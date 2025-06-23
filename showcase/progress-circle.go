@@ -24,7 +24,7 @@ func (p *progressCirclePage) initPage(ctx app.Context) {
 }
 
 func (p *progressCirclePage) Render() app.UI {
-	return prism.NewLayout().Content(
+	return prism.NewPage().Content(
 		app.H1().Text("Progress Circle Component"),
 		app.P().Text("A progress circle shows the progression of a system operation in a circular visual representation."),
 

@@ -15,7 +15,7 @@ func newThumbnailPage() *thumbnailPage {
 }
 
 func (p *thumbnailPage) Render() app.UI {
-	return prism.NewLayout().Content(
+	return prism.NewPage().Content(
 		app.H1().Text("Thumbnail Component"),
 		app.P().Text("Thumbnails can be used to display a preview of an image, layer, or effect."),
 

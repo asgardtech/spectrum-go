@@ -15,7 +15,7 @@ func newFieldLabelPage() *fieldLabelPage {
 }
 
 func (p *fieldLabelPage) Render() app.UI {
-	return prism.NewLayout().Content(
+	return prism.NewPage().Content(
 		app.H1().Text("Field Label Component"),
 		app.P().Text("Field labels provide accessible labeling for form elements."),
 

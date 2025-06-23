@@ -24,7 +24,7 @@ func (p *radioPage) initPage(ctx app.Context) {
 }
 
 func (p *radioPage) Render() app.UI {
-	return prism.NewLayout().Content(
+	return prism.NewPage().Content(
 		app.H1().Text("Radio Components"),
 		app.P().Text("Radio buttons allow users to select a single option from a list of mutually exclusive options."),
 

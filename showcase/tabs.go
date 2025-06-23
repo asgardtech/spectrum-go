@@ -36,7 +36,7 @@ func (p *tabsPage) handleTabChange(ctx app.Context, e app.Event) {
 }
 
 func (p *tabsPage) Render() app.UI {
-	return prism.NewLayout().Content(
+	return prism.NewPage().Content(
 		app.H1().Text("Tabs Component"),
 		app.P().Text("Tabs organize content into multiple sections and allow users to navigate between them."),
 

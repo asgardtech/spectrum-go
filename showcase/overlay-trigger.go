@@ -39,7 +39,7 @@ func (p *overlayTriggerPage) handleOverlayClosed(ctx app.Context, e app.Event) {
 
 // Render renders the Overlay Trigger component showcase
 func (p *overlayTriggerPage) Render() app.UI {
-	return prism.NewLayout().Content(
+	return prism.NewPage().Content(
 		app.H1().Text("Overlay Trigger Component"),
 		app.P().Text("The Overlay Trigger component supports the delivery of temporary overlay content based on interaction with a persistent trigger element."),
 

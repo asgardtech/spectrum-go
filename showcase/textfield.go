@@ -15,7 +15,7 @@ func newTextfieldPage() *textfieldPage {
 }
 
 func (p *textfieldPage) Render() app.UI {
-	return prism.NewLayout().Content(
+	return prism.NewPage().Content(
 		app.H1().Text("Textfield Component"),
 		app.P().Text("Textfields allow users to input, edit, and select text."),
 

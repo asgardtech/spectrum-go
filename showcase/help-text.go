@@ -15,7 +15,7 @@ func newHelpTextPage() *helpTextPage {
 }
 
 func (p *helpTextPage) Render() app.UI {
-	return prism.NewLayout().Content(
+	return prism.NewPage().Content(
 		app.H1().Text("Help Text Component"),
 		app.P().Text("Help Text provides context and assistance to the user about a particular field or component."),
 

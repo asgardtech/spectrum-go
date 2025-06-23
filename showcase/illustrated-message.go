@@ -15,7 +15,7 @@ func newIllustratedMessagePage() *illustratedMessagePage {
 }
 
 func (p *illustratedMessagePage) Render() app.UI {
-	return prism.NewLayout().Content(
+	return prism.NewPage().Content(
 		app.H1().Text("Illustrated Message Component"),
 		app.P().Text("An illustrated message displays an illustration icon and a message, usually in an empty state or on an error page."),
 

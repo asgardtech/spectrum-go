@@ -11,8 +11,8 @@ func NewHomePage() *HomePage {
 }
 
 func (p *HomePage) Render() app.UI {
-	return NewLayout().
-		WithTitle("Home").
+	return NewPage().
+		WithName("Home").
 		WithDescription("Home page").
 		Content(
 			app.H1().Text("Home"),

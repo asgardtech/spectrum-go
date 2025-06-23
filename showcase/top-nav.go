@@ -29,7 +29,7 @@ func (p *topNavPage) initPage(ctx app.Context) {
 
 // Render renders the Top Nav component showcase
 func (p *topNavPage) Render() app.UI {
-	return prism.NewLayout().Content(
+	return prism.NewPage().Content(
 		app.H1().Text("Top Nav Component"),
 		app.P().Text("The Top Nav component delivers site navigation, particularly for when that navigation will change the majority of the page's content and/or the page's URL when selected. All primary elements are directly accessible in the tab order."),
 

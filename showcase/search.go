@@ -15,7 +15,7 @@ func newSearchPage() *searchPage {
 }
 
 func (p *searchPage) Render() app.UI {
-	return prism.NewLayout().Content(
+	return prism.NewPage().Content(
 		app.H1().Text("Search Component"),
 		app.P().Text("The Search component is a text field with built-in clear and search buttons to help users find content quickly."),
 

@@ -5,18 +5,75 @@ import (
 	"github.com/maxence-charriere/go-app/v10/pkg/app"
 )
 
+type IPage interface {
+	GetName() string
+	GetDescription() string
+	GetIcon() string
+	GetUrlPath() string
+	GetSidenavLinkVisibility() SectionVisibility
+	GetTopNavLinkVisibility() SectionVisibility
+	GetUserMenuLinkVisibility() SectionVisibility
+	GetSidenavGroup() string
+	GetTopNavGroup() string
+	GetUserMenuGroup() string
+	GetForm() Form[any]
+
+	WithName(name string) *Page
+	WithDescription(description string) *Page
+	WithIcon(icon string) *Page
+	WithUrlPath(urlPath string) *Page
+	WithSidenav(visibility SectionVisibility) *Page
+	WithTopNav(visibility SectionVisibility) *Page
+	WithUser(user User) *Page
+	WithUserMenu(visibility SectionVisibility) *Page
+	WithSidenavGroup(group string) *Page
+}
+
+type SectionVisibility string
+
+const (
+	SectionVisibilityHidden  SectionVisibility = "hidden"
+	SectionVisibilityVisible SectionVisibility = "visible"
+	SectionVisibilityDefault SectionVisibility = "default"
+)
+
 type Page struct {
-	Name            string
-	Description     string
-	Icon            string
-	UrlPath         string
-	HasSidenavLink  bool
-	HasTopNavLink   bool
-	HasUserMenuLink bool
-	SidenavGroup    string
-	TopNavGroup     string
-	UserMenuGroup   string
-	Form            Form[any]
+	app.Compo
+
+	currentTheme sp.ThemeColor
+
+	Name               string
+	Description        string
+	TopNavVisibility   SectionVisibility
+	SidenavVisibility  SectionVisibility
+	UserMenuVisibility SectionVisibility
+	User               User
+	Icon               string
+	UrlPath            string
+	SidenavGroup       string
+	TopNavGroup        string
+	UserMenuGroup      string
+	Form               Form[any]
+
+	// Content
+	content []app.UI
+
+	// Context
+	ctx app.Context
+}
+
+var _ IPage = (*Page)(nil)
+
+func NewPage() *Page {
+	page := &Page{}
+
+	return page.
+		WithTopNav(SectionVisibilityDefault).
+		WithSidenav(SectionVisibilityDefault)
+}
+
+func (p *Page) GetForm() Form[any] {
+	return p.Form
 }
 
 func (p *Page) GetName() string {
@@ -35,16 +92,16 @@ func (p *Page) GetUrlPath() string {
 	return p.UrlPath
 }
 
-func (p *Page) GetHasSidenavLink() bool {
-	return p.HasSidenavLink
+func (p *Page) GetSidenavLinkVisibility() SectionVisibility {
+	return p.SidenavVisibility
 }
 
-func (p *Page) GetHasTopNavLink() bool {
-	return p.HasTopNavLink
+func (p *Page) GetTopNavLinkVisibility() SectionVisibility {
+	return p.TopNavVisibility
 }
 
-func (p *Page) GetHasUserMenuLink() bool {
-	return p.HasUserMenuLink
+func (p *Page) GetUserMenuLinkVisibility() SectionVisibility {
+	return p.UserMenuVisibility
 }
 
 func (p *Page) GetSidenavGroup() string {
@@ -59,88 +116,97 @@ func (p *Page) GetUserMenuGroup() string {
 	return p.UserMenuGroup
 }
 
-func (p *Page) WithForm(form Form[any]) *Page {
+func (p *Page) WithSidenavGroup(group string) *Page {
+	p.SidenavGroup = group
+	return p
+}
+
+func (p *Page) WithTopNavGroup(group string) *Page {
+	p.TopNavGroup = group
+	return p
+}
+
+func (p *Page) WithUserMenu(visibility SectionVisibility) *Page {
+	p.UserMenuVisibility = visibility
+	return p
+}
+
+func (p *Page) WithUserMenuGroup(group string) *Page {
+	p.UserMenuGroup = group
+	return p
+}
+
+func (p *Page) WithName(name string) *Page {
+	p.Name = name
+	return p
+}
+
+func (p *Page) WithIcon(icon string) *Page {
+	p.Icon = icon
+	return p
+}
+
+func (p *Page) WithSidenavLinkVisibility(visibility SectionVisibility) *Page {
+	p.SidenavVisibility = visibility
+	return p
+}
+
+func (p *Page) WithTopNavLinkVisibility(visibility SectionVisibility) *Page {
+	p.TopNavVisibility = visibility
+	return p
+}
+
+func (p *Page) WithUserMenuLinkVisibility(visibility SectionVisibility) *Page {
+	p.UserMenuVisibility = visibility
+	return p
+}
+
+func (p *Page) WithUrlPath(urlPath string) *Page {
+	p.UrlPath = urlPath
+	return p
+}
+
+func (p Page) WithForm(form Form[any]) Page {
 	p.Form = form
 	return p
 }
 
-type SectionVisibility string
-
-const (
-	SectionVisibilityHidden  SectionVisibility = "hidden"
-	SectionVisibilityVisible SectionVisibility = "visible"
-	SectionVisibilityDefault SectionVisibility = "default"
-)
-
-type layout struct {
-	app.Compo
-
-	currentTheme sp.ThemeColor
-
-	Title             string
-	Description       string
-	TopNavVisibility  SectionVisibility
-	SidenavVisibility SectionVisibility
-	User              User
-
-	// Content
-	content []app.UI
-
-	// Context
-	ctx app.Context
-}
-
-func (l *layout) WithTitle(title string) *layout {
-	l.Title = title
-	return l
-}
-
-func (l *layout) WithDescription(description string) *layout {
+func (l *Page) WithDescription(description string) *Page {
 	l.Description = description
 	return l
 }
 
-func (l *layout) WithTopNav(visibility SectionVisibility) *layout {
+func (l *Page) WithTopNav(visibility SectionVisibility) *Page {
 	l.TopNavVisibility = visibility
 	return l
 }
 
-func (l *layout) WithSidenav(visibility SectionVisibility) *layout {
+func (l *Page) WithSidenav(visibility SectionVisibility) *Page {
 	l.SidenavVisibility = visibility
 	return l
 }
 
-func (l *layout) WithUser(user User) *layout {
+func (l *Page) WithUser(user User) *Page {
 	l.User = user
 	return l
 }
 
-func NewLayout() *layout {
-	page := &layout{}
-
-	return page.
-		WithTopNav(SectionVisibilityDefault).
-		WithSidenav(SectionVisibilityDefault).
-		WithTitle("Prism").
-		WithDescription("A package that helps you build Adobe Spectrum powered web applications with Go-App.")
-}
-
-func (p *layout) Content(v ...app.UI) *layout {
+func (p *Page) Content(v ...app.UI) *Page {
 	p.content = app.FilterUIElems(v...)
 	return p
 }
 
-func (p *layout) OnMount(ctx app.Context) {
+func (p *Page) OnMount(ctx app.Context) {
 	p.ctx = ctx
 	ctx.ObserveState("current-theme", &p.currentTheme)
 }
 
-func (p *layout) OnNav(ctx app.Context) {
-	ctx.Page().SetTitle(p.Title)
+func (p *Page) OnNav(ctx app.Context) {
+	ctx.Page().SetTitle(p.Name)
 	ctx.Page().SetDescription(p.Description)
 }
 
-func (p *layout) Render() app.UI {
+func (p *Page) Render() app.UI {
 	// Create a main container with theme-aware styling
 	return sp.Theme().
 		Color(p.currentTheme).
@@ -167,7 +233,7 @@ func (p *layout) Render() app.UI {
 }
 
 // Toggle theme between light and dark
-func (p *layout) toggleTheme() {
+func (p *Page) toggleTheme() {
 	currentTheme := p.currentTheme
 	if currentTheme == "" {
 		currentTheme = sp.ThemeColorLight
@@ -184,7 +250,7 @@ func (p *layout) toggleTheme() {
 		Broadcast()
 }
 
-func (p *layout) renderTopNav() app.UI {
+func (p *Page) renderTopNav() app.UI {
 	return app.If(
 		p.TopNavVisibility == SectionVisibilityVisible ||
 			(p.TopNavVisibility == SectionVisibilityDefault && p.User.LoggedIn),
@@ -216,7 +282,7 @@ func (p *layout) renderTopNav() app.UI {
 	)
 }
 
-func (p *layout) renderSidenav() app.UI {
+func (p *Page) renderSidenav() app.UI {
 	return app.If(
 		p.SidenavVisibility == SectionVisibilityVisible ||
 			(p.SidenavVisibility == SectionVisibilityDefault && p.User.LoggedIn),
@@ -527,7 +593,7 @@ func (p *layout) renderSidenav() app.UI {
 	)
 }
 
-func (p *layout) renderContent() app.UI {
+func (p *Page) renderContent() app.UI {
 	// Content area - will be replaced with component showcase
 	return app.Div().
 		Body(

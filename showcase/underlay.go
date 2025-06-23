@@ -15,7 +15,7 @@ func newUnderlayPage() *underlayPage {
 }
 
 func (p *underlayPage) Render() app.UI {
-	return prism.NewLayout().
+	return prism.NewPage().
 		Content(
 			app.H1().Text("Underlay"),
 			app.P().Text("A component that provides a backdrop for modal dialogs."),

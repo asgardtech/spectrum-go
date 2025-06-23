@@ -15,7 +15,7 @@ func newSwatchPage() *swatchPage {
 }
 
 func (p *swatchPage) Render() app.UI {
-	return prism.NewLayout().Content(
+	return prism.NewPage().Content(
 		app.H1().Text("Swatch Component"),
 		app.P().Text("Swatches are used to display, select and compare colors."),
 

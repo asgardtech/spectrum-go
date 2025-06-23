@@ -18,7 +18,7 @@ type ActionButton struct {
 	handler app.EventHandler
 }
 
-func ActionButton() *ActionButton { return &ActionButton{} }
+func NewActionButton() *ActionButton { return &ActionButton{} }
 
 func (b *ActionButton) Label(l string) *ActionButton { b.label = l; return b }
 func (b *ActionButton) Icon(i Icon) *ActionButton    { b.icon = i; return b }

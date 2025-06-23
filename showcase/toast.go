@@ -101,7 +101,7 @@ func (p *toastPage) hideToast(ctx app.Context, toastType string) {
 }
 
 func (p *toastPage) Render() app.UI {
-	return prism.NewLayout().Content(
+	return prism.NewPage().Content(
 		app.H1().Text("Toast Component"),
 		app.P().Text("Toast components display brief, temporary notifications that don't require user action. They are useful for showing success messages, errors, or informational updates."),
 

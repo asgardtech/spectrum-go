@@ -7,6 +7,7 @@ import (
 
 type LoginPage struct {
 	app.Compo
+	Page
 
 	Providers                []string
 	UsePasswordLogin         bool
@@ -18,6 +19,17 @@ type LoginPage struct {
 
 	Email    string
 	Password string
+}
+
+var _ IPage = (*LoginPage)(nil)
+
+func NewLoginPage() *LoginPage {
+	page := &LoginPage{
+		Providers:        []string{},
+		UsePasswordLogin: true,
+	}
+
+	return page
 }
 
 func (l *LoginPage) WithProviders(providers ...string) *LoginPage {
@@ -45,31 +57,13 @@ func (l *LoginPage) WithRegisterButtonText(registerButtonText string) *LoginPage
 	return l
 }
 
-func (l *LoginPage) WithLogo(logo string) *LoginPage {
-	l.Logo = logo
-	return l
-}
-
 func (l *LoginPage) WithForgotPasswordButtonText(forgotPasswordButtonText string) *LoginPage {
 	l.ForgotPasswordButtonText = forgotPasswordButtonText
 	return l
 }
 
-func NewLoginPage() *LoginPage {
-	page := &LoginPage{
-		Providers:        []string{},
-		UsePasswordLogin: true,
-	}
-
-	return page
-}
-
 func (p *LoginPage) Render() app.UI {
-	return NewLayout().
-		WithTitle("Login").
-		WithDescription("Login to your account").
-		WithTopNav(SectionVisibilityHidden).
-		WithSidenav(SectionVisibilityHidden).
+	return p.Page.
 		Content(
 			app.Div().
 				Style("display", "flex").

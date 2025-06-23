@@ -15,7 +15,7 @@ func newMeterPage() *meterPage {
 }
 
 func (p *meterPage) Render() app.UI {
-	return prism.NewLayout().Content(
+	return prism.NewPage().Content(
 		app.H1().Text("Meter Component"),
 		app.P().Text("Meters display progress as a percentage of a known quantity, across multiple classifications."),
 

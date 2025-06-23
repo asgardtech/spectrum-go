@@ -58,7 +58,7 @@ func (p *trayPage) handleTrayClose(ctx app.Context, e app.Event) {
 
 // Render renders the Tray component showcase
 func (p *trayPage) Render() app.UI {
-	return prism.NewLayout().
+	return prism.NewPage().
 		Content(
 			app.H1().Text("Tray"),
 			app.P().Text("A container that slides up from the bottom of the screen."),

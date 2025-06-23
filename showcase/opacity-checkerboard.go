@@ -15,7 +15,7 @@ func newOpacityCheckerboardPage() *opacityCheckerboardPage {
 }
 
 func (p *opacityCheckerboardPage) Render() app.UI {
-	return prism.NewLayout().
+	return prism.NewPage().
 		Content(
 			app.H1().Text("Opacity Checkerboard"),
 			app.P().Text("A checkerboard pattern to display behind transparent images."),

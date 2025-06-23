@@ -15,7 +15,7 @@ func newTruncatedPage() *truncatedPage {
 }
 
 func (p *truncatedPage) Render() app.UI {
-	return prism.NewLayout().
+	return prism.NewPage().
 		Content(
 			app.H1().Text("Truncated"),
 			app.P().Text("A component for truncating text."),

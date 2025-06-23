@@ -15,7 +15,7 @@ func newSwatchGroupPage() *swatchGroupPage {
 }
 
 func (p *swatchGroupPage) Render() app.UI {
-	return prism.NewLayout().Content(
+	return prism.NewPage().Content(
 		app.H1().Text("Swatch Group Component"),
 		app.P().Text("Swatch Groups are used to organize and manage multiple color swatches."),
 

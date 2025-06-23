@@ -29,7 +29,7 @@ func (p *tagsPage) initPage(ctx app.Context) {
 
 // Render renders the Tags component showcase
 func (p *tagsPage) Render() app.UI {
-	return prism.NewLayout().Content(
+	return prism.NewPage().Content(
 		app.H1().Text("Tags Component"),
 		app.P().Text("Tags represent categories to which content belongs. They can be used for keywords, labels, or people, and are often grouped to describe an item or search request."),
 

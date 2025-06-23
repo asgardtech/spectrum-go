@@ -15,7 +15,7 @@ func newContextualHelpPage() *contextualHelpPage {
 }
 
 func (p *contextualHelpPage) Render() app.UI {
-	return prism.NewLayout().Content(
+	return prism.NewPage().Content(
 		app.H1().Text("Contextual Help Component"),
 		app.P().Text("Contextual help shows a user extra information about the state of either an adjacent component or an entire view."),
 

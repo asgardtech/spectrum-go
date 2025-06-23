@@ -27,7 +27,7 @@ func (p *actionGroupPage) onClick(ctx app.Context, e app.Event) {
 }
 
 func (p *actionGroupPage) Render() app.UI {
-	return prism.NewLayout().
+	return prism.NewPage().
 		Content(
 			app.H1().Text("Action Group"),
 			app.P().Text("An action group is a container for organizing action buttons."),

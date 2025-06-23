@@ -15,7 +15,7 @@ func newPickerButtonPage() *pickerButtonPage {
 }
 
 func (p *pickerButtonPage) Render() app.UI {
-	return prism.NewLayout().Content(
+	return prism.NewPage().Content(
 		app.H1().Text("Picker Button Component"),
 		app.P().Text("The Picker Button component resembles a dropdown button that can be used to trigger popover interfaces."),
 

@@ -15,7 +15,7 @@ func newNumberFieldPage() *numberFieldPage {
 }
 
 func (p *numberFieldPage) Render() app.UI {
-	return prism.NewLayout().Content(
+	return prism.NewPage().Content(
 		app.H1().Text("Number Field Component"),
 		app.P().Text("Number Fields allow users to input, edit, and manipulate numbers with increment and decrement capabilities."),
 

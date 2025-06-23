@@ -24,7 +24,7 @@ func (p *accordionPage) initPage(ctx app.Context) {
 }
 
 func (p *accordionPage) Render() app.UI {
-	return prism.NewLayout().Content(
+	return prism.NewPage().Content(
 		app.H1().Text("Accordion Component"),
 		app.P().Text("The Accordion component contains a list of items that can be expanded or collapsed to reveal additional content."),
 

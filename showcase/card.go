@@ -24,7 +24,7 @@ func (p *cardPage) initPage(ctx app.Context) {
 }
 
 func (p *cardPage) Render() app.UI {
-	return prism.NewLayout().Content(
+	return prism.NewPage().Content(
 		app.H1().Text("Card Component"),
 		app.P().Text("The Card component is a versatile container that organizes content into distinct sections. Cards are typically used to encapsulate units of a data set, such as a gallery of image/caption pairs."),
 

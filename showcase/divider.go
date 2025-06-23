@@ -15,7 +15,7 @@ func newDividerPage() *dividerPage {
 }
 
 func (p *dividerPage) Render() app.UI {
-	return prism.NewLayout().Content(
+	return prism.NewPage().Content(
 		app.H1().Text("Divider Component"),
 		app.P().Text("Dividers bring clarity to a layout by grouping and dividing content that exists in close proximity. They can also be used to establish rhythm and hierarchy."),
 

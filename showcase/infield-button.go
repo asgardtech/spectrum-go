@@ -26,7 +26,7 @@ func (p *infieldButtonPage) onClick(ctx app.Context, e app.Event) {
 }
 
 func (p *infieldButtonPage) Render() app.UI {
-	return prism.NewLayout().
+	return prism.NewPage().
 		Content(
 			app.H1().Text("Infield Button"),
 			app.P().Text("A button intended for use inside a text field or search component."),

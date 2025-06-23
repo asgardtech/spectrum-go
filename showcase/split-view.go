@@ -15,7 +15,7 @@ func newSplitViewPage() *splitViewPage {
 }
 
 func (p *splitViewPage) Render() app.UI {
-	return prism.NewLayout().Content(
+	return prism.NewPage().Content(
 		app.H1().Text("Split View Component"),
 		app.P().Text("Split View delivers two elements in a horizontal or vertical orientation that distributes the available space. When resizable, it provides a way for users to customize the distribution."),
 

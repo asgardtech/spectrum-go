@@ -37,7 +37,7 @@ func (p *dropzonePage) onDragOver(ctx app.Context, e app.Event) {
 }
 
 func (p *dropzonePage) Render() app.UI {
-	return prism.NewLayout().
+	return prism.NewPage().
 		Content(
 			app.H1().Text("Dropzone"),
 			app.P().Text("A dropzone is an area into which objects can be dragged and dropped."),

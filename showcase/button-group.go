@@ -24,7 +24,7 @@ func (p *buttonGroupPage) initPage(ctx app.Context) {
 }
 
 func (p *buttonGroupPage) Render() app.UI {
-	return prism.NewLayout().Content(
+	return prism.NewPage().Content(
 		app.H1().Text("Button Group Component"),
 		app.P().Text("The Button Group component organizes related buttons together with consistent spacing. It supports both horizontal and vertical layouts."),
 

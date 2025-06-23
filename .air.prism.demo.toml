@@ -1,0 +1,16 @@
+root = "."
+tmp_dir = "tmp"
+
+[build]
+# Pre-command for building wasm
+pre_cmd = ["GOOS=js GOARCH=wasm go build -o ./prism/demo/web/app.wasm ./prism/demo/"]
+# Command to build and run the prism demo app
+cmd = "go build -o ./prism/demo/tmp/main ./prism/demo/"
+bin = "./prism/demo/tmp/main"
+include_ext = ["go", "css"]
+exclude_dir = ["tmp"]
+exclude_file = []
+delay = 1000
+stop_on_error = true
+send_interrupt = false
+kill_delay = 500

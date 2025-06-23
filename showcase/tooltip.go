@@ -24,7 +24,7 @@ func (p *tooltipPage) initPage(ctx app.Context) {
 }
 
 func (p *tooltipPage) Render() app.UI {
-	return prism.NewLayout().Content(
+	return prism.NewPage().Content(
 		app.H1().Text("Tooltip Component"),
 		app.P().Text("Tooltips allow users to get contextual help or information about specific components when hovering or focusing on them."),
 

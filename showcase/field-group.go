@@ -15,7 +15,7 @@ func newFieldGroupPage() *fieldGroupPage {
 }
 
 func (p *fieldGroupPage) Render() app.UI {
-	return prism.NewLayout().Content(
+	return prism.NewPage().Content(
 		app.H1().Text("Field Group Component"),
 		app.P().Text("A field group is used to layout a group of fields, usually checkbox elements. It can be leveraged for vertical or horizontal organization of the fields that are supplied as its children."),
 

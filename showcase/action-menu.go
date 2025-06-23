@@ -27,7 +27,7 @@ func (p *actionMenuPage) onClick(ctx app.Context, e app.Event) {
 }
 
 func (p *actionMenuPage) Render() app.UI {
-	return prism.NewLayout().
+	return prism.NewPage().
 		Content(
 			app.H1().Text("Action Menu"),
 			app.P().Text("An action menu offers a list of actions in a popover."),

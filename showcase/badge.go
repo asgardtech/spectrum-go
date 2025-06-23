@@ -24,7 +24,7 @@ func (p *badgePage) initPage(ctx app.Context) {
 }
 
 func (p *badgePage) Render() app.UI {
-	return prism.NewLayout().Content(
+	return prism.NewPage().Content(
 		app.H1().Text("Badge Component"),
 		app.P().Text("Badges display a small amount of color-categorized metadata. They're ideal for getting a user's attention."),
 

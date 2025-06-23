@@ -24,7 +24,7 @@ func (p *avatarPage) initPage(ctx app.Context) {
 }
 
 func (p *avatarPage) Render() app.UI {
-	return prism.NewLayout().Content(
+	return prism.NewPage().Content(
 		app.H1().Text("Avatar Component"),
 		app.P().Text("An Avatar is a great way to feature a visual representation of a user."),
 

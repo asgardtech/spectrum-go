@@ -15,7 +15,7 @@ func newThemePage() *themePage {
 }
 
 func (p *themePage) Render() app.UI {
-	return prism.NewLayout().
+	return prism.NewPage().
 		Content(
 			app.H1().Text("Theme"),
 			app.P().Text("A component to apply a theme to its children."),

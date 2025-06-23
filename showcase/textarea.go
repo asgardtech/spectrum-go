@@ -15,7 +15,7 @@ func newTextareaPage() *textareaPage {
 }
 
 func (p *textareaPage) Render() app.UI {
-	return prism.NewLayout().Content(
+	return prism.NewPage().Content(
 		app.H1().Text("Textarea Component"),
 		app.P().Text("Textareas allow users to input, edit, and select multiple lines of text."),
 

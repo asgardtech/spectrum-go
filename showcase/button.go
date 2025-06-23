@@ -15,7 +15,7 @@ func newButtonPage() *buttonPage {
 }
 
 func (p *buttonPage) Render() app.UI {
-	return prism.NewLayout().Content(
+	return prism.NewPage().Content(
 		app.H1().Text("Button Component"),
 		app.P().Text("Buttons represent actions a user can take."),
 

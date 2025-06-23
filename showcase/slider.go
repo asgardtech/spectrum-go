@@ -15,7 +15,7 @@ func newSliderPage() *sliderPage {
 }
 
 func (p *sliderPage) Render() app.UI {
-	return prism.NewLayout().Content(
+	return prism.NewPage().Content(
 		app.H1().Text("Slider Component"),
 		app.P().Text("Sliders allow users to select a value within a range by moving a handle."),
 

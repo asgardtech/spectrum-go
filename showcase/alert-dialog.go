@@ -24,7 +24,7 @@ func (p *alertDialogPage) initPage(ctx app.Context) {
 }
 
 func (p *alertDialogPage) Render() app.UI {
-	return prism.NewLayout().Content(
+	return prism.NewPage().Content(
 		app.H1().Text("Alert Dialog Component"),
 		app.P().Text("Alert Dialog displays important information that users need to acknowledge. It can be used for confirmations, warnings, errors, and other critical messages."),
 

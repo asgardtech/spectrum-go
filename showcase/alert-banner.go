@@ -24,7 +24,7 @@ func (p *alertBannerPage) initPage(ctx app.Context) {
 }
 
 func (p *alertBannerPage) Render() app.UI {
-	return prism.NewLayout().Content(
+	return prism.NewPage().Content(
 		app.H1().Text("Alert Banner Component"),
 		app.P().Text("Alert Banner shows pressing and high-signal messages, such as system alerts. It is meant to be noticed and prompt users to take action."),
 

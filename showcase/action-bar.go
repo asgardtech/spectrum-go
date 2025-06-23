@@ -36,7 +36,7 @@ func (p *actionBarPage) toggleActionBar(ctx app.Context, e app.Event) {
 
 // Render renders the Action Bar component showcase
 func (p *actionBarPage) Render() app.UI {
-	return prism.NewLayout().Content(
+	return prism.NewPage().Content(
 		app.H1().Text("Action Bar Component"),
 		app.P().Text("A floating action bar that is a convenient way to deliver stateful actions in cases like selection mode. It can be deployed with fixed or sticky variants."),
 

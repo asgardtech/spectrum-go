@@ -24,7 +24,7 @@ func (p *checkboxPage) initPage(ctx app.Context) {
 }
 
 func (p *checkboxPage) Render() app.UI {
-	return prism.NewLayout().Content(
+	return prism.NewPage().Content(
 		app.H1().Text("Checkbox Component"),
 		app.P().Text("Checkboxes allow users to select multiple items from a list of independent options, or to mark an individual option as selected."),
 

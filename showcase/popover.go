@@ -15,7 +15,7 @@ func newPopoverPage() *popoverPage {
 }
 
 func (p *popoverPage) Render() app.UI {
-	return prism.NewLayout().Content(
+	return prism.NewPage().Content(
 		app.H1().Text("Popover Component"),
 		app.P().Text("Popovers display content or interactive elements that are layered over other content. They generally appear on hover, focus, or click of a trigger element."),
 

@@ -24,7 +24,7 @@ func (p *progressBarPage) initPage(ctx app.Context) {
 }
 
 func (p *progressBarPage) Render() app.UI {
-	return prism.NewLayout().Content(
+	return prism.NewPage().Content(
 		app.H1().Text("Progress Bar Component"),
 		app.P().Text("A progress bar shows the progression of a system operation such as downloading, uploading, processing, etc. in a visual way."),
 

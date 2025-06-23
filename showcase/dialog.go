@@ -34,7 +34,7 @@ func (p *dialogPage) updateState(ctx app.Context) {
 }
 
 func (p *dialogPage) Render() app.UI {
-	return prism.NewLayout().Content(
+	return prism.NewPage().Content(
 		app.H1().Text("Dialog Component"),
 		app.P().Text("Dialogs display important information that users need to acknowledge. They appear over the interface and block further interactions."),
 

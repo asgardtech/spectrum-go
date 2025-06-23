@@ -15,7 +15,7 @@ func newComboboxPage() *comboboxPage {
 }
 
 func (p *comboboxPage) Render() app.UI {
-	return prism.NewLayout().Content(
+	return prism.NewPage().Content(
 		app.H1().Text("Combobox Component"),
 		app.P().Text("Comboboxes allow users to filter lists to only options matching a query, combining a textfield, picker button, and menu items."),
 

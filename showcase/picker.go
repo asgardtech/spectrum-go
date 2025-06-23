@@ -18,7 +18,7 @@ func newPickerPage() *pickerPage {
 }
 
 func (p *pickerPage) Render() app.UI {
-	return prism.NewLayout().Content(
+	return prism.NewPage().Content(
 		app.H1().Text("Picker Component"),
 		app.P().Text("The Picker component allows users to select an option from a dropdown menu."),
 

@@ -24,7 +24,7 @@ func (p *linkPage) initPage(ctx app.Context) {
 }
 
 func (p *linkPage) Render() app.UI {
-	return prism.NewLayout().Content(
+	return prism.NewPage().Content(
 		app.H1().Text("Link Component"),
 		app.P().Text("Links allow users to navigate to a different location. They can be presented in-line inside a paragraph or as standalone text."),
 

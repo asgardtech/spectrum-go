@@ -15,7 +15,7 @@ func newMenuPage() *menuPage {
 }
 
 func (p *menuPage) Render() app.UI {
-	return prism.NewLayout().Content(
+	return prism.NewPage().Content(
 		app.H1().Text("Menu Component"),
 		app.P().Text("Menus display a list of options or commands, typically triggered from a button."),
 

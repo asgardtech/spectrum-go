@@ -24,7 +24,7 @@ func (p *breadcrumbsPage) initPage(ctx app.Context) {
 }
 
 func (p *breadcrumbsPage) Render() app.UI {
-	return prism.NewLayout().Content(
+	return prism.NewPage().Content(
 		app.H1().Text("Breadcrumbs Component"),
 		app.P().Text("Breadcrumbs display a hierarchy of links to the current page or resource in an application."),
 

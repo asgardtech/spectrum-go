@@ -15,7 +15,7 @@ func newSidenavPage() *sidenavPage {
 }
 
 func (p *sidenavPage) Render() app.UI {
-	return prism.NewLayout().Content(
+	return prism.NewPage().Content(
 		app.H1().Text("Sidenav Component"),
 		app.P().Text("Sidenav provides hierarchical navigation to different pages of your application."),
 
