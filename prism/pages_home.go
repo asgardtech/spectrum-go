@@ -4,16 +4,19 @@ import "github.com/maxence-charriere/go-app/v10/pkg/app"
 
 type HomePage struct {
 	app.Compo
+	Page
 }
 
-func NewHomePage() *HomePage {
-	return &HomePage{}
+func HomePageConstructor(options PageOptions) PageConstructor {
+	return func() IPage {
+		return &HomePage{
+			Page: *NewPage(options),
+		}
+	}
 }
 
 func (p *HomePage) Render() app.UI {
-	return NewPage().
-		WithName("Home").
-		WithDescription("Home page").
+	return p.
 		Content(
 			app.H1().Text("Home"),
 		)

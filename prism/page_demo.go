@@ -9,6 +9,7 @@ import (
 
 type DemoPage struct {
 	app.Compo
+	Page
 
 	state *DemoPageState
 }
@@ -73,10 +74,11 @@ func (p *DemoPage) OnMount(ctx app.Context) {
 }
 
 func (p *DemoPage) Render() app.UI {
-	return NewPage().
-		WithName("Prism Demo").
-		WithDescription("Interactive demo of the Prism framework components").
-		WithUser(User{LoggedIn: true, Name: "Demo User"}).
+	return NewPage(PageOptions{
+		Name:        "Prism Demo",
+		Description: "Interactive demo of the Prism framework components",
+		User:        User{LoggedIn: true, Name: "Demo User"},
+	}).
 		Content(
 			p.renderHeader(),
 			p.renderComponentShowcase(),
