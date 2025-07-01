@@ -89,7 +89,6 @@ func NewComprehensiveTestPage() *ComprehensiveTestPage {
 func (c *ComprehensiveTestPage) Render() app.UI {
 	return NewPage(PageOptions{
 		Name: "Comprehensive Component Test",
-		User: User{LoggedIn: true, Name: "Test User"},
 	}).
 		Content(
 			app.Div().

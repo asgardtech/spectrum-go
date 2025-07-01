@@ -57,6 +57,8 @@ func (a *App) WithDescription(description string) *App {
 }
 
 func (a *App) SetUser(user User) {
+	log.Printf("Setting user: %+v", user)
+
 	a.user = user
 
 	a.ctx.SetState(userStateKey, user).
@@ -295,6 +297,7 @@ func runServer(ctx context.Context, h *app.Handler, host string) {
 		http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			if r.URL.Path == "/web/app.css" {
 				content := sp.CssContent
+				w.Header().Set("Content-Type", "text/css; charset=utf-8")
 				w.Write([]byte(content))
 			} else {
 				dir := webDir()

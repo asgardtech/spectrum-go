@@ -77,7 +77,6 @@ func (p *DemoPage) Render() app.UI {
 	return NewPage(PageOptions{
 		Name:        "Prism Demo",
 		Description: "Interactive demo of the Prism framework components",
-		User:        User{LoggedIn: true, Name: "Demo User"},
 	}).
 		Content(
 			p.renderHeader(),

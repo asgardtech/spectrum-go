@@ -23,7 +23,6 @@ type Page struct {
 	TopNavVisibility   SectionVisibility
 	SidenavVisibility  SectionVisibility
 	UserMenuVisibility SectionVisibility
-	User               User
 	Icon               string
 	UrlPath            string
 	SidenavGroup       string
@@ -48,7 +47,6 @@ func NewPage(options PageOptions) *Page {
 		TopNavVisibility:   options.TopNavVisibility,
 		SidenavVisibility:  options.SidenavVisibility,
 		UserMenuVisibility: options.UserMenuVisibility,
-		User:               options.User,
 		Icon:               options.Icon,
 		UrlPath:            options.UrlPath,
 		SidenavGroup:       options.SidenavGroup,
@@ -221,11 +219,6 @@ func (p *Page) WithSidenav(visibility SectionVisibility) *Page {
 	return p
 }
 
-func (p *Page) WithUser(user User) *Page {
-	p.User = user
-	return p
-}
-
 func (p *Page) Content(v ...app.UI) *Page {
 	p.content = app.FilterUIElems(v...)
 	return p
@@ -247,27 +240,33 @@ func (p *Page) OnNav(ctx app.Context) {
 
 func (p *Page) Render() app.UI {
 	// Create a main container with theme-aware styling
-	return sp.Theme().
-		Color(p.currentTheme).
-		Scale(sp.ThemeScaleMedium).
+	return app.Div().
+		Class("spectrum-Typography").
 		Body(
-			p.renderTopNav(),
-			app.If(
-				p.SidenavVisibility == SectionVisibilityVisible ||
-					(p.SidenavVisibility == SectionVisibilityDefault && p.User.LoggedIn),
-				func() app.UI {
-					return sp.SplitView().
-						Collapsible(true).
-						PrimarySize("250px").
-						PrimaryMin(200).
-						Resizable(false).
-						AddToBody(p.renderSidenav()).
-						AddToBody(p.renderContent())
-				}).Else(
-				func() app.UI {
-					return p.renderContent()
-				},
-			),
+			sp.Theme().
+				Dir(sp.ThemeDirLtr).
+				Color(p.currentTheme).
+				Scale(sp.ThemeScaleLarge).
+				// Style("background-color", "var(--spectrum-gray-100)").
+				Body(
+					p.renderTopNav(),
+					app.If(
+						p.SidenavVisibility == SectionVisibilityVisible ||
+							(p.SidenavVisibility == SectionVisibilityDefault && p.app.user.LoggedIn),
+						func() app.UI {
+							return sp.SplitView().
+								Collapsible(true).
+								PrimarySize("250px").
+								PrimaryMin(200).
+								Resizable(true).
+								AddToBody(p.renderSidenav()).
+								AddToBody(p.renderContent())
+						}).Else(
+						func() app.UI {
+							return p.renderContent()
+						},
+					),
+				),
 		)
 }
 
@@ -292,7 +291,7 @@ func (p *Page) toggleTheme() {
 func (p *Page) renderTopNav() app.UI {
 	return app.If(
 		p.TopNavVisibility == SectionVisibilityVisible ||
-			(p.TopNavVisibility == SectionVisibilityDefault && p.User.LoggedIn),
+			(p.TopNavVisibility == SectionVisibilityDefault && p.app.user.LoggedIn),
 		func() app.UI {
 			return sp.TopNav().
 				Body(
@@ -326,7 +325,7 @@ func (p *Page) renderSidenav() app.UI {
 
 	for _, page := range p.app.pageConstructors {
 		page := page()
-		if page.GetSidenavLinkVisibility() != SectionVisibilityVisible {
+		if page.GetSidenavLinkVisibility() == SectionVisibilityHidden {
 			continue
 		}
 
@@ -350,7 +349,7 @@ func (p *Page) renderSidenav() app.UI {
 
 	return app.If(
 		p.SidenavVisibility == SectionVisibilityVisible ||
-			(p.SidenavVisibility == SectionVisibilityDefault && p.User.LoggedIn),
+			(p.SidenavVisibility == SectionVisibilityDefault && p.app.user.LoggedIn),
 		func() app.UI {
 			return app.Div().
 				Class("spectrum-sidenav").
@@ -381,8 +380,8 @@ func (p *Page) renderSidenav() app.UI {
 }
 
 func (p *Page) renderContent() app.UI {
-	// Content area - will be replaced with component showcase
 	return app.Div().
+		Class("spectrum-Body").
 		Body(
 			p.content...,
 		)

@@ -24,12 +24,9 @@ func main() {
 		WithPage(
 			prism.HomePageConstructor(
 				prism.PageOptions{
-					Name:               "Home",
-					UrlPath:            "/",
-					TopNavVisibility:   prism.SectionVisibilityDefault,
-					UserMenuVisibility: prism.SectionVisibilityDefault,
-					SidenavVisibility:  prism.SectionVisibilityVisible,
-					SidenavGroup:       "Dashboard",
+					Name:         "Home",
+					UrlPath:      "/",
+					SidenavGroup: "Dashboard",
 				},
 			),
 		)

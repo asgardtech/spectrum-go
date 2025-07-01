@@ -102,7 +102,7 @@ type ITheme interface {
 func Theme() ITheme {
 	element := &spectrumTheme{
 		PropColor:  ThemeColorLight,
-		PropScale:  ThemeScaleMedium,
+		PropScale:  ThemeScaleLarge,
 		PropSystem: ThemeSystemSpectrum,
 		PropDir:    ThemeDirLtr,
 		PropLang:   "",
